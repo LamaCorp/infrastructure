@@ -16,6 +16,10 @@ configMapGenerator:
   - name: stalwart-config
     files:
       - config/config.toml
+      - config/name.sql
+      - config/members.sql
+      - config/recipients.sql
+      - config/emails.sql
 
 images:
   - name: ghcr.io/stalwartlabs/stalwart

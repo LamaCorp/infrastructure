@@ -124,7 +124,7 @@ data = "postgresql"
 blob = "postgresql"
 fts = "postgresql"
 lookup = "redis"
-directory = "ldap"
+directory = "postgresql-authentik"
 
 [storage.full-text]
 default-language = "en"
@@ -142,6 +142,22 @@ allow-invalid-certs = true
 [store.postgresql.purge]
 frequency = "0 1 *"
 
+[store.postgresql-authentik]
+type = "postgresql"
+host = "postgresql.fsn.as212024.net"
+database = "authentik"
+user = "%{file:/postgres-creds/username}%"
+password = "%{file:/postgres-creds/password}%"
+compression = "none"
+[store.postgresql-authentik.tls]
+enable = false
+allow-invalid-certs = true
+[store.postgresql-authentik.query]
+name = "%{file:/config/name.sql}%"
+members = "%{file:/config/members.sql}%"
+recipients = "%{file:/config/recipients.sql}%"
+emails = "%{file:/config/emails.sql}%"
+
 [store.redis]
 type = "redis"
 redis-type = "single"
@@ -150,25 +166,16 @@ compression = "none"
 [store.redis.purge]
 frequency = "0 1 *"
 
-[directory.ldap]
-type = "ldap"
-url = "ldap://ak-outpost-ldap-outpost.services-authentik.svc"
-base-dn = "dc=stalwart,dc=lama-corp,dc=space"
-[directory.ldap.bind]
-dn = "cn=%{file:/ldap-creds/username}%,ou=users,dc=stalwart,dc=lama-corp,dc=space"
-secret = "%{file:/ldap-creds/key}%"
-[directory.ldap.bind.auth]
-method = "lookup"
-[directory.ldap.filter]
-name = "(&(cn=?)(mailPrimaryAddress=*))"
-email = "(|(mailPrimaryAddress=?)(mailAlias=?))"
-[directory.ldap.attributes]
-name = "cn"
-class = "objectClass"
-description = "sAMAccountName"
-groups = "memberOf"
-email = "mailPrimaryAddress"
-email-alias = "mailAlias"
+[directory.postgresql-authentik]
+type = "sql"
+store = "postgresql-authentik"
+[directory.postgresql-authentik.columns]
+name = "name"
+description = "description"
+secret = "secret"
+email = "address"
+quota = "quota"
+class = "type"
 
 [email.encryption]
 enable = false

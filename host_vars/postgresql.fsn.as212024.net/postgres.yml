@@ -1,5 +1,5 @@
 ---
-postgresql_version: 15
+postgresql_version: 17
 
 postgresql_users:
   postgres:
@@ -26,7 +26,19 @@ postgresql_users:
   netbox: {}
   nextcloud: {}
   paperless_risson: {}
-  stalwart: {}
+  stalwart:
+    permissions:
+      - db: authentik
+        grants:
+          - CONNECT
+      - db: authentik
+        grants:
+          - SELECT
+        objs:
+          - authentik_core_user
+          - authentik_core_group
+          - authentik_core_user_ak_groups
+        type: table
   vaultwarden: {}
 
 postgresql_dbs:
