@@ -7,7 +7,7 @@ collections:
   - name: community.general
     version: 11.4.0
   - name: community.hashi_vault
-    version: 7.0.0
+    version: 7.1.0
   - name: community.mongodb
     version: 1.7.10
   - name: prometheus.prometheus
