@@ -10,4 +10,4 @@ mosquitto_docker_repository: eclipse-mosquitto
 mosquitto_docker_tag: 2.0.22
 
 zigbee2mqtt_docker_repository: ghcr.io/koenkk/zigbee2mqtt
-zigbee2mqtt_docker_tag: 2.6.2
+zigbee2mqtt_docker_tag: 2.6.3
