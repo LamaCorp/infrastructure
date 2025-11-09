@@ -1,6 +1,5 @@
 #!/usr/bin/env ansible-playbook
 ---
-
 - name: Base
   import_playbook: base.yml
 
@@ -19,7 +18,6 @@
   tags:
     - kvm
     - vms
-
 # - name: Drop VMs virtual memory caches
 #   hosts: vm
 #   roles:

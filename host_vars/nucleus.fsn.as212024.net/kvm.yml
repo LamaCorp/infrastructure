@@ -24,6 +24,12 @@ libvirt_host_pools:
     mode: 755
     owner: root
     group: root
+  - name: mail
+    type: dir
+    path: /vms/mail
+    mode: 755
+    owner: root
+    group: root
   - name: mongodb
     type: dir
     path: /vms/mongodb
@@ -90,6 +96,29 @@ libvirt_vms:
         source:
           dev: br-cc
         mac: 52:54:00:e0:d1:60
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: mail
+    vcpus: 4
+    memory_mb: 4096
+    enable_spice: true
+    volumes:
+      - pool: mail
+        name: os
+        capacity: 20G
+        discard: unmap
+      - pool: mail
+        name: storage
+        capacity: 50G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: br-mdw
+        mac: 52:54:00:69:13:91
     boot_firmware: efi
     start: true
     autostart: true
