@@ -1,7 +1,7 @@
 ---
 # Snapcast version
 # valid values: every version available as a release on github
-snapcast_version: "v0.31.0"
+snapcast_version: "v0.34.0"
 
 snapcast_server_install: false
 snapcast_client_install: false
