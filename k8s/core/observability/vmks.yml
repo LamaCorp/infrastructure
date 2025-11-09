@@ -27,7 +27,7 @@ spec:
         namespace: core-observability
       source:
         repoURL: https://victoriametrics.github.io/helm-charts
-        targetRevision: 0.63.3
+        targetRevision: 0.63.4
         chart: victoria-metrics-k8s-stack
         helm:
           releaseName: vmks
