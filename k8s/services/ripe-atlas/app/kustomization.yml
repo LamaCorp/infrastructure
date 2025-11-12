@@ -11,4 +11,4 @@ resources:
 
 images:
   - name: jamesits/ripe-atlas
-    newTag: "5110"
+    newTag: "5120"
