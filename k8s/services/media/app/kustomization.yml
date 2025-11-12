@@ -39,8 +39,7 @@ images:
   - name: ghcr.io/hotio/jackett
     newTag: release-0.22.2374
   - name: ghcr.io/jellyfin/jellyfin
-    newName: registry.gitlab.com/lama-corp/infra/infrastructure/jellyfin
-    newTag: 10.11.0-rc5-amd64.20250901-004627
+    newTag: 10.11.2
   - name: ghcr.io/hotio/jellyseerr
     newName: fallenbagel/jellyseerr
     newTag: preview-OIDC
