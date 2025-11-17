@@ -25,3 +25,10 @@ spec:
         - ports:
             - port: "3389"
               protocol: TCP
+    - fromCIDR:
+        - 172.28.1.90/32
+        - 2001:67c:17fc:102::90/128
+      toPorts:
+        - ports:
+            - port: "3389"
+              protocol: TCP
