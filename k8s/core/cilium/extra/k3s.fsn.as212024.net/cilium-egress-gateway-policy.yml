@@ -2,23 +2,6 @@
 apiVersion: cilium.io/v2
 kind: CiliumEgressGatewayPolicy
 metadata:
-  name: services-stalwart-mail-egress
-spec:
-  selectors:
-    - podSelector:
-        matchLabels:
-          io.kubernetes.pod.namespace: services-stalwart
-  destinationCIDRs:
-    - "0.0.0.0/0"
-  egressGateway:
-    nodeSelector:
-      matchLabels:
-        kubernetes.io/hostname: k3s-1.fsn.as212024.net
-    egressIP: 148.251.148.232
----
-apiVersion: cilium.io/v2
-kind: CiliumEgressGatewayPolicy
-metadata:
   name: services-media-download-egress
 spec:
   selectors:

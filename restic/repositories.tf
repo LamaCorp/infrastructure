@@ -14,6 +14,10 @@ locals {
       "user_root",
     ]
 
+    "mail.fsn.as212024.net" = [
+      "mail",
+      "user_root",
+    ]
     "mongodb.fsn.as212024.net" = [
       "mongodb",
       "user_root",

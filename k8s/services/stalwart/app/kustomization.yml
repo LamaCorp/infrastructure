@@ -9,7 +9,6 @@ resources:
   - network-policy.yml
   - pvc.yml
   - secrets.yml
-  - service.yml
   - service-monitor.yml
 
 configMapGenerator:

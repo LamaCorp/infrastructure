@@ -9,6 +9,7 @@ docker_config_default:
   bridge: "br-docker"
   ip-forward: false
   iptables: false
+  ip6tables: false
   ipv6: true
   dns: "{{ network_nameservers }}"
 

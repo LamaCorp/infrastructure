@@ -11,6 +11,8 @@ bird_static_routes:
     - 209.112.97.232/32 unreachable # nat-svc
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
+  v6:
+    - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
 
 bird_bgp_sessions:
   cores:

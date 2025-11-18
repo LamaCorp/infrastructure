@@ -104,16 +104,6 @@
           value: 1
       tags:
         - sysctl
-    - name: Ensure /etc/nftables.d/filter-forward-docker.nft exists
-      ansible.builtin.file:
-        path: /etc/nftables.d/filter-forward-docker.nft
-        state: touch
-        owner: root
-        group: root
-        mode: 0644
-        modification_time: preserve
-        access_time: preserve
-      when: inventory_hostname in groups['docker']
   roles:
     - ipr-cnrs.nftables
   tags:

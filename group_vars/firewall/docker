@@ -9,13 +9,3 @@ nft_input_group_rules:
   220 prometheus exporter docker:
     - ip saddr $subnet_internal_4 tcp dport {$prometheus_exporter_docker} accept
     - ip6 saddr $subnet_internal_6 tcp dport {$prometheus_exporter_docker} accept
-
-
-nft_forward_group_rules:
-  890 docker forward:
-    - |
-      {% if docker_config.bridge != "none" %}
-      include "/etc/nftables.d/filter-forward-docker.nft"
-      {% else %}
-      # (none)
-      {% endif %}

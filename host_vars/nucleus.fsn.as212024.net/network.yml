@@ -43,8 +43,6 @@ netplan_configuration:
           - 172.28.1.62/26
           - 2001:67c:17fc:101::1/64
         routes:
-          - to: 148.251.148.232/32 # mail.lama-corp.space
-            via: 172.28.1.11 # k3s-1.fsn.as212024.net
           - to: 209.112.97.232/32 # nat-svc
             via: 0.0.0.0
             type: unreachable
@@ -54,6 +52,10 @@ netplan_configuration:
           - 172.28.1.126/26
           - 2001:67c:17fc:102::1/64
         routes:
+          - to: 148.251.148.232/32 # mail.as212024.net
+            via: 172.28.1.90 # mail.fsn.as212024.net
+          - to: 2001:67c:17fc::25/128 # mail.as212024.net
+            via: 2001:67c:17fc:102::90 # mail.fsn.as212024.net
           - to: 209.112.97.233/32 # nat-mdw
             via: 0.0.0.0
             type: unreachable
