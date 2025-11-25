@@ -103,7 +103,7 @@ spec:
           ingress:
             enabled: false
     - repoURL: https://ananace.gitlab.io/charts
-      targetRevision: 1.4.23
+      targetRevision: 1.4.24
       chart: element-web
       helm:
         releaseName: element
