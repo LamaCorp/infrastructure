@@ -31,6 +31,6 @@ images:
   - name: dock.mau.dev/mautrix/facebook
     newTag: v0.5.1
   - name: dock.mau.dev/mautrix/slack
-    newTag: v0.2510.0
+    newTag: v0.2511.0
   - name: dock.mau.dev/maubot/maubot
     newTag: v0.6.0
