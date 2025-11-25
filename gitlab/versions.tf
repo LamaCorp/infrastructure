@@ -10,7 +10,7 @@ terraform {
     }
   }
 
-  required_version = ">= 1.0, < 1.7.0"
+  required_version = "< 1.15.0"
 
   backend "http" {}
 }
