@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/gitlab-runner/extra
     - repoURL: https://charts.gitlab.io
-      targetRevision: 0.82.0
+      targetRevision: 0.83.1
       chart: gitlab-runner
       helm:
         releaseName: gitlab-runner-lama-corp
