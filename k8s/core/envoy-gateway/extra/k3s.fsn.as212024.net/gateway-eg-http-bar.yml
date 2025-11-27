@@ -29,7 +29,7 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: lama-corp-space-ecdsa-tls
-          - name: lama-corp-space-rsa-tls
-          - name: risson-space-ecdsa-tls
-          - name: risson-space-rsa-tls
+          - name: eg-http-public-lama-corp-space-ecdsa-tls
+          - name: eg-http-public-lama-corp-space-rsa-tls
+          - name: eg-http-public-risson-space-ecdsa-tls
+          - name: eg-http-public-risson-space-rsa-tls
