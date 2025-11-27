@@ -7,25 +7,9 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-authentik-rs-rsa
+  name: as212024-net-rsa
 spec:
-  secretName: eg-http-public-authentik-rs-rsa-tls
-  privateKey:
-    algorithm: RSA
-  issuerRef:
-    group: cert-manager.io
-    kind: ClusterIssuer
-    name: letsencrypt-prod-dns01
-  dnsNames:
-    - "authentik.rs"
-    - "*.authentik.rs"
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: eg-http-public-as212024-net-rsa
-spec:
-  secretName: eg-http-public-as212024-net-rsa-tls
+  secretName: as212024-net-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -40,9 +24,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-as212024-net-ecdsa
+  name: as212024-net-ecdsa
 spec:
-  secretName: eg-http-public-as212024-net-ecdsa-tls
+  secretName: as212024-net-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -57,9 +41,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-devou-ps-rsa
+  name: devou-ps-rsa
 spec:
-  secretName: eg-http-public-devou-ps-rsa-tls
+  secretName: devou-ps-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -73,9 +57,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-devou-ps-ecdsa
+  name: devou-ps-ecdsa
 spec:
-  secretName: eg-http-public-devou-ps-ecdsa-tls
+  secretName: devou-ps-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -89,9 +73,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-doyouhavegoodbackups-com-rsa
+  name: doyouhavegoodbackups-com-rsa
 spec:
-  secretName: eg-http-public-doyouhavegoodbackups-com-rsa-tls
+  secretName: doyouhavegoodbackups-com-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -105,9 +89,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-doyouhavegoodbackups-com-ecdsa
+  name: doyouhavegoodbackups-com-ecdsa
 spec:
-  secretName: eg-http-public-doyouhavegoodbackups-com-ecdsa-tls
+  secretName: doyouhavegoodbackups-com-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -121,9 +105,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-lama-corp-space-rsa
+  name: lama-corp-space-rsa
 spec:
-  secretName: eg-http-public-lama-corp-space-rsa-tls
+  secretName: lama-corp-space-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -139,9 +123,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-lama-corp-space-ecdsa
+  name: lama-corp-space-ecdsa
 spec:
-  secretName: eg-http-public-lama-corp-space-ecdsa-tls
+  secretName: lama-corp-space-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -157,9 +141,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-lama-tel-rsa
+  name: lama-tel-rsa
 spec:
-  secretName: eg-http-public-lama-tel-rsa-tls
+  secretName: lama-tel-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -173,9 +157,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-lama-tel-ecdsa
+  name: lama-tel-ecdsa
 spec:
-  secretName: eg-http-public-lama-tel-ecdsa-tls
+  secretName: lama-tel-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -189,9 +173,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-marcerisson-space-rsa
+  name: marcerisson-space-rsa
 spec:
-  secretName: eg-http-public-marcerisson-space-rsa-tls
+  secretName: marcerisson-space-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -206,9 +190,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-marcerisson-space-ecdsa
+  name: marcerisson-space-ecdsa
 spec:
-  secretName: eg-http-public-marcerisson-space-ecdsa-tls
+  secretName: marcerisson-space-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -223,9 +207,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-risson-me-rsa
+  name: risson-me-rsa
 spec:
-  secretName: eg-http-public-risson-me-rsa-tls
+  secretName: risson-me-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -240,9 +224,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-risson-me-ecdsa
+  name: risson-me-ecdsa
 spec:
-  secretName: eg-http-public-risson-me-ecdsa-tls
+  secretName: risson-me-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -257,9 +241,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-risson-space-rsa
+  name: risson-space-rsa
 spec:
-  secretName: eg-http-public-risson-space-rsa-tls
+  secretName: risson-space-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -276,9 +260,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-risson-space-ecdsa
+  name: risson-space-ecdsa
 spec:
-  secretName: eg-http-public-risson-space-ecdsa-tls
+  secretName: risson-space-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -295,9 +279,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-rplace-space-rsa
+  name: rplace-space-rsa
 spec:
-  secretName: eg-http-public-rplace-space-rsa-tls
+  secretName: rplace-space-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -311,9 +295,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-rplace-space-ecdsa
+  name: rplace-space-ecdsa
 spec:
-  secretName: eg-http-public-rplace-space-ecdsa-tls
+  secretName: rplace-space-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -327,9 +311,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-cats-acdc-epita-fr-rsa
+  name: cats-acdc-epita-fr-rsa
 spec:
-  secretName: eg-http-public-cats-acdc-epita-fr-rsa-tls
+  secretName: cats-acdc-epita-fr-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -342,9 +326,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-cats-acdc-epita-fr-ecdsa
+  name: cats-acdc-epita-fr-ecdsa
 spec:
-  secretName: eg-http-public-cats-acdc-epita-fr-ecdsa-tls
+  secretName: cats-acdc-epita-fr-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -357,9 +341,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-oup-si-rsa
+  name: oup-si-rsa
 spec:
-  secretName: eg-http-public-oup-si-rsa-tls
+  secretName: oup-si-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -372,9 +356,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-oup-si-ecdsa
+  name: oup-si-ecdsa
 spec:
-  secretName: eg-http-public-oup-si-ecdsa-tls
+  secretName: oup-si-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
@@ -387,9 +371,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-status-prologin-org-rsa
+  name: status-prologin-org-rsa
 spec:
-  secretName: eg-http-public-status-prologin-org-rsa-tls
+  secretName: status-prologin-org-rsa-tls
   privateKey:
     algorithm: RSA
   issuerRef:
@@ -402,9 +386,9 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: eg-http-public-status-prologin-org-ecdsa
+  name: status-prologin-org-ecdsa
 spec:
-  secretName: eg-http-public-status-prologin-org-ecdsa-tls
+  secretName: status-prologin-org-ecdsa-tls
   privateKey:
     algorithm: ECDSA
   issuerRef:
