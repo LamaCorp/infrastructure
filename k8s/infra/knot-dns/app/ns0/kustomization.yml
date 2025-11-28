@@ -18,4 +18,4 @@ configMapGenerator:
 
 images:
   - name: cznic/knot
-    newTag: v3.5.1
+    newTag: v3.5.2
