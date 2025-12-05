@@ -6,7 +6,7 @@ terraform {
     }
     vault = {
       source  = "hashicorp/vault"
-      version = "5.5.0"
+      version = "5.6.0"
     }
   }
 
