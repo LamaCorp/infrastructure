@@ -54,7 +54,7 @@ images:
   - name: ghcr.io/hotio/readarr
     newTag: testing-0.3.32.2587
   - name: ghcr.io/recyclarr/recyclarr
-    newTag: 7.4.1
+    newTag: 7.5.2
   - name: ghcr.io/hotio/sabnzbd
     newTag: release-4.5.3
   - name: ghcr.io/hotio/sonarr
