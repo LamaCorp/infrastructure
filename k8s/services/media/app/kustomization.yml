@@ -35,7 +35,7 @@ images:
   - name: ghcr.io/hotio/bazarr
     newTag: release-1.5.2
   - name: ghcr.io/flaresolverr/flaresolverr
-    newTag: v3.4.5
+    newTag: v3.4.6
   - name: ghcr.io/hotio/jackett
     newTag: release-0.22.2374
   - name: ghcr.io/jellyfin/jellyfin
