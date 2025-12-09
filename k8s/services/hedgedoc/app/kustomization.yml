@@ -39,4 +39,4 @@ configMapGenerator:
 
 images:
   - name: quay.io/hedgedoc/hedgedoc
-    newTag: 1.10.3
+    newTag: 1.10.5
