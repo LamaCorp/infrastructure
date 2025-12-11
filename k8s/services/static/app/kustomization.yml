@@ -18,4 +18,4 @@ configMapGenerator:
 
 images:
   - name: nginx
-    newTag: 1.29.3
+    newTag: 1.29.4
