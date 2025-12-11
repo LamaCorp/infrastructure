@@ -88,6 +88,8 @@ spec:
                 useStrictSecurity: true
                 extraArgs:
                   enableTCP6: "true"
+                configReloaderExtraArgs:
+                  enableTCP6: "true"
 
             vmalert:
               enabled: true
@@ -103,6 +105,8 @@ spec:
                 useStrictSecurity: true
                 extraArgs:
                   enableTCP6: "true"
+                configReloaderExtraArgs:
+                  enableTCP6: "true"
 
             alertmanager:
               enabled: true
@@ -113,6 +117,8 @@ spec:
                 useStrictSecurity: true
                 secrets:
                   - alertmanager-discord-webhooks
+                configReloaderExtraArgs:
+                  enableTCP6: "true"
               useManagedConfig: false
               config:
                 route:
