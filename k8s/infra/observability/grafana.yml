@@ -61,7 +61,7 @@ spec:
               auto_assign_org_id: 1
             database:
               type: postgres
-              host: postgresql.fsn.as212024.net
+              host: postgresql.fsn.as212024.net:6432
               name: grafana
               ssl_mode: require
           envValueFrom:
