@@ -39,9 +39,10 @@ configMapGenerator:
       - WEB_CONCURRENCY=2
       - MAX_THREADS=5
       - PERSISTENT_TIMEOUT=20
-      - PREPARED_STATEMENTS=true
+      - PREPARED_STATEMENTS=false
 
       - DB_HOST=postgresql.fsn.as212024.net
+      - DB_PORT=6432
       - DB_NAME=mastodon
 
       - REDIS_HOST=redis.fsn.as212024.net
