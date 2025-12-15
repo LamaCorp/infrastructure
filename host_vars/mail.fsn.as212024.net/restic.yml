@@ -16,11 +16,9 @@ backup_restic_list_raw:
       - /srv/mailcow
     backup_pre_hooks:
       - cmd:
-          - "su"
-          - "-"
-          - "postgres"
+          - "bash"
           - "-c"
-          - "rm -f /var/lib/postgresql/backup.sql && pg_dumpall --clean --file /var/lib/postgresql/backup.sql --verbose --exclude-database=postgres --exclude-database=template0 --exclude-database=template1"
+          - "cd /srv/mailcow && MAILCOW_BACKUP_LOCATION=/srv/mailcow/backup/ ./helper-scripts/backup_and_restore.sh backup crypt redis rspamd postfix mysql --delete-days 3"
     backup_systemd_timers:
       minute: 42
       hour: 05
