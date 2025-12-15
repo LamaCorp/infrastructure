@@ -1,6 +1,6 @@
 {
   database: {
-    uri: "postgresql://{{ .postgres_username }}:{{ .postgres_password }}@postgresql.fsn.as212024.net/lemmy?sslmode=require"
+    uri: "postgresql://{{ .postgres_username }}:{{ .postgres_password }}@postgresql.fsn.as212024.net:6432/lemmy?sslmode=require"
   }
   pictrs: {
     url: "http://pictrs/"
