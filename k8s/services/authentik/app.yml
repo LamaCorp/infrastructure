@@ -28,9 +28,12 @@ spec:
           authentik:
             postgresql:
               host: postgresql.fsn.as212024.net
+              port: 6432
               user: file:///postgres-creds/username
               password: file:///postgres-creds/password
               name: authentik
+              conn_max_age: 0
+              disable_server_side_cursors: true
             redis:
               host: redis.fsn.as212024.net
               port: 6380
