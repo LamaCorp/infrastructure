@@ -28,4 +28,4 @@ spec:
                 - /bin/sh
                 - -c
               args:
-                - synapse_auto_compressor -c 500 -n 100 -p "host=postgresql.fsn.as212024.net user=$DB_USER password=$DB_PASSWORD dbname=matrix_synapse"
+                - synapse_auto_compressor -c 500 -n 100 -p "host=postgresql.fsn.as212024.net port=6432 user=$DB_USER password=$DB_PASSWORD dbname=matrix_synapse"

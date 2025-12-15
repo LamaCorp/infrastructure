@@ -82,6 +82,7 @@ spec:
             enabled: false
           externalPostgresql:
             host: postgresql.fsn.as212024.net
+            port: 6432
             username: matrix_synapse
             existingSecret: synapse-postgres-credentials
             existingSecretPasswordKey: password
