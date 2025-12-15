@@ -62,7 +62,6 @@ spec:
             database:
               type: postgres
               host: postgresql.fsn.as212024.net
-              max_open_conn: 1
               name: grafana
               ssl_mode: require
           envValueFrom:
