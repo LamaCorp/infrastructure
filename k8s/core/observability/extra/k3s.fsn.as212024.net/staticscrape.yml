@@ -188,6 +188,16 @@ spec:
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMStaticScrape
 metadata:
+  name: mailcow
+spec:
+  jobName: bgptools
+  targetEndpoints:
+    - targets:
+        - mail.fsn.as212024.net:9099
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMStaticScrape
+metadata:
   name: bgptools
 spec:
   jobName: bgptools
