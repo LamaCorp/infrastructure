@@ -14,15 +14,6 @@
       - "postgresql-{{ postgresql_version }}"
       - python3-psycopg2
 
-- name: Disable memory overcommit
-  ansible.posix.sysctl:
-    name: vm.overcommit_memory
-    value: 2
-    state: present
-    reload: true
-    sysctl_set: true
-    sysctl_file: /etc/sysctl.d/89-postgresql.conf
-
 - name: Template PostgreSQL configuration
   ansible.builtin.template:
     src: postgresql.conf
