@@ -10,7 +10,6 @@ resources:
   - sidekiq
   - db-migrate
   # - chewy-upgrade
-  - assets-precompile
   - media-remove
   - httproute.yml
   - network-policy.yml
