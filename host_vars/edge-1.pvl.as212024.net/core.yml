@@ -61,18 +61,12 @@ bird_bgp_sessions:
         asn: 212270
         irr: AS-PHOWORK
         local:
+          # Should be this, but for legacy reasons we're still on the old IPs
+          # v6: 2001:67c:17fc:fc41::21:2024
           v6: fd3c:c1c4:bbff:9a64::ee1
         remote:
+          # v6: 2001:67c:17fc:fc41::21:2270
           v6: fd3c:c1c4:bbff:9a64::cafe
-
-      - description: Alexandre Gliganic
-        alias: alex
-        asn: 215581
-        irr: AS215581:AS-ALEX
-        local:
-          v6: 2001:67c:17fc:fc41::21:2024
-        remote:
-          v6: 2001:67c:17fc:fc41::21:5581
 
   cores:
     defaults:
