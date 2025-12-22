@@ -243,16 +243,16 @@ bird_bgp_sessions:
 
   looking_glasses:
     sessions:
-      - description: Hurricane Electric Super LG
-        alias: he_bgp_lg
-        asn: 393338
+      - description: Securebit Route Collector
+        alias: securebit_rc
+        asn: 44393
         multihop: 32
         local:
-          v4: 194.50.92.165
-          v6: 2a09:4c0:303:c232::5ca5
+          v4: 209.112.97.244
+          v6: 2001:67c:17fc:ffff::4
         remote:
-          v4: 216.218.233.13
-          v6: 2600:7000:1000::9
+          v4: 49.12.70.222
+          v6: 2a01:4f8:c17:ec87::310c:46de
 
 bird_ospf_sessions:
   - alias: ospf
