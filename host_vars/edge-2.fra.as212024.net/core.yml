@@ -39,7 +39,8 @@ bird_bgp_sessions:
         alias: sbag
         asn: 58057
         md5: "2faf060a6c794c5fbbff6b93c64e6a94"
-        multihop: 3
+        multihop:
+          v6: 3
         local:
           v4: 194.50.92.165
           v6: 2a09:4c0:303:c232::5ca5
