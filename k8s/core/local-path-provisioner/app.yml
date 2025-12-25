@@ -28,7 +28,7 @@ spec:
           path: k8s/core/local-path-provisioner/extra
         - repoURL: https://github.com/rancher/local-path-provisioner.git
           path: deploy/chart/local-path-provisioner
-          targetRevision: v0.0.32
+          targetRevision: v0.0.33
           helm:
             releaseName: local-path-provisioner
             values: |
