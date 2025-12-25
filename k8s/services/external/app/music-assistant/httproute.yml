@@ -9,7 +9,7 @@ spec:
       namespace: core-eg
       sectionName: https
   hostnames:
-    - music.barr.risson.space
+    - music.home.risson.space
   rules:
     - matches:
         - path:
