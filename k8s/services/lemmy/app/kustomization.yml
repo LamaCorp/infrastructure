@@ -45,4 +45,4 @@ images:
   - name: asonix/pictrs
     newTag: 0.5.19
   - name: dessalines/lemmy-ui
-    newTag: 0.19.14
+    newTag: 0.19.15
