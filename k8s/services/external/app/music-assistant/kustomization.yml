@@ -1,6 +1,0 @@
----
-kind: Kustomization
-
-resources:
-  - service.yml
-  - httproute.yml

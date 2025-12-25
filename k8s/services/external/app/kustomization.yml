@@ -5,5 +5,4 @@ resources:
   - secrets.yml
 
   - home-assistant
-  - music-assistant
   - zigbee2mqtt
