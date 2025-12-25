@@ -41,7 +41,7 @@ configMapGenerator:
 
 images:
   - name: dessalines/lemmy
-    newTag: 0.19.14
+    newTag: 0.19.15
   - name: asonix/pictrs
     newTag: 0.5.19
   - name: dessalines/lemmy-ui
