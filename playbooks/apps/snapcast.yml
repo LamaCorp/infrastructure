@@ -7,8 +7,6 @@
   hosts: snapserver
   roles:
     - snapcast
-  vars:
-    snapcast_server_install: true
   tags:
     - apps
     - snapcast
@@ -18,9 +16,6 @@
   hosts: snapclient
   roles:
     - snapcast
-  vars:
-    snapcast_client_install: true
-    snapcast_remote_install: true
   tags:
     - apps
     - snapcast
