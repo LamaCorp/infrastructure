@@ -9,7 +9,7 @@ spec:
       containers:
         - name: mastodon
           args:
-            - exec node ./streaming
+            - exec node ./streaming/index.js
           env:
             - name: BIND
               value: "::"
