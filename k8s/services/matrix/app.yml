@@ -105,7 +105,6 @@ spec:
             enabled: false
           gateway:
             enabled: true
-            includeServerName: false
             parentRefs:
               - name: eg-http-public
                 namespace: core-eg
