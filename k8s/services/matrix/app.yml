@@ -54,6 +54,9 @@ spec:
               - /synapse/config/appservices/hookshot.yaml
               - /synapse/config/appservices/mautrix-facebook.yaml
               - /synapse/config/appservices/mautrix-slack.yaml
+            media_retention:
+              remote_media_lifetime: 14d
+            url_preview_enabled: false
 
           synapse:
             strategy:
