@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyProxy
 metadata:
-  name: eg-http-bar
+  name: eg-http-media
 spec:
   provider:
     type: Kubernetes
@@ -21,11 +21,11 @@ spec:
               template:
                 spec:
                   nodeSelector:
-                    k8s.as212024.net/role: storage
+                    k8s.as212024.net/role: media
                   tolerations:
                     - key: k8s.as212024.net/role
                       operator: Equal
-                      value: storage
+                      value: media
                       effect: NoExecute
       envoyService:
         externalTrafficPolicy: Local

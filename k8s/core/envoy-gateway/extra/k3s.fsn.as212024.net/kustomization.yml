@@ -9,8 +9,10 @@ resources:
   - httproute-http-to-https.yml
 
   - gateway-eg-http-public.yml
+  - gateway-eg-http-media.yml
   - gateway-eg-http-bar.yml
   - envoyproxy-eg-http-public.yml
+  - envoyproxy-eg-http-media.yml
   - envoyproxy-eg-http-bar.yml
 
   - certificates.yml
