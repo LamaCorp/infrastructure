@@ -98,6 +98,10 @@ spec:
             host: redis.fsn.as212024.net
             port: 6384
 
+          wellknown:
+            enabled: true
+            useIpv6: true
+
           persistence:
             enabled: true
 
