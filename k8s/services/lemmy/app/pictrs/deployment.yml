@@ -22,16 +22,6 @@ spec:
                 secretKeyRef:
                   name: lemmy-pictrs
                   key: api_key
-            - name: PICTRS__STORE__ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: pictrs-s3-credentials
-                  key: access_key
-            - name: PICTRS__STORE__SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: pictrs-s3-credentials
-                  key: access_key
           envFrom:
             - configMapRef:
                 name: pictrs-config
@@ -39,11 +29,7 @@ spec:
                 name: pictrs-postgres-credentials
           volumeMounts:
             - name: data
-              mountPath: /mnt/database
-              subPath: database
-            - name: data
-              mountPath: /mnt/media
-              subPath: media
+              mountPath: /mnt
           ports:
             - name: http
               containerPort: 8080

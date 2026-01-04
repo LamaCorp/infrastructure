@@ -28,11 +28,6 @@ configMapGenerator:
       - PICTRS__MEDIA__GIF__MAX_AREA=65536
       - PICTRS__MEDIA__GIF__MAX_FRAME_COUNT=400
       - PICTRS__REPO__TYPE=postgres
-      - PICTRS__STORE__TYPE=object_storage
-      - PICTRS__STORE__ENDPOINT=https://s3.lama-corp.space
-      - PICTRS__STORE__USE_PATH_STYLE=false
-      - PICTRS__STORE__BUCKET_NAME=lemmy-pictrs
-      - PICTRS__STORE__REGION=us-east-1
   - name: lemmy-ui-config
     literals:
       - LEMMY_UI_LEMMY_INTERNAL_HOST=lemmy:80
