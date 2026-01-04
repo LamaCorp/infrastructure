@@ -7,7 +7,7 @@ metadata:
     configmap.reloader.stakater.com/reload: "immich-config-env"
     secret.reloader.stakater.com/reload: "immich-postgres-credentials,immich-config"
 spec:
-  replicas: 1
+  replicas: 0
   template:
     spec:
       securityContext:
@@ -61,3 +61,10 @@ spec:
         - name: config
           secret:
             secretName: immich-config
+      nodeSelector:
+        k8s.as212024.net/role: storage
+      tolerations:
+        - key: k8s.as212024.net/role
+          operator: Equal
+          value: storage
+          effect: NoExecute

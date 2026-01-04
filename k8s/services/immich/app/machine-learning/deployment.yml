@@ -6,7 +6,7 @@ metadata:
   annotations:
     configmap.reloader.stakater.com/reload: "immich-config-env"
 spec:
-  replicas: 1
+  replicas: 0
   template:
     spec:
       securityContext:
@@ -50,3 +50,10 @@ spec:
         - name: cache
           persistentVolumeClaim:
             claimName: immich-machine-learning-cache
+      nodeSelector:
+        k8s.as212024.net/role: storage
+      tolerations:
+        - key: k8s.as212024.net/role
+          operator: Equal
+          value: storage
+          effect: NoExecute
