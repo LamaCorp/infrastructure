@@ -8,6 +8,7 @@ resources:
   - deployment.yml
   - httproute.yml
   - network-policy.yml
+  - pvc.yml
   - secrets.yml
   - service.yml
 
@@ -23,10 +24,6 @@ configMapGenerator:
       - CMD_EMAIL=false
       - CMD_ALLOW_ANONYMOUS=true
       - CMD_ALLOW_ANONYMOUS_EDITS=true
-
-      - CMD_IMAGE_UPLOAD_TYPE=s3
-      - CMD_S3_ENDPOINT=s3.lama-corp.space
-      - CMD_S3_BUCKET=hedgedoc
 
       - CMD_OAUTH2_AUTHORIZATION_URL=https://auth.lama-corp.space/application/o/authorize/
       - CMD_OAUTH2_USER_PROFILE_URL=https://auth.lama-corp.space/application/o/userinfo/

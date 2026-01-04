@@ -27,10 +27,15 @@ spec:
             - secretRef:
                 name: hedgedoc-oidc-credentials
             - secretRef:
-                name: hedgedoc-s3-credentials
-            - secretRef:
                 name: hedgedoc-secrets
           ports:
             - name: http
               containerPort: 3000
               protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /hedgedoc/public/uploads
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: hedgedoc-data
