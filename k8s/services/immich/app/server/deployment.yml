@@ -7,7 +7,7 @@ metadata:
     configmap.reloader.stakater.com/reload: "immich-config-env"
     secret.reloader.stakater.com/reload: "immich-postgres-credentials,immich-config"
 spec:
-  replicas: 0
+  replicas: 1
   template:
     spec:
       securityContext:

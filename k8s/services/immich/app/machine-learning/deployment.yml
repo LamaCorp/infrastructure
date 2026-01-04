@@ -6,7 +6,7 @@ metadata:
   annotations:
     configmap.reloader.stakater.com/reload: "immich-config-env"
 spec:
-  replicas: 0
+  replicas: 1
   template:
     spec:
       securityContext:
