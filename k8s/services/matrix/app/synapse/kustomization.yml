@@ -5,5 +5,4 @@ commonLabels:
   app.kubernetes.io/component: synapse
 
 resources:
-  - httproute.yml
   - secrets.yml

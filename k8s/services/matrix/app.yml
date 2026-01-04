@@ -99,10 +99,17 @@ spec:
             port: 6384
 
           persistence:
-            enabled: false
+            enabled: true
 
           ingress:
             enabled: false
+          gateway:
+            enabled: true
+            includeServerName: false
+            parentRefs:
+              - name: eg-http-public
+                namespace: core-eg
+                sectionName: https
     - repoURL: https://ananace.gitlab.io/charts
       targetRevision: 1.4.26
       chart: element-web
