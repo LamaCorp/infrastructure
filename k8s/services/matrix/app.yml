@@ -63,7 +63,7 @@ spec:
               type: Recreate
             extraCommands:
               - apt-get update -yqq && apt-get install -yqq git
-              - pip install synapse-s3-storage-provider git+https://github.com/devture/matrix-synapse-shared-secret-auth.git
+              - pip install git+https://github.com/devture/matrix-synapse-shared-secret-auth.git
             extraVolumes:
               - name: extra-secrets
                 secret:
