@@ -25,8 +25,6 @@ spec:
             - secretRef:
                 name: mattermost-postgres-credentials
             - secretRef:
-                name: mattermost-s3-credentials
-            - secretRef:
                 name: mattermost-smtp-credentials
             - secretRef:
                 name: mattermost-oidc-credentials
