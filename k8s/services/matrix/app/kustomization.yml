@@ -14,7 +14,6 @@ resources:
   - maubot
   - mautrix-facebook
   - mautrix-slack
-  - media-repo
   - synapse
   - synapse-admin
   - synapse-auto-compressor
@@ -24,8 +23,6 @@ images:
     newTag: v0.1.4
   - name: ghcr.io/etkecc/synapse-admin
     newTag: v0.10.3-etke35
-  - name: turt2live/matrix-media-repo
-    newTag: v1.3.8
   - name: halfshot/matrix-hookshot
     newTag: 7.2.0
   - name: dock.mau.dev/mautrix/facebook
