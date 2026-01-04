@@ -5,7 +5,7 @@ metadata:
   name: sabnzbd
 spec:
   parentRefs:
-    - name: eg-http-bar
+    - name: eg-http-media
       namespace: core-eg
       sectionName: https
   hostnames:

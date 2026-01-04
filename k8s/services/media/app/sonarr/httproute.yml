@@ -5,7 +5,7 @@ metadata:
   name: sonarr
 spec:
   parentRefs:
-    - name: eg-http-bar
+    - name: eg-http-media
       namespace: core-eg
       sectionName: https
   hostnames:

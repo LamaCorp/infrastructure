@@ -5,7 +5,7 @@ metadata:
   name: bazarr
 spec:
   parentRefs:
-    - name: eg-http-bar
+    - name: eg-http-media
       namespace: core-eg
       sectionName: https
   hostnames:
