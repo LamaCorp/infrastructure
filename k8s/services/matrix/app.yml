@@ -50,7 +50,6 @@ spec:
               enabled: false
             presence:
               enabled: true
-            enable_media_repo: false
             app_service_config_files:
               - /synapse/config/appservices/hookshot.yaml
               - /synapse/config/appservices/mautrix-facebook.yaml
