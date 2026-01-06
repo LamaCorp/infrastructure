@@ -11,8 +11,7 @@ resources:
 
 patches:
   - path: service.yml
-  - path: deployment.yml
 
 images:
   - name: factoriotools/factorio
-    newTag: 2.0.17
+    newTag: 2.0.28
