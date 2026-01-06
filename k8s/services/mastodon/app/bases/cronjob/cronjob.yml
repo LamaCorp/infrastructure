@@ -31,3 +31,10 @@ spec:
                     name: mastodon-smtp-credentials
                 - secretRef:
                     name: mastodon-oidc-credentials
+              volumeMounts:
+                - name: data
+                  mountPath: /mastodon/public/system
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: mastodon-data

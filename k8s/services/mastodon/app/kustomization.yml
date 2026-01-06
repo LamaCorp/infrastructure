@@ -13,6 +13,7 @@ resources:
   - media-remove
   - httproute.yml
   - network-policy.yml
+  - pvc.yml
   - secrets.yml
 
 configMapGenerator:
