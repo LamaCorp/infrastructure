@@ -8,5 +8,21 @@ spec:
     spec:
       containers:
         - name: mastodon
-          args:
-            - exec bundle exec sidekiq -c 25 -q default,8 -q push,6 -q ingress,4 -q mailers,2 -q pull -q scheduler
+          command:
+            - bundle
+            - exec
+            - sidekiq
+            - -c
+            - "25"
+            - -q
+            - default,8
+            - -q
+            - push,6
+            - -q
+            - ingress,4
+            - -q
+            - mailers,2
+            - -q
+            - pull
+            - -q
+            - scheduler

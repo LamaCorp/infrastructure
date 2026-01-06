@@ -8,8 +8,12 @@ spec:
     spec:
       containers:
         - name: mastodon
-          args:
-            - exec bundle exec puma -C config/puma.rb
+          command:
+            - bundle
+            - exec
+            - puma
+            - -C
+            - config/puma.rb
           env:
             - name: BIND
               value: "[::]"

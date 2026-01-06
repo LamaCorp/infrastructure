@@ -8,6 +8,7 @@ spec:
     spec:
       containers:
         - name: mastodon
+          image: ghcr.io/mastodon/mastodon-streaming
           command:
             - node
             - ./streaming
