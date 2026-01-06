@@ -13,5 +13,5 @@ spec:
             - name: mastodon
               args:
                 - |
-                  bin/tootctl media remove --days=1
-                  bin/tootctl preview_cards remove --days=1
+                  bin/tootctl media remove --days=7 --prune-profiles --include-follows
+                  bin/tootctl preview_cards remove --days=15
