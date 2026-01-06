@@ -49,9 +49,6 @@ subjects:
     namespace: services-authentik
     name: authentik
   - kind: ServiceAccount
-    namespace: services-cloudserver
-    name: default
-  - kind: ServiceAccount
     namespace: services-external
     name: default
   - kind: ServiceAccount
