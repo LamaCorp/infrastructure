@@ -27,8 +27,6 @@ spec:
             - secretRef:
                 name: mastodon-postgres-credentials
             - secretRef:
-                name: mastodon-s3-credentials
-            - secretRef:
                 name: mastodon-smtp-credentials
             - secretRef:
                 name: mastodon-oidc-credentials

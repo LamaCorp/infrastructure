@@ -53,12 +53,6 @@ configMapGenerator:
       - SMTP_TLS=true
       - SMTP_FROM_ADDRESS=no-reply@social.lama-corp.space
 
-      - S3_ENABLED=true
-      - S3_ENDPOINT=https://s3.lama-corp.space
-      - S3_BUCKET=mastodon
-      - S3_HOSTNAME=s3.lama-corp.space
-      - CACHE_BUSTER_ENABLED=false
-
       - OMNIAUTH_ONLY=true
       - ONE_CLICK_SSO_LOGIN=true
       - OIDC_ENABLED=true
