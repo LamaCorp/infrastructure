@@ -31,4 +31,4 @@ configMapGenerator:
 
 images:
   - name: danielszabo99/microbin
-    newTag: 2.0.4
+    newTag: 2.1.0
