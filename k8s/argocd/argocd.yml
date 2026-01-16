@@ -23,7 +23,7 @@ spec:
       ref: infrastructure
     - repoURL: https://argoproj.github.io/argo-helm
       chart: argo-cd
-      targetRevision: 9.3.1
+      targetRevision: 9.3.4
       helm:
         releaseName: argocd
         valueFiles:
