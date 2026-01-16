@@ -14,4 +14,4 @@ patches:
 
 images:
   - name: factoriotools/factorio
-    newTag: 2.0.28
+    newTag: 2.0.73
