@@ -24,7 +24,7 @@ images:
   - name: ghcr.io/etkecc/synapse-admin
     newTag: v0.10.3-etke35
   - name: halfshot/matrix-hookshot
-    newTag: 7.2.0
+    newTag: 7.3.0
   - name: dock.mau.dev/mautrix/facebook
     newTag: v0.5.1
   - name: dock.mau.dev/mautrix/slack
