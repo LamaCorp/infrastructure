@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/matrix/app
     - repoURL: https://ananace.gitlab.io/charts
-      targetRevision: 3.12.17
+      targetRevision: 3.12.18
       chart: matrix-synapse
       helm:
         releaseName: synapse
