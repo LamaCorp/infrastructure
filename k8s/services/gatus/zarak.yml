@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/gatus/extra/zarak
     - repoURL: https://twin.github.io/helm-charts
-      targetRevision: 1.4.4
+      targetRevision: 1.4.5
       chart: gatus
       helm:
         releaseName: gatus
