@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/authentik/extra
     - repoURL: https://charts.goauthentik.io
-      targetRevision: 2025.12.1
+      targetRevision: 2025.12.3
       chart: authentik
       helm:
         releaseName: authentik
