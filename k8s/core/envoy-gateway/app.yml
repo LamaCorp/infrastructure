@@ -59,7 +59,7 @@ spec:
         namespace: core-eg
       source:
         repoURL: https://github.com/envoyproxy/gateway.git
-        targetRevision: v1.6.3
+        targetRevision: v1.7.0
         path: charts/gateway-helm/crds/generated
 ---
 apiVersion: argoproj.io/v1alpha1
