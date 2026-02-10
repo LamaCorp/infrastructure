@@ -63,3 +63,8 @@ entries:
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vault.png
       provider: !KeyOf provider
       policy_engine_mode: any
+
+  - id: group
+    model: authentik_core.group
+    identifiers:
+      name: app-vault-roots

@@ -5,6 +5,15 @@ version: 1
 metadata:
   name: Apps - Media
 entries:
+  - id: group-manager
+    model: authentik_core.group
+    identifiers:
+      name: app-media-manager
+  - id: group-user
+    model: authentik_core.group
+    identifiers:
+      name: app-media-user
+
   - id: provider-bazarr
     model: authentik_providers_oauth2.oauth2provider
     identifiers:

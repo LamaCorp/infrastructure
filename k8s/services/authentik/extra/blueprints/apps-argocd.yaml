@@ -62,6 +62,15 @@ entries:
       provider: !KeyOf provider
       policy_engine_mode: any
 
+  - id: group-admin
+    model: authentik_core.group
+    identifiers:
+      name: app-argocd-admin
+  - id: group-readonly
+    model: authentik_core.group
+    identifiers:
+      name: app-argocd-readonly
+
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application

@@ -3,12 +3,12 @@
 ---
 version: 1
 metadata:
-  name: Apps - Mattermost
+  name: Apps - Rocket.Chat - Lama
 entries:
   - id: provider
     model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: k8s/k3s.fsn.as212024.net/services-mattermost
+      name: k8s/k3s.fsn.as212024.net/services-rocketchat-lama
     attrs:
       authorization_flow:
         !Find [
@@ -28,14 +28,14 @@ entries:
 
       client_type: confidential
       redirect_uris:
-        - url: https://chat.lama-corp.space/signup/gitlab/complete
+        - url: https://chat-new.lama-corp.space/_oauth/authentik
           matching_mode: strict
 
-      access_code_validity: hours=1
-      access_token_validity: minutes=10
+      access_code_validity: minutes=1
+      access_token_validity: minutes=5
       refresh_token_validity: days=30
 
-      sub_mode: user_email
+      sub_mode: hashed_user_id
       property_mappings:
         - !Find [
             authentik_core.propertymapping,
@@ -51,39 +51,65 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'username'"],
-          ]
-        - !Find [
-            authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'user_pk'"],
+            [name, "authentik default OAuth Mapping: Application Entitlements"],
           ]
 
   - id: application
     model: authentik_core.application
     identifiers:
-      slug: mattermost
+      slug: rocketchat-lama
     attrs:
-      name: Mattermost
+      name: Rocket.Chat Lama
       group: Services
-      meta_description: Messagerie instantanée d'équipe
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mattermost.png
+      meta_description: Messagerie instantanée
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/rocket-chat.png
       provider: !KeyOf provider
       policy_engine_mode: any
 
-  - id: group
+  - id: group-admin
     model: authentik_core.group
     identifiers:
-      name: app-mattermost
+      name: app-rocketchat-lama-admin
+  - id: group-moderator
+    model: authentik_core.group
+    identifiers:
+      name: app-rocketchat-lama-moderator
+  - id: group-user
+    model: authentik_core.group
+    identifiers:
+      name: app-rocketchat-lama-user
+
+  - id: ent-admin
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: admin
+  - id: ent-moderator
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: moderator
+  - id: ent-user
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: user
 
   - model: authentik_policies.policybinding
     identifiers:
-      target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "users"]]
+      target: !KeyOf ent-admin
+      group: !KeyOf group-admin
+    attrs:
+      order: 0
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-moderator
+      group: !KeyOf group-moderator
     attrs:
       order: 1
   - model: authentik_policies.policybinding
     identifiers:
-      target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "roots"]]
+      target: !KeyOf ent-user
+      group: !KeyOf group-user
     attrs:
       order: 2

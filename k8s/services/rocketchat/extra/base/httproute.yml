@@ -8,9 +8,6 @@ spec:
     - name: eg-http-public
       namespace: core-eg
       sectionName: https
-  hostnames:
-    - chat-new.lama-corp.space
-    - chat.sdlh.eu
   rules:
     - matches:
         - path:

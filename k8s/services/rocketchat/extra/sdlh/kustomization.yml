@@ -1,0 +1,9 @@
+---
+kind: Kustomization
+
+resources:
+  - ../base
+  - secrets.yml
+
+patches:
+  - path: httproute.yml

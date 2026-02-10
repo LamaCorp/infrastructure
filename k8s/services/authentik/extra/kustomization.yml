@@ -19,6 +19,7 @@ configMapGenerator:
       - ./blueprints/apps-hedgedoc.yaml
       - ./blueprints/apps-home-assistant.yaml
       - ./blueprints/apps-immich.yaml
+      - ./blueprints/apps-mail.yaml
       - ./blueprints/apps-mastodon.yaml
       - ./blueprints/apps-matrix.yaml
       - ./blueprints/apps-mattermost.yaml
@@ -26,7 +27,8 @@ configMapGenerator:
       - ./blueprints/apps-netbox.yaml
       - ./blueprints/apps-nextcloud.yaml
       - ./blueprints/apps-paperless-ngx-risson.yaml
-      - ./blueprints/apps-rocketchat.yaml
+      - ./blueprints/apps-rocketchat-lama.yaml
+      - ./blueprints/apps-rocketchat-sdlh.yaml
       - ./blueprints/apps-stirling-pdf.yaml
       - ./blueprints/apps-v-core-3.yaml
       - ./blueprints/apps-vault.yaml

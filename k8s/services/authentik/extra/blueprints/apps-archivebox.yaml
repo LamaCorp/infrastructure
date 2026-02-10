@@ -42,6 +42,11 @@ entries:
       provider: !KeyOf provider
       policy_engine_mode: any
 
+  - id: group
+    model: authentik_core.group
+    identifiers:
+      name: app-archivebox
+
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application

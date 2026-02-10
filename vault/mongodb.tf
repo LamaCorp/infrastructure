@@ -2,9 +2,13 @@ locals {
   mongodb_clusters = {
     "mongodb.fsn.as212024.net" = {
       dynamic_roles = {
-        "k3s.fsn.as212024.net_services-rocketchat" = {
-          mongodb_user = "rocketchat"
-          database     = "rocketchat"
+        "k3s.fsn.as212024.net_services-rocketchat-lama" = {
+          mongodb_user = "rocketchatLama"
+          database     = "rocketchatLama"
+        }
+        "k3s.fsn.as212024.net_services-rocketchat-sdlh" = {
+          mongodb_user = "rocketchatSdlh"
+          database     = "rocketchatSdlh"
         }
       }
     }

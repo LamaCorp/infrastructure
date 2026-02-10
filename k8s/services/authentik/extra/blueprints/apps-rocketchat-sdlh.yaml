@@ -3,12 +3,12 @@
 ---
 version: 1
 metadata:
-  name: Apps - Rocket.Chat
+  name: Apps - Rocket.Chat - SDLH
 entries:
   - id: provider
     model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: k8s/k3s.fsn.as212024.net/services-rocketchat
+      name: k8s/k3s.fsn.as212024.net/services-rocketchat-sdlh
     attrs:
       authorization_flow:
         !Find [
@@ -57,9 +57,9 @@ entries:
   - id: application
     model: authentik_core.application
     identifiers:
-      slug: rocketchat
+      slug: rocketchat-sdlh
     attrs:
-      name: Rocket.Chat
+      name: Rocket.Chat SDLH
       group: Services
       meta_description: Messagerie instantanée
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/rocket-chat.png
@@ -69,15 +69,15 @@ entries:
   - id: group-admin
     model: authentik_core.group
     identifiers:
-      name: app-rocketchat-admin
+      name: app-rocketchat-sdlh-admin
   - id: group-moderator
     model: authentik_core.group
     identifiers:
-      name: app-rocketchat-moderator
+      name: app-rocketchat-sdlh-moderator
   - id: group-user
     model: authentik_core.group
     identifiers:
-      name: app-rocketchat-user
+      name: app-rocketchat-sdlh-user
 
   - id: ent-admin
     model: authentik_core.applicationentitlement

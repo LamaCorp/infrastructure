@@ -1,71 +1,87 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: services-rocketchat
   labels:
     app: services-rocketchat
 spec:
-  project: services
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      prune: true
-  destination:
-    name: k3s.fsn.as212024.net
-    namespace: services-rocketchat
-  sources:
-    - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
-      targetRevision: HEAD
-      path: k8s/services/rocketchat/extra
-    - repoURL: https://rocketchat.github.io/helm-charts
-      targetRevision: 6.30.0
-      chart: rocketchat
-      helm:
-        releaseName: rocketchat
-        values: |
-          existingMongodbSecret: rocketchat-mongodb-credentials
+  goTemplate: true
+  generators:
+    - list:
+        elements:
+          - name: lama
+          - name: sdlh
+  template:
+    metadata:
+      name: "services-rocketchat-{{ .name }}"
+      labels:
+        app: services-rocketchat
+    spec:
+      project: services
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: k3s.fsn.as212024.net
+        namespace: "services-rocketchat-{{ .name }}"
+      sources:
+        - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+          targetRevision: HEAD
+          path: "k8s/services/rocketchat/extra/{{ .name }}"
+        - repoURL: https://rocketchat.github.io/helm-charts
+          targetRevision: 6.30.0
+          chart: rocketchat
+          helm:
+            releaseName: rocketchat
+            values: |
+              image:
+                repository: registry.rocket.chat/rocketchat/rocket.chat
+                tag: 8.1.0
 
-          extraEnv:
-            - name: BIND_IP
-              value: "::"
+              existingMongodbSecret: rocketchat-mongodb-credentials
 
-            - name: OVERWRITE_SETTING_SMTP_Protocol
-              value: smtps
-            - name: OVERWRITE_SETTING_SMTP_Host
-              value: email-smtp.eu-west-3.amazonaws.com
-            - name: OVERWRITE_SETTING_SMTP_Port
-              value: "465"
-            - name: OVERWRITE_SETTING_SMTP_Username
-              valueFrom:
-                secretKeyRef:
-                  name: rocketchat-smtp-credentials
-                  key: username
-            - name: OVERWRITE_SETTING_SMTP_Password
-              valueFrom:
-                secretKeyRef:
-                  name: rocketchat-smtp-credentials
-                  key: password
-            - name: OVERWRITE_SETTING_From_Email
-              value: no-reply@chat.lama-corp.space
+              extraEnv:
+                - name: BIND_IP
+                  value: "::"
 
-            - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-id
-              valueFrom:
-                secretKeyRef:
-                  name: rocketchat-oidc-credentials
-                  key: client_id
-            - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-secret
-              valueFrom:
-                secretKeyRef:
-                  name: rocketchat-oidc-credentials
-                  key: client_secret
+                - name: OVERWRITE_SETTING_SMTP_Protocol
+                  value: smtps
+                - name: OVERWRITE_SETTING_SMTP_Host
+                  value: email-smtp.eu-west-3.amazonaws.com
+                - name: OVERWRITE_SETTING_SMTP_Port
+                  value: "465"
+                - name: OVERWRITE_SETTING_SMTP_Username
+                  valueFrom:
+                    secretKeyRef:
+                      name: rocketchat-smtp-credentials
+                      key: username
+                - name: OVERWRITE_SETTING_SMTP_Password
+                  valueFrom:
+                    secretKeyRef:
+                      name: rocketchat-smtp-credentials
+                      key: password
+                - name: OVERWRITE_SETTING_From_Email
+                  value: no-reply@chat.lama-corp.space
 
-          microservices:
-            enabled: false
+                - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-id
+                  valueFrom:
+                    secretKeyRef:
+                      name: rocketchat-oidc-credentials
+                      key: client_id
+                - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-secret
+                  valueFrom:
+                    secretKeyRef:
+                      name: rocketchat-oidc-credentials
+                      key: client_secret
 
-          persistence:
-            enabled: true
+              microservices:
+                enabled: false
 
-          mongodb:
-            enabled: false
+              persistence:
+                enabled: true
+
+              mongodb:
+                enabled: false

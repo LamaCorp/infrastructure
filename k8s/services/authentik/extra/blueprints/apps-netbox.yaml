@@ -66,6 +66,15 @@ entries:
       provider: !KeyOf provider
       policy_engine_mode: any
 
+  - id: group-superuser
+    model: authentik_core.group
+    identifiers:
+      name: app-netbox-superuser
+  - id: group-viewer
+    model: authentik_core.group
+    identifiers:
+      name: app-netbox-viewer
+
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application

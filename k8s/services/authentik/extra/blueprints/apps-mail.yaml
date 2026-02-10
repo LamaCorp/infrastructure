@@ -3,12 +3,12 @@
 ---
 version: 1
 metadata:
-  name: Apps - Mattermost
+  name: Apps - Mail
 entries:
   - id: provider
     model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: k8s/k3s.fsn.as212024.net/services-mattermost
+      name: mail
     attrs:
       authorization_flow:
         !Find [
@@ -28,14 +28,16 @@ entries:
 
       client_type: confidential
       redirect_uris:
-        - url: https://chat.lama-corp.space/signup/gitlab/complete
+        - url: https://mail.lama-corp.space
           matching_mode: strict
+      logout_uri: https://mail.lama-corp.space
+      logout_method: backchannel
 
-      access_code_validity: hours=1
-      access_token_validity: minutes=10
+      access_code_validity: minutes=1
+      access_token_validity: minutes=5
       refresh_token_validity: days=30
 
-      sub_mode: user_email
+      sub_mode: hashed_user_id
       property_mappings:
         - !Find [
             authentik_core.propertymapping,
@@ -49,41 +51,27 @@ entries:
             authentik_core.propertymapping,
             [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
           ]
-        - !Find [
-            authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'username'"],
-          ]
-        - !Find [
-            authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'user_pk'"],
-          ]
 
   - id: application
     model: authentik_core.application
     identifiers:
-      slug: mattermost
+      slug: mail
     attrs:
-      name: Mattermost
+      name: Mail
       group: Services
-      meta_description: Messagerie instantanée d'équipe
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mattermost.png
+      meta_description: Courriel
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/mailcow.png
       provider: !KeyOf provider
       policy_engine_mode: any
 
   - id: group
     model: authentik_core.group
     identifiers:
-      name: app-mattermost
+      name: app-mail
 
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "users"]]
+      group: !KeyOf group
     attrs:
-      order: 1
-  - model: authentik_policies.policybinding
-    identifiers:
-      target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "roots"]]
-    attrs:
-      order: 2
+      order: 0
