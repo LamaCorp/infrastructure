@@ -26,6 +26,7 @@ configMapGenerator:
       - ./blueprints/apps-netbox.yaml
       - ./blueprints/apps-nextcloud.yaml
       - ./blueprints/apps-paperless-ngx-risson.yaml
+      - ./blueprints/apps-rocketchat.yaml
       - ./blueprints/apps-stirling-pdf.yaml
       - ./blueprints/apps-v-core-3.yaml
       - ./blueprints/apps-vault.yaml
