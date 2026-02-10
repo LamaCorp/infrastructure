@@ -79,6 +79,25 @@ entries:
     identifiers:
       name: app-rocketchat-sdlh-user
 
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group-admin
+    attrs:
+      order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group-moderator
+    attrs:
+      order: 20
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group-user
+    attrs:
+      order: 30
+
   - id: ent-admin
     model: authentik_core.applicationentitlement
     identifiers:
@@ -100,16 +119,16 @@ entries:
       target: !KeyOf ent-admin
       group: !KeyOf group-admin
     attrs:
-      order: 0
+      order: 10
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf ent-moderator
       group: !KeyOf group-moderator
     attrs:
-      order: 1
+      order: 20
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf ent-user
       group: !KeyOf group-user
     attrs:
-      order: 2
+      order: 30
