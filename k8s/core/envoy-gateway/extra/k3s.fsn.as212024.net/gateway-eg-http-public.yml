@@ -47,6 +47,8 @@ spec:
           - name: risson-space-rsa-tls
           - name: rplace-space-ecdsa-tls
           - name: rplace-space-rsa-tls
+          - name: sdlh-eu-ecdsa-tls
+          - name: sdlh-eu-rsa-tls
           - name: cats-acdc-epita-fr-ecdsa-tls
           - name: cats-acdc-epita-fr-rsa-tls
           - name: oup-si-ecdsa-tls
