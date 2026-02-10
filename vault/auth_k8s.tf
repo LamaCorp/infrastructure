@@ -116,6 +116,21 @@ resource "vault_policy" "k8s-clusters_common" {
       capabilities = ["read"]
     }
     %{endfor}
+
+    %{for mongodb_cluster in keys(local.mongodb_clusters)}
+    path "${vault_database_secrets_mount.mongodb.path}/creds/${mongodb_cluster}_${each.key}_{{identity.entity.aliases.${vault_auth_backend.k8s-clusters[each.key].accessor}.metadata.service_account_namespace}}" {
+      capabilities = ["read"]
+    }
+    path "${vault_database_secrets_mount.mongodb.path}/creds/${mongodb_cluster}_${each.key}_{{identity.entity.aliases.${vault_auth_backend.k8s-clusters[each.key].accessor}.metadata.service_account_namespace}}_*" {
+      capabilities = ["read"]
+    }
+    path "${vault_database_secrets_mount.mongodb.path}/static-creds/${mongodb_cluster}_${each.key}_{{identity.entity.aliases.${vault_auth_backend.k8s-clusters[each.key].accessor}.metadata.service_account_namespace}}" {
+      capabilities = ["read"]
+    }
+    path "${vault_database_secrets_mount.mongodb.path}/static-creds/${mongodb_cluster}_${each.key}_{{identity.entity.aliases.${vault_auth_backend.k8s-clusters[each.key].accessor}.metadata.service_account_namespace}}_*" {
+      capabilities = ["read"]
+    }
+    %{endfor}
   EOF
 }
 
