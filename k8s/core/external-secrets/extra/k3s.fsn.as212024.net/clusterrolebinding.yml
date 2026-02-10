@@ -100,6 +100,9 @@ subjects:
     namespace: services-paperless-ngx-risson
     name: default
   - kind: ServiceAccount
+    namespace: services-rocketchat
+    name: default
+  - kind: ServiceAccount
     namespace: services-stalwart
     name: default
   - kind: ServiceAccount
