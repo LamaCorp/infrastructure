@@ -64,27 +64,40 @@ spec:
               - --rfc2136-tsig-secret-alg=hmac-sha512
               - --rfc2136-tsig-axfr
               - --rfc2136-min-ttl=300s
+
               - --rfc2136-zone=as212024.net
+              - --rfc2136-zone=authentik.rs
               - --rfc2136-zone=devou.ps
               - --rfc2136-zone=doyouhavegoodbackups.com
               - --rfc2136-zone=lama-corp.space
               - --rfc2136-zone=lama.tel
               - --rfc2136-zone=marcerisson.space
+              - --rfc2136-zone=phemma.fr
+              - --rfc2136-zone=risson.eu
               - --rfc2136-zone=risson.me
               - --rfc2136-zone=risson.net
+              - --rfc2136-zone=risson.org
               - --rfc2136-zone=risson.space
+              - --rfc2136-zone=risson.xyz
               - --rfc2136-zone=rplace.space
+              - --rfc2136-zone=sdlh.eu
               - --rfc2136-zone=thefractal.space
               - --domain-filter=as212024.net
+              - --domain-filter=authentik.rs
               - --domain-filter=devou.ps
               - --domain-filter=doyouhavegoodbackups.com
               - --domain-filter=lama-corp.space
               - --domain-filter=lama.tel
               - --domain-filter=marcerisson.space
+              - --domain-filter=phemma.fr
+              - --domain-filter=risson.eu
               - --domain-filter=risson.me
               - --domain-filter=risson.net
+              - --domain-filter=risson.org
               - --domain-filter=risson.space
+              - --domain-filter=risson.xyz
               - --domain-filter=rplace.space
+              - --domain-filter=sdlh.eu
               - --domain-filter=thefractal.space
 
             deploymentAnnotations:
@@ -153,27 +166,40 @@ spec:
               - --rfc2136-tsig-secret-alg=hmac-sha512
               - --rfc2136-tsig-axfr
               - --rfc2136-min-ttl=300s
+
               - --rfc2136-zone=as212024.net
+              - --rfc2136-zone=authentik.rs
               - --rfc2136-zone=devou.ps
               - --rfc2136-zone=doyouhavegoodbackups.com
               - --rfc2136-zone=lama-corp.space
               - --rfc2136-zone=lama.tel
               - --rfc2136-zone=marcerisson.space
+              - --rfc2136-zone=phemma.fr
+              - --rfc2136-zone=risson.eu
               - --rfc2136-zone=risson.me
               - --rfc2136-zone=risson.net
+              - --rfc2136-zone=risson.org
               - --rfc2136-zone=risson.space
+              - --rfc2136-zone=risson.xyz
               - --rfc2136-zone=rplace.space
+              - --rfc2136-zone=sdlh.eu
               - --rfc2136-zone=thefractal.space
               - --domain-filter=as212024.net
+              - --domain-filter=authentik.rs
               - --domain-filter=devou.ps
               - --domain-filter=doyouhavegoodbackups.com
               - --domain-filter=lama-corp.space
               - --domain-filter=lama.tel
               - --domain-filter=marcerisson.space
+              - --domain-filter=phemma.fr
+              - --domain-filter=risson.eu
               - --domain-filter=risson.me
               - --domain-filter=risson.net
+              - --domain-filter=risson.org
               - --domain-filter=risson.space
+              - --domain-filter=risson.xyz
               - --domain-filter=rplace.space
+              - --domain-filter=sdlh.eu
               - --domain-filter=thefractal.space
 
               - --rfc2136-create-ptr
