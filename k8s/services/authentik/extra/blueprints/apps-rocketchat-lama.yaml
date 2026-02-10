@@ -70,10 +70,6 @@ entries:
     model: authentik_core.group
     identifiers:
       name: app-rocketchat-lama-admin
-  - id: group-moderator
-    model: authentik_core.group
-    identifiers:
-      name: app-rocketchat-lama-moderator
   - id: group-user
     model: authentik_core.group
     identifiers:
@@ -88,26 +84,15 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !KeyOf group-moderator
-    attrs:
-      order: 20
-  - model: authentik_policies.policybinding
-    identifiers:
-      target: !KeyOf application
       group: !KeyOf group-user
     attrs:
-      order: 30
+      order: 20
 
   - id: ent-admin
     model: authentik_core.applicationentitlement
     identifiers:
       app: !KeyOf application
       name: admin
-  - id: ent-moderator
-    model: authentik_core.applicationentitlement
-    identifiers:
-      app: !KeyOf application
-      name: moderator
   - id: ent-user
     model: authentik_core.applicationentitlement
     identifiers:
@@ -122,13 +107,7 @@ entries:
       order: 10
   - model: authentik_policies.policybinding
     identifiers:
-      target: !KeyOf ent-moderator
-      group: !KeyOf group-moderator
-    attrs:
-      order: 20
-  - model: authentik_policies.policybinding
-    identifiers:
       target: !KeyOf ent-user
       group: !KeyOf group-user
     attrs:
-      order: 30
+      order: 20
