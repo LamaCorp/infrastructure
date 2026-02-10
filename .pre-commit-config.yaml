@@ -8,7 +8,7 @@ repos:
     rev: 26.1.0
     hooks:
       - id: black
-        language_version: python3.13
+        language_version: python3.14
   - repo: local
     hooks:
       - id: ruff
