@@ -24,6 +24,10 @@ locals {
       k8s_cluster    = "k3s.fsn.as212024.net"
       k8s_namespaces = ["services-nextcloud"]
     }
+    rocketchat = {
+      k8s_cluster    = "k3s.fsn.as212024.net"
+      k8s_namespaces = ["services-rocketchat"]
+    }
     vaultwarden = {
       k8s_cluster    = "k3s.fsn.as212024.net"
       k8s_namespaces = ["services-vaultwarden"]
