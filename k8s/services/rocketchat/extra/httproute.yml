@@ -1,0 +1,20 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: rocketchat
+spec:
+  parentRefs:
+    - name: eg-http-public
+      namespace: core-eg
+      sectionName: https
+  hostnames:
+    - chat-new.lama-corp.space
+    - chat.sdlh.eu
+  rules:
+    - matches:
+        - path:
+            value: "/"
+      backendRefs:
+        - name: rocketchat-rocketchat
+          port: 80

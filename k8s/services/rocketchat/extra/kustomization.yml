@@ -1,0 +1,7 @@
+---
+kind: Kustomization
+
+resources:
+  - httproute.yml
+  - network-policy.yml
+  - secrets.yml
