@@ -35,7 +35,7 @@ roles:
     src: git+https://github.com/rissson/ansible-role-haproxy.git
     version: 2968ced132136ea061b4a74875522a97d7bf3f93
   - name: stackhpc.libvirt-host
-    version: v1.14.0
+    version: v1.15.0
   - name: stackhpc.libvirt-vm
     version: v1.16.3
   - name: xanmanning.k3s
