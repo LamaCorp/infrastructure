@@ -19,17 +19,6 @@ entries:
 
   - model: authentik_providers_oauth2.scopemapping
     identifiers:
-      name: "OAuth mapping: OpenID 'roles' for Django"
-    attrs:
-      scope_name: roles
-      description: Roles
-      expression: |
-        return {
-          "roles": ["superuser", "staff"] if ak_is_group_member(request.user, name="roots") else []
-        }
-
-  - model: authentik_providers_oauth2.scopemapping
-    identifiers:
       name: "OAuth mapping: OpenID 'username'"
     attrs:
       scope_name: username
