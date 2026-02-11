@@ -48,11 +48,11 @@ spec:
               name: authentik
               enabled: "True"
               allow_sign_up: "True"
-              scopes: "openid email profile"
+              scopes: "openid email profile entitlements"
               auth_url: https://auth.as212024.net/application/o/authorize/
               token_url: https://auth.as212024.net/application/o/token/
               api_url: https://auth.as212024.net/application/o/userinfo/
-              role_attribute_path: "contains(groups[*], 'roots') && 'Admin' || 'Viewer'"
+              role_attribute_path: "contains(entitlements[*], 'admin') && 'Admin' || 'Viewer'"
               allow_assign_grafana_admin: "True"
               role_attribute_strict: "True"
               use_pkce: "True"

@@ -70,6 +70,6 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group
     attrs:
-      order: 1
+      order: 10

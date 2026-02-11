@@ -42,8 +42,8 @@ def update_roles(backend, response, social, user=None, *_args, **_kwargs):
     if not user:
         return {}
 
-    user.is_superuser = "superuser" in response.get("roles", [])
-    user.is_staff = "staff" in response.get("roles", [])
+    user.is_superuser = "superuser" in response.get("entitlements", [])
+    user.is_staff = "staff" in response.get("entitlements", [])
     user.save()
 
     return {}

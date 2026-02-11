@@ -70,9 +70,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-home-assistant
-      group: !Find [authentik_core.group, [name, "schmitt"]]
+      group: !KeyOf group-home-assistant
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-zigbee2mqtt
     model: authentik_providers_oauth2.oauth2provider
@@ -136,6 +136,6 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-zigbee2mqtt
-      user: !Find [authentik_core.user, [username, "risson"]]
+      user: !KeyOf group-zigbee2mqtt
     attrs:
-      order: 1
+      order: 10

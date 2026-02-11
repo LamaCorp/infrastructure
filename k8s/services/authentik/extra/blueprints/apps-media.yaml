@@ -69,9 +69,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-bazarr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-jackett
     model: authentik_providers_oauth2.oauth2provider
@@ -128,9 +128,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-jackett
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-lidarr
     model: authentik_providers_oauth2.oauth2provider
@@ -187,9 +187,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-lidarr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-prowlarr
     model: authentik_providers_oauth2.oauth2provider
@@ -246,9 +246,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-prowlarr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-radarr
     model: authentik_providers_oauth2.oauth2provider
@@ -305,9 +305,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-radarr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-readarr
     model: authentik_providers_oauth2.oauth2provider
@@ -364,9 +364,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-readarr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-sonarr
     model: authentik_providers_oauth2.oauth2provider
@@ -423,9 +423,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-sonarr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-qbittorrent
     model: authentik_providers_oauth2.oauth2provider
@@ -482,7 +482,7 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-qbittorrent
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
       order: 1
 
@@ -541,9 +541,9 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-sabnzbd
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
 
   - id: provider-jellyfin
     model: authentik_providers_oauth2.oauth2provider
@@ -606,15 +606,15 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-jellyfin
-      group: !Find [authentik_core.group, [name, "users"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-jellyfin
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-user
     attrs:
-      order: 2
+      order: 20
 
   - id: provider-jellyseerr
     model: authentik_providers_oauth2.oauth2provider
@@ -678,12 +678,12 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-jellyseerr
-      group: !Find [authentik_core.group, [name, "users"]]
+      group: !KeyOf group-manager
     attrs:
-      order: 1
+      order: 10
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application-jellyseerr
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-user
     attrs:
-      order: 2
+      order: 20

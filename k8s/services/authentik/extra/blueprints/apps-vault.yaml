@@ -68,3 +68,10 @@ entries:
     model: authentik_core.group
     identifiers:
       name: app-vault-roots
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group
+    attrs:
+      order: 10

@@ -49,6 +49,10 @@ entries:
             authentik_core.propertymapping,
             [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
           ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: Application Entitlements"],
+          ]
 
   - id: application
     model: authentik_core.application
@@ -74,12 +78,36 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "users"]]
+      group: !KeyOf group-admin
     attrs:
-      order: 1
+      order: 10
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-viewer
     attrs:
-      order: 2
+      order: 20
+
+  - id: ent-admin
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: admin
+  - id: ent-viewer
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: viewer
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-admin
+      group: !KeyOf group-admin
+    attrs:
+      order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-viewer
+      group: !KeyOf group-viewer
+    attrs:
+      order: 20

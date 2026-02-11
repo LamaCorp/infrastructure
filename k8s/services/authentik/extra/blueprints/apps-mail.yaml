@@ -74,4 +74,4 @@ entries:
       target: !KeyOf application
       group: !KeyOf group
     attrs:
-      order: 0
+      order: 10

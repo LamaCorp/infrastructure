@@ -51,7 +51,7 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'roles' for Django"],
+            [name, "authentik default OAuth Mapping: Application Entitlements"],
           ]
 
   - id: application
@@ -66,18 +66,38 @@ entries:
       provider: !KeyOf provider
       policy_engine_mode: any
 
-  - id: group-superuser
+  - id: group-admin
     model: authentik_core.group
     identifiers:
-      name: app-netbox-superuser
-  - id: group-viewer
-    model: authentik_core.group
-    identifiers:
-      name: app-netbox-viewer
+      name: app-netbox-admin
 
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "roots"]]
+      group: !KeyOf group-admin
     attrs:
-      order: 1
+      order: 10
+
+  - id: ent-superuser
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: superuser
+  - id: ent-staff
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: staff
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-superuser
+      group: !KeyOf group-admin
+    attrs:
+      order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-staff
+      group: !KeyOf group-admin
+    attrs:
+      order: 11

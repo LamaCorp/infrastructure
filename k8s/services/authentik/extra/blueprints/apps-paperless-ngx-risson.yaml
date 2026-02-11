@@ -70,6 +70,6 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      user: !Find [authentik_core.user, [username, "risson"]]
+      user: !KeyOf group
     attrs:
-      order: 1
+      order: 10

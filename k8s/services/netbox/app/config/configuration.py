@@ -45,7 +45,7 @@ SOCIAL_AUTH_OIDC_ENDPOINT = "https://auth.as212024.net/application/o/netbox/"
 SOCIAL_AUTH_OIDC_KEY = "{{ .client_id }}"
 SOCIAL_AUTH_OIDC_SECRET = "{{ .client_secret }}"
 LOGOUT_REDIRECT_URL = "https://auth.as212024.net/application/o/netbox/end-session/"
-SOCIAL_AUTH_OIDC_SCOPE = ["openid", "profile", "email", "roles"]
+SOCIAL_AUTH_OIDC_SCOPE = ["openid", "profile", "email", "entitlements"]
 
 SOCIAL_AUTH_PIPELINE = (
     "social_core.pipeline.social_auth.social_details",

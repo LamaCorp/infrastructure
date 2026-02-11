@@ -71,12 +71,6 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "users"]]
+      group: !KeyOf group
     attrs:
-      order: 1
-  - model: authentik_policies.policybinding
-    identifiers:
-      target: !KeyOf application
-      group: !Find [authentik_core.group, [name, "roots"]]
-    attrs:
-      order: 2
+      order: 10
