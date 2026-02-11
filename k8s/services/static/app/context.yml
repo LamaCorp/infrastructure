@@ -51,3 +51,6 @@ domains:
     extra_names:
       - workshop.marcerisson.space
       - workshop.risson.me
+
+  - name: sdlh.eu
+    slug: sdlh-eu

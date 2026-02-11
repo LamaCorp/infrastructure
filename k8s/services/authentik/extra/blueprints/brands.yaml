@@ -12,3 +12,10 @@ entries:
       branding_title: Lama Corp.
       branding_logo: https://lama-corp.space/llama.png
       branding_favicon: https://lama-corp.space/llama.png
+  - model: authentik_brands.brand
+    identifiers:
+      domain: sdlh.eu
+    attrs:
+      branding_title: SDLH
+      branding_logo: https://sdlh.eu/sdlh.png
+      branding_favicon: https://sdlh.eu/sdlh.png
