@@ -1,0 +1,65 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: services-jitsi
+  labels:
+    app: services-jitsi
+spec:
+  project: services
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: k3s.fsn.as212024.net
+    namespace: services-jitsi
+  sources:
+    # - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+    #   targetRevision: HEAD
+    #   path: k8s/services/jitsi/extra
+    - repoURL: https://jitsi-contrib.github.io/jitsi-helm
+      targetRevision: 2.7.0
+      chart: jitsi-meet
+      helm:
+        releaseName: jitsi-meet
+        values: |
+          global:
+            clusterDomain: c.k3s.fsn.as212024.net
+
+          tz: Europe/Paris
+
+          publicURL: https://meet.lama-corp.space
+
+          websockets:
+            colibri:
+              enabled: false
+            xmpp:
+              enabled: true
+
+          prosody:
+            metrics:
+              enabled: true
+
+          jicofo:
+            metrics:
+              enabled: true
+
+          jvb:
+            publicIPs:
+              - 209.112.97.169
+              - 2001:67c:17fc:130::1:0000
+
+            service:
+              annotations:
+                io.cilium/lb-ipam-ips: 209.112.97.169,2001:67c:17fc:130::1:0000
+                external-dns.alpha.kubernetes.io/hostname: jvb.meet.lama-corp.space
+              type: LoadBalancer
+              externalTrafficPolicy: Local
+              ipFamilyPolicy: RequireDualStack
+
+            metrics:
+              enabled: true
+              grafanaDashboards:
+                enabled: true

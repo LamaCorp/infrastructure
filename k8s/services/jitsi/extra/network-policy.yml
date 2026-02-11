@@ -1,0 +1,40 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-ingress-egress-namespace
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromEndpoints:
+        - {}
+  egress:
+    - toEndpoints:
+        - {}
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-egress-all
+spec:
+  endpointSelector: {}
+  egress:
+    - toEntities:
+        - world
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-ingress-voice
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: jitsi-meet
+      app.kubernetes.io/component: jvb
+  ingress:
+    - fromEntities:
+        - world
+    - toPorts:
+        - ports:
+            - port: "10000"
+              protocol: UDP
