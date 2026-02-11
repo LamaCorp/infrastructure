@@ -40,4 +40,4 @@ configMapGenerator:
 
 images:
   - name: quay.io/vaultwarden/server
-    newTag: 1.35.2
+    newTag: 1.35.3
