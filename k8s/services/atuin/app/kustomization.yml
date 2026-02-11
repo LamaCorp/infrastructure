@@ -13,4 +13,4 @@ resources:
 
 images:
   - name: ghcr.io/atuinsh/atuin
-    newTag: v18.11.0
+    newTag: v18.12.0
