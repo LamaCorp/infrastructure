@@ -17,13 +17,12 @@ configs:
       clientID: $oidc.authentik.clientID
       clientSecret: $oidc.authentik.clientSecret
       requestedIDTokenClaims:
-        entitlements:
+        groups:
           essential: true
       requestedScopes:
         - openid
         - profile
         - email
-        - entitlements
     server.insecure: true
 
   params:
@@ -31,9 +30,9 @@ configs:
     server.insecure: true
 
   rbac:
+    policy.default: role:readonly
     policy.csv: |
-      g, readonly, role:readonly
-      g, admin, role:admin
+      g, roots, role:admin
 
   secret:
     createSecret: true

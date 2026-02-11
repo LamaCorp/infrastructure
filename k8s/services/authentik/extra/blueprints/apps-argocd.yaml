@@ -66,48 +66,14 @@ entries:
       provider: !KeyOf provider
       policy_engine_mode: any
 
-  - id: group-admin
+  - id: group
     model: authentik_core.group
     identifiers:
-      name: app-argocd-admin
-  - id: group-readonly
-    model: authentik_core.group
-    identifiers:
-      name: app-argocd-readonly
+      name: app-argocd
 
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !KeyOf group-admin
+      group: !KeyOf group
     attrs:
       order: 10
-  - model: authentik_policies.policybinding
-    identifiers:
-      target: !KeyOf application
-      group: !KeyOf group-readonly
-    attrs:
-      order: 20
-
-  - id: ent-admin
-    model: authentik_core.applicationentitlement
-    identifiers:
-      app: !KeyOf application
-      name: admin
-  - id: ent-readonly
-    model: authentik_core.applicationentitlement
-    identifiers:
-      app: !KeyOf application
-      name: readonly
-
-  - model: authentik_policies.policybinding
-    identifiers:
-      target: !KeyOf ent-admin
-      group: !KeyOf group-admin
-    attrs:
-      order: 10
-  - model: authentik_policies.policybinding
-    identifiers:
-      target: !KeyOf ent-readonly
-      group: !KeyOf group-readonly
-    attrs:
-      order: 20
