@@ -1,0 +1,8 @@
+---
+kind: Kustomization
+
+resources:
+  - ../base
+
+patches:
+  - path: service.yml

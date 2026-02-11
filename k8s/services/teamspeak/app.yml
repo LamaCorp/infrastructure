@@ -1,0 +1,32 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: services-teamspeak
+  labels:
+    app: services-teamspeak
+spec:
+  goTemplate: true
+  generators:
+    - list:
+        elements:
+          - name: sdlh
+  template:
+    metadata:
+      name: "services-teamspeak-{{ .name }}"
+      labels:
+        app: services-teamspeak
+    spec:
+      project: services
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+      destination:
+        name: k3s.fsn.as212024.net
+        namespace: "services-teamspeak-{{ .name }}"
+      source:
+        repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        targetRevision: HEAD
+        path: "k8s/services/teamspeak/app/{{ .name }}"

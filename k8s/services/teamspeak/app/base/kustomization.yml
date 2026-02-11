@@ -1,0 +1,11 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: teamspeak
+
+resources:
+  - network-policy.yml
+  - deployment.yml
+  - pvc.yml
+  - service.yml

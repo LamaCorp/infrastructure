@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamspeak
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+        - name: teamspeak
+          image: mbentley/teamspeak:debian
+          imagePullPolicy: Always
+          env:
+            - name: TS3SERVER_GDPR_SAVE
+              value: "false"
+            - name: TS3SERVER_LICENSE
+              value: "accept"
+          ports:
+            - name: voice
+              containerPort: 9987
+              protocol: UDP
+            - name: http
+              containerPort: 10080
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: teamspeak-data
