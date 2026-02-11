@@ -104,6 +104,7 @@ spec:
                 hostnames:
                   - auth.lama-corp.space
                   - auth.as212024.net
+                  - auth.sdlh.eu
             metrics:
               enabled: true
               serviceMonitor:
