@@ -26,19 +26,6 @@ postgresql_users:
   netbox: {}
   nextcloud: {}
   paperless_risson: {}
-  stalwart:
-    permissions:
-      - db: authentik
-        grants:
-          - CONNECT
-      - db: authentik
-        grants:
-          - SELECT
-        objs:
-          - authentik_core_user
-          - authentik_core_group
-          - authentik_core_user_ak_groups
-        type: table
   vaultwarden: {}
 
 postgresql_dbs:
@@ -64,7 +51,6 @@ postgresql_dbs:
   netbox: netbox
   nextcloud: nextcloud
   paperless_risson: paperless_risson
-  stalwart: stalwart
   vaultwarden: vaultwarden
 
 postgresql_config:

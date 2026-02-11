@@ -21,8 +21,3 @@ netplan_configuration:
           - to: ::/0
             via: 2001:67c:17fc:101::1
             mtu: 1500
-    bridges:
-      stalwart:
-        mtu: 5600
-        addresses:
-          - 148.251.148.232/32

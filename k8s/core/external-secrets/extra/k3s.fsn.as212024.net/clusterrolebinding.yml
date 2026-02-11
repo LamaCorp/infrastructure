@@ -103,9 +103,6 @@ subjects:
     namespace: services-rocketchat
     name: default
   - kind: ServiceAccount
-    namespace: services-stalwart
-    name: default
-  - kind: ServiceAccount
     namespace: services-stirling-pdf
     name: default
   - kind: ServiceAccount

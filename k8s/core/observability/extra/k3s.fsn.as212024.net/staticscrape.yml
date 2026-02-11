@@ -166,7 +166,6 @@ spec:
         - replacement: redis.fsn.as212024.net:9121
           targetLabel: __address__
       targets:
-        - stalwart;redis://redis.fsn.as212024.net:6379
         - authentik;redis://redis.fsn.as212024.net:6380
         - nextcloud;redis://redis.fsn.as212024.net:6382
         - paperless_risson;redis://redis.fsn.as212024.net:6383

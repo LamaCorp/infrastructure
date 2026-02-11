@@ -3,8 +3,6 @@ redis_enable_vm_overcommit: true
 
 # sort by port number
 redis_instances:
-  - name: stalwart
-    port: 6379
   - name: authentik
     port: 6380
   - name: nextcloud
