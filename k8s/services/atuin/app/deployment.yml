@@ -17,7 +17,6 @@ spec:
         - name: atuin
           image: ghcr.io/atuinsh/atuin
           args:
-            - server
             - start
           env:
             - name: ATUIN_HOST
