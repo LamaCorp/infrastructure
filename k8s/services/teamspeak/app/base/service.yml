@@ -4,8 +4,8 @@ kind: Service
 metadata:
   name: teamspeak
   annotations:
-    lbipam.cilium.io/sharing-key: teamspeak
-    lbipam.cilium.io/sharing-cross-namespace: services-teamspeak-sdlh
+    lbipam.cilium.io/sharing-key: voice
+    lbipam.cilium.io/sharing-cross-namespace: services-jitsi,services-teamspeak-sdlh
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
