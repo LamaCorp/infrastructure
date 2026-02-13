@@ -60,4 +60,4 @@ images:
   - name: ghcr.io/hotio/sonarr
     newTag: release-4.0.15.2941
   - name: ghcr.io/qdm12/gluetun
-    newTag: v3.40.0
+    newTag: v3.41.1
