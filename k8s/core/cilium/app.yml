@@ -27,7 +27,7 @@ spec:
           targetRevision: HEAD
           path: k8s/core/cilium/extra/{{ .name }}
         - repoURL: https://helm.cilium.io/
-          targetRevision: 1.18.6
+          targetRevision: 1.19.0
           chart: cilium
           helm:
             releaseName: cilium
