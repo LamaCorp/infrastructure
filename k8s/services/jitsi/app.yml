@@ -16,9 +16,9 @@ spec:
     name: k3s.fsn.as212024.net
     namespace: services-jitsi
   sources:
-    # - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
-    #   targetRevision: HEAD
-    #   path: k8s/services/jitsi/extra
+    - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+      targetRevision: HEAD
+      path: k8s/services/jitsi/extra
     - repoURL: https://jitsi-contrib.github.io/jitsi-helm
       targetRevision: 2.7.0
       chart: jitsi-meet
@@ -32,6 +32,13 @@ spec:
 
           publicURL: https://meet.lama-corp.space
 
+          enableAuth: true
+          enableGuests: true
+          extraCommonEnvs:
+            JWT_APP_ID: jitsi
+            AUTH_TYPE: jwt
+            ENABLE_LOBBY: "1"
+
           websockets:
             colibri:
               enabled: false
@@ -39,6 +46,9 @@ spec:
               enabled: true
 
           prosody:
+            extraSecrets:
+            jwt:
+              existingSecretName: jitsi-jwt-auth
             metrics:
               enabled: true
 
