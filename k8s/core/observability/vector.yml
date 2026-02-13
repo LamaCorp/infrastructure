@@ -26,7 +26,7 @@ spec:
         namespace: core-observability
       source:
         repoURL: https://helm.vector.dev
-        targetRevision: 0.44.0
+        targetRevision: 0.50.0
         chart: vector
         helm:
           releaseName: vector
