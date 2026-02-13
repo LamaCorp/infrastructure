@@ -79,6 +79,8 @@ spec:
 
               microservices:
                 enabled: false
+              nats:
+                enabled: false
 
               persistence:
                 enabled: true
