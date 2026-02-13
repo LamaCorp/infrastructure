@@ -1,30 +1,27 @@
 ---
-# backup_restic_creds_postgresql: "{{ lookup('community.hashi_vault.hashi_vault', 'restic/data/repositories/' + inventory_hostname + '/postgresql') }}"
+backup_restic_creds_mongodb: "{{ lookup('community.hashi_vault.hashi_vault', 'restic/data/repositories/' + inventory_hostname + '/mongodb') }}"
 
 backup_restic_list_raw:
-  []
-  # - name: postgresql
-  #   enabled: true
-  #   repo_password: "{{ backup_restic_creds_postgresql['repo_password'] }}"
-  #   backend:
-  #     type: wasabi
-  #     s3_bucket_name: "{{ backup_restic_creds_postgresql['bucket_name'] }}"
-  #     s3_access_key: "{{ backup_restic_creds_postgresql['backup_access_key'] }}"
-  #     s3_secret_key: "{{ backup_restic_creds_postgresql['backup_secret_key'] }}"
-  #     s3_prune_access_key: "{{ backup_restic_creds_postgresql['prune_access_key'] }}"
-  #     s3_prune_secret_key: "{{ backup_restic_creds_postgresql['prune_secret_key'] }}"
-  #   to_include:
-  #     - /var/lib/postgresql/backup.sql
-  #   backup_pre_hooks:
-  #     - cmd:
-  #         - "su"
-  #         - "-"
-  #         - "postgres"
-  #         - "-c"
-  #         - "rm -f /var/lib/postgresql/backup.sql && pg_dumpall --clean --file /var/lib/postgresql/backup.sql --verbose --exclude-database=postgres --exclude-database=template0 --exclude-database=template1"
-  #   backup_systemd_timers:
-  #     minute: 02
-  #     hour: 04
-  #   prune_systemd_timers:
-  #     minute: 05
-  #     hour: 13
+  - name: mongodb
+    enabled: true
+    repo_password: "{{ backup_restic_creds_mongodb['repo_password'] }}"
+    backend:
+      type: wasabi
+      s3_bucket_name: "{{ backup_restic_creds_mongodb['bucket_name'] }}"
+      s3_access_key: "{{ backup_restic_creds_mongodb['backup_access_key'] }}"
+      s3_secret_key: "{{ backup_restic_creds_mongodb['backup_secret_key'] }}"
+      s3_prune_access_key: "{{ backup_restic_creds_mongodb['prune_access_key'] }}"
+      s3_prune_secret_key: "{{ backup_restic_creds_mongodb['prune_secret_key'] }}"
+    to_include:
+      - /var/lib/mongodb/backup.archive
+    backup_pre_hooks:
+      - cmd:
+          - "bash"
+          - "-c"
+          - "rm -f /var/lib/mongodb/backup.archive && mongodump --username={{ mongodb_admin_user }} --password={{ mongodb_admin_pwd }} --archive=/var/lib/mongodb/backup.archive"
+    backup_systemd_timers:
+      minute: 02
+      hour: 05
+    prune_systemd_timers:
+      minute: 14
+      hour: 13
