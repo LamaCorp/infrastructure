@@ -77,14 +77,6 @@ spec:
                       name: rocketchat-oidc-credentials
                       key: client_secret
 
-                - name: OVERWRITE_SETTING_jitsi_application_id
-                  value: jitsi
-                - name: OVERWRITE_SETTING_jitsi_application_secret
-                  valueFrom:
-                    secretKeyRef:
-                      name: rocketchat-jitsi-credentials
-                      key: app_secret
-
               microservices:
                 enabled: false
 
