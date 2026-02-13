@@ -41,8 +41,8 @@ resource "vault_generic_secret" "mongodb" {
 resource "vault_database_secrets_mount" "mongodb" {
   path = "mongodb"
 
-  default_lease_ttl_seconds = 24 * 60 * 60 # 24h
-  max_lease_ttl_seconds     = 24 * 60 * 60 # 24h
+  default_lease_ttl_seconds = 24 * 60 * 60 * 30 # 30 days
+  max_lease_ttl_seconds     = 24 * 60 * 60 * 30 # 30 days
 
   lifecycle {
     ignore_changes = [
@@ -69,8 +69,8 @@ resource "vault_database_secret_backend_role" "mongodb" {
   backend     = vault_database_secrets_mount.mongodb.path
   db_name     = each.value.cluster_name
   name        = each.key
-  default_ttl = try(each.value.rotation_period, 24 * 60 * 60) # 1 day
-  max_ttl     = try(each.value.rotation_period, 24 * 60 * 60) # 1 day
+  default_ttl = try(each.value.rotation_period, 24 * 60 * 60 * 30) # 30 days
+  max_ttl     = try(each.value.rotation_period, 24 * 60 * 60 * 30) # 30 days
   creation_statements = [jsonencode({
     db = each.value.database
     roles = try(each.value.roles, [{
