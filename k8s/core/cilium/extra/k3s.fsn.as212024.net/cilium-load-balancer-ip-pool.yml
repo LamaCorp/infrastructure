@@ -1,5 +1,5 @@
 ---
-apiVersion: cilium.io/v2alpha1
+apiVersion: cilium.io/v2
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: hetzner-extra-subnet-1
@@ -10,7 +10,7 @@ spec:
     - cidr: 148.251.148.235/32
     - cidr: 148.251.148.236/32
 ---
-apiVersion: cilium.io/v2alpha1
+apiVersion: cilium.io/v2
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: as212024-pi
