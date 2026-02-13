@@ -25,7 +25,25 @@ spec:
 apiVersion: cilium.io/v2
 kind: CiliumBGPNodeConfigOverride
 metadata:
-  name: default
+  name: k3s-1.fsn.as212024.net
+spec:
+  bgpInstances:
+    - name: default
+      routerID: 127.0.0.1
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPNodeConfigOverride
+metadata:
+  name: k3s-1.bar.as212024.net
+spec:
+  bgpInstances:
+    - name: default
+      routerID: 127.0.0.1
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPNodeConfigOverride
+metadata:
+  name: k3s-2.bar.as212024.net
 spec:
   bgpInstances:
     - name: default
