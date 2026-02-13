@@ -76,6 +76,9 @@ subjects:
     namespace: services-immich
     name: default
   - kind: ServiceAccount
+    namespace: services-jitsi
+    name: default
+  - kind: ServiceAccount
     namespace: services-lemmy
     name: default
   - kind: ServiceAccount
@@ -100,7 +103,10 @@ subjects:
     namespace: services-paperless-ngx-risson
     name: default
   - kind: ServiceAccount
-    namespace: services-rocketchat
+    namespace: services-rocketchat-lama
+    name: default
+  - kind: ServiceAccount
+    namespace: services-rocketchat-sdlh
     name: default
   - kind: ServiceAccount
     namespace: services-stirling-pdf
