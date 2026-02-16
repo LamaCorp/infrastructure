@@ -5,7 +5,7 @@ metadata:
   name: authentik-rs
 spec:
   parentRefs:
-    - name: eg-http-bar
+    - name: eg-http-public
       namespace: core-eg
       sectionName: https
   hostnames:
