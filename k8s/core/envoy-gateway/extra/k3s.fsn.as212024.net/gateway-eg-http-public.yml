@@ -35,6 +35,8 @@ spec:
         certificateRefs:
           - name: as212024-net-ecdsa-tls
           - name: as212024-net-rsa-tls
+          - name: authentik-rs-ecdsa-tls
+          - name: authentik-rs-rsa-tls
           - name: devou-ps-ecdsa-tls
           - name: devou-ps-rsa-tls
           - name: doyouhavegoodbackups-com-ecdsa-tls
