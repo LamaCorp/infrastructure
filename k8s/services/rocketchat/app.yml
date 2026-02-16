@@ -31,15 +31,18 @@ spec:
         - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
           targetRevision: HEAD
           path: "k8s/services/rocketchat/extra/{{ .name }}"
-        - repoURL: https://rocketchat.github.io/helm-charts
-          targetRevision: 6.30.0
-          chart: rocketchat
+        - repoURL: https://github.com/rissson/rocketchat-helm-charts.git
+          targetRevision: deployment-annotations
+          path: rocketchat
           helm:
             releaseName: rocketchat
             values: |
               image:
                 repository: registry.rocket.chat/rocketchat/rocket.chat
                 tag: 8.1.0
+
+              deploymentAnnotations
+                secret.reloader.stakater.com/reload: rocketchat-mongodb-credentials
 
               existingMongodbSecret: rocketchat-mongodb-credentials
 
