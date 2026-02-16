@@ -57,6 +57,22 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  name: authentik-rs-ecdsa
+spec:
+  secretName: authentik-rs-ecdsa-tls
+  privateKey:
+    algorithm: ECDSA
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt-prod-dns01
+  dnsNames:
+    - "authentik.rs"
+    - "*.authentik.rs"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
   name: devou-ps-rsa
 spec:
   secretName: devou-ps-rsa-tls
