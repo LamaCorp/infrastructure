@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - secrets.yml
 
+  - authentik.rs.yml
   - home-assistant
   - zigbee2mqtt
