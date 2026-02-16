@@ -41,7 +41,7 @@ spec:
                 repository: registry.rocket.chat/rocketchat/rocket.chat
                 tag: 8.1.0
 
-              deploymentAnnotations
+              deploymentAnnotations:
                 secret.reloader.stakater.com/reload: rocketchat-mongodb-credentials
 
               existingMongodbSecret: rocketchat-mongodb-credentials
