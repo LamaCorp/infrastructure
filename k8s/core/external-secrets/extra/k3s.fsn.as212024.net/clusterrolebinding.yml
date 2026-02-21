@@ -40,6 +40,9 @@ subjects:
     namespace: kube-system
     name: default
   - kind: ServiceAccount
+    namespace: services-archivebox
+    name: default
+  - kind: ServiceAccount
     namespace: services-atuin
     name: default
   - kind: ServiceAccount
