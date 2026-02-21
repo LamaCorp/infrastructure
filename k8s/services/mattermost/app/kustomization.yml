@@ -22,7 +22,7 @@ configMapGenerator:
       - MM_GITLABSETTINGS_DISCOVERYENDPOINT=https://auth.lama-corp.space/application/o/mattermost/.well-known/openid-configuration
       - MM_GITLABSETTINGS_BUTTONTEXT=Lama Corp. Connect
       - MM_EMAILSETTINGS_FEEDBACKNAME=Notifications - Chat | Lama Corp.
-      - MM_EMAILSETTINGS_FEEDBACKEMAIL=no-reply@chat.lama-corp.space
+      - MM_EMAILSETTINGS_FEEDBACKEMAIL=no-reply-chat@lama-corp.space
       - MM_EMAILSETTINGS_REPLYTOADDRESS=root@lama-corp.space
       - MM_EMAILSETTINGS_FEEDBACKORGANIZATION=Lama Corp.
       - MM_EMAILSETTINGS_ENABLESMTPAUTH=true

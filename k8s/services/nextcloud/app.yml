@@ -96,9 +96,9 @@ spec:
                 );
             extraEnv:
               - name: MAIL_FROM_ADDRESS
-                value: no-reply
+                value: no-reply-cloud
               - name: MAIL_DOMAIN
-                value: cloud.lama-corp.space
+                value: lama-corp.space
               - name: SMTP_SECURE
                 value: tls
               - name: SMTP_PORT

@@ -40,7 +40,7 @@ spec:
               username: file:///smtp-creds/username
               password: file:///smtp-creds/password
               use_tls: true
-              from: "Auth - Lama Corp. <no-reply@auth.lama-corp.space>"
+              from: "Auth - Lama Corp. <no-reply-authentik@lama-corp.space>"
             secret_key: file:///secrets/secret-key
             listen:
               trusted_proxy_cidrs: "172.28.128.0/22,2001:67c:17fc:110::/60"

@@ -67,7 +67,7 @@ spec:
                       name: rocketchat-smtp-credentials
                       key: password
                 - name: OVERWRITE_SETTING_From_Email
-                  value: no-reply@chat.lama-corp.space
+                  value: no-reply-chat@lama-corp.space
 
                 - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-id
                   valueFrom:

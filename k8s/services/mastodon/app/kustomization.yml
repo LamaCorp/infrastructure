@@ -51,7 +51,7 @@ configMapGenerator:
       - SMTP_SERVER=email-smtp.eu-west-3.amazonaws.com
       - SMTP_PORT=587
       - SMTP_TLS=true
-      - SMTP_FROM_ADDRESS=no-reply@social.lama-corp.space
+      - SMTP_FROM_ADDRESS=no-reply-social@lama-corp.space
 
       - OMNIAUTH_ONLY=true
       - ONE_CLICK_SSO_LOGIN=true

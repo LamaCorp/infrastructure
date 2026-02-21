@@ -10,7 +10,7 @@
     smtp_server: "email-smtp.eu-west-3.amazonaws.com:587"
     smtp_login: "{{ .smtp_username }}"
     smtp_password: "{{ .smtp_password }}"
-    smtp_from_address: "noreply@lemmy.lama-corp.space"
+    smtp_from_address: "noreply-lemmy@lama-corp.space"
     tls_type: "starttls"
   }
   setup: {
