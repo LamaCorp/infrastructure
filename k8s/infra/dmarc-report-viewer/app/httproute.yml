@@ -1,0 +1,38 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: dmarc-report-viewer
+spec:
+  parentRefs:
+    - name: eg-http-public
+      namespace: core-eg
+      sectionName: https
+  hostnames:
+    - smtp-reports.as212024.net
+  rules:
+    - matches:
+        - path:
+            value: "/"
+      backendRefs:
+        - name: dmarc-report-viewer
+          port: 80
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: dmarc-report-viewer
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: dmarc-report-viewer
+  oidc:
+    provider:
+      issuer: https://auth.lama-corp.space/application/o/dmarc-report-viewer/
+    clientID: dmarc-report-viewer
+    clientSecret:
+      name: dmarc-report-viewer-oidc-credentials
+    scopes:
+      - offline_access
+    refreshToken: true

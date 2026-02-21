@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dmarc-report-viewer
+spec:
+  replicas: 1
+  template:
+    spec:
+      securityContext:
+        runAsUser: 29219
+        runAsGroup: 29219
+        fsGroup: 29219
+      containers:
+        - name: dmarc-report-viewer
+          image: ghcr.io/cry-inc/dmarc-report-viewer
+          envFrom:
+            - configMapRef:
+                name: dmarc-report-viewer-config
+            - secretRef:
+                name: dmarc-report-viewer-secrets
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP

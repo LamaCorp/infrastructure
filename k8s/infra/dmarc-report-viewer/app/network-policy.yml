@@ -1,0 +1,10 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: allow-egress-world
+spec:
+  endpointSelector: {}
+  egress:
+    - toEntities:
+        - world

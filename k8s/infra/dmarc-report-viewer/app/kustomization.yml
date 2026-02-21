@@ -1,0 +1,24 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: dmarc-report-viewer
+
+resources:
+  - deployment.yml
+  - httproute.yml
+  - network-policy.yml
+  - secrets.yml
+  - service.yml
+
+configMapGenerator:
+  - name: dmarc-report-viewer-config
+    literals:
+      - IMAP_HOST=mail.lama-corp.space
+      - HTTP_SERVER_USER=
+      - HTTP_SERVER_PASSWORD=
+      - HTTP_SERVER_BINDING=[::]
+
+images:
+  - name: ghcr.io/cry-inc/dmarc-report-viewer
+    newTag: 2.3.3
