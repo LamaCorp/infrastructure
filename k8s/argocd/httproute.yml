@@ -5,7 +5,7 @@ metadata:
   name: argocd-server
 spec:
   parentRefs:
-    - name: eg-http-public
+    - name: eg-http-critical
       namespace: core-eg
       sectionName: https
   hostnames:
@@ -24,7 +24,7 @@ metadata:
   name: argocd-applicationset-controller
 spec:
   parentRefs:
-    - name: eg-http-public
+    - name: eg-http-critical
       namespace: core-eg
       sectionName: https
   hostnames:
