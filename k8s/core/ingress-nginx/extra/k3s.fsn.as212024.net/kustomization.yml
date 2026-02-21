@@ -1,5 +1,0 @@
----
-kind: Kustomization
-
-resources:
-  - ../base
