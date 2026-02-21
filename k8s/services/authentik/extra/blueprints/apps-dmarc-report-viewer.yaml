@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+# yamllint disable
+---
+version: 1
+metadata:
+  name: Apps - SMTP Reports
+entries:
+  - id: provider
+    model: authentik_providers_oauth2.oauth2provider
+    identifiers:
+      name: k8s/k3s.fsn.as212024.net/infra-dmarc-report-viewer
+    attrs:
+      authorization_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, "default-provider-authorization-implicit-consent"],
+        ]
+      signing_key:
+        !Find [
+          authentik_crypto.certificatekeypair,
+          [name, "authentik Self-signed Certificate"],
+        ]
+      invalidation_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, "default-provider-invalidation-flow"],
+        ]
+
+      client_type: confidential
+      client_id: dmarc-report-viewer
+      redirect_uris:
+        - url: https://smtp-reports.as212024.net/oauth2/callback
+          matching_mode: strict
+
+      access_code_validity: minutes=1
+      access_token_validity: minutes=5
+      refresh_token_validity: days=30
+
+      sub_mode: hashed_user_id
+      property_mappings:
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'openid'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
+          ]
+
+  - id: application
+    model: authentik_core.application
+    identifiers:
+      slug: dmarc-report-viewer
+    attrs:
+      name: SMTP Reports
+      group: Infrastructure
+      description: DMARC and TLS SMTP reports
+      icon: https://dmarc.org/wp-content/uploads/2015/02/DMARC-2015-logo-small-202x110.png
+      provider: !KeyOf provider
+      policy_engine_mode: any
+
+  - id: group
+    model: authentik_core.group
+    identifiers:
+      name: app-dmarc-report-viewer
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group
+    attrs:
+      order: 10
