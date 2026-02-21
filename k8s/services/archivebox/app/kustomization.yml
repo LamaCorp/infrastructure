@@ -6,8 +6,10 @@ commonLabels:
 
 resources:
   - deployment.yml
+  - httproute.yml
   - network-policy.yml
   - pvc.yml
+  - secrets.yml
   - service.yml
 
 configMapGenerator:

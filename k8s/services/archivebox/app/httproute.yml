@@ -1,0 +1,38 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: archivebox
+spec:
+  parentRefs:
+    - name: eg-http-public
+      namespace: core-eg
+      sectionName: https
+  hostnames:
+    - archive.lama-corp.space
+  rules:
+    - matches:
+        - path:
+            value: "/"
+      backendRefs:
+        - name: archivebox
+          port: 80
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: archivebox
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: archivebox
+  oidc:
+    provider:
+      issuer: https://auth.lama-corp.space/application/o/archivebox/
+    clientID: archivebox
+    clientSecret:
+      name: archivebox-oidc-credentials
+    scopes:
+      - offline_access
+    refreshToken: true
