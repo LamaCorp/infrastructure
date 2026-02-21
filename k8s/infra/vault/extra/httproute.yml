@@ -5,7 +5,7 @@ metadata:
   name: vault
 spec:
   parentRefs:
-    - name: eg-http-public
+    - name: eg-http-critical
       namespace: core-eg
       sectionName: https
   hostnames:
