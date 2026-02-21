@@ -28,6 +28,9 @@ subjects:
     namespace: infra-akvorado
     name: default
   - kind: ServiceAccount
+    namespace: infra-dmarc-report-viewer
+    name: default
+  - kind: ServiceAccount
     namespace: infra-happydomain
     name: default
   - kind: ServiceAccount
