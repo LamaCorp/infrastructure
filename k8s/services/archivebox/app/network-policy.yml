@@ -8,16 +8,3 @@ spec:
   egress:
     - toEntities:
         - world
----
-apiVersion: cilium.io/v2
-kind: CiliumNetworkPolicy
-metadata:
-  name: allow-ingress-authentik
-spec:
-  endpointSelector: {}
-  ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/component: server
-            app.kubernetes.io/name: authentik
-            k8s:io.kubernetes.pod.namespace: services-authentik
