@@ -1,0 +1,24 @@
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: eg-http-critical
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        replicas: 1
+        strategy:
+          type: RollingUpdate
+          rollingUpdate:
+            maxSurge: 25%
+            maxUnavailable: 25%
+      envoyService:
+        externalTrafficPolicy: Local
+      envoyPDB:
+        minAvailable: 1
+  logging:
+    level:
+      default: info
+  ipFamily: DualStack

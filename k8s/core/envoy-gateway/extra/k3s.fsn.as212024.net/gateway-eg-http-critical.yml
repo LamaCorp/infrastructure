@@ -1,0 +1,41 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: eg-http-critical
+spec:
+  gatewayClassName: eg
+  infrastructure:
+    parametersRef:
+      group: gateway.envoyproxy.io
+      kind: EnvoyProxy
+      name: eg-http-critical
+    annotations:
+      io.cilium/lb-ipam-ips: 209.112.97.161,2001:67c:17fc:130::80
+      external-dns.alpha.kubernetes.io/hostname: gw-eg-http-critical.k3s.fsn.as212024.net
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: Same
+    - name: https
+      protocol: HTTPS
+      port: 443
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: as212024-net-ecdsa-tls
+          - name: as212024-net-rsa-tls
+          - name: lama-corp-space-ecdsa-tls
+          - name: lama-corp-space-rsa-tls
+          - name: sdlh-eu-ecdsa-tls
+          - name: sdlh-eu-rsa-tls

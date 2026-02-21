@@ -5,9 +5,13 @@ metadata:
   name: http-to-https
 spec:
   parentRefs:
+    - name: eg-http-critical
+      sectionName: http
     - name: eg-http-public
       sectionName: http
     - name: eg-http-bar
+      sectionName: http
+    - name: eg-http-media
       sectionName: http
   rules:
     - filters:
