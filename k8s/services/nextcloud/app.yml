@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/nextcloud/extra
     - repoURL: https://nextcloud.github.io/helm/
-      targetRevision: 6.6.10
+      targetRevision: 8.9.1
       chart: nextcloud
       helm:
         releaseName: nextcloud
