@@ -8,11 +8,6 @@ entries:
   - model: authentik_blueprints.metaapplyblueprint
     attrs:
       identifiers:
-        name: Apps - ArchiveBox
-      required: true
-  - model: authentik_blueprints.metaapplyblueprint
-    attrs:
-      identifiers:
         name: Apps - V-Core 3
       required: true
 
@@ -26,10 +21,6 @@ entries:
           [name, "Local Kubernetes Cluster"],
         ]
       providers:
-        - !Find [
-            authentik_core.provider,
-            [name, "k8s/k3s.fsn.as212024.net/services-archivebox"],
-          ]
         - !Find [authentik_core.provider, [name, "v-core-3"]]
       config:
         log_level: info
