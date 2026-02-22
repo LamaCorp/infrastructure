@@ -3,12 +3,12 @@
 ---
 version: 1
 metadata:
-  name: Apps - Home assistant
+  name: Apps - Zigbee2MQTT
 entries:
   - id: provider
     model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: home-assistant
+      name: k8s/k3s.fsn.as212024.net/services-external/zigbee2mqtt
     attrs:
       authorization_flow:
         !Find [
@@ -27,8 +27,9 @@ entries:
         ]
 
       client_type: confidential
+      client_id: zigbee2mqtt
       redirect_uris:
-        - url: https://home.phemma.fr/auth/openid/callback
+        - url: https://z2m.phemma.fr/oauth2/callback
           matching_mode: strict
 
       access_code_validity: minutes=1
@@ -43,33 +44,29 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
-            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
-          ]
-        - !Find [
-            authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
+            [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
           ]
 
   - id: application
     model: authentik_core.application
     identifiers:
-      slug: home-assistant
+      slug: zigbee2mqtt
     attrs:
-      name: Home assistant
+      name: Zigbee2MQTT
       group: Maison
-      description: Home automation
-      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/home-assistant.png
+      description: Gestion des appareils Zigbee
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/zigbee2mqtt.png
       provider: !KeyOf provider
       policy_engine_mode: any
 
   - id: group
     model: authentik_core.group
     identifiers:
-      name: app-home-assistant
+      name: app-zigbee2mqtt
 
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !KeyOf group
+      user: !KeyOf group
     attrs:
       order: 10

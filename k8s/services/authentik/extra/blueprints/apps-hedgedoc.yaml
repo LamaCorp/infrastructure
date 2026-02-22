@@ -58,7 +58,7 @@ entries:
       name: HedgeDoc
       group: Services
       meta_description: Éditeur de texte collaboratif
-      icon: https://github.com/hedgedoc/hedgedoc-logo/raw/main/LOGOTYPE/PNG/HedgeDoc-Logo%201.png
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/hedgedoc.png
       provider: !KeyOf provider
       policy_engine_mode: any
 

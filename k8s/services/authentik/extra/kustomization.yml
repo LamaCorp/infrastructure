@@ -14,6 +14,7 @@ configMapGenerator:
     files:
       - ./blueprints/apps-archivebox.yaml
       - ./blueprints/apps-argocd.yaml
+      - ./blueprints/apps-frigate.yaml
       - ./blueprints/apps-grafana.yaml
       - ./blueprints/apps-happydomain.yaml
       - ./blueprints/apps-hedgedoc.yaml
@@ -33,6 +34,7 @@ configMapGenerator:
       - ./blueprints/apps-stirling-pdf.yaml
       - ./blueprints/apps-v-core-3.yaml
       - ./blueprints/apps-vault.yaml
+      - ./blueprints/apps-zigbee2mqtt.yaml
       - ./blueprints/brands.yaml
       - ./blueprints/events-vault-write.yaml
       - ./blueprints/flows-default-provider-authorization-one-time-consent.yaml
