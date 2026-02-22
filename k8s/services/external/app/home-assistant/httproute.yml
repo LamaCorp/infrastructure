@@ -35,4 +35,4 @@ spec:
           requestRedirect:
             scheme: https
             hostname: home.phemma.fr
-            statusCode: 308
+            statusCode: 301
