@@ -43,6 +43,10 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
             [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
           ]
         - !Find [
