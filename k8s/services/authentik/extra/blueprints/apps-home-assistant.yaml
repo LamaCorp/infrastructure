@@ -47,10 +47,6 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
-            [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
-          ]
-        - !Find [
-            authentik_core.propertymapping,
             [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
           ]
 
