@@ -253,6 +253,22 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  name: phemma-fr-ecdsa
+spec:
+  secretName: phemma-fr-ecdsa-tls
+  privateKey:
+    algorithm: ECDSA
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt-prod-dns01
+  dnsNames:
+    - "phemma.fr"
+    - "*.phemma.fr"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
   name: risson-me-rsa
 spec:
   secretName: risson-me-rsa-tls
