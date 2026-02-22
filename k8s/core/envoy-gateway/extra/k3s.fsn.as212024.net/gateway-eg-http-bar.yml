@@ -35,5 +35,7 @@ spec:
         certificateRefs:
           - name: lama-corp-space-ecdsa-tls
           - name: lama-corp-space-rsa-tls
+          - name: phemma-fr-ecdsa-tls
+          - name: phemma-fr-rsa-tls
           - name: risson-space-ecdsa-tls
           - name: risson-space-rsa-tls
