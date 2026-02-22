@@ -30,9 +30,9 @@ spec:
   hostnames:
     - home.risson.space
   rules:
-    - filters:
-        - type: RequestRedirect
-          requestRedirect:
-            scheme: https
-            hostname: home.phemma.fr
-            statusCode: 301
+    - matches:
+        - path:
+            value: "/"
+      backendRefs:
+        - name: home-assistant
+          port: 8123
