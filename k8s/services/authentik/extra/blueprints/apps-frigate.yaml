@@ -62,7 +62,7 @@ entries:
   - id: group
     model: authentik_core.group
     identifiers:
-      name: app-zigbee2mqtt
+      name: app-frigate
 
   - model: authentik_policies.policybinding
     identifiers:
