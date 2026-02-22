@@ -42,8 +42,8 @@
       "customType": "regex",
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "badaix/snapcast",
-      "fileMatch": [
-        "^roles/snapcast/defaults/main\\.yml$"
+      "managerFilePatterns": [
+        "/^roles/snapcast/defaults/main\\.yml$/"
       ],
       "matchStrings": [
         "snapcast_version: (?<currentValue>.*?)\\n"
