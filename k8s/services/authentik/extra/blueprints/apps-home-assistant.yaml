@@ -28,7 +28,7 @@ entries:
 
       client_type: confidential
       redirect_uris:
-        - url: https://home.risson.space/auth/openid/callback
+        - url: https://home.phemma.fr/auth/openid/callback
           matching_mode: strict
 
       access_code_validity: minutes=1
@@ -58,7 +58,6 @@ entries:
       name: Home assistant
       group: Maison
       description: Home automation
-      meta_launch_url: https://home.risson.space
       icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/home-assistant.png
       policy_engine_mode: any
 
@@ -98,7 +97,7 @@ entries:
       client_type: confidential
       client_id: zigbee2mqtt
       redirect_uris:
-        - url: https://z2m.home.risson.space/oauth2/callback
+        - url: https://z2m.phemma.fr/oauth2/callback
           matching_mode: strict
 
       access_code_validity: minutes=1

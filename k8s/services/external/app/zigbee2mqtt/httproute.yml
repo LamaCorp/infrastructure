@@ -9,7 +9,7 @@ spec:
       namespace: core-eg
       sectionName: https
   hostnames:
-    - z2m.home.risson.space
+    - z2m.phemma.fr
   rules:
     - matches:
         - path:
@@ -36,3 +36,22 @@ spec:
     scopes:
       - offline_access
     refreshToken: true
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: zigbee2mqtt-old
+spec:
+  parentRefs:
+    - name: eg-http-bar
+      namespace: core-eg
+      sectionName: https
+  hostnames:
+    - z2m.home.risson.space
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            hostname: z2m.phemma.fr
+            statusCode: 301
