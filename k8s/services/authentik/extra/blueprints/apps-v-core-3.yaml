@@ -50,6 +50,6 @@ entries:
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      user: !KeyOf group
+      group: !KeyOf group
     attrs:
       order: 10
