@@ -12,6 +12,6 @@ resources:
 
 images:
   - name: yooooomi/your_spotify_server
-    newTag: 1.17.0
+    newTag: 1.18.0
   - name: yooooomi/your_spotify_client
     newTag: 1.18.0
