@@ -118,8 +118,5 @@ subjects:
     namespace: services-stirling-pdf
     name: default
   - kind: ServiceAccount
-    namespace: services-vaultwarden
-    name: default
-  - kind: ServiceAccount
     namespace: services-your-spotify
     name: default

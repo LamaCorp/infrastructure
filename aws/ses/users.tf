@@ -32,10 +32,6 @@ locals {
       k8s_cluster    = "k3s.fsn.as212024.net"
       k8s_namespaces = ["services-rocketchat-sdlh"]
     }
-    vaultwarden = {
-      k8s_cluster    = "k3s.fsn.as212024.net"
-      k8s_namespaces = ["services-vaultwarden"]
-    }
   }
 }
 

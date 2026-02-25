@@ -26,7 +26,6 @@ postgresql_users:
   netbox: {}
   nextcloud: {}
   paperless_risson: {}
-  vaultwarden: {}
 
 postgresql_dbs:
   atuin: atuin
@@ -51,7 +50,6 @@ postgresql_dbs:
   netbox: netbox
   nextcloud: nextcloud
   paperless_risson: paperless_risson
-  vaultwarden: vaultwarden
 
 postgresql_config:
   ssl_cert_file: "'/srv/acme/postgresql.fsn.as212024.net/fullchain.pem'"

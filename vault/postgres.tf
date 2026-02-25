@@ -65,9 +65,6 @@ locals {
         "k3s.fsn.as212024.net_services-paperless-ngx-risson" = {
           postgres_role = "paperless_risson"
         }
-        "k3s.fsn.as212024.net_services-vaultwarden" = {
-          postgres_role = "vaultwarden"
-        }
       }
     }
   }
