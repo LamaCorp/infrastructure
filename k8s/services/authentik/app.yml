@@ -31,7 +31,6 @@ spec:
               user: file:///postgres-creds/username
               password: file:///postgres-creds/password
               name: authentik
-              port: 6432
             redis:
               host: redis.fsn.as212024.net
               port: 6380
