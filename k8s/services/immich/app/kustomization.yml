@@ -19,6 +19,7 @@ configMapGenerator:
   - name: immich-config-env
     literals:
       - DB_HOSTNAME=postgresql.fsn.as212024.net
+      - DB_PORT=6432
       - DB_DATABASE_NAME=immich
       - DB_USERNAME_FILE=/postgres-creds/username
       - DB_PASSWORD_FILE=/postgres-creds/password
