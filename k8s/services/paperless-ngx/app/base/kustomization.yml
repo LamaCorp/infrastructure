@@ -30,6 +30,7 @@ configMapGenerator:
 
       - PAPERLESS_DBENGINE=postgresql
       - PAPERLESS_DBHOST=postgresql.fsn.as212024.net
+      - PAPERLESS_DBPORT=6432
       # - PAPERLESS_DBNAME=FIXME
 
       # - PAPERLESS_REDIS=redis://redis.fsn.as212024.net:FIXME
