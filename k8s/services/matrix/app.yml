@@ -116,7 +116,7 @@ spec:
                 namespace: core-eg
                 sectionName: https
     - repoURL: https://ananace.gitlab.io/charts
-      targetRevision: 1.4.30
+      targetRevision: 1.4.31
       chart: element-web
       helm:
         releaseName: element
