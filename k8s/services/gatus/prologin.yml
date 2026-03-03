@@ -57,7 +57,7 @@ spec:
 
             storage:
               type: postgres
-              path: "postgres://${DB_USER}:${DB_PASS}@postgresql.fsn.as212024.net:5432/gatus_prologin?sslmode=require"
+              path: "postgres://${DB_USER}:${DB_PASS}@postgresql.fsn.as212024.net:6432/gatus_prologin?sslmode=require"
 
             ui:
               title: Prologin
