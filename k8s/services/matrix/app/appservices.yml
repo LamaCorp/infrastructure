@@ -11,23 +11,6 @@ spec:
     template:
       engineVersion: v2
       data:
-        hookshot.yaml: |
-          id: matrix-hookshot
-          url: http://hookshot:9993
-          hs_token: "{{ .hookshot_hs_token }}"
-          as_token: "{{ .hookshot_as_token }}"
-          rate_limited: false
-          sender_localpart: hookshot
-          namespaces:
-            users:
-              - regex: '^@_gitlab_.*:lama\-corp\.space$'
-                exclusive: true
-              - regex: '^@_webhooks_.*:lama\-corp\.space$'
-                exclusive: true
-            rooms: []
-            aliases:
-              - regex: '^#github_.+:lama\-corp\.space'
-                exclusive: true
         mautrix-slack.yaml: |
           id: slack
           url: http://mautrix-slack:9993
@@ -42,12 +25,6 @@ spec:
               - regex: '^@slackbot:lama\-corp\.space$'
                 exclusive: true
   dataFrom:
-    - extract:
-        key: /services-matrix/appservices/hookshot
-      rewrite:
-        - regexp:
-            source: "(.*)"
-            target: "hookshot_$1"
     - extract:
         key: /services-matrix/appservices/mautrix-slack
       rewrite:

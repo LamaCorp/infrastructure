@@ -26,7 +26,6 @@ resource "vault_generic_secret" "k8s-k3s-fsn-as212024-net_services-matrix_synaps
 
 locals {
   k8s-k3s-fsn-as212024-net_services-matrix_appservices = toset([
-    "hookshot",
     "mautrix-slack",
   ])
 }
@@ -48,28 +47,6 @@ resource "vault_generic_secret" "k8s-k3s-fsn-as212024-net_services-matrix_appser
   data_json = jsonencode({
     hs_token = random_password.k8s-k3s-fsn-as212024-net_services-matrix_appservices-hs-tokens[each.key].result
     as_token = random_password.k8s-k3s-fsn-as212024-net_services-matrix_appservices-as-tokens[each.key].result
-  })
-}
-
-### Hookshot
-
-resource "random_password" "k8s-k3s-fsn-as212024-net_services-matrix_hookshot_secrets" {
-  count   = 1
-  length  = 64
-  special = false
-}
-resource "vault_generic_secret" "k8s-k3s-fsn-as212024-net_services-matrix_hookshot_secrets" {
-  path = "${vault_mount.k8s-clusters["k3s.fsn.as212024.net"].path}/services-matrix/hookshot/secrets"
-  data_json = jsonencode({
-    gitlab_webhook_secret = random_password.k8s-k3s-fsn-as212024-net_services-matrix_hookshot_secrets[0].result
-  })
-}
-
-resource "vault_generic_secret" "k8s-k3s-fsn-as212024-net_services-matrix_hookshot_passkey" {
-  path         = "${vault_mount.k8s-clusters["k3s.fsn.as212024.net"].path}/services-matrix/hookshot/passkey"
-  disable_read = true
-  data_json = jsonencode({
-    "passkey.pem" = "FIXME"
   })
 }
 
