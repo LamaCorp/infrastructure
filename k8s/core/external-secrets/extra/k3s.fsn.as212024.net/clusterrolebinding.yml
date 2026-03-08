@@ -70,9 +70,6 @@ subjects:
     namespace: services-gatus-zarak
     name: default
   - kind: ServiceAccount
-    namespace: services-gitlab-runner
-    name: default
-  - kind: ServiceAccount
     namespace: services-hanabi
     name: default
   - kind: ServiceAccount

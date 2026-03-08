@@ -1,6 +1,0 @@
----
-kind: Kustomization
-namespace: argocd
-
-resources:
-  - app.yml
