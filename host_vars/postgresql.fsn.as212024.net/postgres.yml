@@ -15,7 +15,6 @@ postgresql_users:
   hedgedoc: {}
   immich: {}
   lemmy: {}
-  lemmy_pictrs: {}
   mastodon: {}
   matrix_mautrix_slack: {}
   matrix_media_repo: {}
@@ -36,7 +35,6 @@ postgresql_dbs:
   hedgedoc: hedgedoc
   immich: immich
   lemmy: lemmy
-  lemmy_pictrs: lemmy_pictrs
   mailman: postgres
   mastodon: mastodon
   matrix_mautrix_slack: matrix_mautrix_slack

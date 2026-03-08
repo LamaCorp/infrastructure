@@ -25,8 +25,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: pictrs-config
-            - secretRef:
-                name: pictrs-postgres-credentials
           volumeMounts:
             - name: data
               mountPath: /mnt
