@@ -5,12 +5,10 @@ commonLabels:
   app.kubernetes.io/name: matrix
 
 resources:
-  - appservices.yml
   - network-policy.yml
   - secrets.yml
 
   - element
-  - mautrix-slack
   - synapse
   - synapse-admin
   - synapse-auto-compressor
@@ -20,5 +18,3 @@ images:
     newTag: v0.1.4@sha256:b04d1886ec684e94a635a84a8ee705edf2a74f008dcf5b5c0541bba287cde09d
   - name: ghcr.io/etkecc/synapse-admin
     newTag: v0.10.3-etke35@sha256:b7a3848244d9908ff215fad6a01f63dbb7a61ffecf9d7f9fd904d60266372e6d
-  - name: dock.mau.dev/mautrix/slack
-    newTag: v0.2602.0@sha256:042da5f2c9b8be5b72ac6c49ed2b19599bfe4b005cd517cd805877fa48057b26

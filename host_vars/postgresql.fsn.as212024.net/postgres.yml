@@ -16,8 +16,6 @@ postgresql_users:
   immich: {}
   lemmy: {}
   mastodon: {}
-  matrix_mautrix_slack: {}
-  matrix_media_repo: {}
   matrix_synapse: {}
   mattermost: {}
   netbox: {}
@@ -37,8 +35,6 @@ postgresql_dbs:
   lemmy: lemmy
   mailman: postgres
   mastodon: mastodon
-  matrix_mautrix_slack: matrix_mautrix_slack
-  matrix_media_repo: matrix_media_repo
   matrix_synapse: matrix_synapse
   mattermost: mattermost
   netbox: netbox

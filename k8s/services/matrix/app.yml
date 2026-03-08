@@ -50,8 +50,6 @@ spec:
               enabled: false
             presence:
               enabled: true
-            app_service_config_files:
-              - /synapse/config/appservices/mautrix-slack.yaml
             media_retention:
               remote_media_lifetime: 14d
             url_preview_enabled: false
@@ -66,16 +64,10 @@ spec:
               - name: extra-secrets
                 secret:
                   secretName: synapse-secrets
-              - name: appservices
-                secret:
-                  secretName: matrix-appservices
             extraVolumeMounts:
               - name: extra-secrets
                 mountPath: /synapse/config/conf.d/extra-secrets.yaml
                 subPath: config.yaml
-                readOnly: true
-              - name: appservices
-                mountPath: /synapse/config/appservices
                 readOnly: true
 
           postgresql:
