@@ -40,10 +40,6 @@
           vault
         ];
 
-        shellHook = ''
-          source ./config.sh
-        '';
-
         UV_NO_BINARY_PACKAGE = "ruff";
 
         # See https://github.com/NixOS/nix/issues/318#issuecomment-52986702
