@@ -2,7 +2,7 @@
 
 ## License
 
-This repository is licensed under the [AGPL-3.0-or-later](./LICENSE) license.
+Copyright Marc 'risson' Schmitt 2026. Licensed under the [EUPL-1.2 or later](./LICENSE) license.
 
 ## Acknowledgements
 
