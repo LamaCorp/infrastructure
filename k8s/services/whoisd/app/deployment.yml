@@ -13,7 +13,7 @@ spec:
         fsGroup: 3856
       containers:
         - name: whoisd
-          image: registry.gitlab.com/lama-corp/infra/services/whoisd
+          image: ghcr.io/lamacorp/whoisd
           imagePullPolicy: IfNotPresent
           env:
             - name: WHOISD_LISTEN
