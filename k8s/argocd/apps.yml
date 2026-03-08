@@ -9,7 +9,7 @@ spec:
   goTemplate: true
   generators:
     - git:
-        repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        repoURL: https://github.com/LamaCorp/infrastructure.git
         revision: HEAD
         files:
           - path: k8s/core/**/config.json
@@ -29,6 +29,6 @@ spec:
         name: k3s.fsn.as212024.net
         namespace: argocd
       source:
-        repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        repoURL: https://github.com/LamaCorp/infrastructure.git
         targetRevision: HEAD
         path: "{{ .path.path }}"

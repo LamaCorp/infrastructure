@@ -25,6 +25,6 @@ spec:
         name: "{{ .name }}"
         namespace: kube-system
       source:
-        repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        repoURL: https://github.com/LamaCorp/infrastructure.git
         targetRevision: HEAD
         path: k8s/core/gateway-api/app

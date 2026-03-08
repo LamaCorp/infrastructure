@@ -16,7 +16,7 @@ spec:
     name: k3s.fsn.as212024.net
     namespace: services-gitlab-runner
   sources:
-    - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+    - repoURL: https://github.com/LamaCorp/infrastructure.git
       targetRevision: HEAD
       path: k8s/services/gitlab-runner/extra
     - repoURL: https://charts.gitlab.io

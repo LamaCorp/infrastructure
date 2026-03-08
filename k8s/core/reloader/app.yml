@@ -25,7 +25,7 @@ spec:
         name: "{{ .name }}"
         namespace: core-reloader
       sources:
-        - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        - repoURL: https://github.com/LamaCorp/infrastructure.git
           targetRevision: HEAD
           path: k8s/core/reloader/extra
         - repoURL: https://stakater.github.io/stakater-charts

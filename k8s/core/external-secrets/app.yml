@@ -26,7 +26,7 @@ spec:
         name: "{{ .name }}"
         namespace: core-external-secrets
       sources:
-        - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        - repoURL: https://github.com/LamaCorp/infrastructure.git
           targetRevision: HEAD
           path: k8s/core/external-secrets/extra/{{ .name }}
         - repoURL: https://charts.external-secrets.io

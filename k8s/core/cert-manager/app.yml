@@ -25,7 +25,7 @@ spec:
         name: "{{ .name }}"
         namespace: core-cert-manager
       sources:
-        - repoURL: https://gitlab.com/lama-corp/infra/infrastructure.git
+        - repoURL: https://github.com/LamaCorp/infrastructure.git
           targetRevision: HEAD
           path: k8s/core/cert-manager/extra/{{ .name }}
         - repoURL: https://charts.jetstack.io
