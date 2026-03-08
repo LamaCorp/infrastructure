@@ -42,7 +42,7 @@ images:
     newTag: 10.11.6@sha256:25db4eb10143c1c12adb79ed978e31d94fc98dc499fbae2d38b2c935089ced3e
   - name: ghcr.io/hotio/jellyseerr
     newName: docker.io/fallenbagel/jellyseerr
-    newTag: preview-OIDC@sha256:5c54ef90fe9a46afb68caddcb142cffeeba693967efca377d87f0c482b3b23d8
+    newTag: preview-OIDC@sha256:9f3195998306da6548fc3b2420d114dda64a6e904f41e911168788fb410a7972
   - name: ghcr.io/hotio/lidarr
     newTag: release-3.1.0.4875@sha256:b53b737267b86850ce7696df5c50d94b56751a057ed4507f8cff952fd3784ae5
   - name: ghcr.io/hotio/prowlarr
