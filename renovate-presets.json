@@ -6,7 +6,7 @@
   "description": "Default preset for use with Lama Corp. repos",
   "extends": [
     "config:best-practices",
-    ":assigne(rissson)",
+    ":assignee(rissson)",
     ":disableRateLimiting",
     ":enablePreCommit",
     ":enableVulnerabilityAlerts",
