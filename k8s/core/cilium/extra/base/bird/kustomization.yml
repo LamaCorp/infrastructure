@@ -15,4 +15,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/akafeng/bird
-    newTag: "3.1"
+    newTag: 3.1@sha256:5fee970d8e1138c4754a633f4f068a92d33414c74927a05b1c2d6e69b6d6db8d

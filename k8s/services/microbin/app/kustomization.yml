@@ -30,5 +30,5 @@ configMapGenerator:
       - MICROBIN_LIST_SERVER=false
 
 images:
-  - name: danielszabo99/microbin
-    newTag: 2.1.2
+  - name: docker.io/danielszabo99/microbin
+    newTag: 2.1.2@sha256:4e08d1d127e5804f5e43a63c0c9555497d506ee94abb570214134b73a4810f62
