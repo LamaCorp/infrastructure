@@ -51,7 +51,7 @@
     }
   ],
   "extends": [
-    "local>lama-corp/infra/services/renovate//renovate-presets.json"
+    "github>LamaCorp/infrastructure:renovate-presets.json"
   ],
   "kubernetes": {
     "managerFilePatterns": [

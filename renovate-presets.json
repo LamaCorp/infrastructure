@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboardLabels": [
+    "dependencies"
+  ],
+  "description": "Default preset for use with Lama Corp. repos",
+  "extends": [
+    "config:best-practices",
+    ":assigne(rissson)",
+    ":disableRateLimiting",
+    ":enablePreCommit",
+    ":enableVulnerabilityAlerts",
+    ":gitSignOff",
+    ":label(dependencies)",
+    ":preserveSemverRanges",
+    "mergeConfidence:all-badges"
+  ],
+  "git-submodules": {
+    "enabled": true
+  },
+  "internalChecksFilter": "strict",
+  "nix": {
+    "enabled": true
+  },
+  "semanticCommits": "auto"
+}
