@@ -17,5 +17,5 @@ configMapGenerator:
       - config/default.conf
 
 images:
-  - name: docker.io/library/nginx
-    newTag: 1.29.5@sha256:0236ee02dcbce00b9bd83e0f5fbc51069e7e1161bd59d99885b3ae1734f3392e
+  - name: nginx
+    newTag: 1.29.5

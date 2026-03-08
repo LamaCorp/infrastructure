@@ -23,5 +23,5 @@ configMapGenerator:
       - HAPPYDOMAIN_OIDC_PROVIDER_URL=https://auth.as212024.net/application/o/happydomain/
 
 images:
-  - name: docker.io/happydomain/happydomain
+  - name: happydomain/happydomain
     newTag: latest

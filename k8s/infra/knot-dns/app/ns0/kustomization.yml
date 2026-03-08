@@ -17,5 +17,5 @@ configMapGenerator:
     name: knot-dns-config
 
 images:
-  - name: docker.io/cznic/knot
-    newTag: v3.5.3@sha256:b5529c82e673fa2ee0505049c681b7f404d50bff7affcb023cfcf2c7ed298903
+  - name: cznic/knot
+    newTag: v3.5.3

@@ -19,4 +19,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/authentik-community/krb5
-    newTag: 0.2.1@sha256:efe56f3c5bc4288a1793a3c51c8a333e8ed6971d808c5f02e2be2cd1a80a1799
+    newTag: 0.2.1

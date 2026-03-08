@@ -1,13 +1,13 @@
 ---
 homeassistant_docker_repository: ghcr.io/home-assistant/home-assistant
-homeassistant_docker_tag: 2026.3.1@sha256:0e091dfce3068339c3e1d14382e6c34141e05cd589a1972ebd4d9a8e6b5d8969
+homeassistant_docker_tag: 2026.3.1
 
 homeassistant_default_environment: {}
 homeassistant_environment: {}
 homeassistant_environment_computed: "{{ homeassistant_default_environment | combine(homeassistant_environment) }}"
 
-mosquitto_docker_repository: docker.io/library/eclipse-mosquitto
-mosquitto_docker_tag: 2.0.22@sha256:6852da90a65dfff7aa3a1c8b249e92bb83c17ea8bbcce56bedff8707332a1a29
+mosquitto_docker_repository: eclipse-mosquitto
+mosquitto_docker_tag: 2.0.22
 
 zigbee2mqtt_docker_repository: ghcr.io/koenkk/zigbee2mqtt
-zigbee2mqtt_docker_tag: 2.9.1@sha256:574b2bd0dcbb59fae6edbbb81a35b5563291d3825da0225f0078aa5575dac37f
+zigbee2mqtt_docker_tag: 2.9.1
