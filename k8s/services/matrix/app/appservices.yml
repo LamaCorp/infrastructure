@@ -28,21 +28,6 @@ spec:
             aliases:
               - regex: '^#github_.+:lama\-corp\.space'
                 exclusive: true
-        mautrix-facebook.yaml: |
-          id: facebook
-          url: http://mautrix-facebook:9993
-          hs_token: "{{ .mautrix_facebook_hs_token }}"
-          as_token: "{{ .mautrix_facebook_as_token }}"
-          rate_limited: false
-          sender_localpart: _bot_facebookbot
-          namespaces:
-            users:
-              - regex: '^@.*:lama\-corp\.space$'
-                exclusive: false
-              - regex: '^@facebook_.+:lama\-corp\.space$'
-                exclusive: true
-              - regex: '^@facebookbot:lama\-corp\.space$'
-                exclusive: true
         mautrix-slack.yaml: |
           id: slack
           url: http://mautrix-slack:9993
@@ -63,12 +48,6 @@ spec:
         - regexp:
             source: "(.*)"
             target: "hookshot_$1"
-    - extract:
-        key: /services-matrix/appservices/mautrix-facebook
-      rewrite:
-        - regexp:
-            source: "(.*)"
-            target: "mautrix_facebook_$1"
     - extract:
         key: /services-matrix/appservices/mautrix-slack
       rewrite:

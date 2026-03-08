@@ -17,7 +17,6 @@ postgresql_users:
   lemmy: {}
   lemmy_pictrs: {}
   mastodon: {}
-  matrix_mautrix_facebook: {}
   matrix_mautrix_slack: {}
   matrix_media_repo: {}
   matrix_synapse: {}
@@ -40,7 +39,6 @@ postgresql_dbs:
   lemmy_pictrs: lemmy_pictrs
   mailman: postgres
   mastodon: mastodon
-  matrix_mautrix_facebook: matrix_mautrix_facebook
   matrix_mautrix_slack: matrix_mautrix_slack
   matrix_media_repo: matrix_media_repo
   matrix_synapse: matrix_synapse

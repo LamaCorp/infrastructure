@@ -27,7 +27,6 @@ resource "vault_generic_secret" "k8s-k3s-fsn-as212024-net_services-matrix_synaps
 locals {
   k8s-k3s-fsn-as212024-net_services-matrix_appservices = toset([
     "hookshot",
-    "mautrix-facebook",
     "mautrix-slack",
   ])
 }

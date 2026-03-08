@@ -52,7 +52,6 @@ spec:
               enabled: true
             app_service_config_files:
               - /synapse/config/appservices/hookshot.yaml
-              - /synapse/config/appservices/mautrix-facebook.yaml
               - /synapse/config/appservices/mautrix-slack.yaml
             media_retention:
               remote_media_lifetime: 14d
