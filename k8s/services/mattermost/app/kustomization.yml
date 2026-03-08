@@ -34,4 +34,4 @@ configMapGenerator:
 
 images:
   - name: mattermost/mattermost-team-edition
-    newTag: 10.12.4
+    newTag: 11.5.1@sha256:d2b313cf97c643ca40fd6a2a381006617ec0c6c1a0b1999bedfd1b9f887b5062
