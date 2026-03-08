@@ -38,9 +38,6 @@ locals {
         "k3s.fsn.as212024.net_services-mastodon" = {
           postgres_role = "mastodon"
         }
-        "k3s.fsn.as212024.net_services-matrix_maubot" = {
-          postgres_role = "matrix_maubot"
-        }
         "k3s.fsn.as212024.net_services-matrix_mautrix-facebook" = {
           postgres_role = "matrix_mautrix_facebook"
         }
