@@ -14,4 +14,4 @@ patches:
 
 images:
   - name: factoriotools/factorio
-    newTag: 1.1.110
+    newTag: 2.0.73@sha256:6471fbfb7eab3abf55bb53fed632606ecf17bf930891bccddff724afab9ed94c
