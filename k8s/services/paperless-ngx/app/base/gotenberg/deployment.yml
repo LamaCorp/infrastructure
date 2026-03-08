@@ -13,7 +13,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: tika
-          image: gotenberg/gotenberg
+          image: docker.io/gotenberg/gotenberg
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

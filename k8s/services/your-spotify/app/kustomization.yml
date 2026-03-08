@@ -11,7 +11,7 @@ resources:
   - secrets.yml
 
 images:
-  - name: yooooomi/your_spotify_server
-    newTag: 1.18.0
-  - name: yooooomi/your_spotify_client
-    newTag: 1.18.0
+  - name: docker.io/yooooomi/your_spotify_server
+    newTag: 1.18.0@sha256:80285f518dc8b6a8392986419503e1b804f62cc235d80fec6ce5e052264605ad
+  - name: docker.io/yooooomi/your_spotify_client
+    newTag: 1.18.0@sha256:e1379587e48a006e18b1eb3752bb6b6869f6518c29706d487f88083a1c8eab89

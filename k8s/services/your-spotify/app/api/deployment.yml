@@ -13,7 +13,7 @@ spec:
         fsGroup: 1674
       containers:
         - name: api
-          image: yooooomi/your_spotify_server
+          image: docker.io/yooooomi/your_spotify_server
           env:
             - name: API_ENDPOINT
               value: https://ys-api.lama-corp.space

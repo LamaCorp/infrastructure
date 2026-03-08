@@ -17,7 +17,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: stirling-pdf
-          image: frooodle/s-pdf
+          image: docker.io/frooodle/s-pdf
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

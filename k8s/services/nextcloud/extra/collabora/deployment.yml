@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: collabora
-          image: collabora/code
+          image: docker.io/collabora/code
           env:
             - name: domain
               value: cloud.lama-corp.space

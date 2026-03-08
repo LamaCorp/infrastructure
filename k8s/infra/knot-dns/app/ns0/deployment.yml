@@ -15,7 +15,7 @@ spec:
         fsGroup: 53
       containers:
         - name: knot-dns
-          image: cznic/knot
+          image: docker.io/cznic/knot
           command: [knotd]
           ports:
             - name: dns-udp

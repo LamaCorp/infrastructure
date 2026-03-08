@@ -15,7 +15,7 @@ spec:
         fsGroup: 27831
       containers:
         - name: pictrs
-          image: asonix/pictrs
+          image: docker.io/asonix/pictrs
           env:
             - name: PICTRS__SERVER__API_KEY
               valueFrom:

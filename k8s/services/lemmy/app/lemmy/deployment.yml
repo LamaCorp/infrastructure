@@ -15,7 +15,7 @@ spec:
         fsGroup: 27831
       containers:
         - name: lemmy
-          image: dessalines/lemmy
+          image: docker.io/dessalines/lemmy
           volumeMounts:
             - name: config
               mountPath: /config

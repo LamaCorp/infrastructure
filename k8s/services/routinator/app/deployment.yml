@@ -13,7 +13,7 @@ spec:
         fsGroup: 1012
       containers:
         - name: server
-          image: nlnetlabs/routinator
+          image: docker.io/nlnetlabs/routinator
           imagePullPolicy: IfNotPresent
           args:
             - server

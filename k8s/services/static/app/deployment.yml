@@ -14,7 +14,7 @@ spec:
         fsGroup: 65534
       containers:
         - name: nginx
-          image: nginx
+          image: docker.io/library/nginx
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

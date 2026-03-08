@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: probe
-          image: jamesits/ripe-atlas
+          image: docker.io/jamesits/ripe-atlas
           imagePullPolicy: Always
           env:
             - name: RXTXRPT

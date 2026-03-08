@@ -15,7 +15,7 @@ spec:
         fsGroup: 65533
       containers:
         - name: happydomain
-          image: happydomain/happydomain
+          image: docker.io/happydomain/happydomain
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

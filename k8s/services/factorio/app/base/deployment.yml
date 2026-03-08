@@ -15,7 +15,7 @@ spec:
         fsGroup: 845
       containers:
         - name: factorio
-          image: factoriotools/factorio
+          image: docker.io/factoriotools/factorio
           imagePullPolicy: IfNotPresent
           ports:
             - name: factorio-udp

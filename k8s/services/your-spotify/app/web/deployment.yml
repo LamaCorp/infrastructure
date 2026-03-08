@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: yooooomi/your_spotify_client
+          image: docker.io/yooooomi/your_spotify_client
           env:
             - name: API_ENDPOINT
               value: https://ys-api.lama-corp.space

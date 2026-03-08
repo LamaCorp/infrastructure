@@ -14,7 +14,7 @@ spec:
         fsGroup: 1483
       containers:
         - name: microbin
-          image: danielszabo99/microbin
+          image: docker.io/danielszabo99/microbin
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

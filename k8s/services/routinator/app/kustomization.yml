@@ -12,5 +12,5 @@ resources:
   - service.yml
 
 images:
-  - name: nlnetlabs/routinator
-    newTag: v0.15.1
+  - name: docker.io/nlnetlabs/routinator
+    newTag: v0.15.1@sha256:c7c48cd27bf2076cfe85d743b96669db275a68f907318c085d48c6ddbfde0fbc

@@ -15,7 +15,7 @@ spec:
         fsGroup: 27831
       containers:
         - name: lemmy-ui
-          image: dessalines/lemmy-ui
+          image: docker.io/dessalines/lemmy-ui
           envFrom:
             - configMapRef:
                 name: lemmy-ui-config

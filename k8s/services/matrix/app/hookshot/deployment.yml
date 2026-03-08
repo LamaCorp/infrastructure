@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: hookshot
-          image: halfshot/matrix-hookshot
+          image: docker.io/halfshot/matrix-hookshot
           ports:
             - name: homeserver
               containerPort: 9993
