@@ -11,7 +11,7 @@ spec:
     spec:
       initContainers:
         - name: init-archivebox
-          image: archivebox/archivebox
+          image: ghcr.io/archivebox/archivebox
           args: ["init"]
           envFrom:
             - configMapRef:
@@ -21,7 +21,7 @@ spec:
               mountPath: /data
       containers:
         - name: archivebox
-          image: archivebox/archivebox
+          image: ghcr.io/archivebox/archivebox
           args: ["server", "--quick-init", "[::]:8000"]
           envFrom:
             - configMapRef:

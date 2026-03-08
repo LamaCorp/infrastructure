@@ -22,5 +22,5 @@ configMapGenerator:
       - REVERSE_PROXY_WHITELIST=172.28.128.0/22,2001:67c:17fc:110::/60
 
 images:
-  - name: archivebox/archivebox
+  - name: ghcr.io/archivebox/archivebox
     newTag: 0.7.3
