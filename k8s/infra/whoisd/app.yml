@@ -2,11 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: services-whoisd
+  name: infra-whoisd
   labels:
-    app: services-whoisd
+    app: infra-whoisd
 spec:
-  project: services
+  project: infra
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
@@ -14,8 +14,8 @@ spec:
       prune: true
   destination:
     name: k3s.fsn.as212024.net
-    namespace: services-whoisd
+    namespace: infra-whoisd
   source:
     repoURL: https://github.com/LamaCorp/infrastructure.git
     targetRevision: HEAD
-    path: k8s/services/whoisd/app
+    path: k8s/infra/whoisd/app
