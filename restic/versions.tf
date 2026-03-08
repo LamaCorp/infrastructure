@@ -1,4 +1,6 @@
 terraform {
+  required_version = "~> 1.11"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -14,7 +16,12 @@ terraform {
     }
   }
 
-  backend "http" {}
+  backend "kubernetes" {
+    config_path    = "~/.kube/config"
+    config_context = "k3s"
+    namespace      = "infra-tfstates"
+    secret_suffix  = "restic"
+  }
 }
 
 data "vault_generic_secret" "restic_wasabi-credentials" {

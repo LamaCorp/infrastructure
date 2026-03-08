@@ -1,4 +1,6 @@
 terraform {
+  required_version = "~> 1.11"
+
   required_providers {
     external = {
       source  = "hashicorp/external"
@@ -23,5 +25,10 @@ terraform {
     }
   }
 
-  backend "http" {}
+  backend "kubernetes" {
+    config_path    = "~/.kube/config"
+    config_context = "k3s"
+    namespace      = "infra-tfstates"
+    secret_suffix  = "vault"
+  }
 }

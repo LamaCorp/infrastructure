@@ -4,7 +4,6 @@ __pycache__
 
 .terraform
 
-/secrets/vars
 /vault/secrets/vault.json
 
 # Don't forget to add them to .ansible-lint
