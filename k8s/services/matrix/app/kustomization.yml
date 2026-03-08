@@ -11,7 +11,6 @@ resources:
 
   - element
   - hookshot
-  - mautrix-facebook
   - mautrix-slack
   - synapse
   - synapse-admin
@@ -24,7 +23,5 @@ images:
     newTag: v0.10.3-etke35@sha256:b7a3848244d9908ff215fad6a01f63dbb7a61ffecf9d7f9fd904d60266372e6d
   - name: docker.io/halfshot/matrix-hookshot
     newTag: 7.3.2@sha256:44283e5131a1a5818bbbf6d9d1e07dccdc29ac5bb6002fcf159af6ac09cf8085
-  - name: dock.mau.dev/mautrix/facebook
-    newTag: v0.5.1@sha256:8569b59ac53e8e77569071722d24ce6dd7775ebdcaeb3f7b57c755672edfe0f9
   - name: dock.mau.dev/mautrix/slack
     newTag: v0.2602.0@sha256:042da5f2c9b8be5b72ac6c49ed2b19599bfe4b005cd517cd805877fa48057b26
