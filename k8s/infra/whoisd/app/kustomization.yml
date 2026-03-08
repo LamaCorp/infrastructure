@@ -11,4 +11,4 @@ resources:
 
 images:
   - name: ghcr.io/lamacorp/whoisd
-    newTag: v0.2.2@sha256:75ecb4c222656e26e1ffd1386db8dcb244b16be88894de53d33eb04f67bdf276
+    newTag: v0.3.0@sha256:43e037398aa5f5334e40d417cb54678f0ceb1e1752bf2e41deed4f1dbf75073b
