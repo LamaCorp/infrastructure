@@ -13,7 +13,7 @@
         "/.*ya?ml$/"
       ],
       "matchStrings": [
-        ".*docker_repository:\\s*(?<depName>.*?)\\s*.*docker_tag:\\s*(?<currentValue>.*?)\\s"
+        "docker_repository:\\s*(?<depName>.*?)\\s*.*docker_tag:\\s*(?<currentValue>.*?)\\s"
       ]
     },
     {
@@ -23,7 +23,7 @@
         "/^k8s/.+\\.ya?ml$/"
       ],
       "matchStrings": [
-        "image:\n *repository: (?<depName>.+?)\n *tag: (?<currentValue>.+?)",
+        "repository:\\s*(?<depName>.*?)\\s*.*tag:\\s*(?<currentValue>.*?)\\s",
         "image: (?<depName>[^:]+?):(?<currentValue>.*?)"
       ]
     },
