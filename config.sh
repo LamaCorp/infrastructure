@@ -14,4 +14,3 @@ load_secrets() {
 }
 
 load_secrets "secrets/vars"
-load_secrets "gitlab/secrets/vars"
