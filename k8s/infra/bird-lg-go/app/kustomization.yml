@@ -22,5 +22,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/xddxdd/bird-lg-go
-    newTag: frontend-v1.3.10
-    digest: sha256:6e3d526857f9c831ba325cd2e700e0527a4c37b02da0fd04d3881d30a97dc6b9
+    newTag: frontend-v1.3.10@sha256:6e3d526857f9c831ba325cd2e700e0527a4c37b02da0fd04d3881d30a97dc6b9

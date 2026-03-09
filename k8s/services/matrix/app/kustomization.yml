@@ -15,8 +15,6 @@ resources:
 
 images:
   - name: ghcr.io/matrix-org/rust-synapse-compress-state
-    newTag: v0.1.4
-    digest: sha256:b04d1886ec684e94a635a84a8ee705edf2a74f008dcf5b5c0541bba287cde09d
+    newTag: v0.1.4@sha256:b04d1886ec684e94a635a84a8ee705edf2a74f008dcf5b5c0541bba287cde09d
   - name: ghcr.io/etkecc/synapse-admin
-    newTag: v0.10.3-etke35
-    digest: sha256:b7a3848244d9908ff215fad6a01f63dbb7a61ffecf9d7f9fd904d60266372e6d
+    newTag: v0.10.3-etke35@sha256:b7a3848244d9908ff215fad6a01f63dbb7a61ffecf9d7f9fd904d60266372e6d
