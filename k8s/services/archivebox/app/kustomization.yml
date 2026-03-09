@@ -23,4 +23,5 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/archivebox/archivebox
-    newTag: 0.7.3@sha256:fdf2936192aa1e909b0c3f286f60174efa24078555be4b6b90a07f2cef1d4909
+    newTag: 0.7.3
+    digest: sha256:fdf2936192aa1e909b0c3f286f60174efa24078555be4b6b90a07f2cef1d4909

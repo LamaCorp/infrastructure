@@ -11,4 +11,5 @@ resources:
 
 images:
   - name: docker.io/jamesits/ripe-atlas
-    newTag: 5120@sha256:1f2a83b919bca477336afef8883df580eac1564683f73207592b4ff5e5bc568a
+    newTag: "5120"
+    digest: sha256:1f2a83b919bca477336afef8883df580eac1564683f73207592b4ff5e5bc568a

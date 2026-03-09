@@ -65,8 +65,11 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/paperless-ngx/paperless-ngx
-    newTag: 2.20.10@sha256:07a0b4ba01ce377c82a0636e16c0c3d931fde5b7e9304de6601986cc42d9b6e6
+    newTag: 2.20.10
+    digest: sha256:07a0b4ba01ce377c82a0636e16c0c3d931fde5b7e9304de6601986cc42d9b6e6
   - name: docker.io/gotenberg/gotenberg
-    newTag: 8.27.0@sha256:d71ab8c13b6bd47c7bc81195082005dfb17eaa75e8b1fadd347a64ee66ed98d5
+    newTag: 8.27.0
+    digest: sha256:d71ab8c13b6bd47c7bc81195082005dfb17eaa75e8b1fadd347a64ee66ed98d5
   - name: docker.io/apache/tika
-    newTag: 3.2.3.0-full@sha256:21d8052de04e491ccf66e8680ade4da6f3d453a56d59f740b4167e54167219b7
+    newTag: 3.2.3.0-full
+    digest: sha256:21d8052de04e491ccf66e8680ade4da6f3d453a56d59f740b4167e54167219b7
