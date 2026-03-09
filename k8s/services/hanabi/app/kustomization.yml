@@ -11,4 +11,4 @@ resources:
 
 images:
   - name: registry.gitlab.com/hanewaifu/hanabi
-    newTag: 2d4e634cf10827f951fca954e62d0795f00256a0
+    newTag: 2d4e634cf10827f951fca954e62d0795f00256a0@sha256:0fe514111391fb08bbe2a30104d9238464d5d2d33955e480758c696b1aa3b68c

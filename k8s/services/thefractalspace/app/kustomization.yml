@@ -13,4 +13,4 @@ resources:
 
 images:
   - name: registry.gitlab.com/risson/thefractal.space/dockerize
-    newTag: 978d33cf52f0dd706c65da35608012861a0e6867
+    newTag: 978d33cf52f0dd706c65da35608012861a0e6867@sha256:5e5c01be7f69e4725797fa978335082b747b87963cd7f0e37c305155bb6244a8
