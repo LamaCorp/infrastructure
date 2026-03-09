@@ -33,8 +33,8 @@ spec:
             releaseName: local-path-provisioner
             values: |
               image:
-                repository: rancher/local-path-provisioner
-                tag: v0.0.34
+                repository: docker.io/rancher/local-path-provisioner
+                tag: v0.0.34@sha256:6ff68ebe98bc623b45ad22c28be84f8a08214982710f3247d5862e9bccce73ef
 
               storageClass:
                 create: false

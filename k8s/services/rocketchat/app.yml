@@ -39,7 +39,7 @@ spec:
             values: |
               image:
                 repository: registry.rocket.chat/rocketchat/rocket.chat
-                tag: 8.2.0
+                tag: 8.2.0@sha256:8833d940e745e7df8f3cafefd84e5986c358271bcdfba670a20e1b9f9ed05be7
 
               deploymentAnnotations:
                 secret.reloader.stakater.com/reload: rocketchat-mongodb-credentials
