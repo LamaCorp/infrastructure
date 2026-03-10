@@ -29,7 +29,7 @@ spec:
           targetRevision: HEAD
           path: k8s/core/cert-manager/extra/{{ .name }}
         - repoURL: https://charts.jetstack.io
-          targetRevision: v1.19.4
+          targetRevision: v1.20.0
           chart: cert-manager
           helm:
             releaseName: cert-manager
