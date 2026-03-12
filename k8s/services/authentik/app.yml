@@ -112,9 +112,6 @@ spec:
                 enabled: true
 
           worker:
-            env:
-              - name: AUTHENTIK_POSTGRESQL__PORT
-                value: "6432"
             metrics:
               enabled: true
               serviceMonitor:
