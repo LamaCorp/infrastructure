@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/your-spotify/app
     - repoURL: registry-1.docker.io/bitnamicharts
-      targetRevision: 13.18.5
+      targetRevision: 18.6.11
       chart: mongodb
       helm:
         releaseName: mongodb
