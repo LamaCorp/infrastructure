@@ -51,7 +51,7 @@ images:
   - name: ghcr.io/hotio/radarr
     newTag: release-6.0.4.10291@sha256:97bbe01d5e2af350c77e901c3fb529a47624beaf40b96856fa8c2ae246e6914a
   - name: ghcr.io/recyclarr/recyclarr
-    newTag: 7.5.2@sha256:2550848d43a453f2c6adf3582f2198ac719f76670691d76de0819053103ef2fb
+    newTag: 8.5.0@sha256:5da14297a11aa910582d800f0edcb8f9e9d488642083c01dc34950f6449d9214
   - name: ghcr.io/hotio/sabnzbd
     newTag: release-4.5.5@sha256:be4793057aa3aef0108f5e5105238469dc8450845cb717ea84b5deb0a73b88c1
   - name: ghcr.io/hotio/sonarr
