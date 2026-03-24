@@ -35,9 +35,6 @@ locals {
         "k3s.fsn.as212024.net_services-mastodon" = {
           postgres_role = "mastodon"
         }
-        "k3s.fsn.as212024.net_services-matrix_media-repo" = {
-          postgres_role = "matrix_media_repo"
-        }
         "k3s.fsn.as212024.net_services-matrix_synapse" = {
           postgres_role = "matrix_synapse"
         }
