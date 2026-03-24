@@ -32,6 +32,9 @@ spec:
               password: file:///postgres-creds/password
               name: authentik
               port: ~
+              conn_max_age: 0
+              conn_health_checks: true
+              disable_server_side_cursors: true
             email:
               host: email-smtp.eu-west-3.amazonaws.com
               port: 587
@@ -112,6 +115,9 @@ spec:
                 enabled: true
 
           worker:
+            env:
+              - name: AUTHENTIK_POSTGRESQL__PORT
+                value: "5432"
             metrics:
               enabled: true
               serviceMonitor:
