@@ -31,10 +31,10 @@ spec:
               user: file:///postgres-creds/username
               password: file:///postgres-creds/password
               name: authentik
-              port: ~
-              conn_max_age: 1
-              conn_health_checks: true
-              disable_server_side_cursors: true
+              # port: ~
+              # conn_max_age: 1
+              # conn_health_checks: true
+              # disable_server_side_cursors: true
             email:
               host: email-smtp.eu-west-3.amazonaws.com
               port: 587
@@ -95,9 +95,9 @@ spec:
               secret.reloader.stakater.com/reload: authentik-secrets,authentik-postgres-credentials
 
           server:
-            env:
-              - name: AUTHENTIK_POSTGRESQL__PORT
-                value: "6432"
+            # env:
+            #   - name: AUTHENTIK_POSTGRESQL__PORT
+            #     value: "6432"
             route:
               main:
                 enabled: true
@@ -115,9 +115,9 @@ spec:
                 enabled: true
 
           worker:
-            env:
-              - name: AUTHENTIK_POSTGRESQL__PORT
-                value: "5432"
+            # env:
+            #   - name: AUTHENTIK_POSTGRESQL__PORT
+            #     value: "5432"
             metrics:
               enabled: true
               serviceMonitor:
