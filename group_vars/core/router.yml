@@ -4,28 +4,6 @@ bird_kernel:
     merge_paths: true
     persist: true
     static_export: false
-  v4:
-    export_filter_pre: |
-      krt_mtu = 1500;
-
-      if net ~ [
-        209.112.97.0/24+,
-        172.28.0.0/16+
-      ] then {
-        krt_mtu = 5600;
-      }
-  v6:
-    export_filter_pre: |
-      krt_mtu = 1500;
-
-      if net = 2001:67c:17fc:fc41::/64 then {
-        krt_mtu = 1420;
-      }
-      else if net ~ [
-        2001:67c:17fc::/48+
-      ] then {
-        krt_mtu = 5600;
-      }
 
 bird_bgp_rpki:
   host: rpki.as212024.net

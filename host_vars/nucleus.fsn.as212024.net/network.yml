@@ -38,7 +38,7 @@ netplan_configuration:
             table: 101
     bridges:
       br-svc:
-        mtu: 5600
+        mtu: 9000
         addresses:
           - 172.28.1.62/26
           - 2001:67c:17fc:101::1/64
@@ -47,7 +47,7 @@ netplan_configuration:
             via: 0.0.0.0
             type: unreachable
       br-mdw:
-        mtu: 5600
+        mtu: 9000
         addresses:
           - 172.28.1.126/26
           - 2001:67c:17fc:102::1/64

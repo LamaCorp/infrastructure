@@ -4,26 +4,18 @@ netplan_configuration:
     version: 2
     ethernets:
       eth0:
-        mtu: 5600
+        mtu: 9000
         addresses:
           - 172.28.2.65/27
           - 2001:67c:17fc:204::123/64
         routes:
-          - to: 209.112.97.0/24
-            via: 172.28.2.94
-          - to: 172.28.0.0/16
-            via: 172.28.2.94
-          - to: 2001:67c:17fc::/48
-            via: 2001:67c:17fc:204::1
           - to: 0.0.0.0/0
             via: 172.28.2.94
-            mtu: 1500
           - to: ::/0
             via: 2001:67c:17fc:204::1
-            mtu: 1500
     dummy-devices:
       public:
-        mtu: 5600
+        mtu: 9000
         addresses:
           - 209.112.97.123/32
           - 2001:67c:17fc::123/128

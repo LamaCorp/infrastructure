@@ -14,20 +14,12 @@ netplan_configuration:
           mode: 802.3ad
           lacp-rate: fast
           transmit-hash-policy: layer3+4
-        mtu: 5600
+        mtu: 9000
         addresses:
           - 172.28.2.11/27
           - 2001:67c:17fc:202::11/64
         routes:
-          - to: 209.112.97.0/24
-            via: 172.28.2.30
-          - to: 172.28.0.0/16
-            via: 172.28.2.30
-          - to: 2001:67c:17fc::/48
-            via: 2001:67c:17fc:202::1
           - to: 0.0.0.0/0
             via: 172.28.2.30
-            mtu: 1500
           - to: ::/0
             via: 2001:67c:17fc:202::1
-            mtu: 1500

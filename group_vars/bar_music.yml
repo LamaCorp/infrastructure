@@ -8,6 +8,7 @@ netplan_configuration:
     version: 2
     ethernets:
       eth0:
+        mtu: 9000
         accept-ra: false # somehow messes up with snapcast
         addresses:
           - "172.29.193.{{ netplan_node_id }}/24"

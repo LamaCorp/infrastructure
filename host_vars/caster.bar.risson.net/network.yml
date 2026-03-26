@@ -3,36 +3,28 @@ netplan_configuration:
   network:
     version: 2
     ethernets:
-      eth0:
-        mtu: 5600
+      end0:
+        mtu: 9000
         addresses:
           - 172.28.2.193/27
           - 2001:67c:17fc:207::193/64
         routes:
-          - to: 209.112.97.0/24
-            via: 172.28.2.222
-          - to: 172.28.0.0/16
-            via: 172.28.2.222
-          - to: 2001:67c:17fc::/48
-            via: 2001:67c:17fc:207::1
           - to: 0.0.0.0/0
             via: 172.28.2.222
-            mtu: 1500
           - to: ::/0
             via: 2001:67c:17fc:207::1
-            mtu: 1500
     vlans:
       bar-music:
+        mtu: 9000
         id: 2093
-        link: eth0
-        mtu: 1500
+        link: end0
         addresses:
           - 172.29.193.1/24
           - 2a06:e881:7701:193::1704/64
       bar-client:
-        id: 2050
-        link: eth0
         mtu: 1500
+        id: 2050
+        link: end0
         accept-ra: false
         addresses:
           - 172.29.2.193/24

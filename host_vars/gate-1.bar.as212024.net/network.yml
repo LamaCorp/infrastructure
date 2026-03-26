@@ -18,7 +18,7 @@ netplan_configuration:
           mode: 802.3ad
           lacp-rate: fast
           transmit-hash-policy: layer3+4
-        mtu: 5600
+        mtu: 9000
         accept-ra: false
         addresses:
           - 172.28.2.254/27
@@ -31,7 +31,7 @@ netplan_configuration:
       bar-srv:
         id: 2
         link: bond0
-        mtu: 5600
+        mtu: 9000
         accept-ra: false
         addresses:
           - 172.28.2.30/27
@@ -39,7 +39,7 @@ netplan_configuration:
       bar-pb:
         id: 4
         link: bond0
-        mtu: 5600
+        mtu: 9000
         accept-ra: false
         addresses:
           - 172.28.2.94/27
@@ -55,7 +55,7 @@ netplan_configuration:
       bar-svc:
         id: 7
         link: bond0
-        mtu: 5600
+        mtu: 9000
         accept-ra: false
         addresses:
           - 172.28.2.222/27
@@ -92,7 +92,7 @@ netplan_configuration:
       bar-music:
         id: 2093
         link: bond0
-        mtu: 1500
+        mtu: 9000
         accept-ra: false
         addresses:
           - 172.29.193.254/24
