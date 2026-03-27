@@ -43,6 +43,9 @@ nft_forward_host_rules:
   302 allow iot apsystems:
     - meta iifname bar-iot ether saddr ac:48:2d:13:f2:6e ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
     - meta iifname bar-iot ether saddr ac:48:2d:13:f2:6e ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
+  303 allow iot iotawatt:
+    - meta iifname bar-iot ether saddr 24:d7:eb:e7:52:c3 ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
+    - meta iifname bar-iot ether saddr 24:d7:eb:e7:52:c3 ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
   310 allow pharma internet access:
     - meta iifname bar-pharma ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
   399 bar-* drop:
