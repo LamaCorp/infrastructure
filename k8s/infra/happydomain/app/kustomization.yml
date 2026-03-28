@@ -24,4 +24,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/happydomain/happydomain
-    newTag: latest@sha256:b56174b0b091b28c6989317269f061f909c1b97d6cda597e8c94b51fa73aa3e7
+    newTag: latest@sha256:fd06e43acb135243486becc9f40a9a89475006891850dafe2ea3b0b9d81173c3
