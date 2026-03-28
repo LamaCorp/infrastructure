@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/services/jitsi/extra
     - repoURL: https://jitsi-contrib.github.io/jitsi-helm
-      targetRevision: 2.13.1
+      targetRevision: 2.14.0
       chart: jitsi-meet
       helm:
         releaseName: jitsi-meet
