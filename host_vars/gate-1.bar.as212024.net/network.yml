@@ -34,6 +34,22 @@ systemd_networkd_netdev:
       Mode: 802.3ad
       LACPTransmitRate: fast
       TransmitHashPolicy: layer3+4
+  # core VPN
+  15-core-fsn-4:
+    NetDev:
+      Name: core-fsn-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51841
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: 136.243.102.29:51842
   # servers, like k8s
   20-lan-srv-2:
     NetDev:
@@ -111,6 +127,7 @@ systemd_networkd_network:
     Match:
       Name: lan-mgmt-0
     Link:
+      RequiredForOnline: true
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
@@ -132,11 +149,24 @@ systemd_networkd_network:
       - Destination: 209.112.97.235/32 # nat-svc
         Gateway: 0.0.0.0
         Type: unreachable
+  # core VPN
+  15-core-fsn-4:
+    Match:
+      Name: core-fsn-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.2/24
+        - fe80::4:2/64
   # servers, like k8s
   20-lan-srv-2:
     Match:
       Name: lan-srv-2
     Link:
+      RequiredForOnline: true
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
@@ -150,6 +180,7 @@ systemd_networkd_network:
     Match:
       Name: lan-pb-4
     Link:
+      RequiredForOnline: true
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
@@ -171,6 +202,7 @@ systemd_networkd_network:
     Match:
       Name: lan-svc-7
     Link:
+      RequiredForOnline: true
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
@@ -184,6 +216,7 @@ systemd_networkd_network:
     Match:
       Name: cl-home-2050
     Link:
+      RequiredForOnline: true
       MTUBytes: 1500
     Network:
       ConfigureWithoutCarrier: true
@@ -203,11 +236,14 @@ systemd_networkd_network:
       # from pharma
       - From: 192.168.0.0/24
         Table: 101
+      - To: 136.243.102.29/32
+        Table: 101
   # IoT devices
   30-cl-iot-2092:
     Match:
       Name: cl-iot-2092
     Link:
+      RequiredForOnline: true
       MTUBytes: 1500
     Network:
       ConfigureWithoutCarrier: true
@@ -225,6 +261,7 @@ systemd_networkd_network:
     Match:
       Name: cl-music-2093
     Link:
+      RequiredForOnline: true
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
@@ -238,6 +275,7 @@ systemd_networkd_network:
     Match:
       Name: cl-cctv-2094
     Link:
+      RequiredForOnline: true
       MTUBytes: 1500
     Network:
       ConfigureWithoutCarrier: true
@@ -251,6 +289,7 @@ systemd_networkd_network:
     Match:
       Name: cl-pharma-2099
     Link:
+      RequiredForOnline: true
       MTUBytes: 1500
     Network:
       ConfigureWithoutCarrier: true

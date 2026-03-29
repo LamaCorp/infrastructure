@@ -20,6 +20,8 @@ systemd_networkd_network:
   10-ul-sbag-0:
     Match:
       Name: ul-sbag-0
+    Link:
+      RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
       Address:
@@ -56,6 +58,8 @@ systemd_networkd_network:
   10-ix-decix-0:
     Match:
       Name: ix-decix-0
+    Link:
+      RequiredForOnline: false
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: false
@@ -65,6 +69,8 @@ systemd_networkd_network:
   10-ix-sbix-1:
     Match:
       Name: ix-sbix-1
+    Link:
+      RequiredForOnline: false
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: false

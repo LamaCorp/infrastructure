@@ -26,6 +26,7 @@ nft_input_group_rules:
   100 vpn:
     - tcp dport 9993 accept
     - udp dport 9993 accept
+    - udp dport {51841, 51842, 51843, 51844, 51861, 51862, 51863, 51864} accept
   101 ospf:
     - meta iifname $ospf_interfaces ip6 nexthdr ospf accept
   101 bgp:

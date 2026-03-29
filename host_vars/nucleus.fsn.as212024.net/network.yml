@@ -8,6 +8,21 @@ systemd_networkd_link:
       Name: ul-hetzner-0
 
 systemd_networkd_netdev:
+  # core VPN
+  15-core-bar-4:
+    NetDev:
+      Name: core-bar-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51842
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
   # service VMs like k8s
   20-lan-svc-101:
     NetDev:
@@ -32,6 +47,8 @@ systemd_networkd_network:
   10-ul-hetzner-0:
     Match:
       Name: ul-hetzner-0
+    Link:
+      RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: true
@@ -66,15 +83,29 @@ systemd_networkd_network:
       # from Hetzner /29
       - From: 148.251.148.232/29
         Table: 101
+  # core VPN
+  15-core-bar-4:
+    Match:
+      Name: core-bar-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.1/24
+        - fe80::4:1/64
   # service VMs like k8s
   20-lan-svc-101:
     Match:
       Name: lan-svc-101
     Link:
+      RequiredForOnline: false
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 172.28.1.62/26
         - 2001:67c:17fc:101::1/64
@@ -87,10 +118,12 @@ systemd_networkd_network:
     Match:
       Name: lan-mdw-102
     Link:
+      RequiredForOnline: false
       MTUBytes: 9000
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 172.28.1.126/26
         - 2001:67c:17fc:102::1/64
@@ -107,10 +140,12 @@ systemd_networkd_network:
     Match:
       Name: cl-vm-0
     Link:
+      RequiredForOnline: false
       MTUBytes: 1500
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 172.29.1.62/26
         - 2a06:e881:7701:1::1/64

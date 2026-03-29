@@ -26,6 +26,8 @@ systemd_networkd_network:
   10-ul-vultr-0:
     Match:
       Name: ul-vultr-0
+    Link:
+      RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: true
@@ -72,6 +74,8 @@ systemd_networkd_network:
   30-ppl-cri-0:
     Match:
       Name: ppl-cri-0
+    Link:
+      RequiredForOnline: false
     Network:
       Address: fd3c:c1c4:bbff:9a64::ee1/64
       LinkLocalAddressing: ipv6
