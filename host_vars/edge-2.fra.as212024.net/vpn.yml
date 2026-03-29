@@ -3,5 +3,5 @@ zerotier_config:
   settings:
     portMappingEnabled: false
     interfacePrefixBlacklist:
-      - enp19s0
-      - enp27s0
+      - ix-decix-0
+      - ix-sbix-1

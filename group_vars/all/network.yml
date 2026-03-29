@@ -3,10 +3,14 @@ network_nameservers:
   - 1.1.1.1
   - 1.0.0.1
 
-systemd_networkd_apply_config: true
-systemd_networkd_enable_resolved: false
-systemd_networkd_symlink_resolv_conf: false
-systemd_networkd_manage_nsswitch_config: false
+systemd_networkd_config:
+  10-default:
+    Network:
+      ManageForeignRoutes: false
+      ManageForeignRoutingPolicyRules: false
+      ManageForeignNextHops: false
+      IPv4Forwarding: true
+      IPv6Forwarding: true
 
 netplan_config_file: /etc/netplan/00-network.yaml
 netplan_remove_existing: true

@@ -32,9 +32,6 @@ nft_input_group_rules:
     - ip saddr $bgp_neighbors_4 tcp dport 179 counter accept
     - ip6 saddr $bgp_neighbors_6 tcp dport 179 counter accept
 
-  120 cri:
-    - ip6 saddr 2001:67c:17fc:fc41::/64 counter drop
-
   220 bird lg proxy:
     - ip saddr $subnet_internal_4 tcp dport {$bird_lg_proxy} accept
     - ip6 saddr $subnet_internal_6 tcp dport {$bird_lg_proxy} accept
@@ -56,6 +53,3 @@ nft_input_group_rules:
 nft_forward_group_rules:
   000 policy:
     - type filter hook forward priority 0; policy accept;
-
-  120 cri:
-    - ip6 saddr 2001:67c:17fc:fc41::/64 counter drop

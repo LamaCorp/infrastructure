@@ -55,33 +55,33 @@ bird_ospf_sessions:
         interfaces:
           zt-lama:
             cost: 50
-          bar-srv:
+          lan-srv-2:
             cost: 1
-          bond0:
+          lan-mgmt-0:
             stub: true
-          bar-music:
+          lan-pb-4:
             stub: true
-          bar-client:
+          lan-svc-7:
             stub: true
-          bar-iot:
+          cl-home-2050:
             stub: true
-          bar-cctv:
+          cl-iot-2092:
             stub: true
-          bar-pb:
+          cl-music-2093:
             stub: true
-          bar-pharma:
+          cl-cctv-2094:
             stub: true
-          bar-svc:
+          cl-pharma-2099:
             stub: true
 
 bird_radv_sessions:
   - alias: radv6
     interfaces:
-      bond0:
+      lan-mgmt-0:
         mtu: 9000
-      bar-iot:
+      cl-iot-2092:
         mtu: 1500
-      bar-cctv:
+      cl-cctv-2094:
         mtu: 1500
     rdnss:
       - ns:

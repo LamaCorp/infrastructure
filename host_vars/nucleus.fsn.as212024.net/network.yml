@@ -1,72 +1,122 @@
 ---
-network_nameservers:
-  - ::1
-  - 127.0.0.1
+systemd_networkd_link:
+  # Hetzner uplink
+  10-ul-hetzner-0:
+    Match:
+      MACAddress: 50:eb:f6:ba:2d:da
+    Link:
+      Name: ul-hetzner-0
 
-netplan_configuration:
-  network:
-    version: 2
-    ethernets:
-      enp7s0:
-        accept-ra: true
-        addresses:
-          - 136.243.102.29/32
-          - 2a01:4f8:171:b0d::1/128
-          - 2a01:4f8:171:b0d::2/64
-        routes:
-          - to: 0.0.0.0/0
-            via: 136.243.102.1
-            on-link: true
-          - to: 0.0.0.0/0
-            via: 136.243.102.1
-            on-link: true
-            table: 101
-          - to: ::/0
-            via: fe80::1
-          - to: ::/0
-            via: fe80::1
-            table: 101
-          - to: 148.251.148.232/29
-            via: 0.0.0.0
-            type: unreachable
-        routing-policy:
-          - from: 2a01:4f8:171:b0d::/64
-            table: 101
-          - from: 136.243.102.29/32
-            table: 101
-          - from: 148.251.148.232/29
-            table: 101
-    bridges:
-      br-svc:
-        mtu: 9000
-        addresses:
-          - 172.28.1.62/26
-          - 2001:67c:17fc:101::1/64
-        routes:
-          - to: 209.112.97.232/32 # nat-svc
-            via: 0.0.0.0
-            type: unreachable
-      br-mdw:
-        mtu: 9000
-        addresses:
-          - 172.28.1.126/26
-          - 2001:67c:17fc:102::1/64
-        routes:
-          - to: 148.251.148.232/32 # mail.as212024.net
-            via: 172.28.1.90 # mail.fsn.as212024.net
-          - to: 2001:67c:17fc::25/128 # mail.as212024.net
-            via: 2001:67c:17fc:102::90 # mail.fsn.as212024.net
-          - to: 209.112.97.233/32 # nat-mdw
-            via: 0.0.0.0
-            type: unreachable
-      br-cc:
-        mtu: 1500
-        addresses:
-          - 172.29.1.62/26
-          - 2a06:e881:7701:1::1/64
-        routes:
-          - to: 148.251.148.233/32 # pine.lama-corp.space
-            via: 172.29.1.20 # pine.fsn.as212024.net
-          - to: 209.112.97.234/32 # nat-cust
-            via: 0.0.0.0
-            type: unreachable
+systemd_networkd_netdev:
+  # service VMs like k8s
+  20-lan-svc-101:
+    NetDev:
+      Name: lan-svc-101
+      Kind: bridge
+      MTUBytes: 9000
+  # middlewares: postgres, redis, mongo, mail, etc.
+  20-lan-mdw-102:
+    NetDev:
+      Name: lan-mdw-102
+      Kind: bridge
+      MTUBytes: 9000
+  # client VMs
+  30-cl-vm-0:
+    NetDev:
+      Name: cl-vm-0
+      Kind: bridge
+      MTUBytes: 1500
+
+systemd_networkd_network:
+  # Hetzner uplink
+  10-ul-hetzner-0:
+    Match:
+      Name: ul-hetzner-0
+    Network:
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: true
+      Address:
+        - 136.243.102.29/32
+        - 2a01:4f8:171:b0d::1/128
+        - 2a01:4f8:171:b0d::2/64
+    Route:
+      # Hetzner default routes
+      - Destination: 0.0.0.0/0
+        Gateway: 136.243.102.1
+        GatewayOnLink: true
+      - Destination: ::/0
+        Gateway: fe80::1
+      - Destination: 0.0.0.0/0
+        Gateway: 136.243.102.1
+        GatewayOnLink: true
+        Table: 101
+      - Destination: ::/0
+        Gateway: fe80::1
+        Table: 101
+      # Hetzner /29 blackholed, more specific routes exist
+      - Destination: 148.251.148.232/29
+        Gateway: 0.0.0.0
+        Type: unreachable
+    RoutingPolicyRule:
+      # from Hetzner IPs
+      - From: 136.243.102.29/32
+        Table: 101
+      - From: 2a01:4f8:171:b0d::/64
+        Table: 101
+      # from Hetzner /29
+      - From: 148.251.148.232/29
+        Table: 101
+  # service VMs like k8s
+  20-lan-svc-101:
+    Match:
+      Name: lan-svc-101
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      Address:
+        - 172.28.1.62/26
+        - 2001:67c:17fc:101::1/64
+    Route:
+      - Destination: 209.112.97.232/32 # nat-svc
+        Gateway: 0.0.0.0
+        Type: unreachable
+  # middlewares: postgres, redis, mongo, mail, etc.
+  20-lan-mdw-102:
+    Match:
+      Name: lan-mdw-102
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      Address:
+        - 172.28.1.126/26
+        - 2001:67c:17fc:102::1/64
+    Route:
+      - Destination: 148.251.148.232/32 # mail.as212024.net
+        Gateway: 172.28.1.90 # mail.fsn.as212024.net
+      - Destination: 2001:67c:17fc::25/128 # mail.as212024.net
+        Gateway: 2001:67c:17fc:102::90 # mail.fsn.as212024.net
+      - Destination: 209.112.97.233/32 # nat-mdw
+        Gateway: 0.0.0.0
+        Type: unreachable
+  # client VMs
+  30-cl-vm-0:
+    Match:
+      Name: cl-vm-0
+    Link:
+      MTUBytes: 1500
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      Address:
+        - 172.29.1.62/26
+        - 2a06:e881:7701:1::1/64
+    Route:
+      - Destination: 148.251.148.233/32 # pine.lama-corp.space
+        Gateway: 172.29.1.20 # pine.fsn.as212024.net
+      - Destination: 209.112.97.234/32 # nat-cust
+        Gateway: 0.0.0.0
+        Type: unreachable

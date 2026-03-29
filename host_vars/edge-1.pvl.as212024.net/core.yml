@@ -4,11 +4,11 @@ bird_router_id: 209.112.97.243
 bird_static_routes:
   v4:
     - 209.112.97.0/24 unreachable
-    - 169.254.169.254/32 via 108.61.208.1 %enp1s0 # needed because multihop to vultr
+    - 169.254.169.254/32 via 108.61.208.1%'ul-vultr-0' # needed because multihop to vultr
   v6:
     - 2001:67c:17fc::/48 unreachable
     - 2a06:e881:7700::/40 unreachable
-    - 2001:19f0:ffff::1/128 via fe80::fc00:3ff:fe21:2eeb %enp1s0 # needed because multihop to vultr
+    - 2001:19f0:ffff::1/128 via fe80::fc00:3ff:fe21:2eeb%'ul-vultr-0' # needed because multihop to vultr
 
 bird_bgp_region_id: 250 # France
 bird_bgp_site_id: 3
@@ -61,11 +61,8 @@ bird_bgp_sessions:
         asn: 212270
         irr: AS-PHOWORK
         local:
-          # Should be this, but for legacy reasons we're still on the old IPs
-          # v6: 2001:67c:17fc:fc41::21:2024
           v6: fd3c:c1c4:bbff:9a64::ee1
         remote:
-          # v6: 2001:67c:17fc:fc41::21:2270
           v6: fd3c:c1c4:bbff:9a64::cafe
 
   cores:

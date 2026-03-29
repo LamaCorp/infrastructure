@@ -1,0 +1,37 @@
+{{ ansible_managed | comment }}
+{%- macro render_option(key, value) -%}
+{%-  if key == "AllowedIPs" and value is iterable and value is not string %}
+{{ key }}={{ value | join(",") }}
+{%-  elif value is sameas true or value is sameas false %}
+{{ key }}={{ value | ternary('yes', 'no') }}
+{%-  else %}
+{{ key }}={{ value }}
+{%-  endif %}
+{%- endmacro %}
+{% macro render_options(options) %}
+{%  for key, value in options.items() %}
+{%    if value is iterable and value is not string %}
+{%      for item in value %}
+{{ render_option(key, item) }}
+{%      endfor %}
+{%    else %}
+{{ render_option(key, value) }}
+{%    endif %}
+{%  endfor %}
+{% endmacro %}
+
+{% if item.value is mapping %}
+{%  for section_name, options in item.value.items() %}
+{%    if options is mapping %}
+[{{ section_name }}]
+{{ render_options(options) }}
+{%    elif options is iterable %}
+{%      for curr_options in options %}
+{%        if curr_options is mapping %}
+[{{ section_name }}]
+{{ render_options(curr_options) }}
+{%        endif %}
+{%      endfor %}
+{%    endif %}
+{%  endfor %}
+{% endif %}

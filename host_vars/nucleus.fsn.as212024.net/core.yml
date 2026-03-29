@@ -49,9 +49,9 @@ bird_ospf_sessions:
         interfaces:
           zt-lama:
             cost: 20
-          br-svc:
+          lan-svc-101:
             cost: 1
-          br-mdw:
+          lan-mdw-102:
             stub: true
-          br-cc:
+          cl-vm-0:
             stub: true

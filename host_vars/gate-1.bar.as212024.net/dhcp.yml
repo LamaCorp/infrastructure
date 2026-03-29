@@ -11,12 +11,12 @@ kea_dhcp4_config:
   Dhcp4:
     interfaces-config:
       interfaces:
-        - bar-cctv
-        - bar-client
-        - bar-iot
-        - bar-music
-        - bar-pharma
-        - bond0
+        - lan-mgmt-0
+        - cl-cctv-2094
+        - cl-home-2050
+        - cl-iot-2092
+        - cl-music-2093
+        - cl-pharma-2099
       dhcp-socket-type: raw
     lease-database:
       persist: true
@@ -89,7 +89,7 @@ kea_dhcp4_config:
           - hw-address: 28:70:4e:d2:d0:64
             ip-address: 172.28.2.248
             hostname: sw-bureau
-          - hw-address: 48:8f:5a:a9:77:e4
+          - hw-address: a0:a0:01:a1:06:10
             ip-address: 172.28.2.249
             hostname: sw-marc
           - hw-address: a8:52:d4:93:0f:4d
@@ -167,6 +167,9 @@ kea_dhcp4_config:
           - hw-address: c8:c9:a3:8f:d9:ec
             ip-address: 172.29.192.68
             hostname: everbluemeters
+          - hw-address: 24:d7:eb:e7:52:c3
+            ip-address: 172.29.192.69
+            hostname: iotawatt-1
       - id: 2093
         subnet: 172.29.193.0/24
         pools:

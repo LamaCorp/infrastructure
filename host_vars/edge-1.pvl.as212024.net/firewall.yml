@@ -14,9 +14,9 @@ nft_input_host_rules:
   360 ntp:
     - udp dport 123 accept
 
-  550 wg-cri:
+  550 ppl-cri:
     - udp dport 51821 accept
 
 nft__nat_host_postrouting_rules:
   100 external connectivity:
-    - meta oif enp1s0 ip saddr != {108.61.208.236, 209.112.97.0/24} snat to 108.61.208.236
+    - meta oif ul-vultr-0 ip saddr != {108.61.208.236, 209.112.97.0/24} snat to 108.61.208.236

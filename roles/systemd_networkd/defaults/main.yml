@@ -1,0 +1,6 @@
+---
+systemd_networkd_config: {}
+
+systemd_networkd_link: {}
+systemd_networkd_netdev: {}
+systemd_networkd_network: {}

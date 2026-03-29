@@ -1,70 +1,78 @@
 ---
-netplan_configuration:
-  network:
-    version: 2
-    ethernets:
-      enp1s0:
-        accept-ra: true
-        addresses:
-          - 108.61.208.236/23
-          - 2a05:f480:1c00:9ee::1/64
-          - 2a05:f480:1c00:9ee::53/64
-          - 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/64
-        routes:
-          - to: 0.0.0.0/0
-            via: 108.61.208.1
-          - to: 169.254.0.0/16
-            via: 108.61.208.1
-            metric: 100
-          # Transmitted in RA
-          - to: ::/0
-            via: fe80::fc00:3ff:fe21:2eeb
-          - to: 0.0.0.0/0
-            via: 108.61.208.1
-            table: 101
-          - to: ::/0
-            via: fe80::fc00:3ff:fe21:2eeb
-            table: 101
-          - to: 209.112.97.0/24
-            via: 0.0.0.0
-            type: unreachable
-          - to: 2001:67c:17fc::/48
-            via: ::/0
-            type: unreachable
-          - to: 2a06:e881:7700::/40
-            via: ::/0
-            type: unreachable
-        routing-policy:
-          - from: 108.61.208.236/32
-            table: 101
-          - from: 2a05:f480:1c00:9ee::/64
-            table: 101
-          - to: 2001:19f0:6801:7c4::/64
-            table: 101
-    tunnels:
-      wg-cri:
-        mode: wireguard
-        key: /etc/netplan/wg-cri.priv
-        port: 51821
-        addresses:
-          - fd3c:c1c4:bbff:9a64::ee1/64
-          - 2001:67c:17fc:fc41::21:2024/64
-        peers:
-          # Phowork, AS212270
-          - keys:
-              public: E1EBL3208LQ6xt3NmxSQdkgmrPMH6bjO0tTDdASJPR8=
-            allowed-ips:
-              - fd3c:c1c4:bbff:9a64::cafe/128
-              - 2001:67c:17fc:fc41::21:2270/128
-              - 2a0f:9240:2000::/48
-              - 2a0e:b107:f50::/44
-            keepalive: 60
-            endpoint: "[2001:19f0:6801:7c4:5400:3ff:fe47:7968]:51823"
-          # Alex, AS215581
-          - keys:
-              public: LaeAl7cv2EDtHxaNezUU5jZ0MV/XgusAMHT32X7liFQ=
-            allowed-ips:
-              - 2001:67c:17fc:fc41::21:5581/128
-              - 2a13:cc82::/48
-            keepalive: 60
-            # endpoint:
+systemd_networkd_link:
+  10-ul-vultr-0:
+    Match:
+      MACAddress: 56:00:03:21:2e:eb
+    Link:
+      Name: ul-vultr-0
+
+systemd_networkd_netdev:
+  30-ppl-cri-0:
+    NetDev:
+      Name: ppl-cri-0
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/cri/private
+      ListenPort: 51821
+      RouteTable: "off"
+    WireGuardPeer:
+      # Phowork, AS212270
+      - PublicKey: E1EBL3208LQ6xt3NmxSQdkgmrPMH6bjO0tTDdASJPR8=
+        AllowedIPs: fd3c:c1c4:bbff:9a64::cafe/128,2a0f:9240:2000::/48,2a0e:b107:f50::/44
+        PersistentKeepalive: 60
+        Endpoint: "[2001:19f0:6801:7c4:5400:3ff:fe47:7968]:51823"
+
+systemd_networkd_network:
+  10-ul-vultr-0:
+    Match:
+      Name: ul-vultr-0
+    Network:
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: true
+      Address:
+        - 108.61.208.236/23
+        - 2a05:f480:1c00:9ee::1/64
+        - 2a05:f480:1c00:9ee::53/64
+        - 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/64
+    Route:
+      # Default routes from Vultr
+      - Destination: 0.0.0.0/0
+        Gateway: 108.61.208.1
+      - Destination: "::/0"
+        Gateway: fe80::fc00:3ff:fe21:2eeb # transmitted in RA
+      - Destination: 0.0.0.0/0
+        Gateway: 108.61.208.1
+        Table: 101
+      - Destination: "::/0"
+        Gateway: fe80::fc00:3ff:fe21:2eeb # transmitted in RA
+        Table: 101
+      # Needed for reaching Vultr BGP peer
+      - Destination: 169.254.0.0/16
+        Gateway: 108.61.208.1
+        Metric: 100
+      # AS212024 subnets blackholed, more specific routes exist
+      - Destination: 209.112.97.0/24
+        Gateway: 0.0.0.0
+        Type: unreachable
+      - Destination: 2001:67c:17fc::/48
+        Gateway: "::"
+        Type: unreachable
+      - Destination: 2a06:e881:7700::/40
+        Gateway: "::"
+        Type: unreachable
+    RoutingPolicyRule:
+      # From Vultr IPs
+      - From: 108.61.208.236/32
+        Table: 101
+      - From: 2a05:f480:1c00:9ee::/64
+        Table: 101
+      # CRI interco peers
+      - To: 2001:19f0:6801:7c4:5400:3ff:fe47:7968/128
+        Table: 101
+  30-ppl-cri-0:
+    Match:
+      Name: ppl-cri-0
+    Network:
+      Address: fd3c:c1c4:bbff:9a64::ee1/64
+      LinkLocalAddressing: ipv6
+      ConfigureWithoutCarrier: true

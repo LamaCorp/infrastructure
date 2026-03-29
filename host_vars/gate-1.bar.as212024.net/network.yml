@@ -1,118 +1,264 @@
 ---
-network_nameservers:
-  - ::1
-  - 127.0.0.1
+systemd_networkd_link:
+  # 10GB SFP+
+  10-lan-mgmt-0-m0:
+    Match:
+      MACAddress: a8:b8:e0:07:92:1f
+    Link:
+      Name: lan-mgmt-0-m0
+  10-lan-mgmt-0-m1:
+    Match:
+      MACAddress: a8:b8:e0:07:92:20
+    Link:
+      Name: lan-mgmt-0-m1
+  # 2.5GB LAN
+  10-unused-0:
+    Match:
+      MACAddress: a8:b8:e0:07:92:21
+    Link:
+      Name: unused-0
+  10-unused-1:
+    Match:
+      MACAddress: a8:b8:e0:07:92:22
+    Link:
+      Name: unused-1
 
-netplan_configuration:
-  network:
-    version: 2
-    ethernets:
-      enp1s0f0: {}
-      enp1s0f1: {}
-    bonds:
-      bond0:
-        interfaces:
-          - enp1s0f0
-          - enp1s0f1
-        parameters:
-          mode: 802.3ad
-          lacp-rate: fast
-          transmit-hash-policy: layer3+4
-        mtu: 9000
-        accept-ra: false
-        addresses:
-          - 172.28.2.254/27
-          - 2001:67c:17fc:201::1/64
-        routes:
-          - to: 209.112.97.235/32 # nat-svc
-            via: 0.0.0.0
-            type: unreachable
-    vlans:
-      bar-srv:
-        id: 2
-        link: bond0
-        mtu: 9000
-        accept-ra: false
-        addresses:
-          - 172.28.2.30/27
-          - 2001:67c:17fc:202::1/64
-      bar-pb:
-        id: 4
-        link: bond0
-        mtu: 9000
-        accept-ra: false
-        addresses:
-          - 172.28.2.94/27
-          - 2001:67c:17fc:204::1/64
-        routes:
-          - to: 209.112.97.123/32 # ntp0.as2120240.net
-            via: 172.28.2.65 # ntp-1.bar.as212024.net
-          - to: 2001:67c:17fc::123/128 # ntp0.as212024.net
-            via: 2001:67c:17fc:204::123 # ntp-1.bar.as212024.net
-          - to: 209.112.97.236/32 # nat-pb
-            via: 0.0.0.0
-            type: unreachable
-      bar-svc:
-        id: 7
-        link: bond0
-        mtu: 9000
-        accept-ra: false
-        addresses:
-          - 172.28.2.222/27
-          - 2001:67c:17fc:207::1/64
-      bar-client:
-        id: 2050
-        link: bond0
-        mtu: 1500
-        accept-ra: false
-        addresses:
-          - 172.29.2.254/24
-          - 172.29.2.99/24
-        routes:
-          - to: 0.0.0.0/0
-            via: 172.29.2.1
-          - to: 0.0.0.0/0
-            via: 172.29.2.1
-            table: 101
-        routing-policy:
-          - from: 192.168.0.0/24
-            table: 101
-      bar-iot:
-        id: 2092
-        link: bond0
-        mtu: 1500
-        accept-ra: false
-        addresses:
-          - 172.29.192.254/24
-          - 2a06:e881:7701:192::1/64
-        routes:
-          - to: 209.112.97.237/32 # nat-music-iot-cctv
-            via: 0.0.0.0
-            type: unreachable
-      bar-music:
-        id: 2093
-        link: bond0
-        mtu: 9000
-        accept-ra: false
-        addresses:
-          - 172.29.193.254/24
-          - 2a06:e881:7701:193::1/64
-      bar-cctv:
-        id: 2094
-        link: bond0
-        mtu: 1500
-        accept-ra: false
-        addresses:
-          - 172.29.194.254/24
-          - 2a06:e881:7701:194::1/64
-      bar-pharma:
-        id: 2099
-        link: bond0
-        mtu: 1500
-        accept-ra: false
-        addresses:
-          - 192.168.0.200/24
-        routes:
-          - to: 209.112.97.238/32 # nat-pharma
-            via: 0.0.0.0
-            type: unreachable
+systemd_networkd_netdev:
+  # management network
+  10-lan-mgmt-0:
+    NetDev:
+      Name: lan-mgmt-0
+      Kind: bond
+      MTUBytes: 9000
+    Bond:
+      Mode: 802.3ad
+      LACPTransmitRate: fast
+      TransmitHashPolicy: layer3+4
+  # servers, like k8s
+  20-lan-srv-2:
+    NetDev:
+      Name: lan-srv-2
+      Kind: vlan
+      MTUBytes: 9000
+    VLAN:
+      Id: 2
+  # public benefit, like NTP stratum 1
+  20-lan-pb-4:
+    NetDev:
+      Name: lan-pb-4
+      Kind: vlan
+      MTUBytes: 9000
+    VLAN:
+      Id: 4
+  # local services, like home-assistant
+  20-lan-svc-7:
+    NetDev:
+      Name: lan-svc-7
+      Kind: vlan
+      MTUBytes: 9000
+    VLAN:
+      Id: 7
+  # home clients
+  30-cl-home-2050:
+    NetDev:
+      Name: cl-home-2050
+      Kind: vlan
+      MTUBytes: 1500
+    VLAN:
+      Id: 2050
+  # IoT devices
+  30-cl-iot-2092:
+    NetDev:
+      Name: cl-iot-2092
+      Kind: vlan
+      MTUBytes: 1500
+    VLAN:
+      Id: 2092
+  # music control and speakers
+  30-cl-music-2093:
+    NetDev:
+      Name: cl-music-2093
+      Kind: vlan
+      MTUBytes: 9000
+    VLAN:
+      Id: 2093
+  # cameras
+  30-cl-cctv-2094:
+    NetDev:
+      Name: cl-cctv-2094
+      Kind: vlan
+      MTUBytes: 1500
+    VLAN:
+      Id: 2094
+  # temporary for pharma equipment
+  30-cl-pharma-2099:
+    NetDev:
+      Name: cl-pharma-2099
+      Kind: vlan
+      MTUBytes: 9000
+    VLAN:
+      Id: 2099
+
+systemd_networkd_network:
+  10-lan-mgmt-0-m:
+    Match:
+      Name: lan-mgmt-0-m*
+    Network:
+      LinkLocalAddressing: false
+      Bond: lan-mgmt-0
+  # management network
+  10-lan-mgmt-0:
+    Match:
+      Name: lan-mgmt-0
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.28.2.254/27
+        - 2001:67c:17fc:201::1/64
+      VLAN:
+        - lan-srv-2
+        - lan-pb-4
+        - lan-svc-7
+        - cl-home-2050
+        - cl-iot-2092
+        - cl-music-2093
+        - cl-cctv-2094
+        - cl-pharma-2099
+    Route:
+      - Destination: 209.112.97.235/32 # nat-svc
+        Gateway: 0.0.0.0
+        Type: unreachable
+  # servers, like k8s
+  20-lan-srv-2:
+    Match:
+      Name: lan-srv-2
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.28.2.30/27
+        - 2001:67c:17fc:202::1/64
+  # public benefit, like NTP stratum 1
+  20-lan-pb-4:
+    Match:
+      Name: lan-pb-4
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.28.2.94/27
+        - 2001:67c:17fc:204::1/64
+    Route:
+      - Destination: 209.112.97.123/32 # ntp0.as212024.net
+        Gateway: 172.28.2.65 # ntp-1.bar.as212024.net
+      - Destination: 2001:67c:17fc::123/128 # ntp0.as212024.net
+        Gateway: 2001:67c:17fc:204::123 # ntp-1.bar.as212024.net
+      - Destination: 209.112.97.236/32 # nat-pb
+        Gateway: 0.0.0.0
+        Type: unreachable
+  # local services, like home-assistant
+  20-lan-svc-7:
+    Match:
+      Name: lan-svc-7
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.28.2.222/27
+        - 2001:67c:17fc:207::1/64
+  # home clients
+  30-cl-home-2050:
+    Match:
+      Name: cl-home-2050
+    Link:
+      MTUBytes: 1500
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.29.2.99/24 # for pharma NAT
+        - 172.29.2.254/24
+    Route:
+      # Default routes
+      - Destination: 0.0.0.0/0
+        Gateway: 172.29.2.1
+      - Destination: 0.0.0.0/0
+        Gateway: 172.29.2.1
+        Table: 101
+    RoutingPolicyRule:
+      # from pharma
+      - From: 192.168.0.0/24
+        Table: 101
+  # IoT devices
+  30-cl-iot-2092:
+    Match:
+      Name: cl-iot-2092
+    Link:
+      MTUBytes: 1500
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.29.192.254/24
+        - 2a06:e881:7701:192::1/64
+    Route:
+      - Destination: 209.112.97.237/32 # nat-music-iot-cctv
+        Gateway: 0.0.0.0
+        Type: unreachable
+  # music control and speakers
+  30-cl-music-2093:
+    Match:
+      Name: cl-music-2093
+    Link:
+      MTUBytes: 9000
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.29.193.254/24
+        - 2a06:e881:7701:193::1/64
+  # cameras
+  30-cl-cctv-2094:
+    Match:
+      Name: cl-cctv-2094
+    Link:
+      MTUBytes: 1500
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.29.194.254/24
+        - 2a06:e881:7701:194::1/64
+  # temporary for pharma equipment
+  30-cl-pharma-2099:
+    Match:
+      Name: cl-pharma-2099
+    Link:
+      MTUBytes: 1500
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 192.168.0.200/24
+    Route:
+      - Destination: 209.112.97.238/32 # nat-pharma
+        Gateway: 0.0.0.0
+        type: unreachable

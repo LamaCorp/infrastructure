@@ -1,53 +1,73 @@
 ---
-netplan_configuration:
-  network:
-    version: 2
-    ethernets:
-      enp11s0:
-        match:
-          macaddress: 0a:ff:c2:32:5c:a5
-        set-name: enp11s0
-        addresses:
-          - 194.50.92.165/24
-          - 2a09:4c0:303:c232::5ca5/64
-        routes:
-          - to: 0.0.0.0/0
-            via: 194.50.92.254
-          - to: ::/0
-            via: 2a09:4c0:303:c232::5cfe
-          - to: 0.0.0.0/0
-            via: 194.50.92.254
-            table: 101
-          - to: ::/0
-            via: 2a09:4c0:303:c232::5cfe
-            table: 101
-          - to: 209.112.97.0/24
-            via: 0.0.0.0
-            type: unreachable
-          - to: 2001:67c:17fc::/48
-            via: ::/0
-            type: unreachable
-          - to: 2a06:e881:7700::/40
-            via: ::/0
-            type: unreachable
-        routing-policy:
-          - from: 194.50.92.165/32
-            table: 101
-          - from: 2a09:4c0:303:c232::/64
-            table: 101
-      enp19s0:
-        match:
-          macaddress: c0:03:c2:32:5c:a5
-        set-name: enp19s0
-        accept-ra: false
-        addresses:
-          - 80.81.194.242/21
-          - 2001:7f8::3:3c3:0:1/64
-      enp27s0:
-        match:
-          macaddress: 00:50:56:9e:01:7a
-        set-name: enp27s0
-        accept-ra: false
-        addresses:
-          - 5.196.188.52/25
-          - 2001:7f8:d9:3::0003:3c38:4/64
+systemd_networkd_link:
+  10-ul-sbag-0:
+    Match:
+      MACAddress: 0a:ff:c2:32:5c:a5
+    Link:
+      Name: ul-sbag-0
+  10-ix-decix-0:
+    Match:
+      MACAddress: c0:03:c2:32:5c:a5
+    Link:
+      Name: ix-decix-0
+  10-ix-sbix-1:
+    Match:
+      MACAddress: 00:50:56:9e:01:7a
+    Link:
+      Name: ix-sbix-1
+
+systemd_networkd_network:
+  10-ul-sbag-0:
+    Match:
+      Name: ul-sbag-0
+    Network:
+      LinkLocalAddressing: ipv6
+      Address:
+        - 194.50.92.165/24
+        - 2a09:4c0:303:c232::5ca5/64
+    Route:
+      # Default routes from Securebit
+      - Destination: 0.0.0.0/0
+        Gateway: 194.50.92.254
+      - Destination: "::/0"
+        Gateway: 2a09:4c0:303:c232::5cfe
+      - Destination: 0.0.0.0/0
+        Gateway: 194.50.92.254
+        Table: 101
+      - Destination: "::/0"
+        Gateway: 2a09:4c0:303:c232::5cfe
+        Table: 101
+      # AS212024 subnets blackholed, more specific routes exist
+      - Destination: 209.112.97.0/24
+        Gateway: 0.0.0.0
+        Type: unreachable
+      - Destination: 2001:67c:17fc::/48
+        Gateway: "::"
+        Type: unreachable
+      - Destination: 2a06:e881:7700::/40
+        Gateway: "::"
+        Type: unreachable
+    RoutingPolicyRule:
+      # From Securebit IPs
+      - From: 194.50.92.165/32
+        Table: 101
+      - From: 2a09:4c0:303:c232::/64
+        Table: 101
+  10-ix-decix-0:
+    Match:
+      Name: ix-decix-0
+    Network:
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 80.81.194.242/21
+        - 2001:7f8::3:3c3:0:1/64
+  10-ix-sbix-1:
+    Match:
+      Name: ix-sbix-1
+    Network:
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 5.196.188.52/25
+        - 2001:7f8:d9:3::0003:3c38:4/64

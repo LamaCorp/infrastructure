@@ -9,7 +9,7 @@ nft_define_host:
 
   ospf interfaces:
     name: ospf_interfaces
-    value: "{zt-lama, bar-srv}"
+    value: "{zt-lama, lan-srv-2}"
 
 nft_input_host_rules:
   # Allow broadcast and multicast
@@ -38,40 +38,40 @@ nft_forward_host_rules:
     - type filter hook forward priority 0; policy drop;
 
   301 allow iot viessman:
-    - meta iifname bar-iot ether saddr b8:74:24:2e:c3:3f ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
-    - meta iifname bar-iot ether saddr b8:74:24:2e:c3:3f ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
+    - meta iifname cl-iot-2092 ether saddr b8:74:24:2e:c3:3f ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
+    - meta iifname cl-iot-2092 ether saddr b8:74:24:2e:c3:3f ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
   302 allow iot apsystems:
-    - meta iifname bar-iot ether saddr ac:48:2d:13:f2:6e ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
-    - meta iifname bar-iot ether saddr ac:48:2d:13:f2:6e ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
+    - meta iifname cl-iot-2092 ether saddr ac:48:2d:13:f2:6e ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
+    - meta iifname cl-iot-2092 ether saddr ac:48:2d:13:f2:6e ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
   303 allow iot iotawatt:
-    - meta iifname bar-iot ether saddr 24:d7:eb:e7:52:c3 ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
-    - meta iifname bar-iot ether saddr 24:d7:eb:e7:52:c3 ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
+    - meta iifname cl-iot-2092 ether saddr 24:d7:eb:e7:52:c3 ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
+    - meta iifname cl-iot-2092 ether saddr 24:d7:eb:e7:52:c3 ip6 daddr != {$subnet_internal_6, $subnet_customer_6} accept
   310 allow pharma internet access:
-    - meta iifname bar-pharma ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
-  399 bar-* drop:
-    - meta iifname bar-iot drop
-    - meta iifname bar-cctv drop
-    - meta iifname bar-pharma drop
+    - meta iifname cl-pharma-2099 ip daddr != {$subnet_internal_4, $subnet_customer_4} accept
+  399 cl-* drop:
+    - meta iifname cl-iot-2092 drop
+    - meta iifname cl-cctv-2094 drop
+    - meta iifname cl-pharma-2099 drop
 
   400 allow to vpn:
     - meta oifname zt-lama accept
   410 allow to outside:
-    - meta oifname bar-client accept
+    - meta oifname cl-home-2050 accept
   420 allow to servers:
-    - meta oifname bond0 accept
-    - meta oifname bar-srv accept
-    - meta oifname bar-svc accept
-    - meta oifname bar-pb accept
+    - meta oifname lan-mgmt-0 accept
+    - meta oifname lan-srv-2 accept
+    - meta oifname lan-pb-4 accept
+    - meta oifname lan-svc-7 accept
   430 allow from servers:
     - ip saddr $subnet_internal_4 accept
     - ip6 saddr $subnet_internal_6 accept
 
 nft__nat_host_postrouting_rules:
   100 external connectivity:
-    - meta iif bar-pharma meta oif bar-client ip saddr != 172.29.2.0/24 ip daddr != {172.29.2.0/24} counter snat to 172.29.2.99
-    - meta oif bar-client ip daddr != { 172.29.2.0/24 } counter masquerade
-    - meta iif {bond0,bar-srv,bar-svc} oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.235
-    - meta iif {bar-pb} oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.236
-    - meta iif {bar-music,bar-iot,bar-cctv} oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.237
+    - meta iif cl-pharma-2099 meta oif cl-home-2050 ip saddr != 172.29.2.0/24 ip daddr != {172.29.2.0/24} counter snat to 172.29.2.99
+    - meta oif cl-home-2050 ip daddr != { 172.29.2.0/24 } counter masquerade
+    - meta iif {lan-mgmt-0,lan-srv-2,lan-svc-7} oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.235
+    - meta iif {lan-pb-4} oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.236
+    - meta iif {cl-music-2093,cl-iot-2092,cl-cctv-2094} oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.237
     # TODO: drop these
     - meta oifname zt-lama ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter masquerade

@@ -71,7 +71,7 @@ libvirt_vms:
     interfaces:
       - type: bridge
         source:
-          dev: br-svc
+          dev: lan-svc-101
         mac: 52:54:00:f5:5a:2a
     boot_firmware: efi
     start: true
@@ -94,7 +94,7 @@ libvirt_vms:
     interfaces:
       - type: bridge
         source:
-          dev: br-cc
+          dev: cl-vm-0
         mac: 52:54:00:e0:d1:60
     boot_firmware: efi
     start: true
@@ -117,7 +117,7 @@ libvirt_vms:
     interfaces:
       - type: bridge
         source:
-          dev: br-mdw
+          dev: lan-mdw-102
         mac: 52:54:00:69:13:91
     boot_firmware: efi
     start: true
@@ -140,7 +140,7 @@ libvirt_vms:
     interfaces:
       - type: bridge
         source:
-          dev: br-mdw
+          dev: lan-mdw-102
         mac: 52:54:00:bd:be:87
     boot_firmware: efi
     start: true
@@ -163,7 +163,7 @@ libvirt_vms:
     interfaces:
       - type: bridge
         source:
-          dev: br-mdw
+          dev: lan-mdw-102
         mac: 52:54:00:b0:ad:6d
     boot_firmware: efi
     start: true
@@ -186,7 +186,7 @@ libvirt_vms:
     interfaces:
       - type: bridge
         source:
-          dev: br-mdw
+          dev: lan-mdw-102
         mac: 52:54:00:01:f3:d1
     boot_firmware: efi
     start: true

@@ -53,24 +53,8 @@
         owner: root
         group: root
         mode: 0644
-
-    - name: Ensure networkd configuration is up-to-date
-      ansible.builtin.copy:
-        content: |
-          [Network]
-          ManageForeignRoutes=no
-        dest: /etc/systemd/networkd.conf
-        owner: root
-        group: root
-        mode: 0644
-      register: systemd_networkd_config_update
-
-    - name: Restart systemd-networkd
-      ansible.builtin.service: # noqa: no-handler
-        name: systemd-networkd
-        state: restarted
-      when: systemd_networkd_config_update.changed
   roles:
+    - systemd_networkd
     - mrlesmithjr.netplan
   tags:
     - netplan
