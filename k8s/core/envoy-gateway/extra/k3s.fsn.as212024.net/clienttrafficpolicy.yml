@@ -18,3 +18,8 @@ spec:
       kind: Gateway
       name: eg-http-media
   http3: {}
+  headers:
+    lateResponseHeaders:
+      set:
+        - name: strict-transport-security
+          value: max-age=31536000; includeSubDomains; preload
