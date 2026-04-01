@@ -24,4 +24,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/netbox-community/netbox
-    newTag: v4.5.5@sha256:bddd3f0e1fa7b70c0f2969b10486a0f4600dab7aaaff616c5bb01d919b8fae51
+    newTag: v4.5.6@sha256:192e688983b7ea656e61e05a5a46ac7e85df6e3e7987fa794018953333ea4881
