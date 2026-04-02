@@ -18,4 +18,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/cznic/knot
-    newTag: v3.5.3@sha256:b5529c82e673fa2ee0505049c681b7f404d50bff7affcb023cfcf2c7ed298903
+    newTag: v3.5.4@sha256:6b352633f3d29001c5a63626abf609b2c2fbaf4e6d06afc4ecc7ed112645175a
