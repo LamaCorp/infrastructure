@@ -261,3 +261,21 @@ bird_ospf_sessions:
       0.0.0.0:
         interfaces:
           zt-lama: {}
+          core-fsn-4:
+            type: ptp
+            cost: 100
+          core-fsn-6:
+            type: ptp
+            cost: 100
+          core-bar-4:
+            type: ptp
+            cost: 100
+          core-bar-6:
+            type: ptp
+            cost: 100
+          core-pvl-4:
+            type: ptp
+            cost: 100
+          core-pvl-6:
+            type: ptp
+            cost: 100

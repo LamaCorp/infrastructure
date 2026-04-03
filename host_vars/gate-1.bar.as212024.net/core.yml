@@ -55,6 +55,24 @@ bird_ospf_sessions:
         interfaces:
           zt-lama:
             cost: 50
+          core-fsn-4:
+            type: ptp
+            cost: 100
+          core-fsn-6:
+            type: ptp
+            cost: 100
+          core-pvl-4:
+            type: ptp
+            cost: 100
+          core-pvl-6:
+            type: ptp
+            cost: 100
+          core-fra-4:
+            type: ptp
+            cost: 100
+          core-fra-6:
+            type: ptp
+            cost: 100
           lan-srv-2:
             cost: 1
           lan-mgmt-0:

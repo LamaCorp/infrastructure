@@ -150,11 +150,15 @@
         sysctl_file: /etc/sysctl.d/80-network.conf
       loop:
         - key: net.ipv4.conf.all.rp_filter
-          value: 0
+          value: 2
         - key: net.ipv4.conf.default.rp_filter
-          value: 0
+          value: 2
         - key: net.ipv4.ip_forward
           value: 1
+        - key: net.ipv4.tcp_mtu_probing
+          value: 1
+        - key: net.ipv4.tcp_base_mss
+          value: 1024
         - key: net.ipv4.conf.all.forwarding
           value: 1
         - key: net.ipv4.conf.default.forwarding

@@ -9,7 +9,7 @@ nft_define_host:
 
   ospf interfaces:
     name: ospf_interfaces
-    value: "{zt-lama, lan-svc-101}"
+    value: "{zt-lama, lan-svc-101, core-bar-4, core-bar-6, core-pvl-4, core-pvl-6, core-fra-4, core-fra-6}"
 
 nft_input_host_rules:
   500 k3s api:

@@ -7,10 +7,6 @@ nft_define_group:
     name: bgp_neighbors_6
     value: "Override me"
 
-  ospf interfaces:
-    name: ospf_interfaces
-    value: zt-lama
-
   bird lg proxy:
     name: bird_lg_proxy
     value: 8990
@@ -54,3 +50,6 @@ nft_input_group_rules:
 nft_forward_group_rules:
   000 policy:
     - type filter hook forward priority 0; policy accept;
+
+  099 mss clamping to mtu:
+    - tcp flags syn tcp option maxseg size set rt mtu

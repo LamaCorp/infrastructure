@@ -9,7 +9,7 @@ nft_define_host:
 
   ospf interfaces:
     name: ospf_interfaces
-    value: "{zt-lama, lan-srv-2}"
+    value: "{zt-lama, lan-srv-2, core-fsn-4, core-fsn-6, core-pvl-4, core-pvl-6, core-fra-4, core-fra-6}"
 
 nft_input_host_rules:
   # Allow broadcast and multicast

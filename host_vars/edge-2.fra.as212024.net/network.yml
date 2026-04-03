@@ -16,6 +16,97 @@ systemd_networkd_link:
     Link:
       Name: ix-sbix-1
 
+systemd_networkd_netdev:
+  # core VPN
+  15-core-fsn-4:
+    NetDev:
+      Name: core-fsn-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51841
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: 136.243.102.29:51844
+  15-core-fsn-6:
+    NetDev:
+      Name: core-fsn-6
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51861
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a01:4f8:171:b0d::1]:51864"
+  15-core-bar-4:
+    NetDev:
+      Name: core-bar-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51842
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+  15-core-bar-6:
+    NetDev:
+      Name: core-bar-6
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51862
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+  15-core-pvl-4:
+    NetDev:
+      Name: core-pvl-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51843
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: 108.61.208.236:51844
+  15-core-pvl-6:
+    NetDev:
+      Name: core-pvl-6
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51863
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb]:51864"
+
 systemd_networkd_network:
   10-ul-sbag-0:
     Match:
@@ -55,6 +146,15 @@ systemd_networkd_network:
         Table: 101
       - From: 2a09:4c0:303:c232::/64
         Table: 101
+      # core VPN
+      - To: 136.243.102.29/32
+        Table: 101
+      - To: 2a01:4f8:171:b0d::1/128
+        Table: 101
+      - To: 108.61.208.236/32
+        Table: 101
+      - To: 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/128
+        Table: 101
   10-ix-decix-0:
     Match:
       Name: ix-decix-0
@@ -77,3 +177,70 @@ systemd_networkd_network:
       Address:
         - 5.196.188.52/25
         - 2001:7f8:d9:3::0003:3c38:4/64
+  # core VPN
+  15-core-fsn-4:
+    Match:
+      Name: core-fsn-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.4/24
+        - fe80::4:4/64
+  15-core-fsn-6:
+    Match:
+      Name: core-fsn-6
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.6.4/24
+        - fe80::6:4/64
+  15-core-bar-4:
+    Match:
+      Name: core-bar-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.4/24
+        - fe80::4:4/64
+  15-core-bar-6:
+    Match:
+      Name: core-bar-6
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.6.4/24
+        - fe80::6:4/64
+  15-core-pvl-4:
+    Match:
+      Name: core-pvl-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.4/24
+        - fe80::4:4/64
+  15-core-pvl-6:
+    Match:
+      Name: core-pvl-6
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.6.4/24
+        - fe80::6:4/64

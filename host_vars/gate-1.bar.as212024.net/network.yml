@@ -50,6 +50,81 @@ systemd_networkd_netdev:
         - "::/0"
       PersistentKeepalive: 60
       Endpoint: 136.243.102.29:51842
+  15-core-fsn-6:
+    NetDev:
+      Name: core-fsn-6
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51861
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a01:4f8:171:b0d::1]:51862"
+  15-core-pvl-4:
+    NetDev:
+      Name: core-pvl-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51843
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: 108.61.208.236:51842
+  15-core-pvl-6:
+    NetDev:
+      Name: core-pvl-6
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51863
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb]:51862"
+  15-core-fra-4:
+    NetDev:
+      Name: core-fra-4
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51844
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: 194.50.92.165:51842
+  15-core-fra-6:
+    NetDev:
+      Name: core-fra-6
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51864
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a09:4c0:303:c232::5ca5]:51842"
   # servers, like k8s
   20-lan-srv-2:
     NetDev:
@@ -161,6 +236,61 @@ systemd_networkd_network:
       Address:
         - 169.254.4.2/24
         - fe80::4:2/64
+  15-core-fsn-6:
+    Match:
+      Name: core-fsn-6
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.6.2/24
+        - fe80::6:2/64
+  15-core-pvl-4:
+    Match:
+      Name: core-pvl-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.2/24
+        - fe80::4:2/64
+  15-core-pvl-6:
+    Match:
+      Name: core-pvl-6
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.6.2/24
+        - fe80::6:2/64
+  15-core-fra-4:
+    Match:
+      Name: core-fra-4
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.4.2/24
+        - fe80::4:2/64
+  15-core-fra-6:
+    Match:
+      Name: core-fra-6
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.6.2/24
+        - fe80::6:2/64
   # servers, like k8s
   20-lan-srv-2:
     Match:
@@ -237,6 +367,15 @@ systemd_networkd_network:
       - From: 192.168.0.0/24
         Table: 101
       - To: 136.243.102.29/32
+        Table: 101
+      # core VPN
+      - To: 108.61.208.236/32
+        Table: 101
+      - To: 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/128
+        Table: 101
+      - To: 194.50.92.165/32
+        Table: 101
+      - To: 2a09:4c0:303:c232::5ca5/128
         Table: 101
   # IoT devices
   30-cl-iot-2092:

@@ -7,6 +7,10 @@ nft_define_host:
     name: bgp_neighbors_6
     value: "{2001:67c:17fc:ffff::/64, 2001:19f0:ffff::1, fd3c:c1c4:bbff:9a64::/64, 2a0c:2f07:9459::b12}"
 
+  ospf interfaces:
+    name: ospf_interfaces
+    value: "{zt-lama, core-fsn-4, core-fsn-6, core-bar-4, core-bar-6, core-fra-4, core-fra-6}"
+
 nft_input_host_rules:
   350 dns autoritative:
     - udp dport 53 accept
