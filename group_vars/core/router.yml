@@ -4,6 +4,10 @@ bird_kernel:
     merge_paths: true
     persist: true
     static_export: false
+    export_filter_pre: |
+      if source = RTS_BGP then {
+        krt_mtu = 1280;
+      }
 
 bird_bgp_rpki:
   host: rpki.as212024.net

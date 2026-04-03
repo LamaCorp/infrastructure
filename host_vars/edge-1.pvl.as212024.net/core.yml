@@ -90,6 +90,66 @@ bird_bgp_sessions:
         remote:
           v4: 209.112.97.244
           v6: 2001:67c:17fc:ffff::4
+      # - description: FSN4
+      #   alias: fsn4
+      #   asn: 212024
+      #   interface: core-fsn-4
+      #   local:
+      #     v4: 169.254.4.3
+      #     v6: fe80::4:3
+      #   remote:
+      #     v4: 169.254.4.2
+      #     v6: fe80::4:2
+      # - description: FSN6
+      #   alias: fsn6
+      #   asn: 212024
+      #   interface: core-fsn-6
+      #   local:
+      #     v4: 169.254.6.3
+      #     v6: fe80::6:3
+      #   remote:
+      #     v4: 169.254.6.2
+      #     v6: fe80::6:2
+      # - description: BAR4
+      #   alias: bar4
+      #   asn: 212024
+      #   interface: core-bar-4
+      #   local:
+      #     v4: 169.254.4.7
+      #     v6: fe80::4:7
+      #   remote:
+      #     v4: 169.254.4.6
+      #     v6: fe80::4:6
+      # - description: BAR6
+      #   alias: bar6
+      #   asn: 212024
+      #   interface: core-bar-6
+      #   local:
+      #     v4: 169.254.6.7
+      #     v6: fe80::6:7
+      #   remote:
+      #     v4: 169.254.6.6
+      #     v6: fe80::6:6
+      # - description: FRA4
+      #   alias: fra4
+      #   asn: 212024
+      #   interface: core-fra-4
+      #   local:
+      #     v4: 169.254.4.10
+      #     v6: fe80::4:10
+      #   remote:
+      #     v4: 169.254.4.11
+      #     v6: fe80::4:11
+      # - description: FRA6
+      #   alias: fra6
+      #   asn: 212024
+      #   interface: core-fra-6
+      #   local:
+      #     v4: 169.254.6.10
+      #     v6: fe80::6:10
+      #   remote:
+      #     v4: 169.254.6.11
+      #     v6: fe80::6:11
 
   looking_glasses:
     sessions:
@@ -111,21 +171,21 @@ bird_ospf_sessions:
         interfaces:
           zt-lama:
             cost: 20
-          core-bar-4:
-            type: ptp
-            cost: 100
-          core-bar-6:
-            type: ptp
-            cost: 100
-          core-pvl-4:
-            type: ptp
-            cost: 100
-          core-pvl-6:
-            type: ptp
-            cost: 100
-          core-fra-4:
-            type: ptp
-            cost: 100
-          core-fra-6:
-            type: ptp
-            cost: 100
+          # core-bar-4:
+          #   type: ptp
+          #   cost: 100
+          # core-bar-6:
+          #   type: ptp
+          #   cost: 100
+          # core-pvl-4:
+          #   type: ptp
+          #   cost: 100
+          # core-pvl-6:
+          #   type: ptp
+          #   cost: 100
+          # core-fra-4:
+          #   type: ptp
+          #   cost: 100
+          # core-fra-6:
+          #   type: ptp
+          #   cost: 100

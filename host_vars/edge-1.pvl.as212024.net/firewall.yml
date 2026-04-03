@@ -1,12 +1,14 @@
 ---
 nft_define_host:
+  bgp interfaces:
+    name: bgp_interfaces
+    value: "{zt-lama, core-fsn-4, core-fsn-6, core-bar-4, core-bar-6, core-fra-4, core-fra-6}"
   bgp neighbors 4:
     name: bgp_neighbors_4
-    value: "{209.112.97.240/28, 169.254.169.254/32}"
+    value: "{169.254.169.254/32}"
   bgp neighbors 6:
     name: bgp_neighbors_6
-    value: "{2001:67c:17fc:ffff::/64, 2001:19f0:ffff::1, fd3c:c1c4:bbff:9a64::/64, 2a0c:2f07:9459::b12}"
-
+    value: "{2001:19f0:ffff::1, fd3c:c1c4:bbff:9a64::/64}"
   ospf interfaces:
     name: ospf_interfaces
     value: "{zt-lama, core-fsn-4, core-fsn-6, core-bar-4, core-bar-6, core-fra-4, core-fra-6}"

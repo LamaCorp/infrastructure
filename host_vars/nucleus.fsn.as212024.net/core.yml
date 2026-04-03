@@ -22,12 +22,12 @@ bird_bgp_sessions:
         v6: 2001:67c:17fc:ffff::1
       med_metric: true
     sessions:
-      - description: BAR
-        alias: bar
-        asn: 212024
-        remote:
-          v4: 209.112.97.242
-          v6: 2001:67c:17fc:ffff::2
+      # - description: BAR
+      #   alias: bar
+      #   asn: 212024
+      #   remote:
+      #     v4: 209.112.97.242
+      #     v6: 2001:67c:17fc:ffff::2
       - description: PVL
         alias: pvl
         asn: 212024
@@ -40,6 +40,66 @@ bird_bgp_sessions:
         remote:
           v4: 209.112.97.244
           v6: 2001:67c:17fc:ffff::4
+      # - description: BAR4
+      #   alias: bar4
+      #   asn: 212024
+      #   interface: core-bar-4
+      #   local:
+      #     v4: 169.254.4.0
+      #     v6: fe80::4:0
+      #   remote:
+      #     v4: 169.254.4.1
+      #     v6: fe80::4:1
+      # - description: BAR6
+      #   alias: bar6
+      #   asn: 212024
+      #   interface: core-bar-6
+      #   local:
+      #     v4: 169.254.6.0
+      #     v6: fe80::6:0
+      #   remote:
+      #     v4: 169.254.6.1
+      #     v6: fe80::6:1
+      # - description: PVL4
+      #   alias: pvl4
+      #   asn: 212024
+      #   interface: core-pvl-4
+      #   local:
+      #     v4: 169.254.4.2
+      #     v6: fe80::4:2
+      #   remote:
+      #     v4: 169.254.4.3
+      #     v6: fe80::4:3
+      # - description: PVL6
+      #   alias: pvl6
+      #   asn: 212024
+      #   interface: core-pvl-6
+      #   local:
+      #     v4: 169.254.6.2
+      #     v6: fe80::6:2
+      #   remote:
+      #     v4: 169.254.6.3
+      #     v6: fe80::6:3
+      # - description: FRA4
+      #   alias: fra4
+      #   asn: 212024
+      #   interface: core-fra-4
+      #   local:
+      #     v4: 169.254.4.4
+      #     v6: fe80::4:4
+      #   remote:
+      #     v4: 169.254.4.5
+      #     v6: fe80::4:5
+      # - description: FRA6
+      #   alias: fra6
+      #   asn: 212024
+      #   interface: core-fra-6
+      #   local:
+      #     v4: 169.254.6.4
+      #     v6: fe80::6:4
+      #   remote:
+      #     v4: 169.254.6.5
+      #     v6: fe80::6:5
 
 bird_ospf_sessions:
   - alias: ospf
@@ -49,24 +109,24 @@ bird_ospf_sessions:
         interfaces:
           zt-lama:
             cost: 20
-          core-bar-4:
-            type: ptp
-            cost: 100
-          core-bar-6:
-            type: ptp
-            cost: 100
-          core-pvl-4:
-            type: ptp
-            cost: 100
-          core-pvl-6:
-            type: ptp
-            cost: 100
-          core-fra-4:
-            type: ptp
-            cost: 100
-          core-fra-6:
-            type: ptp
-            cost: 100
+          # core-bar-4:
+          #   type: ptp
+          #   cost: 100
+          # core-bar-6:
+          #   type: ptp
+          #   cost: 100
+          # core-pvl-4:
+          #   type: ptp
+          #   cost: 100
+          # core-pvl-6:
+          #   type: ptp
+          #   cost: 100
+          # core-fra-4:
+          #   type: ptp
+          #   cost: 100
+          # core-fra-6:
+          #   type: ptp
+          #   cost: 100
           lan-svc-101:
             cost: 1
           lan-mdw-102:

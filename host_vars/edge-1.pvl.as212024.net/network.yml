@@ -180,7 +180,7 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.4.3/24
+        - 169.254.4.3/31
         - fe80::4:3/64
   15-core-fsn-6:
     Match:
@@ -191,8 +191,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.6.3/24
-        - fe80::6:3/64
+        - 169.254.6.3/31
+        - fe80::6:3/127
   15-core-bar-4:
     Match:
       Name: core-bar-4
@@ -202,8 +202,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.4.3/24
-        - fe80::4:3/64
+        - 169.254.4.7/31
+        - fe80::4:7/127
   15-core-bar-6:
     Match:
       Name: core-bar-6
@@ -213,8 +213,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.6.3/24
-        - fe80::6:3/64
+        - 169.254.6.7/31
+        - fe80::6:7/127
   15-core-fra-4:
     Match:
       Name: core-fra-4
@@ -224,8 +224,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.4.3/24
-        - fe80::4:3/64
+        - 169.254.4.10/31
+        - fe80::4:10/127
   15-core-fra-6:
     Match:
       Name: core-fra-6
@@ -235,8 +235,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.6.3/24
-        - fe80::6:3/64
+        - 169.254.6.10/31
+        - fe80::6:10/127
   # private CRI peering
   30-ppl-cri-0:
     Match:

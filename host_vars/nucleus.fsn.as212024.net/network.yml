@@ -176,8 +176,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.4.1/24
-        - fe80::4:1/64
+        - 169.254.4.0/31
+        - fe80::4:0/127
   15-core-bar-6:
     Match:
       Name: core-bar-6
@@ -187,8 +187,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.6.1/24
-        - fe80::6:1/64
+        - 169.254.6.0/31
+        - fe80::6:0/127
   15-core-pvl-4:
     Match:
       Name: core-pvl-4
@@ -198,8 +198,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.4.1/24
-        - fe80::4:1/64
+        - 169.254.4.2/31
+        - fe80::4:2/127
   15-core-pvl-6:
     Match:
       Name: core-pvl-6
@@ -209,8 +209,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.6.1/24
-        - fe80::6:1/64
+        - 169.254.6.2/31
+        - fe80::6:2/127
   15-core-fra-4:
     Match:
       Name: core-fra-4
@@ -220,8 +220,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.4.1/24
-        - fe80::4:1/64
+        - 169.254.4.4/31
+        - fe80::4:4/127
   15-core-fra-6:
     Match:
       Name: core-fra-6
@@ -231,8 +231,8 @@ systemd_networkd_network:
       LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
       Address:
-        - 169.254.6.1/24
-        - fe80::6:1/64
+        - 169.254.6.4/31
+        - fe80::6:4/127
   # service VMs like k8s
   20-lan-svc-101:
     Match:
