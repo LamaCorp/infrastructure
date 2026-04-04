@@ -37,4 +37,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/frooodle/s-pdf
-    newTag: 0.46.2-fat@sha256:df615ff58f1827cc814cb118a6d834b81a8b24a2edb6a04a653fb0c01f070bcf
+    newTag: 2.9.2-fat@sha256:ebaa984c410681939837920c18d2cea8103b46d4961fe6ddc6b6498fa26590b2
