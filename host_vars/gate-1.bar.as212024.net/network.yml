@@ -24,6 +24,10 @@ systemd_networkd_link:
       Name: unused-1
 
 systemd_networkd_netdev:
+  10-id:
+    NetDev:
+      Name: id
+      Kind: dummy
   # management network
   10-lan-mgmt-0:
     NetDev:
@@ -34,12 +38,58 @@ systemd_networkd_netdev:
       Mode: 802.3ad
       LACPTransmitRate: fast
       TransmitHashPolicy: layer3+4
+  # core VPN
+  15-core-fsn:
+    NetDev:
+      Name: core-fsn
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51801
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "136.243.102.29:51802"
+  15-core-pvl:
+    NetDev:
+      Name: core-pvl
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51803
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "108.61.208.236:51802"
+  15-core-fra:
+    NetDev:
+      Name: core-fra
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51804
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "194.50.92.165:51802"
   # servers, like k8s
   20-lan-srv-2:
     NetDev:
       Name: lan-srv-2
       Kind: vlan
-      MTUBytes: 9000
+      MTUBytes: 1420
     VLAN:
       Id: 2
   # public benefit, like NTP stratum 1
@@ -47,7 +97,7 @@ systemd_networkd_netdev:
     NetDev:
       Name: lan-pb-4
       Kind: vlan
-      MTUBytes: 9000
+      MTUBytes: 1420
     VLAN:
       Id: 4
   # local services, like home-assistant
@@ -55,7 +105,7 @@ systemd_networkd_netdev:
     NetDev:
       Name: lan-svc-7
       Kind: vlan
-      MTUBytes: 9000
+      MTUBytes: 1420
     VLAN:
       Id: 7
   # home clients
@@ -95,11 +145,22 @@ systemd_networkd_netdev:
     NetDev:
       Name: cl-pharma-2099
       Kind: vlan
-      MTUBytes: 9000
+      MTUBytes: 1500
     VLAN:
       Id: 2099
 
 systemd_networkd_network:
+  10-id:
+    Match:
+      Name: id
+    Link:
+      RequiredForOnline: true
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 209.112.97.242/32
+        - 2001:67c:17fc:ffff::2/128
   10-lan-mgmt-0-m:
     Match:
       Name: lan-mgmt-0-m*
@@ -111,7 +172,7 @@ systemd_networkd_network:
     Match:
       Name: lan-mgmt-0
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -132,12 +193,46 @@ systemd_networkd_network:
       - Destination: 209.112.97.235/32 # nat-svc
         Gateway: 0.0.0.0
         Type: unreachable
+  # core VPN
+  15-core-fsn:
+    Match:
+      Name: core-fsn
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.1/31
+        - fe80::0:1/127
+  15-core-pvl:
+    Match:
+      Name: core-pvl
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.6/31
+        - fe80::0:6/127
+  15-core-fra:
+    Match:
+      Name: core-fra
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.8/31
+        - fe80::0:8/127
   # servers, like k8s
   20-lan-srv-2:
     Match:
       Name: lan-srv-2
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -150,7 +245,7 @@ systemd_networkd_network:
     Match:
       Name: lan-pb-4
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -171,7 +266,7 @@ systemd_networkd_network:
     Match:
       Name: lan-svc-7
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -184,7 +279,7 @@ systemd_networkd_network:
     Match:
       Name: cl-home-2050
     Link:
-      MTUBytes: 1500
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -203,12 +298,23 @@ systemd_networkd_network:
       # from pharma
       - From: 192.168.0.0/24
         Table: 101
+      - To: 136.243.102.29/32
+        Table: 101
+      # core VPN
+      - To: 108.61.208.236/32
+        Table: 101
+      - To: 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/128
+        Table: 101
+      - To: 194.50.92.165/32
+        Table: 101
+      - To: 2a09:4c0:303:c232::5ca5/128
+        Table: 101
   # IoT devices
   30-cl-iot-2092:
     Match:
       Name: cl-iot-2092
     Link:
-      MTUBytes: 1500
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -225,7 +331,7 @@ systemd_networkd_network:
     Match:
       Name: cl-music-2093
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -238,7 +344,7 @@ systemd_networkd_network:
     Match:
       Name: cl-cctv-2094
     Link:
-      MTUBytes: 1500
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
@@ -251,7 +357,7 @@ systemd_networkd_network:
     Match:
       Name: cl-pharma-2099
     Link:
-      MTUBytes: 1500
+      RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6

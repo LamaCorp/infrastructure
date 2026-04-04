@@ -2,14 +2,10 @@
 nft_define_group:
   bgp neighbors 4:
     name: bgp_neighbors_4
-    value: "Override me"
+    value: "{127.0.0.1}"
   bgp neighbors 6:
     name: bgp_neighbors_6
-    value: "Override me"
-
-  ospf interfaces:
-    name: ospf_interfaces
-    value: zt-lama
+    value: "{::1}"
 
   bird lg proxy:
     name: bird_lg_proxy
@@ -26,9 +22,11 @@ nft_input_group_rules:
   100 vpn:
     - tcp dport 9993 accept
     - udp dport 9993 accept
+    - udp dport {51801, 51802, 51803, 51804} accept
   101 ospf:
     - meta iifname $ospf_interfaces ip6 nexthdr ospf accept
   101 bgp:
+    - meta iifname $bgp_interfaces tcp dport 179 counter accept
     - ip saddr $bgp_neighbors_4 tcp dport 179 counter accept
     - ip6 saddr $bgp_neighbors_6 tcp dport 179 counter accept
 
@@ -53,3 +51,6 @@ nft_input_group_rules:
 nft_forward_group_rules:
   000 policy:
     - type filter hook forward priority 0; policy accept;
+
+  099 mss clamping to mtu:
+    - tcp flags syn tcp option maxseg size set rt mtu

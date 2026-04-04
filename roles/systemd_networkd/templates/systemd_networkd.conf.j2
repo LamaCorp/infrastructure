@@ -1,8 +1,6 @@
 {{ ansible_managed | comment }}
 {%- macro render_option(key, value) -%}
-{%-  if key == "AllowedIPs" and value is iterable and value is not string %}
-{{ key }}={{ value | join(",") }}
-{%-  elif value is sameas true or value is sameas false %}
+{%-  if value is sameas true or value is sameas false %}
 {{ key }}={{ value | ternary('yes', 'no') }}
 {%-  else %}
 {{ key }}={{ value }}

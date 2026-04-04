@@ -1,7 +1,0 @@
----
-zerotier_config:
-  settings:
-    portMappingEnabled: false
-    interfacePrefixBlacklist:
-      - ix-decix-0
-      - ix-sbix-1

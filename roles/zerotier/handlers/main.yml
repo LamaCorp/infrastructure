@@ -1,5 +1,0 @@
----
-- name: Restart Zerotier
-  ansible.builtin.service:
-    name: zerotier-one.service
-    state: restarted

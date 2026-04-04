@@ -7,40 +7,41 @@ bird_bgp_preferred_source:
 
 bird_static_routes:
   v4:
+    - 209.112.97.242/32 via "id"
     - 209.112.97.123/32 unreachable # ntp0.as212024.net
     - 209.112.97.235/32 unreachable # nat-svc
     - 209.112.97.236/32 unreachable # nat-pb
     - 209.112.97.237/32 unreachable # nat-music-iot-cctv
     - 209.112.97.238/32 unreachable # nat-pharma
   v6:
+    - 2001:67c:17fc:ffff::2/128 via "id"
     - 2001:67c:17fc::123/128 unreachable # ntp0.as212024.net
 
 bird_bgp_sessions:
   cores:
     defaults:
-      local:
-        v4: 209.112.97.242
-        v6: 2001:67c:17fc:ffff::2
       med_metric: true
     sessions:
-      - description: FSN
-        alias: fsn
-        asn: 212024
-        remote:
-          v4: 209.112.97.241
-          v6: 2001:67c:17fc:ffff::1
       - description: PVL
         alias: pvl
         asn: 212024
+        interface: core-pvl
+        local:
+          v4: 169.254.0.6
+          v6: fe80::0:6
         remote:
-          v4: 209.112.97.243
-          v6: 2001:67c:17fc:ffff::3
+          v4: 169.254.0.7
+          v6: fe80::0:7
       - description: FRA
         alias: fra
         asn: 212024
+        interface: core-fra
+        local:
+          v4: 169.254.0.8
+          v6: fe80::0:8
         remote:
-          v4: 209.112.97.244
-          v6: 2001:67c:17fc:ffff::4
+          v4: 169.254.0.9
+          v6: fe80::0:9
 
 bird_ospf_sessions:
   - alias: ospf
@@ -53,8 +54,15 @@ bird_ospf_sessions:
               hidden: true
               summary: true
         interfaces:
-          zt-lama:
-            cost: 50
+          core-fsn:
+            type: ptp
+            cost: 25
+          core-pvl:
+            type: ptp
+            cost: 25
+          core-fra:
+            type: ptp
+            cost: 25
           lan-srv-2:
             cost: 1
           lan-mgmt-0:

@@ -7,39 +7,40 @@ bird_bgp_preferred_source:
 
 bird_static_routes:
   v4:
+    - 209.112.97.241/32 via "id"
     - 148.251.148.232/29 unreachable
     - 209.112.97.232/32 unreachable # nat-svc
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
   v6:
+    - 2001:67c:17fc:ffff::1/128 via "id"
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
 
 bird_bgp_sessions:
   cores:
     defaults:
-      local:
-        v4: 209.112.97.241
-        v6: 2001:67c:17fc:ffff::1
       med_metric: true
     sessions:
-      - description: BAR
-        alias: bar
-        asn: 212024
-        remote:
-          v4: 209.112.97.242
-          v6: 2001:67c:17fc:ffff::2
       - description: PVL
         alias: pvl
         asn: 212024
+        interface: core-pvl
+        local:
+          v4: 169.254.0.2
+          v6: fe80::0:2
         remote:
-          v4: 209.112.97.243
-          v6: 2001:67c:17fc:ffff::3
+          v4: 169.254.0.3
+          v6: fe80::0:3
       - description: FRA
         alias: fra
         asn: 212024
+        interface: core-fra
+        local:
+          v4: 169.254.0.4
+          v6: fe80::0:4
         remote:
-          v4: 209.112.97.244
-          v6: 2001:67c:17fc:ffff::4
+          v4: 169.254.0.5
+          v6: fe80::0:5
 
 bird_ospf_sessions:
   - alias: ospf
@@ -47,8 +48,15 @@ bird_ospf_sessions:
     areas:
       0.0.0.0:
         interfaces:
-          zt-lama:
-            cost: 20
+          core-bar:
+            type: ptp
+            cost: 25
+          core-pvl:
+            type: ptp
+            cost: 25
+          core-fra:
+            type: ptp
+            cost: 25
           lan-svc-101:
             cost: 1
           lan-mdw-102:

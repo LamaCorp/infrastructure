@@ -3,8 +3,10 @@ bird_router_id: 209.112.97.244
 
 bird_static_routes:
   v4:
+    - 209.112.97.244/32 via "id"
     - 209.112.97.0/24 unreachable
   v6:
+    - 2001:67c:17fc:ffff::4/128 via "id"
     - 2001:67c:17fc::/48 unreachable
     - 2a06:e881:7700::/40 unreachable
 
@@ -219,28 +221,38 @@ bird_bgp_sessions:
 
   cores:
     defaults:
-      local:
-        v4: 209.112.97.244
-        v6: 2001:67c:17fc:ffff::4
+      med_metric: true
     sessions:
-      - description: PVL
-        alias: pvl
-        asn: 212024
-        remote:
-          v4: 209.112.97.243
-          v6: 2001:67c:17fc:ffff::3
       - description: FSN
         alias: fsn
         asn: 212024
+        interface: core-fsn
+        local:
+          v4: 169.254.0.5
+          v6: fe80::0:5
         remote:
-          v4: 209.112.97.241
-          v6: 2001:67c:17fc:ffff::1
+          v4: 169.254.0.4
+          v6: fe80::0:4
       - description: BAR
         alias: bar
         asn: 212024
+        interface: core-bar
+        local:
+          v4: 169.254.0.9
+          v6: fe80::0:9
         remote:
-          v4: 209.112.97.242
-          v6: 2001:67c:17fc:ffff::2
+          v4: 169.254.0.8
+          v6: fe80::0:8
+      - description: PVL
+        alias: pvl
+        asn: 212024
+        interface: core-pvl
+        local:
+          v4: 169.254.0.11
+          v6: fe80::0:11
+        remote:
+          v4: 169.254.0.10
+          v6: fe80::0:10
 
   looking_glasses:
     sessions:
@@ -260,4 +272,12 @@ bird_ospf_sessions:
     areas:
       0.0.0.0:
         interfaces:
-          zt-lama: {}
+          core-fsn:
+            type: ptp
+            cost: 25
+          core-bar:
+            type: ptp
+            cost: 25
+          core-pvl:
+            type: ptp
+            cost: 25

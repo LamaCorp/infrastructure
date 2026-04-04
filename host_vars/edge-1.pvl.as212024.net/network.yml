@@ -7,6 +7,56 @@ systemd_networkd_link:
       Name: ul-vultr-0
 
 systemd_networkd_netdev:
+  10-id:
+    NetDev:
+      Name: id
+      Kind: dummy
+  # core VPN
+  15-core-fsn:
+    NetDev:
+      Name: core-fsn
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51801
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a01:4f8:171:b0d::1]:51803"
+  15-core-bar:
+    NetDev:
+      Name: core-bar
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51802
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+  15-core-fra:
+    NetDev:
+      Name: core-fra
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51804
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a09:4c0:303:c232::5ca5]:51803"
+  # private CRI peering
   30-ppl-cri-0:
     NetDev:
       Name: ppl-cri-0
@@ -23,9 +73,22 @@ systemd_networkd_netdev:
         Endpoint: "[2001:19f0:6801:7c4:5400:3ff:fe47:7968]:51823"
 
 systemd_networkd_network:
+  10-id:
+    Match:
+      Name: id
+    Link:
+      RequiredForOnline: true
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 209.112.97.243/32
+        - 2001:67c:17fc:ffff::3/128
   10-ul-vultr-0:
     Match:
       Name: ul-vultr-0
+    Link:
+      RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: true
@@ -66,12 +129,58 @@ systemd_networkd_network:
         Table: 101
       - From: 2a05:f480:1c00:9ee::/64
         Table: 101
+      # core VPN
+      - To: 136.243.102.29/32
+        Table: 101
+      - To: 2a01:4f8:171:b0d::1/128
+        Table: 101
+      - To: 194.50.92.165/32
+        Table: 101
+      - To: 2a09:4c0:303:c232::5ca5/128
+        Table: 101
       # CRI interco peers
       - To: 2001:19f0:6801:7c4:5400:3ff:fe47:7968/128
         Table: 101
+  # core VPN
+  15-core-fsn:
+    Match:
+      Name: core-fsn
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.3/31
+        - fe80::0:3/127
+  15-core-bar:
+    Match:
+      Name: core-bar
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.7/31
+        - fe80::0:7/127
+  15-core-fra:
+    Match:
+      Name: core-fra
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.10/31
+        - fe80::0:10/127
+  # private CRI peering
   30-ppl-cri-0:
     Match:
       Name: ppl-cri-0
+    Link:
+      RequiredForOnline: false
     Network:
       Address: fd3c:c1c4:bbff:9a64::ee1/64
       LinkLocalAddressing: ipv6

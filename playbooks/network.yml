@@ -11,6 +11,83 @@
     - dns
     - unbound
 
+- name: Network (core)
+  hosts: core
+  tasks:
+    - name: Install wireguard
+      ansible.builtin.apt:
+        name: wireguard
+    - name: Create wireguard key folders
+      ansible.builtin.file:
+        path: "{{ path }}"
+        state: directory
+        owner: root
+        group: systemd-network
+        mode: 0750
+      loop:
+        - /etc/wireguard
+        - /etc/wireguard/core
+      loop_control:
+        loop_var: path
+
+    - name: Generate Wireguard private key
+      ansible.builtin.shell: "wg genkey > /etc/wireguard/core/private"
+      args:
+        creates: /etc/wireguard/core/private
+    - name: Generate Wireguard public key
+      ansible.builtin.shell: "wg pubkey < /etc/wireguard/core/private > /etc/wireguard/core/public"
+      args:
+        creates: /etc/wireguard/core/public
+    - name: Fetch public keys
+      ansible.builtin.fetch:
+        src: /etc/wireguard/core/public
+        dest: "/tmp/ansible/{{ host }}/etc/wireguard/core/public"
+        flat: true
+      delegate_to: "{{ host }}"
+      loop: "{{ groups['core'] }}"
+      loop_control:
+        loop_var: host
+      changed_when: false
+      run_once: true
+
+    - name: Generate Wireguard pre-shared key
+      ansible.builtin.shell: "wg genpsk > /etc/wireguard/core/shared"
+      args:
+        creates: /etc/wireguard/core/shared
+      delegate_to: "{{ groups['core'][0] }}"
+      run_once: true
+    - name: Fetch pre-shared key
+      ansible.builtin.slurp:
+        src: /etc/wireguard/core/shared
+      register: wireguard_core_preshared_key
+      delegate_to: "{{ groups['core'][0] }}"
+      run_once: true
+      no_log: true
+    - name: Install pre-shared key
+      ansible.builtin.copy:
+        content: "{{ wireguard_core_preshared_key['content'] | b64decode }}"
+        dest: "/etc/wireguard/core/shared"
+        owner: root
+        group: systemd-network
+        mode: 0640
+      no_log: true
+
+    - name: Set keys permissions
+      ansible.builtin.file:
+        path: "{{ path }}"
+        owner: root
+        group: systemd-network
+        mode: 0640
+      loop:
+        - /etc/wireguard/core/private
+        - /etc/wireguard/core/shared
+        - /etc/wireguard/core/public
+      loop_control:
+        loop_var: path
+  tags:
+    - network
+    - wireguard
+
 - name: Network
   hosts: all
   pre_tasks:
@@ -73,11 +150,15 @@
         sysctl_file: /etc/sysctl.d/80-network.conf
       loop:
         - key: net.ipv4.conf.all.rp_filter
-          value: 0
+          value: 2
         - key: net.ipv4.conf.default.rp_filter
-          value: 0
+          value: 2
         - key: net.ipv4.ip_forward
           value: 1
+        - key: net.ipv4.tcp_mtu_probing
+          value: 1
+        - key: net.ipv4.tcp_base_mss
+          value: 1024
         - key: net.ipv4.conf.all.forwarding
           value: 1
         - key: net.ipv4.conf.default.forwarding
@@ -105,11 +186,3 @@
         - lg
   tags:
     - router
-
-- name: VPN
-  hosts: core
-  roles:
-    - zerotier
-  tags:
-    - zerotier
-    - vpn

@@ -16,10 +16,74 @@ systemd_networkd_link:
     Link:
       Name: ix-sbix-1
 
+systemd_networkd_netdev:
+  10-id:
+    NetDev:
+      Name: id
+      Kind: dummy
+  # core VPN
+  15-core-fsn:
+    NetDev:
+      Name: core-fsn
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51801
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a01:4f8:171:b0d::1]:51804"
+  15-core-bar:
+    NetDev:
+      Name: core-bar
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51802
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+  15-core-pvl:
+    NetDev:
+      Name: core-pvl
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51803
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb]:51804"
+
 systemd_networkd_network:
+  10-id:
+    Match:
+      Name: id
+    Link:
+      RequiredForOnline: true
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 209.112.97.244/32
+        - 2001:67c:17fc:ffff::4/128
   10-ul-sbag-0:
     Match:
       Name: ul-sbag-0
+    Link:
+      RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
       Address:
@@ -53,9 +117,20 @@ systemd_networkd_network:
         Table: 101
       - From: 2a09:4c0:303:c232::/64
         Table: 101
+      # core VPN
+      - To: 136.243.102.29/32
+        Table: 101
+      - To: 2a01:4f8:171:b0d::1/128
+        Table: 101
+      - To: 108.61.208.236/32
+        Table: 101
+      - To: 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/128
+        Table: 101
   10-ix-decix-0:
     Match:
       Name: ix-decix-0
+    Link:
+      RequiredForOnline: false
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: false
@@ -65,9 +140,45 @@ systemd_networkd_network:
   10-ix-sbix-1:
     Match:
       Name: ix-sbix-1
+    Link:
+      RequiredForOnline: false
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: false
       Address:
         - 5.196.188.52/25
         - 2001:7f8:d9:3::0003:3c38:4/64
+  # core VPN
+  15-core-fsn:
+    Match:
+      Name: core-fsn
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.5/31
+        - fe80::0:5/127
+  15-core-bar:
+    Match:
+      Name: core-bar
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.9/31
+        - fe80::0:9/127
+  15-core-pvl:
+    Match:
+      Name: core-pvl
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.11/31
+        - fe80::0:11/127

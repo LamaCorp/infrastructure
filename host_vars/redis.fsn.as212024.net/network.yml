@@ -4,7 +4,7 @@ netplan_configuration:
     version: 2
     ethernets:
       ens3:
-        mtu: 9000
+        mtu: 1420
         addresses:
           - 172.28.1.110/26
           - 2001:67c:17fc:102::110/64

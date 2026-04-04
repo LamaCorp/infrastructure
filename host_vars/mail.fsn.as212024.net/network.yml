@@ -4,7 +4,7 @@ netplan_configuration:
     version: 2
     ethernets:
       ens3:
-        mtu: 9000
+        mtu: 1420
         addresses:
           - 172.28.1.90/26
           - 2001:67c:17fc:102::90/64
@@ -15,7 +15,6 @@ netplan_configuration:
             via: 2001:67c:17fc:102::1
     dummy-devices:
       public:
-        mtu: 9000
         addresses:
           - 148.251.148.232/32
           - 2001:67c:17fc::25/128

@@ -8,30 +8,92 @@ systemd_networkd_link:
       Name: ul-hetzner-0
 
 systemd_networkd_netdev:
+  10-id:
+    NetDev:
+      Name: id
+      Kind: dummy
+  # core VPN
+  15-core-bar:
+    NetDev:
+      Name: core-bar
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51802
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+  15-core-pvl:
+    NetDev:
+      Name: core-pvl
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51803
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb]:51801"
+  15-core-fra:
+    NetDev:
+      Name: core-fra
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/core/private
+      ListenPort: 51804
+      RouteTable: "off"
+    WireGuardPeer:
+      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      AllowedIPs:
+        - 0.0.0.0/0
+        - "::/0"
+      PersistentKeepalive: 60
+      Endpoint: "[2a09:4c0:303:c232::5ca5]:51801"
   # service VMs like k8s
   20-lan-svc-101:
     NetDev:
       Name: lan-svc-101
       Kind: bridge
-      MTUBytes: 9000
+      MTUBytes: 1420
   # middlewares: postgres, redis, mongo, mail, etc.
   20-lan-mdw-102:
     NetDev:
       Name: lan-mdw-102
       Kind: bridge
-      MTUBytes: 9000
+      MTUBytes: 1420
   # client VMs
   30-cl-vm-0:
     NetDev:
       Name: cl-vm-0
       Kind: bridge
-      MTUBytes: 1500
+      MTUBytes: 1420
 
 systemd_networkd_network:
+  10-id:
+    Match:
+      Name: id
+    Link:
+      RequiredForOnline: true
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 209.112.97.241/32
+        - 2001:67c:17fc:ffff::1/128
   # Hetzner uplink
   10-ul-hetzner-0:
     Match:
       Name: ul-hetzner-0
+    Link:
+      RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: true
@@ -66,15 +128,59 @@ systemd_networkd_network:
       # from Hetzner /29
       - From: 148.251.148.232/29
         Table: 101
+      # core VPN
+      - To: 108.61.208.236/32
+        Table: 101
+      - To: 2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb/128
+        Table: 101
+      - To: 194.50.92.165/32
+        Table: 101
+      - To: 2a09:4c0:303:c232::5ca5/128
+        Table: 101
+  # core VPN
+  15-core-bar:
+    Match:
+      Name: core-bar
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.0/31
+        - fe80::0:0/127
+  15-core-pvl:
+    Match:
+      Name: core-pvl
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.2/31
+        - fe80::0:2/127
+  15-core-fra:
+    Match:
+      Name: core-fra
+    Link:
+      RequiredForOnline: false
+    Network:
+      LinkLocalAddressing: false
+      ConfigureWithoutCarrier: true
+      Address:
+        - 169.254.0.4/31
+        - fe80::0:4/127
   # service VMs like k8s
   20-lan-svc-101:
     Match:
       Name: lan-svc-101
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: false
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 172.28.1.62/26
         - 2001:67c:17fc:101::1/64
@@ -87,10 +193,11 @@ systemd_networkd_network:
     Match:
       Name: lan-mdw-102
     Link:
-      MTUBytes: 9000
+      RequiredForOnline: false
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 172.28.1.126/26
         - 2001:67c:17fc:102::1/64
@@ -107,10 +214,11 @@ systemd_networkd_network:
     Match:
       Name: cl-vm-0
     Link:
-      MTUBytes: 1500
+      RequiredForOnline: false
     Network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 172.29.1.62/26
         - 2a06:e881:7701:1::1/64

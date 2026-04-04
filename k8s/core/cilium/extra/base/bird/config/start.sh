@@ -2,7 +2,7 @@
 
 set -xeuo pipefail
 
-OSPF_INTERFACE="$(ip --brief addr show | grep "${NODE_IP}" | cut -d' ' -f1)"
+OSPF_INTERFACE="$(ip --brief addr show | grep "${NODE_IP}" | cut -d' ' -f1 | cut -d@ -f1)"
 NODE_IP="$(ip addr show dev "${OSPF_INTERFACE}" | grep inet | grep -v inet6 | awk '{ print $2 }' | cut -d/ -f1)"
 
 # shellcheck disable=SC2010

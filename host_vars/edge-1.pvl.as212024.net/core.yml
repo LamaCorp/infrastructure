@@ -3,9 +3,11 @@ bird_router_id: 209.112.97.243
 
 bird_static_routes:
   v4:
+    - 209.112.97.243/32 via "id"
     - 209.112.97.0/24 unreachable
     - 169.254.169.254/32 via 108.61.208.1%'ul-vultr-0' # needed because multihop to vultr
   v6:
+    - 2001:67c:17fc:ffff::3/128 via "id"
     - 2001:67c:17fc::/48 unreachable
     - 2a06:e881:7700::/40 unreachable
     - 2001:19f0:ffff::1/128 via fe80::fc00:3ff:fe21:2eeb%'ul-vultr-0' # needed because multihop to vultr
@@ -67,29 +69,38 @@ bird_bgp_sessions:
 
   cores:
     defaults:
-      local:
-        v4: 209.112.97.243
-        v6: 2001:67c:17fc:ffff::3
       med_metric: true
     sessions:
       - description: FSN
         alias: fsn
         asn: 212024
+        interface: core-fsn
+        local:
+          v4: 169.254.0.3
+          v6: fe80::0:3
         remote:
-          v4: 209.112.97.241
-          v6: 2001:67c:17fc:ffff::1
+          v4: 169.254.0.2
+          v6: fe80::0:2
       - description: BAR
         alias: bar
         asn: 212024
+        interface: core-bar
+        local:
+          v4: 169.254.0.7
+          v6: fe80::0:7
         remote:
-          v4: 209.112.97.242
-          v6: 2001:67c:17fc:ffff::2
+          v4: 169.254.0.6
+          v6: fe80::0:6
       - description: FRA
         alias: fra
         asn: 212024
+        interface: core-fra
+        local:
+          v4: 169.254.0.10
+          v6: fe80::0:10
         remote:
-          v4: 209.112.97.244
-          v6: 2001:67c:17fc:ffff::4
+          v4: 169.254.0.11
+          v6: fe80::0:11
 
   looking_glasses:
     sessions:
@@ -109,5 +120,12 @@ bird_ospf_sessions:
     areas:
       0.0.0.0:
         interfaces:
-          zt-lama:
-            cost: 20
+          core-fsn:
+            type: ptp
+            cost: 25
+          core-bar:
+            type: ptp
+            cost: 25
+          core-fra:
+            type: ptp
+            cost: 25

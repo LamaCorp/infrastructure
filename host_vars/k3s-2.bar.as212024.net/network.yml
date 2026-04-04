@@ -3,20 +3,34 @@ netplan_configuration:
   network:
     version: 2
     ethernets:
-      eno1:
-        mtu: 9000
+      ul-0:
+        match:
+          macaddress: 80:c1:6e:f0:64:96
+        set-name: ul-0
+    vlans:
+      lan-srv-2:
+        id: 2
+        link: ul-0
+        mtu: 1420
         addresses:
           - 172.28.2.12/27
           - 2001:67c:17fc:202::12/64
         routes:
+          - to: 172.28.0.0/15
+            via: 172.28.2.30
+          - to: 209.112.97.0/24
+            via: 172.28.2.30
+          - to: 2001:67c:17fc::/48
+            via: 2001:67c:17fc:202::1
           - to: 0.0.0.0/0
             via: 172.28.2.30
+            mtu: 1280
           - to: ::/0
             via: 2001:67c:17fc:202::1
-    vlans:
+            mtu: 1280
       bar-client:
         id: 2050
-        link: eno1
+        link: ul-0
         mtu: 1500
         accept-ra: false
         addresses:
