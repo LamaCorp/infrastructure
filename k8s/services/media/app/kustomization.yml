@@ -38,7 +38,7 @@ images:
   - name: ghcr.io/hotio/jackett
     newTag: release-0.24.1178@sha256:01c85188154c663d656b4d2a4bbf772e214575dd11a5939e037b611158374ca4
   - name: ghcr.io/jellyfin/jellyfin
-    newTag: 10.11.7@sha256:2b93aa3830dcd0aab7185c635e20edef1f8dc5d2e999768baf1724e88c078004
+    newTag: 10.11.8@sha256:93227545077893cc9516f28b3adb733b67bc4691f41b6167428a2a0e3220b81c
   - name: ghcr.io/hotio/jellyseerr
     newName: docker.io/fallenbagel/jellyseerr
     newTag: preview-OIDC@sha256:5c54ef90fe9a46afb68caddcb142cffeeba693967efca377d87f0c482b3b23d8
