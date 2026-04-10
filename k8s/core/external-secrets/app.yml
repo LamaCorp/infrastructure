@@ -30,7 +30,7 @@ spec:
           targetRevision: HEAD
           path: k8s/core/external-secrets/extra/{{ .name }}
         - repoURL: https://charts.external-secrets.io
-          targetRevision: 2.2.0
+          targetRevision: 2.3.0
           chart: external-secrets
           helm:
             releaseName: external-secrets
