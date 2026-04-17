@@ -53,7 +53,7 @@ images:
   - name: ghcr.io/recyclarr/recyclarr
     newTag: 7.5.2@sha256:2550848d43a453f2c6adf3582f2198ac719f76670691d76de0819053103ef2fb
   - name: ghcr.io/hotio/sabnzbd
-    newTag: release-4.5.5@sha256:be4793057aa3aef0108f5e5105238469dc8450845cb717ea84b5deb0a73b88c1
+    newTag: release-4.5.5@sha256:3189e08407538066f1413621199dd05661a44ab9151efaf3c7ae434c0475b3b2
   - name: ghcr.io/hotio/sonarr
     newTag: release-4.0.16.2944@sha256:feb6b0003778aa9e0bc4e39df0077501d8eae0501b684c6b6416d8a90ba52fec
   - name: ghcr.io/qdm12/gluetun
