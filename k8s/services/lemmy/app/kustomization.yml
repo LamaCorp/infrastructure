@@ -36,7 +36,7 @@ configMapGenerator:
 
 images:
   - name: docker.io/dessalines/lemmy
-    newTag: 0.19.17@sha256:ed103195e5c6b2504fc20a3b51654478de44395178a5ca1734b10c05f46366af
+    newTag: 0.19.18@sha256:de30fa699f498cbb9bf9771fd71309d5efa4faaf20de0945a353b4fc2641fa46
   - name: docker.io/dessalines/lemmy-ui
     newTag: 0.19.17@sha256:c5437c4b72978871ce59b3aee22a7bf7c59775c2e1cba916a84d55fa5e2ceccf
   - name: docker.io/asonix/pictrs
