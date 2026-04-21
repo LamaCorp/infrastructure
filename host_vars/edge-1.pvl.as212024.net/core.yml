@@ -66,6 +66,22 @@ bird_bgp_sessions:
           v6: fd3c:c1c4:bbff:9a64::ee1
         remote:
           v6: fd3c:c1c4:bbff:9a64::cafe
+      - description: James Landrein 1
+        alias: james_landrein_1
+        asn: 201254
+        irr: AS201254
+        local:
+          v6: fd68:2402:1fbb:e377::1:21:2024
+        remote:
+          v6: fd68:2402:1fbb:e377::1:20:1254
+      - description: James Landrein 2
+        alias: james_landrein_2
+        asn: 201254
+        irr: AS201254
+        local:
+          v6: fd68:2402:1fbb:e377::2:21:2024
+        remote:
+          v6: fd68:2402:1fbb:e377::2:20:1254
 
   cores:
     defaults:

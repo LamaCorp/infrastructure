@@ -8,7 +8,7 @@ nft_define_host:
     value: "{169.254.169.254/32}"
   bgp neighbors 6:
     name: bgp_neighbors_6
-    value: "{2001:19f0:ffff::1, fd3c:c1c4:bbff:9a64::/64}"
+    value: "{2001:19f0:ffff::1, fd3c:c1c4:bbff:9a64::/64, fd68:2402:1fbb:e377::1:20:1254/128, fd68:2402:1fbb:e377::2:20:1254/128}"
   ospf interfaces:
     name: ospf_interfaces
     value: "{core-fsn, core-bar, core-fra}"
@@ -22,6 +22,9 @@ nft_input_host_rules:
 
   550 ppl-cri:
     - udp dport 51821 accept
+  551 ppl-as201254:
+    - udp dport 51822 accept
+    - udp dport 51823 accept
 
 nft__nat_host_postrouting_rules:
   100 external connectivity:
