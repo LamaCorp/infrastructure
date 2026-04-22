@@ -11,6 +11,6 @@ resources:
 
 images:
   - name: quay.io/curl/curl
-    newTag: 8.19.0@sha256:9a6f6a17667960e077f1b153009aaf18ac99a622221084e1938a45a06fff057a
+    newTag: 8.19.0@sha256:c03110c736db81bbe1be0296f1f1608c81b954b01626bdfb0a8f84e5bd00ff3c
   - name: docker.io/collabora/code
     newTag: 25.04.9.4.1@sha256:fe49c08c27e102c1877ad4ef2ac1a7bd8ccd2dfaa6641d4533389c204a92bb88
