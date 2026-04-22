@@ -94,7 +94,7 @@ systemd_networkd_netdev:
       RouteTable: "off"
     WireGuardPeer:
       # James Landrein, AS201254
-      - PublicKey: gNarVedO4h+QakoAG2b5pFXTk1nT5c9BBuC22+f+qB0=
+      - PublicKey: 2yX1Qxy+4NnFtn4vMP6US9o8xCRZa6WzH1mI9oquRHg=
         AllowedIPs: fd68:2402:1fbb:e377::2:20:1254/128,2a06:9801:2d::/48
         PersistentKeepalive: 60
 
