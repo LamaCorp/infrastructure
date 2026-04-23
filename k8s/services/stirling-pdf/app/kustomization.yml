@@ -7,7 +7,6 @@ commonLabels:
 resources:
   - deployment.yml
   - httproute.yml
-  - network-policy.yml
   - pvc.yml
   - secrets.yml
   - service.yml
@@ -18,7 +17,6 @@ configMapGenerator:
       - SYSTEM_DEFAULTLOCALE=fr-FR
       - SYSTEM_GOOGLEVISIBILITY=false
       - SYSTEM_SHOWUPDATE=false
-      - SYSTEM_CUSTOMHTMLFILES=false
 
       - UI_APPNAME=PDF
       - UI_HOMEDESCRIPTION=Manipuler vos PDFs avec aisance
@@ -26,15 +24,8 @@ configMapGenerator:
 
       - METRICS_ENABLED=true
 
-      - SECURITY_ENABLELOGIN=true
-      - SECURITY_CSRFDISABLED=false
-      - SECURITY_OAUTH2_ENABLED=true
-      - SECURITY_OAUTH2_ISSUER=https://auth.lama-corp.space/application/o/stirling-pdf/
-      - SECURITY_OAUTH2_AUTOCREATEUSER=true
-      - SECURITY_OAUTH2_USEASUSERNAME=preferred_username
-      - SECURITY_OAUTH2_SCOPES=openid, profile, email
-      - SECURITY_OAUTH2_PROVIDER=Lama Corp. Connect
+      - SECURITY_ENABLELOGIN=false
 
 images:
-  - name: docker.io/frooodle/s-pdf
-    newTag: 0.46.2-fat@sha256:df615ff58f1827cc814cb118a6d834b81a8b24a2edb6a04a653fb0c01f070bcf
+  - name: docker.io/stirlingtools/stirling-pdf
+    newTag: 2.9.2-fat@sha256:ebaa984c410681939837920c18d2cea8103b46d4961fe6ddc6b6498fa26590b2

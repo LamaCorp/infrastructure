@@ -27,8 +27,9 @@ entries:
         ]
 
       client_type: confidential
+      client_id: stirling-pdf
       redirect_uris:
-        - url: https://pdf.lama-corp.space/login/oauth2/code/oidc
+        - url: https://pdf.lama-corp.space/oauth2/callback
           matching_mode: strict
 
       access_code_validity: minutes=1
@@ -43,11 +44,7 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
-            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
-          ]
-        - !Find [
-            authentik_core.propertymapping,
-            [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
+            [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
           ]
 
   - id: application

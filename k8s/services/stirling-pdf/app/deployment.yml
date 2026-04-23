@@ -3,10 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: stirling-pdf
-  annotations:
-    reloader.stakater.com/auto: "true"
 spec:
-  replicas: 0
+  replicas: 1
   strategy:
     type: Recreate
   template:
@@ -17,13 +15,11 @@ spec:
         fsGroup: 1000
       containers:
         - name: stirling-pdf
-          image: docker.io/frooodle/s-pdf
+          image: docker.io/stirlingtools/stirling-pdf
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: stirling-pdf-config-env
-            - secretRef:
-                name: stirling-pdf-oidc-credentials
           ports:
             - name: http
               containerPort: 8080
@@ -53,12 +49,13 @@ spec:
             - name: data
               mountPath: /logs
               subPath: logs
-            - name: training-data
+            - name: data
+              mountPath: /pipeline
+              subPath: pipeline
+            - name: data
               mountPath: /usr/share/tessdata
+              subPath: tessdata
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: stirling-pdf-data
-        - name: training-data
-          persistentVolumeClaim:
-            claimName: stirling-pdf-training-data
