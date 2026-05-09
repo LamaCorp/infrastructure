@@ -202,7 +202,10 @@ spec:
               - --domain-filter=sdlh.eu
               - --domain-filter=thefractal.space
 
-              - --managed-record-types=A,AAAA,CNAME,PTR
+              - --managed-record-types=A
+              - --managed-record-types=AAAA
+              - --managed-record-types=CNAME
+              - --managed-record-types=PTR
               - --create-ptr
 
               - --rfc2136-zone=97.112.209.in-addr.arpa
