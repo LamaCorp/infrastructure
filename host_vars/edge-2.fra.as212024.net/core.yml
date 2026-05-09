@@ -9,6 +9,7 @@ bird_static_routes:
     - 2001:67c:17fc:ffff::4/128 via "id"
     - 2001:67c:17fc::/48 unreachable
     - 2a06:e881:7700::/40 unreachable
+    - 2a09:4c0:303:c232::/64 via "ul-sbag-0" # needed because multihop to SBAG
 
 bird_bgp_region_id: 276 # Germany
 bird_bgp_site_id: 4
@@ -42,7 +43,7 @@ bird_bgp_sessions:
         asn: 58057
         md5: "2faf060a6c794c5fbbff6b93c64e6a94"
         multihop:
-          v6: 3
+          v6: 2
         local:
           v4: 194.50.92.165
           v6: 2a09:4c0:303:c232::5ca5
