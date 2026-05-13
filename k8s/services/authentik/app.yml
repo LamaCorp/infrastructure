@@ -57,7 +57,7 @@ spec:
 
           global:
             image:
-              tag: 2026.2.3
+              tag: 2026.5.0-rc2
             env:
               - name: AUTHENTIK_BOOTSTRAP_EMAIL
                 value: root@lama-corp.space
