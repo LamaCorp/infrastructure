@@ -42,6 +42,12 @@
   "extends": [
     "github>LamaCorp/infrastructure:renovate-presets.json"
   ],
+  "helm-values": {
+    "managerFilePatterns": [
+      "/^k8s/.+\\.ya?ml$/"
+    ],
+    "pinDigests": true
+  },
   "kubernetes": {
     "managerFilePatterns": [
       "/^k8s/.+\\.ya?ml$/"

@@ -31,6 +31,7 @@ blueprints:
 
 global:
   image:
+    repository: ghcr.io/goauthentik/server
     tag: 2026.5.0-rc2
   env:
     - name: AUTHENTIK_BOOTSTRAP_EMAIL
