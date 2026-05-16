@@ -44,7 +44,7 @@
   ],
   "helm-values": {
     "managerFilePatterns": [
-      "/^k8s/.+\\.ya?ml$/"
+      "/^k8s/.+values\\.ya?ml$/"
     ],
     "pinDigests": true
   },
