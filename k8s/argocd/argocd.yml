@@ -22,8 +22,8 @@ spec:
     - repoURL: https://github.com/LamaCorp/infrastructure.git
       targetRevision: HEAD
       ref: infrastructure
-    - repoURL: oci://ghcr.io/argoproj/argo-helm
-      chart: argo-cd
+    - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
+      path: .
       targetRevision: 9.5.14
       helm:
         releaseName: argocd
