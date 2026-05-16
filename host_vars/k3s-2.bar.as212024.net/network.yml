@@ -7,6 +7,7 @@ netplan_configuration:
         match:
           macaddress: 80:c1:6e:f0:64:96
         set-name: ul-0
+        ignore-carrier: true
     vlans:
       lan-srv-2:
         id: 2
