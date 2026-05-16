@@ -1,0 +1,151 @@
+---
+image:
+  repository: twinproduction/gatus
+  tag: v5.35.0
+
+annotations:
+  reloader.stakater.com/auto: "true"
+
+# Does envFrom secret named gatus
+secrets: true
+
+serviceMonitor:
+  enabled: true
+
+gateway:
+  route:
+    enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/controller: ignored
+    parentRefs:
+      - name: eg-http-public
+        namespace: core-eg
+        sectionName: https
+    hosts:
+      - oup.si
+
+config:
+  web:
+    address: "[::]"
+  metrics: true
+
+  storage:
+    type: postgres
+    path: "postgres://${DB_USER}:${DB_PASS}@postgresql.fsn.as212024.net:6432/gatus_\
+      phowork?sslmode=require"
+
+  ui:
+    title: oup.si
+    header: Phowork external infrastructure monitoring
+    link: https://phowork.fr
+
+  alerting:
+    custom:
+      url: https://sms.phowork.fr:5001/sms
+      method: POST
+      headers:
+        Authorization: Basic ${ALERTING_API_KEY}
+        Content-Type: application/json
+      body: |
+        {
+          "dest_contact_name": "charles",
+          "text": "[ALERT_TRIGGERED_OR_RESOLVED]: [SERVICE_NAME] - [ALERT_DESCRIPTION]"
+        }
+      default-alert:
+        enabled: true
+        failure-threshold: 5
+        success-threshold: 3
+        send-on-resolved: false
+
+  .defaults: &defaults
+    interval: 30s
+    alerts:
+      - type: custom
+
+  .https-endpoint: &https-endpoint
+    <<: *defaults
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] <= 1000"
+      - "[CERTIFICATE_EXPIRATION] > 48h" # 7 days
+
+  .tcp-endpoint: &tcp-endpoint
+    <<: *defaults
+    conditions:
+      - "[CONNECTED] == true"
+      - "[RESPONSE_TIME] <= 1000"
+
+  endpoints:
+    ###
+    # Internal
+    ###
+
+    - name: NS (0)
+      <<: *defaults
+      group: internal
+      url: ns0.phowork.fr
+      dns:
+        query-name: phowork.fr
+        query-type: A
+      conditions:
+        - "[BODY] == 82.64.153.14"
+        - "[DNS_RCODE] == NOERROR"
+
+    - name: NS (1)
+      <<: *defaults
+      group: internal
+      url: ns1.phowork.fr
+      dns:
+        query-name: phowork.fr
+        query-type: A
+      conditions:
+        - "[BODY] == 82.64.153.14"
+        - "[DNS_RCODE] == NOERROR"
+
+    - name: GitLab
+      <<: *https-endpoint
+      group: internal
+      url: https://gitlab.phowork.fr/
+
+    - name: Weathermap
+      <<: *https-endpoint
+      group: internal
+      url: https://weathermap.phowork.fr/
+
+    - name: Observium
+      <<: *https-endpoint
+      group: internal
+      url: https://observium.phowork.fr/
+
+    - name: Netbox
+      <<: *https-endpoint
+      group: internal
+      url: https://netbox.phowork.fr/
+
+    ###
+    # Servers
+    ###
+
+    - name: gw-ovh
+      <<: *tcp-endpoint
+      group: Servers
+      url: tcp://gw-ovh.storj.phowork.fr:22
+
+    - name: node-5.storj
+      <<: *tcp-endpoint
+      group: Servers
+      url: tcp://node-5.storj.phowork.fr:22
+
+    - name: tonkinois.edge.vlt
+      <<: *tcp-endpoint
+      group: Servers
+      url: tcp://tonkinois.edge.vlt.phowork.fr:22
+
+    ###
+    # Hosted websites
+    ###
+
+    - name: "Sèvr'Escalade"
+      <<: *https-endpoint
+      group: Hosted websites
+      url: https://sevrescalade.fr/

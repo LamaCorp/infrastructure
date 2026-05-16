@@ -18,86 +18,14 @@ spec:
   sources:
     - repoURL: https://github.com/LamaCorp/infrastructure.git
       targetRevision: HEAD
-      path: k8s/services/gatus/extra/prologin
+      ref: infrastructure
     - repoURL: https://twin.github.io/helm-charts
       targetRevision: 1.5.0
       chart: gatus
       helm:
         releaseName: gatus
-        values: |
-          image:
-            repository: twinproduction/gatus
-            tag: v5.35.0
-
-          annotations:
-            reloader.stakater.com/auto: "true"
-
-          # Does envFrom secret named gatus
-          secrets: true
-
-          serviceMonitor:
-            enabled: true
-
-          gateway:
-            route:
-              enabled: true
-              annotations:
-                external-dns.alpha.kubernetes.io/controller: ignored
-              parentRefs:
-                - name: eg-http-public
-                  namespace: core-eg
-                  sectionName: https
-              hosts:
-                - status.prologin.org
-
-          config:
-            web:
-              address: "[::]"
-            metrics: true
-
-            storage:
-              type: postgres
-              path: "postgres://${DB_USER}:${DB_PASS}@postgresql.fsn.as212024.net:6432/gatus_prologin?sslmode=require"
-
-            ui:
-              title: Prologin
-              header: Prologin external infrastructure monitoring
-              logo: https://prologin.org/static/img/logo_cube.png
-              link: https://prologin.org
-
-            alerting:
-              discord:
-                webhook-url: "${DISCORD_WEBHOOK_URL}"
-                default-alert:
-                  enabled: true
-                  failure-threshold: 3
-                  success-threshold: 2
-                  send-on-resolved: true
-
-            .defaults: &defaults
-              interval: 30s
-              alerts:
-                - type: discord
-
-            .https-endpoint: &https-endpoint
-              <<: *defaults
-              conditions:
-                - "[STATUS] == 200"
-                - "[RESPONSE_TIME] <= 1000"
-                - "[CERTIFICATE_EXPIRATION] > 168h" # 7 days
-
-            endpoints:
-
-              ###
-              # Critical
-              ###
-
-              - name: Prologin.org
-                <<: *https-endpoint
-                group: critical
-                url: https://prologin.org
-
-              - name: GirlsCanCode.fr
-                <<: *https-endpoint
-                group: critical
-                url: https://girlscancode.fr
+        valueFiles:
+          - $infrastructure/k8s/services/gatus/prologin-values.yml
+    - repoURL: https://github.com/LamaCorp/infrastructure.git
+      targetRevision: HEAD
+      path: k8s/services/gatus/extra/prologin

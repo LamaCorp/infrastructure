@@ -1,0 +1,253 @@
+---
+image:
+  repository: twinproduction/gatus
+  tag: v5.35.0
+
+annotations:
+  reloader.stakater.com/auto: "true"
+
+# Does envFrom secret named gatus
+secrets: true
+
+serviceMonitor:
+  enabled: true
+
+gateway:
+  route:
+    enabled: true
+    parentRefs:
+      - name: eg-http-public
+        namespace: core-eg
+        sectionName: https
+    hosts:
+      - devou.ps
+
+config:
+  web:
+    address: "[::]"
+  metrics: true
+
+  storage:
+    type: postgres
+    path: "postgres://${DB_USER}:${DB_PASS}@postgresql.fsn.as212024.net:6432/gatus_\
+      devoups?sslmode=require"
+
+  ui:
+    title: devoups.
+    header: EPITA Forge external infrastructure monitoring
+    logo: https://s3.cri.epita.fr/cri-intranet/img/logo.png
+    link: https://cri.epita.fr
+
+  alerting:
+    slack:
+      webhook-url: "${SLACK_WEBHOOK_URL}"
+      default-alert:
+        enabled: true
+        failure-threshold: 3
+        success-threshold: 2
+        send-on-resolved: true
+
+  .defaults: &defaults
+    interval: 30s
+    alerts:
+      - type: slack
+
+  .https-endpoint: &https-endpoint
+    <<: *defaults
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] <= 1000"
+      - "[CERTIFICATE_EXPIRATION] > 168h" # 7 days
+
+  .tls-endpoint: &tls-endpoint
+    <<: *defaults
+    conditions:
+      - "[CONNECTED] == true"
+      - "[RESPONSE_TIME] <= 1000"
+      - "[CERTIFICATE_EXPIRATION] > 168h" # 7 days
+
+  .tcp-endpoint: &tcp-endpoint
+    <<: *defaults
+    conditions:
+      - "[CONNECTED] == true"
+      - "[RESPONSE_TIME] <= 1000"
+
+  endpoints:
+    ###
+    # Authentication
+    ###
+
+    - name: Forge ID
+      <<: *https-endpoint
+      group: "1. Authentication"
+      url: https://cri.epita.fr/healthz
+
+    - name: LDAPS
+      <<: *tls-endpoint
+      group: "1. Authentication"
+      url: "tls://ldap.pie.cri.epita.fr:636"
+
+    - name: Kerberos KDC ticket server
+      <<: *tcp-endpoint
+      group: "1. Authentication"
+      url: tcp://kerberos.pie.cri.epita.fr:88
+
+    ###
+    # Critical services
+    ###
+
+    - name: Intranet Forge
+      <<: *https-endpoint
+      group: "2. Critical services"
+      url: https://intra.forge.epita.fr/q/health
+
+    - name: Git
+      <<: *tcp-endpoint
+      group: "2. Critical services"
+      url: tcp://git.forge.epita.fr:22
+
+    - name: Moodle
+      <<: *https-endpoint
+      group: "2. Critical services"
+      url: https://moodle.epita.fr
+
+    - name: Moodle (exams)
+      <<: *https-endpoint
+      group: "2. Critical services"
+      url: https://moodle-exam.cri.epita.fr
+
+    ###
+    # Machine room services
+    ###
+
+    - name: Fleet manager
+      <<: *https-endpoint
+      group: "3. Machine room services"
+      url: https://fleet.pie.cri.epita.fr/healthz
+
+    - name: Django PXE
+      <<: *https-endpoint
+      group: "3. Machine room services"
+      url: https://django-pxe.pie.cri.epita.fr
+
+    - name: iPXE
+      <<: *https-endpoint
+      group: "3. Machine room services"
+      url: https://ipxe.pie.cri.epita.fr
+
+    - name: Bttrack
+      <<: *tcp-endpoint
+      group: "3. Machine room services"
+      url: tcp://torrent.pie.cri.epita.fr:8000
+
+    ###
+    # Services
+    ###
+
+    - name: GitLab
+      <<: *https-endpoint
+      group: "4. Services"
+      url: https://gitlab.cri.epita.fr/-/health
+
+    - name: GitLab registry
+      <<: *https-endpoint
+      group: "4. Services"
+      url: https://registry.cri.epita.fr
+
+    - name: Moodle (recrutement)
+      <<: *https-endpoint
+      group: "4. Services"
+      url: https://recrutements.cri.epita.fr
+
+    - name: News
+      <<: *defaults
+      conditions:
+        - "[STATUS] == 401"
+        - "[RESPONSE_TIME] <= 1000"
+        - "[CERTIFICATE_EXPIRATION] > 168h" # 7 days
+      group: "4. Services"
+      url: https://news.epita.fr
+
+    - name: Tickets authentication redirection
+      <<: *defaults
+      conditions:
+        - "[STATUS] == 401"
+        - "[RESPONSE_TIME] <= 1000"
+        - "[CERTIFICATE_EXPIRATION] > 168h" # 7 days
+      group: "4. Services"
+      url: https://tickets.forge.epita.fr
+
+    - name: Documentation
+      <<: *https-endpoint
+      group: "4. Services"
+      url: https://docs.forge.epita.fr
+
+    ###
+    # Critical backbone services
+    ###
+
+    - name: DNS
+      <<: *defaults
+      group: "5. Critical backbone services"
+      url: ns.cri.epita.fr
+      dns:
+        query-name: ns.cri.epita.fr
+        query-type: A
+      conditions:
+        - "[BODY] == 91.243.117.10"
+        - "[DNS_RCODE] == NOERROR"
+
+    - name: OpenStack DNS
+      <<: *defaults
+      group: "5. Critical backbone services"
+      url: designate.openstack.cri.epita.fr
+      dns:
+        query-name: ns.cri.epita.fr
+        query-type: A
+      conditions:
+        - "[BODY] == 91.243.117.10"
+        - "[DNS_RCODE] == NOERROR"
+
+    - name: S3
+      <<: *https-endpoint
+      group: "5. Critical backbone services"
+      url: https://s3.cri.epita.fr
+
+    - name: Vault
+      <<: *https-endpoint
+      group: "5. Critical backbone services"
+      url: https://vault.cri.epita.fr
+
+    ###
+    # Internal services
+    ###
+
+    - name: k8s ArgoCD
+      <<: *https-endpoint
+      group: "6. Internal services"
+      url: https://argocd.undercloud.cri.epita.fr
+
+    - name: k8s ops Grafana
+      <<: *https-endpoint
+      group: "6. Internal services"
+      url: https://grafana.ops.k8s.cri.epita.fr/healthz
+
+    - name: Mail
+      <<: *tls-endpoint
+      group: "6. Internal services"
+      url: starttls://mail.cri.epita.fr:587
+
+    - name: OpenStack Horizon
+      <<: *https-endpoint
+      group: "6. Internal services"
+      url: https://openstack.cri.epita.fr
+
+    ###
+    # Others
+    ###
+
+    - name: Console Bocal
+      <<: *https-endpoint
+      group: "7. Others"
+      url: https://console.bocal.org
+      alerts: []

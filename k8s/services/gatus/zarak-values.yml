@@ -1,0 +1,59 @@
+---
+image:
+  repository: twinproduction/gatus
+  tag: v5.35.0
+
+annotations:
+  reloader.stakater.com/auto: "true"
+
+# Does envFrom secret named gatus
+secrets: true
+
+serviceMonitor:
+  enabled: true
+
+gateway:
+  route:
+    enabled: true
+    parentRefs:
+      - name: eg-http-public
+        namespace: core-eg
+        sectionName: https
+    hosts:
+      - zarak.devou.ps
+
+config:
+  web:
+    address: "[::]"
+  metrics: true
+
+  storage:
+    type: postgres
+    path: "postgres://${DB_USER}:${DB_PASS}@postgresql.fsn.as212024.net:6432/gatus_\
+      zarak?sslmode=require"
+
+  ui:
+    title: Zarak
+    header: Zarak external infrastructure monitoring
+    logo: https://zarak.fr/resources/cyril-avatar.jpg
+    link: https://zarak.fr
+
+  .defaults: &defaults
+    interval: 30s
+
+  .https-endpoint: &https-endpoint
+    <<: *defaults
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] <= 2000"
+      - "[CERTIFICATE_EXPIRATION] > 168h" # 7 days
+
+  endpoints:
+
+    - name: zarak.fr
+      <<: *https-endpoint
+      url: https://zarak.fr
+
+    - name: cyrilduval.fr
+      <<: *https-endpoint
+      url: https://cyrilduval.fr
