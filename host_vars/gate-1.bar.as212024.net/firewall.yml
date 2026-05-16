@@ -50,7 +50,7 @@ nft_forward_host_rules:
     - meta iifname cl-pharma-2099 drop
 
   400 allow to vpn:
-    - meta oifname {core-fsn, core-pvl, core-pvl} accept
+    - meta oifname {core-fsn, core-pvl, core-fra} accept
   410 allow to outside:
     - meta oifname cl-home-2050 accept
   420 allow to servers:
