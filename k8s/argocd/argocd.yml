@@ -24,7 +24,7 @@ spec:
       ref: infrastructure
     - repoURL: oci://ghcr.io/argoproj/argo-helm/argo-cd
       path: .
-      targetRevision: 9.5.14
+      targetRevision: 9.5.14@sha256:946953d36c5348e8c60eb2cc0532ccfaaf1b4583844b8076621ba87f8544faf1
       helm:
         releaseName: argocd
         valueFiles:
