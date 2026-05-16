@@ -36,36 +36,6 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: core-envoy-gateway-crds
-  labels:
-    app: core-envoy-gateway
-spec:
-  goTemplate: true
-  generators:
-    - clusters: {}
-  template:
-    metadata:
-      name: core-envoy-gateway-crds-{{ .name }}
-      labels:
-        app: core-envoy-gateway
-    spec:
-      project: default
-      syncPolicy:
-        syncOptions:
-          - ServerSideApply=true
-        automated:
-          prune: true
-      destination:
-        name: "{{ .name }}"
-        namespace: core-eg
-      source:
-        repoURL: https://github.com/envoyproxy/gateway.git
-        targetRevision: v1.8.0
-        path: charts/gateway-helm/crds/generated
----
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
   name: core-envoy-gateway-extra
   labels:
     app: core-envoy-gateway
