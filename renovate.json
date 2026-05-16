@@ -3,7 +3,8 @@
   "argocd": {
     "managerFilePatterns": [
       "/^k8s/.+\\.ya?ml/"
-    ]
+    ],
+    "pinDigests": true
   },
   "customManagers": [
     {
