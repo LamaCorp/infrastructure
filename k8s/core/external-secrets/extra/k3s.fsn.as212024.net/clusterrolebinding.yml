@@ -79,9 +79,6 @@ subjects:
     namespace: services-immich
     name: default
   - kind: ServiceAccount
-    namespace: services-jitsi
-    name: default
-  - kind: ServiceAccount
     namespace: services-lemmy
     name: default
   - kind: ServiceAccount
