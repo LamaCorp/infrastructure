@@ -60,7 +60,7 @@ spec:
       source:
         repoURL: https://github.com/envoyproxy/gateway.git
         targetRevision: v1.8.0
-        path: charts/gateway-helm/crds/generated
+        path: charts/gateway-helm/charts/crds/crds/generated
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
