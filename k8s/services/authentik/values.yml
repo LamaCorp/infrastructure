@@ -1,0 +1,102 @@
+---
+authentik:
+  postgresql:
+    host: postgresql.fsn.as212024.net
+    user: file:///postgres-creds/username
+    password: file:///postgres-creds/password
+    name: authentik
+    # port: ~
+    # conn_max_age: 1
+    # conn_health_checks: true
+    # disable_server_side_cursors: true
+  email:
+    host: email-smtp.eu-west-3.amazonaws.com
+    port: 587
+    username: file:///smtp-creds/username
+    password: file:///smtp-creds/password
+    use_tls: true
+    from: "Auth - Lama Corp. <no-reply-authentik@lama-corp.space>"
+  secret_key: file:///secrets/secret-key
+  listen:
+    trusted_proxy_cidrs: "172.28.128.0/22,2001:67c:17fc:110::/60"
+  compliance:
+    fips:
+      enabled: true
+  # outposts:
+  #   container_image_base: ghcr.io/goauthentik/%(type)s:2025.6.0-rc1
+
+blueprints:
+  configMaps:
+    - authentik-blueprints
+
+global:
+  image:
+    tag: 2026.5.0-rc2
+  env:
+    - name: AUTHENTIK_BOOTSTRAP_EMAIL
+      value: root@lama-corp.space
+    - name: AUTHENTIK_BOOTSTRAP_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-bootstrap
+          key: password
+    - name: AUTHENTIK_BOOTSTRAP_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: authentik-bootstrap
+          key: token
+  envFrom:
+    - secretRef:
+        name: authentik-blueprint-secrets
+  volumeMounts:
+    - name: secrets
+      mountPath: /secrets
+    - name: postgres-creds
+      mountPath: /postgres-creds
+    - name: smtp-creds
+      mountPath: /smtp-creds
+  volumes:
+    - name: secrets
+      secret:
+        secretName: authentik-secrets
+    - name: postgres-creds
+      secret:
+        secretName: authentik-postgres-credentials
+    - name: smtp-creds
+      secret:
+        secretName: authentik-smtp-credentials
+  deploymentAnnotations:
+    secret.reloader.stakater.com/reload: authentik-secrets,authentik-postgres-credentials
+
+server:
+  # env:
+  #   - name: AUTHENTIK_POSTGRESQL__PORT
+  #     value: "6432"
+  route:
+    main:
+      enabled: true
+      parentRefs:
+        - name: eg-http-critical
+          namespace: core-eg
+          sectionName: https
+      hostnames:
+        - auth.lama-corp.space
+        - auth.as212024.net
+        - auth.sdlh.eu
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+worker:
+  # env:
+  #   - name: AUTHENTIK_POSTGRESQL__PORT
+  #     value: "5432"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+prometheus:
+  rules:
+    enabled: true
