@@ -10,21 +10,10 @@
       "customType": "regex",
       "datasourceTemplate": "docker",
       "managerFilePatterns": [
-        "/.*ya?ml$/"
+        "roles/homeassistant/defaults/main.yml"
       ],
       "matchStrings": [
         "docker_repository:\\s*[\"']?(?<depName>[^\\s\"']+?)[\"']?\\s*\\n\\s*docker_tag:\\s*[\"']?(?<currentValue>[^\\s@\"']+?)(?:@(?<currentDigest>sha256:[a-f0-9]+))?[\"']?\\s*$"
-      ]
-    },
-    {
-      "customType": "regex",
-      "datasourceTemplate": "docker",
-      "managerFilePatterns": [
-        "/^k8s\\/(?!.*\\/(?:deployment|daemonset)\\.ya?ml$).+\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "image:\\s*[\"']?(?<depName>[^\\s:\"'@]+?):(?<currentValue>[^\\s@\"']+?)(?:@(?<currentDigest>sha256:[a-f0-9]+))?[\"']?\\s*$",
-        "repository:\\s*[\"']?(?<depName>[^\\s\"']+?)[\"']?\\s*\\n\\s*tag:\\s*[\"']?(?<currentValue>[^\\s@\"']+?)(?:@(?<currentDigest>sha256:[a-f0-9]+))?[\"']?\\s*$"
       ]
     },
     {
@@ -62,5 +51,16 @@
     "managerFilePatterns": [
       "/^k8s/.+/kustomization\\.ya?ml$/"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "enabled": false,
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchManagers": [
+        "kubernetes"
+      ]
+    }
+  ]
 }
