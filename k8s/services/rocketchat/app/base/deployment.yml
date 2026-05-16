@@ -1,0 +1,105 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketchat
+  annotations:
+    secret.reloader.stakater.com/reload: rocketchat-mongodb-credentials
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: rocketchat
+          image: registry.rocket.chat/rocketchat/rocket.chat
+          env:
+            - name: INSTANCE_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: MONGO_URL
+              valueFrom:
+                secretKeyRef:
+                  key: mongo-uri
+                  name: rocketchat-mongodb-credentials
+            - name: BIND_IP
+              value: '::'
+            - name: OVERWRITE_SETTING_Prometheus_Enabled
+              value: "true"
+            - name: OVERWRITE_SETTING_Prometheus_Port
+              value: "9100"
+            - name: OVERWRITE_SETTING_SMTP_Protocol
+              value: smtps
+            - name: OVERWRITE_SETTING_SMTP_Host
+              value: email-smtp.eu-west-3.amazonaws.com
+            - name: OVERWRITE_SETTING_SMTP_Port
+              value: "465"
+            - name: OVERWRITE_SETTING_SMTP_Username
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rocketchat-smtp-credentials
+            - name: OVERWRITE_SETTING_SMTP_Password
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rocketchat-smtp-credentials
+            - name: OVERWRITE_SETTING_From_Email
+              value: no-reply-chat@lama-corp.space
+            - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-id
+              valueFrom:
+                secretKeyRef:
+                  key: client_id
+                  name: rocketchat-oidc-credentials
+            - name: OVERWRITE_SETTING_Accounts_OAuth_Custom-Authentik-secret
+              valueFrom:
+                secretKeyRef:
+                  key: client_secret
+                  name: rocketchat-oidc-credentials
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+            - name: metrics
+              containerPort: 9100
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 5
+          securityContext:
+            runAsUser: 999
+          volumeMounts:
+            - mountPath: /app/uploads
+              name: rocket-data
+            - mountPath: /tmp
+              name: tmp
+      securityContext:
+        fsGroup: 999
+        runAsUser: 999
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - emptyDir: {}
+          name: tmp
+        - name: rocket-data
+          persistentVolumeClaim:
+            claimName: rocketchat-rocketchat

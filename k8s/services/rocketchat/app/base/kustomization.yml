@@ -1,0 +1,17 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: rocketchat
+
+resources:
+  - deployment.yml
+  - httproute.yml
+  - network-policy.yml
+  - pvc.yml
+  - secrets.yml
+  - service.yml
+
+images:
+  - name: registry.rocket.chat/rocketchat/rocket.chat
+    newTag: 8.2.0
