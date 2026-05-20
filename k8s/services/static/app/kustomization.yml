@@ -18,4 +18,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/library/nginx
-    newTag: 1.31.0@sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128
+    newTag: 1.31.0@sha256:8015fc08a0006d201b464a43e6997705d3f99cbd2581bf2bea0d23ae501b68c5
