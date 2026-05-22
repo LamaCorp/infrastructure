@@ -5,7 +5,7 @@ metadata:
   name: eg-http-bar
 spec:
   ipFamily: DualStack
-  routingType: Service
+  routingType: Endpoint
   provider:
     type: Kubernetes
     kubernetes:
