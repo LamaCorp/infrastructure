@@ -4,6 +4,8 @@ kind: EnvoyProxy
 metadata:
   name: eg-http-public
 spec:
+  ipFamily: DualStack
+  routingType: Service
   provider:
     type: Kubernetes
     kubernetes:
@@ -21,4 +23,3 @@ spec:
   logging:
     level:
       default: info
-  ipFamily: DualStack
