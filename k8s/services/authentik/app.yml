@@ -19,9 +19,9 @@ spec:
     - repoURL: https://github.com/LamaCorp/infrastructure.git
       targetRevision: HEAD
       ref: infrastructure
-    - repoURL: https://github.com/goauthentik/helm.git
-      targetRevision: main
-      path: charts/authentik
+    - repoURL: https://charts.goauthentik.io
+      targetRevision: 2026.5.0
+      chart: authentik
       helm:
         releaseName: authentik
         valueFiles:
