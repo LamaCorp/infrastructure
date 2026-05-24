@@ -12,6 +12,6 @@ resources:
 
 images:
   - name: docker.io/yooooomi/your_spotify_server
-    newTag: 1.19.0@sha256:a45776f2c1c24ebcd957f18de4432263907d6f0031c9b25fab3e95f25d15da0d
+    newTag: 1.20.0@sha256:624ea009f2ef9d877989bee9c7913ac66840449f566517871696c31a8ea13ddf
   - name: docker.io/yooooomi/your_spotify_client
     newTag: 1.19.0@sha256:935717b748f56536bd1f4e3bd2c83b71efbcdfb419fbda0345e7a17099a8d30e
