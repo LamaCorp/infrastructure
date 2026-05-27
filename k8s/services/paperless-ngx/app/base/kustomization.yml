@@ -69,4 +69,4 @@ images:
   - name: docker.io/gotenberg/gotenberg
     newTag: 8.32.0@sha256:a40c5a46b79d812ce2f5e139278163142a054050bfd1e5f162da36d3d11c7138
   - name: docker.io/apache/tika
-    newTag: 3.3.0.0-full@sha256:ecdd37e204308266b1f8e28569f8516ebd5b96d7a4518a71d3904710b20c03b3
+    newTag: 3.3.1.0-full@sha256:d8e6ed96260ad89307a93195a1b856102987a818ac648502f8efbaf313d32470
