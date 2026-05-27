@@ -37,7 +37,7 @@ roles:
   - name: stackhpc.libvirt-host
     version: v1.15.1
   - name: stackhpc.libvirt-vm
-    version: v1.16.4
+    version: v1.17.0
   - name: xanmanning.k3s
     src: https://github.com/PyratLabs/ansible-role-k3s.git
     version: v3.6.4
