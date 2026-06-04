@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = "==3.14.*"
 dependencies = [
-    "ansible==13.7.0",
+    "ansible==14.0.0",
     "ansible-lint==26.4.0",
     "black==26.5.1",
     "hvac==2.4.0",
