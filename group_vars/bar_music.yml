@@ -22,8 +22,8 @@ netplan_configuration:
 backup_restic_list: []
 
 snapcast_client_args:
-  - --host=caster.music.bar.risson.net
   - "--hostID={{ ansible_hostname }}"
+  - caster.music.bar.risson.net
 
 snapcast_remote_host: "caster.music.bar.risson.net"
 snapcast_remote_client_id: "{{ ansible_hostname }}"
