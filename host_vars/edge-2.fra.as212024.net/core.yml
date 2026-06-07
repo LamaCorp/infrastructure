@@ -61,6 +61,7 @@ bird_bgp_sessions:
         alias: decix_rs1
         asn: 6695
         irr: AS-DECIX AS-DECIX-V6
+        enforce_first_as: false
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -75,6 +76,7 @@ bird_bgp_sessions:
         alias: decix_rs2
         asn: 6695
         irr: AS-DECIX AS-DECIX-V6
+        enforce_first_as: false
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -202,6 +204,7 @@ bird_bgp_sessions:
         asn: 56755
         irr: AS-SBIX-RS
         md5: "H2j4qB78uE9cK15"
+        enforce_first_as: false
         local:
           v4: 5.196.188.52
           v6: 2001:7f8:d9:3::0003:3c38:4
@@ -213,6 +216,7 @@ bird_bgp_sessions:
         asn: 56755
         irr: AS-SBIX-RS
         md5: "H2j4qB78uE9cK15"
+        enforce_first_as: false
         local:
           v4: 5.196.188.52
           v6: 2001:7f8:d9:3::0003:3c38:4

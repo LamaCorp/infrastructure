@@ -225,6 +225,8 @@ bird_bgp_sessions: {}
 #       # In some BGP sessions you may be required to use an MD5 password to
 #       # authenticate.
 #       md5: '912ec803b2c'
+#       # Disable enforce first as for route servers
+#       enforce_first_as: false
 #       remote:
 #         v4: '203.0.113.41'
 #         v6: 'fd00:504:36::3b41:0'
