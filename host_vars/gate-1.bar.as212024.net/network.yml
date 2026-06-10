@@ -188,8 +188,8 @@ systemd_networkd_network:
       IPv6AcceptRA: false
       Address:
         - 172.28.2.254/27
-        - 2001:67c:17fc:201::1/64
       DHCPServer: true
+      IPv6SendRA: true
     Route:
       - Destination: 209.112.97.235/32 # nat-svc
         Gateway: 0.0.0.0
@@ -235,6 +235,13 @@ systemd_networkd_network:
       - Hostname: sw-piscine
         MACAddress: 1c:6a:1b:67:3d:71
         Address: 172.28.2.252
+    IPv6SendRA:
+      DNS: 2001:67c:17fc:ffff::2
+      Domains: bar.as212024.net
+    IPv6Prefix:
+      - Prefix: 2001:67c:17fc:201::0/64
+        Assign: true
+        Token: static:::1
   # core VPN
   15-core-fsn:
     Match:
@@ -405,6 +412,7 @@ systemd_networkd_network:
         - 172.29.192.254/24
         - 2a06:e881:7701:192::1/64
       DHCPServer: true
+      IPv6SendRA: true
     Route:
       - Destination: 209.112.97.237/32 # nat-music-iot-cctv
         Gateway: 0.0.0.0
@@ -444,6 +452,13 @@ systemd_networkd_network:
       - Hostname: iotawatt-1
         MACAddress: 24:d7:eb:e7:52:c3
         Address: 172.29.192.69
+    IPv6SendRA:
+      DNS: 2001:67c:17fc:ffff::2
+      Domains: iot.bar.risson.net
+    IPv6Prefix:
+      - Prefix: 2a06:e881:7701:192::/64
+        Assign: true
+        Token: static:::1
   # music control and speakers
   30-cl-music-2093:
     Match:

@@ -81,16 +81,3 @@ bird_ospf_sessions:
             stub: true
           cl-pharma-2099:
             stub: true
-
-bird_radv_sessions:
-  - alias: radv6
-    interfaces:
-      lan-mgmt-0:
-        mtu: 9000
-      cl-iot-2092:
-        mtu: 1500
-      cl-cctv-2094:
-        mtu: 1500
-    rdnss:
-      - ns:
-          - 2001:67c:17fc:ffff::2
