@@ -208,6 +208,9 @@ systemd_networkd_network:
       EmitDomain: true
       Domain: bar.as212024.net
     DHCPServerStaticLease:
+      - Hostname: panda
+        MACAddress: 00:e0:4c:50:00:65
+        Address: 172.28.2.225
       - Hostname: udb-bureau
         MACAddress: 84:78:48:b6:f1:60
         Address: 172.28.2.239
