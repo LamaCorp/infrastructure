@@ -27,9 +27,6 @@
 - name: Redis
   import_playbook: redis.yml
 
-- name: DHCP
-  import_playbook: dhcp.yml
-
 - name: GPS
   import_playbook: gps.yml
 

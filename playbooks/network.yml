@@ -41,7 +41,7 @@
     - name: Fetch public keys
       ansible.builtin.fetch:
         src: /etc/wireguard/core/public
-        dest: "/tmp/ansible/{{ host }}/etc/wireguard/core/public"
+        dest: "~/.ansible/tmp/wireguard/{{ host }}/etc/wireguard/core/public"
         flat: true
       delegate_to: "{{ host }}"
       loop: "{{ groups['core'] }}"

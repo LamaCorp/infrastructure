@@ -21,7 +21,7 @@ systemd_networkd_netdev:
       ListenPort: 51801
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"
@@ -36,7 +36,7 @@ systemd_networkd_netdev:
       ListenPort: 51802
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/gate-1.bar.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"
@@ -50,7 +50,7 @@ systemd_networkd_netdev:
       ListenPort: 51804
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"

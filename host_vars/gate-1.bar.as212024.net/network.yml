@@ -48,7 +48,7 @@ systemd_networkd_netdev:
       ListenPort: 51801
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"
@@ -63,7 +63,7 @@ systemd_networkd_netdev:
       ListenPort: 51803
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"
@@ -78,7 +78,7 @@ systemd_networkd_netdev:
       ListenPort: 51804
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '/tmp/ansible/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"
@@ -175,11 +175,6 @@ systemd_networkd_network:
       RequiredForOnline: true
     Network:
       ConfigureWithoutCarrier: true
-      LinkLocalAddressing: ipv6
-      IPv6AcceptRA: false
-      Address:
-        - 172.28.2.254/27
-        - 2001:67c:17fc:201::1/64
       VLAN:
         - lan-srv-2
         - lan-pb-4
@@ -189,10 +184,57 @@ systemd_networkd_network:
         - cl-music-2093
         - cl-cctv-2094
         - cl-pharma-2099
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address:
+        - 172.28.2.254/27
+        - 2001:67c:17fc:201::1/64
+      DHCPServer: true
     Route:
       - Destination: 209.112.97.235/32 # nat-svc
         Gateway: 0.0.0.0
         Type: unreachable
+    DHCPServer:
+      PoolOffset: 2
+      PoolSize: 3
+      DefaultLeaseTimeSec: 43200
+      MaxLeaseTimeSec: 86400
+      DNS: 172.28.2.254
+      NTP: 172.28.2.254
+      EmitSIP: false
+      EmitPOP3: false
+      EmitSMTP: false
+      EmitLPR: false
+      EmitDomain: true
+      Domain: bar.as212024.net
+    DHCPServerStaticLease:
+      - Hostname: udb-bureau
+        MACAddress: 84:78:48:b6:f1:60
+        Address: 172.28.2.239
+      - Hostname: wifi-1
+        MACAddress: e4:38:83:e7:22:d8
+        Address: 172.28.2.240
+      - Hostname: wifi-0
+        MACAddress: e4:38:83:e7:21:38
+        Address: 172.28.2.241
+      - Hostname: wifi-bureau
+        MACAddress: 28:70:4e:d0:eb:de
+        Address: 172.28.2.242
+      - Hostname: sw-bureau
+        MACAddress: 28:70:4e:d2:d0:64
+        Address: 172.28.2.248
+      - Hostname: sw-marc
+        MACAddress: a0:a0:01:a1:06:10
+        Address: 172.28.2.249
+      - Hostname: sw-1
+        MACAddress: a8:52:d4:93:0f:4d
+        Address: 172.28.2.250
+      - Hostname: sw-0
+        MACAddress: a8:52:d4:94:15:9c
+        Address: 172.28.2.251
+      - Hostname: sw-piscine
+        MACAddress: 1c:6a:1b:67:3d:71
+        Address: 172.28.2.252
   # core VPN
   15-core-fsn:
     Match:
@@ -285,8 +327,9 @@ systemd_networkd_network:
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: false
       Address:
-        - 172.29.2.99/24 # for pharma NAT
         - 172.29.2.254/24
+        - 172.29.2.99/24 # for pharma NAT
+      DHCPServer: true
     Route:
       # Default routes
       - Destination: 0.0.0.0/0
@@ -309,6 +352,42 @@ systemd_networkd_network:
         Table: 101
       - To: 2a09:4c0:303:c232::5ca5/128
         Table: 101
+    DHCPServer:
+      ServerAddress: 172.29.2.254/24
+      PoolOffset: 100
+      PoolSize: 100
+      DefaultLeaseTimeSec: 43200
+      MaxLeaseTimeSec: 86400
+      DNS: 172.29.2.254
+      NTP: 172.29.2.254
+      Router: 172.29.2.1
+      EmitSIP: false
+      EmitPOP3: false
+      EmitSMTP: false
+      EmitLPR: false
+      EmitDomain: true
+      Domain: client.bar.risson.net
+      # Extra routes: 209.112.97.0/24 -> 172.29.2.254, 172.28.0.0/15 -> 172.29.2.254, 0.0.0.0/0 -> 172.29.2.1
+      SendOption: "121:string:\\x18\\xd1\\x70\\x61\\xac\\x1d\\x02\\xfe\\x0f\\xac\\x1c\\xac\\x1d\\x02\\xfe\\x00\\xac\\x1d\\x02\\x01"
+    DHCPServerStaticLease:
+      - Hostname: v-core-3
+        MACAddress: d8:3a:dd:11:23:8b
+        Address: 172.29.2.210
+      - Hostname: loewe-tv
+        MACAddress: 00:09:82:17:1c:c0
+        Address: 172.29.2.220
+      - Hostname: bose-office
+        MACAddress: 08:df:1f:08:49:34
+        Address: 172.29.2.221
+      - Hostname: chromecast-tv
+        MACAddress: 48:d6:d5:27:2b:b4
+        Address: 172.29.2.222
+      - Hostname: hp-office
+        MACAddress: 88:51:fb:1b:21:f4
+        Address: 172.29.2.230
+      - Hostname: arrosoir
+        MACAddress: b8:27:eb:23:aa:a8
+        Address: 172.29.2.51
   # IoT devices
   30-cl-iot-2092:
     Match:
@@ -322,10 +401,46 @@ systemd_networkd_network:
       Address:
         - 172.29.192.254/24
         - 2a06:e881:7701:192::1/64
+      DHCPServer: true
     Route:
       - Destination: 209.112.97.237/32 # nat-music-iot-cctv
         Gateway: 0.0.0.0
         Type: unreachable
+    DHCPServer:
+      PoolOffset: 200
+      PoolSize: 20
+      DefaultLeaseTimeSec: 43200
+      MaxLeaseTimeSec: 86400
+      DNS: 172.29.192.254
+      NTP: 172.29.192.254
+      EmitSIP: false
+      EmitPOP3: false
+      EmitSMTP: false
+      EmitLPR: false
+      EmitDomain: true
+      Domain: iot.bar.risson.net
+    DHCPServerStaticLease:
+      - Hostname: slzb-06p10-0
+        MACAddress: e4:65:b8:d9:0d:9f
+        Address: 172.29.192.10
+      - Hostname: viessmann-6221
+        MACAddress: b8:74:24:2e:c3:3f
+        Address: 172.29.192.64
+      - Hostname: roomba-1
+        MACAddress: c0:e4:34:41:5e:46
+        Address: 172.29.192.65
+      - Hostname: presense-sensor-chambre-marc
+        MACAddress: 54:ef:44:56:11:0a
+        Address: 172.29.192.66
+      - Hostname: apsystems-ecu-c
+        MACAddress: ac:48:2d:13:f2:6e
+        Address: 172.29.192.67
+      - Hostname: everbluemeters
+        MACAddress: c8:c9:a3:8f:d9:ec
+        Address: 172.29.192.68
+      - Hostname: iotawatt-1
+        MACAddress: 24:d7:eb:e7:52:c3
+        Address: 172.29.192.69
   # music control and speakers
   30-cl-music-2093:
     Match:
@@ -339,6 +454,20 @@ systemd_networkd_network:
       Address:
         - 172.29.193.254/24
         - 2a06:e881:7701:193::1/64
+      DHCPServer: true
+    DHCPServer:
+      PoolOffset: 200
+      PoolSize: 20
+      DefaultLeaseTimeSec: 43200
+      MaxLeaseTimeSec: 86400
+      DNS: 172.29.193.254
+      NTP: 172.29.193.254
+      EmitSIP: false
+      EmitPOP3: false
+      EmitSMTP: false
+      EmitLPR: false
+      EmitDomain: true
+      Domain: music.bar.risson.net
   # cameras
   30-cl-cctv-2094:
     Match:
@@ -352,6 +481,36 @@ systemd_networkd_network:
       Address:
         - 172.29.194.254/24
         - 2a06:e881:7701:194::1/64
+      DHCPServer: true
+    DHCPServer:
+      PoolOffset: 200
+      PoolSize: 20
+      DefaultLeaseTimeSec: 43200
+      MaxLeaseTimeSec: 86400
+      DNS: 172.29.194.254
+      NTP: 172.29.194.254
+      EmitSIP: false
+      EmitPOP3: false
+      EmitSMTP: false
+      EmitLPR: false
+      EmitDomain: true
+      Domain: cctv.bar.risson.net
+    DHCPServerStaticLease:
+      - Hostname: avant
+        MACAddress: ec:71:db:a9:1f:b7
+        Address: 172.29.194.10
+      - Hostname: entree
+        MACAddress: ec:71:db:4c:cd:69
+        Address: 172.29.194.11
+      - Hostname: cote
+        MACAddress: ec:71:db:65:f3:3c
+        Address: 172.29.194.12
+      - Hostname: arriere
+        MACAddress: ec:71:db:bd:82:ab
+        Address: 172.29.194.13
+      - Hostname: terrasse-bas
+        MACAddress: ec:71:db:34:00:ea
+        Address: 172.29.194.14
   # temporary for pharma equipment
   30-cl-pharma-2099:
     Match:
@@ -364,7 +523,21 @@ systemd_networkd_network:
       IPv6AcceptRA: false
       Address:
         - 192.168.0.200/24
+      DHCPServer: true
     Route:
       - Destination: 209.112.97.238/32 # nat-pharma
         Gateway: 0.0.0.0
-        type: unreachable
+        Type: unreachable
+    DHCPServer:
+      PoolOffset: 100
+      PoolSize: 100
+      DefaultLeaseTimeSec: 43200
+      MaxLeaseTimeSec: 86400
+      DNS: 192.168.0.200
+      NTP: 192.168.0.200
+      EmitSIP: false
+      EmitPOP3: false
+      EmitSMTP: false
+      EmitLPR: false
+      EmitDomain: true
+      Domain: pharma.bar.risson.net

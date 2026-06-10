@@ -1,7 +1,6 @@
 ---
 backup_restic_list_user_root_to_include:
   - /etc/bird
-  - /etc/kea
   - /etc/nftables.conf
   - /etc/nftables.d
   - /etc/unbound
