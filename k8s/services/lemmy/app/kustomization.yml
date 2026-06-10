@@ -38,6 +38,6 @@ images:
   - name: docker.io/dessalines/lemmy
     newTag: 0.19.19@sha256:fbd81038b70d1f694a9cb9057c7cb67ddd0eebfdd974b8216d4d93266614c3ef
   - name: docker.io/dessalines/lemmy-ui
-    newTag: 0.19.18@sha256:b9eeb08a36371fafbcd34bca7afc75e17ce8f99fa3ca149532e88b5c5d763939
+    newTag: 0.19.19@sha256:03e8a064c4d9dd8e8df2c3520998ac9ba90fd7a71af34af7315b2a8c9c6f86a5
   - name: docker.io/asonix/pictrs
     newTag: 0.5.23@sha256:85bb2303fefdc6b47c37ecad55a02810e6d118f8499f250f2d32ace1097a2bdc
