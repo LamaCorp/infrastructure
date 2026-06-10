@@ -74,8 +74,8 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: true
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
       Address:
         - 209.112.97.244/32
         - 2001:67c:17fc:ffff::4/128
@@ -86,6 +86,7 @@ systemd_networkd_network:
       RequiredForOnline: true
     Network:
       LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
       Address:
         - 194.50.92.165/24
         - 2a09:4c0:303:c232::5ca5/64
@@ -155,8 +156,9 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      IPv6AcceptRA: false
       Address:
         - 169.254.0.5/31
         - fe80::0:5/127
@@ -166,8 +168,9 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      IPv6AcceptRA: false
       Address:
         - 169.254.0.9/31
         - fe80::0:9/127
@@ -177,8 +180,9 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      IPv6AcceptRA: false
       Address:
         - 169.254.0.11/31
         - fe80::0:11/127

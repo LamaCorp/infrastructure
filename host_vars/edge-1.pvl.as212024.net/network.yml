@@ -105,8 +105,8 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: true
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
       Address:
         - 209.112.97.243/32
         - 2001:67c:17fc:ffff::3/128
@@ -174,8 +174,9 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      IPv6AcceptRA: false
       Address:
         - 169.254.0.3/31
         - fe80::0:3/127
@@ -185,8 +186,9 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      IPv6AcceptRA: false
       Address:
         - 169.254.0.7/31
         - fe80::0:7/127
@@ -196,8 +198,9 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      LinkLocalAddressing: false
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      IPv6AcceptRA: false
       Address:
         - 169.254.0.10/31
         - fe80::0:10/127
@@ -208,24 +211,27 @@ systemd_networkd_network:
     Link:
       RequiredForOnline: false
     Network:
-      Address: fd3c:c1c4:bbff:9a64::ee1/64
-      LinkLocalAddressing: ipv6
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address: fd3c:c1c4:bbff:9a64::ee1/64
   30-ppl-as201254-1:
     Match:
       Name: ppl-as201254-1
     Link:
       RequiredForOnline: false
     Network:
-      Address: fd68:2402:1fbb:e377::1:21:2024/64
-      LinkLocalAddressing: ipv6
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address: fd68:2402:1fbb:e377::1:21:2024/64
   30-ppl-as201254-2:
     Match:
       Name: ppl-as201254-2
     Link:
       RequiredForOnline: false
     Network:
-      Address: fd68:2402:1fbb:e377::2:21:2024/64
-      LinkLocalAddressing: ipv6
       ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address: fd68:2402:1fbb:e377::2:21:2024/64
