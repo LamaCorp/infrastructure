@@ -14,4 +14,4 @@ resources:
 
 images:
   - name: registry.rocket.chat/rocketchat/rocket.chat
-    newTag: 8.4.3@sha256:aa2ef01551d1df3595b4765df94cf8a46fbb5ad21fd00035f387c1c8a72915dd
+    newTag: 8.5.0@sha256:e279b7fb44c35f352c1064e98240a8e27bc4145cab6ac443be238f2e7b18d7c6
