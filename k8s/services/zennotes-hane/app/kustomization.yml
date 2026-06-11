@@ -1,0 +1,24 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: zennotes
+
+resources:
+  - deployment.yml
+  - httproute.yml
+  - pvc.yml
+  - secrets.yml
+  - service.yml
+
+configMapGenerator:
+  - name: zennotes-config-env
+    literals:
+      - ZENNOTES_BIND=[::]:7878
+      - ZENNOTES_ALLOW_INSECURE_NOAUTH=1
+      - ZENNOTES_BEHIND_TLS=1
+      - ZENNOTES_TRUSTED_PROXIES=2001:67c:17fc:110::/60,172.28.128.0/22
+
+images:
+  - name: docker.io/adibhanna/zennotes
+    newTag: 2.2.0@sha256:9f87ccdba5dbcfef93ff6a749cb92c0c884e91c059d6287612af08bf611b037a

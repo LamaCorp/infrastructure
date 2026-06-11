@@ -114,3 +114,6 @@ subjects:
   - kind: ServiceAccount
     namespace: services-your-spotify
     name: default
+  - kind: ServiceAccount
+    namespace: services-zennotes-hane
+    name: default

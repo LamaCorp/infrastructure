@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zennotes
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      securityContext:
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+      containers:
+        - name: zennotes
+          image: docker.io/adibhanna/zennotes
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: zennotes-config-env
+          ports:
+            - name: http
+              containerPort: 7878
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: vault
+              mountPath: /workspace
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: zennotes-data
+        - name: vault
+          persistentVolumeClaim:
+            claimName: zennotes-vault
+        - name: tmp
+          emptyDir: {}

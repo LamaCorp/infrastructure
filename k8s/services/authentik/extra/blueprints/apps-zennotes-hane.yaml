@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+# yamllint disable
+---
+version: 1
+metadata:
+  name: Apps - ZenNotes Hane
+entries:
+  - id: provider
+    model: authentik_providers_oauth2.oauth2provider
+    identifiers:
+      name: k8s/k3s.fsn.as212024.net/services-zennotes-hane
+    attrs:
+      authorization_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, "default-provider-authorization-implicit-consent"],
+        ]
+      signing_key:
+        !Find [
+          authentik_crypto.certificatekeypair,
+          [name, "authentik Self-signed Certificate"],
+        ]
+      invalidation_flow: !Find [authentik_flows.flow, [slug, "default-provider-invalidation-flow"]]
+
+      client_type: confidential
+      client_id: zennotes-hane
+      redirect_uris:
+        - url: https://zen-hane.sdlh.eu/oauth2/callback
+          matching_mode: strict
+
+      access_code_validity: minutes=1
+      access_token_validity: minutes=5
+      refresh_token_validity: days=30
+
+      sub_mode: hashed_user_id
+      property_mappings:
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'openid'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
+          ]
+
+  - id: application
+    model: authentik_core.application
+    identifiers:
+      slug: zennotes-hane
+    attrs:
+      name: ZenNotes
+      group: Services
+      meta_description: ZenNotes
+      icon: https://zennotes.org/images/zennotes-logo-square.png
+      provider: !KeyOf provider
+      policy_engine_mode: any
+
+  - id: group
+    model: authentik_core.group
+    identifiers:
+      name: app-zennotes-hane
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group
+    attrs:
+      order: 10
