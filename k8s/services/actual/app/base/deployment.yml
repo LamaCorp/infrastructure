@@ -18,6 +18,9 @@ spec:
                 name: actual-config
             - secretRef:
                 name: actual-oidc-credentials
+          env:
+            - name: ACTUAL_PORT
+              value: "5006"
           ports:
             - name: http
               containerPort: 5006
