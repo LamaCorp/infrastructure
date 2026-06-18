@@ -5,11 +5,11 @@ commonLabels:
   app.kubernetes.io/name: actual
 
 resources:
-  - server
-  - gotenberg
-  - tika
+  - deployment.yml
   - network-policy.yml
+  - pvc.yml
   - secrets.yml
+  - service.yml
 
 configMapGenerator:
   - name: actual-config
