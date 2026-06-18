@@ -8,7 +8,7 @@ entries:
   - id: provider
     model: authentik_providers_oauth2.oauth2provider
     identifiers:
-      name: k8s/k3s.fsn.as212024.net/services-actual-budget-risson
+      name: k8s/k3s.fsn.as212024.net/services-actual-risson
     attrs:
       authorization_flow:
         !Find [
