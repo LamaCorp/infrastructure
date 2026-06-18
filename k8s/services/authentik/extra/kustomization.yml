@@ -12,6 +12,7 @@ generatorOptions:
 configMapGenerator:
   - name: authentik-blueprints
     files:
+      - ./blueprints/apps-actual-risson.yaml
       - ./blueprints/apps-archivebox.yaml
       - ./blueprints/apps-argocd.yaml
       - ./blueprints/apps-frigate.yaml

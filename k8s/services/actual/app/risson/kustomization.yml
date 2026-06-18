@@ -1,0 +1,14 @@
+---
+kind: Kustomization
+
+resources:
+  - ../base
+  - httproute.yml
+  - secrets.yml
+
+configMapGenerator:
+  - name: actual-config
+    behavior: merge
+    literals:
+      - ACTUAL_OPENID_DISCOVERY_URL=https://auth.lama-corp.space/application/o/actual-risson/.well-known/openid-configuration
+      - ACTUAL_OPENID_SERVER_HOSTNAME=budget.risson.space

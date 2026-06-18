@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: services-actual-risson
+  labels:
+    app: services-actual-risson
+spec:
+  project: services
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: k3s.fsn.as212024.net
+    namespace: services-actual-risson
+  source:
+    repoURL: https://github.com/LamaCorp/infrastructure.git
+    targetRevision: HEAD
+    path: k8s/services/actual/app/risson

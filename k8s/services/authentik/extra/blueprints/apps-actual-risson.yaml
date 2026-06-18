@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+# yamllint disable
+---
+version: 1
+metadata:
+  name: Apps - Actual Budget risson
+entries:
+  - id: provider
+    model: authentik_providers_oauth2.oauth2provider
+    identifiers:
+      name: k8s/k3s.fsn.as212024.net/services-actual-budget-risson
+    attrs:
+      authorization_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, "default-provider-authorization-implicit-consent"],
+        ]
+      signing_key:
+        !Find [
+          authentik_crypto.certificatekeypair,
+          [name, "authentik Self-signed Certificate"],
+        ]
+      invalidation_flow: !Find [authentik_flows.flow, [slug, "default-provider-invalidation-flow"]]
+
+      client_type: confidential
+      redirect_uris:
+        - url: https://budget.risson.space/openid/callback
+          matching_mode: strict
+
+      access_code_validity: minutes=1
+      access_token_validity: minutes=5
+      refresh_token_validity: days=30
+
+      sub_mode: hashed_user_id
+      property_mappings:
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'openid'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
+          ]
+
+  - id: application
+    model: authentik_core.application
+    identifiers:
+      slug: actual-risson
+    attrs:
+      name: Actual Budget
+      group: Services
+      meta_description: Finances
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/actual-budget.png
+      provider: !KeyOf provider
+      policy_engine_mode: any
+
+  - id: group
+    model: authentik_core.group
+    identifiers:
+      name: app-actual-risson
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group
+    attrs:
+      order: 10

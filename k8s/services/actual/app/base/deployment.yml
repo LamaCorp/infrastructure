@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actual
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: actual
+          image: ghcr.io/actualbudget/actual
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: actual-config
+            - configMapRef:
+                name: actual-oidc-credentials
+          ports:
+            - name: http
+              containerPort: 5006
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: actual-data

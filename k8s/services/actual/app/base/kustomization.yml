@@ -1,0 +1,25 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: actual
+
+resources:
+  - server
+  - gotenberg
+  - tika
+  - network-policy.yml
+  - secrets.yml
+
+configMapGenerator:
+  - name: actual-config
+    literals:
+      - ACTUAL_LOGIN_METHOD=openid
+      - ACTUAL_ALLOWED_LOGIN_METHODS=openid
+      - ACTUAL_TRUSTED_PROXIES=172.28.128.0/22,2001:67c:17fc:110::/60
+      - ACTUAL_OPENID_ENFORCE=true
+      - ACTUAL_USER_CREATION_MODE=login
+
+images:
+  - name: ghcr.io/actualbudget/actual
+    newTag: 26.6.0@sha256:74385f8067f401e61f0be9e343c471705c42dfaa195295c40c5b2f15f4dcc9d4
