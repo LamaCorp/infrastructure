@@ -16,7 +16,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: actual-config
-            - configMapRef:
+            - secretRef:
                 name: actual-oidc-credentials
           ports:
             - name: http
