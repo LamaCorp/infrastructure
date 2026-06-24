@@ -66,6 +66,6 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/mastodon/mastodon
-    newTag: v4.6.0@sha256:7bc781fa793aad88da5ea70e9900ee92687a88f1a99ecd7fca633b9cd01f2f62
+    newTag: v4.6.1@sha256:d95cf1697753c6919b804504cbc98a61e56da99eea40a226e0d5c1639cea21d5
   - name: ghcr.io/mastodon/mastodon-streaming
     newTag: v4.6.0@sha256:0dce55c7bc52dcb64ee68bd5025759843b8242387d8895e98553e8db449eb47c
