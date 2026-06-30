@@ -18,5 +18,5 @@ configMapGenerator:
       - KRB5_KDC_MASTER_PASSWORD_FILE=/secrets/master-password
 
 images:
-  - name: ghcr.io/authentik-community/krb5
+  - name: ghcr.io/authentik-labs/krb5
     newTag: 0.2.3@sha256:3a5d03d47dfff80014f0fc918260c8549c3493f4451aae9d059247e34f80bf41
