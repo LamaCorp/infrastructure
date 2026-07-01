@@ -19,6 +19,7 @@ configMapGenerator:
       - ACTUAL_TRUSTED_PROXIES=172.28.128.0/22,2001:67c:17fc:110::/60
       - ACTUAL_OPENID_ENFORCE=true
       - ACTUAL_USER_CREATION_MODE=login
+      - DEBUG=actual:enable-banking:*
 
 images:
   - name: ghcr.io/actualbudget/actual
