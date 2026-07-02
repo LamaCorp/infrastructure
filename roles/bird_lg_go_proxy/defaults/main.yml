@@ -1,5 +1,5 @@
 ---
-bird_lg_go_proxy_version: v1.4.5
+bird_lg_go_proxy_version: v1.4.7
 
 bird_lg_go_proxy_archive_url: "https://github.com/xddxdd/bird-lg-go/releases/download/{{ bird_lg_go_proxy_version }}/bird-lgproxy-go-{{ bird_lg_go_proxy_version }}-linux-amd64.tar.gz"
 
