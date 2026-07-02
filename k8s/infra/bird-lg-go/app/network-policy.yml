@@ -2,9 +2,9 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: allow-egress-world
+  name: allow-egress-all
 spec:
   endpointSelector: {}
   egress:
     - toEntities:
-        - world
+        - all
