@@ -6,5 +6,6 @@ resources:
 
   - authentik.rs.yml
   - home-assistant
+  - home-assistant-grafana
   - frigate
   - zigbee2mqtt
