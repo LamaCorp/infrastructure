@@ -10,7 +10,7 @@ dependencies = [
     "black==26.5.1",
     "hvac==2.4.0",
     "jmespath==1.1.0",
-    "pre-commit==4.6.0",
+    "pre-commit==4.6.1",
     "ruff==0.15.22",
     "xmltodict==1.0.4",
     "yamllint==1.38.0",
