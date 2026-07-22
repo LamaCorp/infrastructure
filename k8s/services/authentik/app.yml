@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       ref: infrastructure
     - repoURL: https://charts.goauthentik.io
-      targetRevision: 2026.5.5
+      targetRevision: 2026.5.6
       chart: authentik
       helm:
         releaseName: authentik
