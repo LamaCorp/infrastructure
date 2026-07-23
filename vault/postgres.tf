@@ -32,6 +32,9 @@ locals {
         "k3s.fsn.as212024.net_services-lemmy_lemmy" = {
           postgres_role = "lemmy"
         }
+        "k3s.fsn.as212024.net_services-lubelogger" = {
+          postgres_role = "lubelogger"
+        }
         "k3s.fsn.as212024.net_services-mastodon" = {
           postgres_role = "mastodon"
         }

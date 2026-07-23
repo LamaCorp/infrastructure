@@ -21,6 +21,7 @@ configMapGenerator:
       - ./blueprints/apps-hedgedoc.yaml
       - ./blueprints/apps-home-assistant.yaml
       - ./blueprints/apps-immich.yaml
+      - ./blueprints/apps-lubelogger.yaml
       - ./blueprints/apps-mail.yaml
       - ./blueprints/apps-mastodon.yaml
       - ./blueprints/apps-matrix.yaml

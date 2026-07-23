@@ -15,6 +15,7 @@ postgresql_users:
   hedgedoc: {}
   immich: {}
   lemmy: {}
+  lubelogger: {}
   mastodon: {}
   matrix_synapse: {}
   mattermost: {}
@@ -33,6 +34,7 @@ postgresql_dbs:
   hedgedoc: hedgedoc
   immich: immich
   lemmy: lemmy
+  lubelogger: lubelogger
   mailman: postgres
   mastodon: mastodon
   matrix_synapse: matrix_synapse

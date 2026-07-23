@@ -1,0 +1,19 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: lubelogger
+spec:
+  parentRefs:
+    - name: eg-http-public
+      namespace: core-eg
+      sectionName: https
+  hostnames:
+    - lube.risson.space
+  rules:
+    - matches:
+        - path:
+            value: "/"
+      backendRefs:
+        - name: lubelogger
+          port: 80

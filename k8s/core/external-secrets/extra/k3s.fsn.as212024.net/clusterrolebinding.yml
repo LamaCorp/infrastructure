@@ -85,6 +85,9 @@ subjects:
     namespace: services-lemmy
     name: default
   - kind: ServiceAccount
+    namespace: services-lubelogger
+    name: default
+  - kind: ServiceAccount
     namespace: services-mastodon
     name: default
   - kind: ServiceAccount

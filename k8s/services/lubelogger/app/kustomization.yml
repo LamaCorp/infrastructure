@@ -1,0 +1,37 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: lubelogger
+
+resources:
+  - deployment.yml
+  - httproute.yml
+  - network-policy.yml
+  - secrets.yml
+  - service.yml
+
+configMapGenerator:
+  - name: lubelogger-config
+    literals:
+      - LC_ALL=en_GB.UTF-8
+      - LANG=en_GB.UTF-8
+      - OpenIDConfig__Name=Lama Corp. Connect
+      - OpenIDConfig__AuthURL=https://auth.lama-corp.space/application/o/authorize/
+      - OpenIDConfig__TokenURL=https://auth.lama-corp.space/application/o/token/
+      - OpenIDConfig__RedirectURL=https://lube.risson.space/Login/RemoteAuth
+      - OpenIDConfig__Scope=email
+      - OpenIDConfig__ValidateState=true
+      - OpenIDConfig__UsePKCE=true
+      - OpenIDConfig__DisableRegularLogin=true
+      - OpenIDConfig__UserInfoURL=https://auth.lama-corp.space/application/o/userinfo/
+      - OpenIDConfig__LogOutURL=https://auth.lama-corp.space/application/o/lubelogger/end-session/
+      - OpenIDConfig__DisableRegistration=false
+      - OpenIDConfig__AutoGenerateTokens=true
+      - EnableAuth=true
+      - EnableRootUserOIDC=true
+      - LUBELOGGER_DOMAIN=https://lube.risson.space
+
+images:
+  - name: ghcr.io/hargata/lubelogger
+    newTag: v1.7.0@sha256:01bdb486af71e641c3ae41499e0412a21f2e04fa31b25c5c6531b42c112938e5

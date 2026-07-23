@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lubelogger
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  template:
+    spec:
+      securityContext:
+        runAsUser: 17746
+        runAsGroup: 17746
+        fsGroup: 17746
+      containers:
+        - name: atuin
+          image: ghcr.io/hargata/lubelogger
+          envFrom:
+            - configMapRef:
+                name: lubelogger-config
+            - secretRef:
+                name: lubelogger-postgres-credentials
+            - secretRef:
+                name: lubelogger-oidc-credentials
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /App/data
+              subPath: data
+            - name: data
+              mountPath: /.aspnet/DataProtection-Keys
+              subPath: keys
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: lubelogger-data
