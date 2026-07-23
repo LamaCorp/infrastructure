@@ -29,6 +29,7 @@ configMapGenerator:
       - OpenIDConfig__LogOutURL=https://auth.lama-corp.space/application/o/lubelogger/end-session/
       - OpenIDConfig__DisableRegistration=false
       - OpenIDConfig__AutoGenerateTokens=true
+      - UserNameHash=56d5c58fca7cafd5a4d2959dfbc21890bcf45a1a58e268a2b87916defcde7453 # risson@lama-corp.space
       - EnableAuth=true
       - EnableRootUserOIDC=true
       - LUBELOGGER_DOMAIN=https://lube.risson.space
