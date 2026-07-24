@@ -47,6 +47,7 @@ spec:
             auth.generic_oauth:
               name: authentik
               enabled: "True"
+              auto_login: "True"
               allow_sign_up: "True"
               scopes: "openid email profile entitlements"
               auth_url: https://auth.as212024.net/application/o/authorize/
