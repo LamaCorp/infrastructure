@@ -19,6 +19,7 @@ configMapGenerator:
       - ./blueprints/apps-grafana.yaml
       - ./blueprints/apps-happydomain.yaml
       - ./blueprints/apps-hedgedoc.yaml
+      - ./blueprints/apps-home-assistant-grafana.yaml
       - ./blueprints/apps-home-assistant.yaml
       - ./blueprints/apps-immich.yaml
       - ./blueprints/apps-lubelogger.yaml

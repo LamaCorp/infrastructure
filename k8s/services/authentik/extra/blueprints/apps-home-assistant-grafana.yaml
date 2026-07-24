@@ -1,0 +1,113 @@
+# yaml-language-server: $schema=https://goauthentik.io/blueprints/schema.json
+# yamllint disable
+---
+version: 1
+metadata:
+  name: Apps - Home assistant Grafana
+entries:
+  - id: provider
+    model: authentik_providers_oauth2.oauth2provider
+    identifiers:
+      name: home-assistant-grafana
+    attrs:
+      authorization_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, "default-provider-authorization-implicit-consent"],
+        ]
+      signing_key:
+        !Find [
+          authentik_crypto.certificatekeypair,
+          [name, "authentik Self-signed Certificate"],
+        ]
+      invalidation_flow:
+        !Find [
+          authentik_flows.flow,
+          [slug, "default-provider-invalidation-flow"],
+        ]
+
+      client_type: confidential
+      redirect_uris:
+        - url: https://grafana.phemma.fr/login/generic_oauth
+          matching_mode: strict
+
+      access_code_validity: minutes=1
+      access_token_validity: minutes=5
+      refresh_token_validity: days=30
+
+      sub_mode: hashed_user_id
+      property_mappings:
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'openid'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: Application Entitlements"],
+          ]
+
+  - id: application
+    model: authentik_core.application
+    identifiers:
+      slug: home-assistant-grafana
+    attrs:
+      name: Home assistant Grafana
+      group: Maison
+      description: Home automation dashboards
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/grafana.png
+      provider: !KeyOf provider
+      policy_engine_mode: any
+
+  - id: group-admin
+    model: authentik_core.group
+    identifiers:
+      name: app-home-assistant-grafana-admin
+  - id: group-viewer
+    model: authentik_core.group
+    identifiers:
+      name: app-home-assistant-grafana-viewer
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group-admin
+    attrs:
+      order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group-viewer
+    attrs:
+      order: 20
+
+  - id: ent-admin
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: admin
+  - id: ent-viewer
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: viewer
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-admin
+      group: !KeyOf group-admin
+    attrs:
+      order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-viewer
+      group: !KeyOf group-viewer
+    attrs:
+      order: 20
