@@ -16,3 +16,10 @@ spec:
               imagePullPolicy: IfNotPresent
               args:
                 - https://cloud.lama-corp.space/cron.php
+          nodeSelector:
+            k8s.as212024.net/role: storage
+          tolerations:
+            - key: k8s.as212024.net/role
+              operator: Equal
+              value: storage
+              effect: NoExecute
