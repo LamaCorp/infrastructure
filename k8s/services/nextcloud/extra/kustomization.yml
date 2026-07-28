@@ -13,4 +13,4 @@ images:
   - name: quay.io/curl/curl
     newTag: 8.21.0@sha256:7c12af72ceb38b7432ab85e1a265cff6ae58e06f95539d539b654f2cfa64bb13
   - name: docker.io/collabora/code
-    newTag: 26.04.2.3.1@sha256:98bcceff1a9f0e0ac8ff12ac7fca7d657a4819d6c90c8d3b371f28c9ec19db1a
+    newTag: 26.04.2.4.1@sha256:1f864ce3f0c49e867787b6dd303bd6ba989542d3023f6809df558eafd04c1b97
