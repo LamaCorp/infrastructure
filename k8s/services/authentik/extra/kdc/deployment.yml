@@ -15,7 +15,7 @@ spec:
         fsGroup: 1673
       containers:
         - name: kdc
-          image: ghcr.io/authentik-community/krb5
+          image: ghcr.io/authentik-labs/krb5
           envFrom:
             - configMapRef:
                 name: kdc-config
