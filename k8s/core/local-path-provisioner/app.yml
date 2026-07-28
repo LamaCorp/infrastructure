@@ -39,3 +39,10 @@ spec:
                 - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
                   paths:
                     - /srv/local-path-provisioner
+
+              configmap:
+                helperPod:
+                  tolerations:
+                    - key: k8s.as212024.net/role
+                      operator: Exists
+                      effect: NoExecute
