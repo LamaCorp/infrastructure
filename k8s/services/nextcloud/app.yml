@@ -158,6 +158,14 @@ spec:
             nextcloudData:
               enabled: false
 
+          nodeSelector:
+            k8s.as212024.net/role: storage
+          tolerations:
+            - key: k8s.as212024.net/role
+              operator: Equal
+              value: storage
+              effect: NoExecute
+
           startupProbe:
             enabled: true
 
@@ -177,7 +185,7 @@ spec:
           httpRoute:
             enabled: true
             parentRefs:
-              - name: eg-http-public
+              - name: eg-http-bar
                 namespace: core-eg
                 sectionName: https
             hostnames:
