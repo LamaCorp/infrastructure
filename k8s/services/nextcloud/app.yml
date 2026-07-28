@@ -25,7 +25,7 @@ spec:
       helm:
         releaseName: nextcloud
         values: |
-          replicaCount: 0
+          replicaCount: 1
           nextcloud:
             host: cloud.lama-corp.space
             existingSecret:
