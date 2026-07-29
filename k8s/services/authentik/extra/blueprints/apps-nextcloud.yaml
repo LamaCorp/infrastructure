@@ -16,7 +16,7 @@ entries:
         return {
           "avatar": request.user.avatar,
           "quota": "0",
-          "is_admin": ak_is_group_member(request.user, name="roots"),
+          "is_admin": "1" if ak_is_group_member(request.user, name="roots") else "0",
           "homeDirectory": f"/user/{request.user.username}",
         }
 
