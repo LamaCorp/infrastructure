@@ -1,0 +1,79 @@
+---
+global:
+  tlsDisable: true
+  serverTelemetry:
+    prometheusOperator: true
+
+server:
+  enabled: true
+
+  image:
+    repository: docker.io/hashicorp/vault
+    tag: 1.21.2@sha256:eb0ba6836e8d4699b7a1e8ca70d8433f7b87dcd067e6d82dff237d3ed2600ea0
+
+  standalone:
+    enabled: true
+    config: |
+      disable_mlock = true
+      ui = true
+
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+        telemetry {
+          unauthenticated_metrics_access = "true"
+        }
+      }
+      storage "file" {
+        path = "/vault/data"
+      }
+
+      telemetry {
+        prometheus_retention_time = "30s"
+        disable_hostname = true
+      }
+
+  readinessProbe:
+    enabled: true
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+  livenessProble:
+    enabled: true
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+    initialDelaySeconds: 60
+
+  dataStorage:
+    enabled: true
+
+serverTelemetry:
+  serviceMonitor:
+    enabled: true
+  prometheusRules:
+    enabled: true
+    rules:
+      - alert: VaultSealed
+        annotations:
+          summary: Vault is sealed.
+        expr: vault_core_unsealed == 0
+        for: 5m
+        labels:
+          severity: critical
+      - alert: VaultHighResponseTime
+        annotations:
+          summary: The response time of Vault is over 500ms on average over the last 5
+            minutes.
+        expr: vault_core_handle_request{quantile="0.5", namespace="mynamespace"} > 500
+        for: 5m
+        labels:
+          severity: warning
+      - alert: VaultHighResponseTime
+        annotations:
+          summary: The response time of Vault is over 1s on average over the last 5
+            minutes.
+        expr: vault_core_handle_request{quantile="0.5", namespace="mynamespace"} > 1000
+        for: 5m
+        labels:
+          severity: critical
+
+injector:
+  enabled: false
