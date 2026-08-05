@@ -1,0 +1,14 @@
+---
+haproxy_frontends:
+  - name: k3s_api
+    address: "*:6443"
+    mode: tcp
+    backend: k3s_api
+
+haproxy_backends:
+  - name: k3s_api
+    mode: tcp
+    check: false
+    servers:
+      - name: k3s-1
+        address: 172.28.1.11:6443

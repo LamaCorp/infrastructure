@@ -1,0 +1,193 @@
+---
+libvirt_host_pools:
+  - name: images
+    type: dir
+    path: /var/lib/libvirt/images
+    mode: 755
+    owner: root
+    group: root
+  - name: k3s-1
+    type: dir
+    path: /vms/k3s-1
+    mode: 755
+    owner: root
+    group: root
+  - name: k3s-1-etcd
+    type: dir
+    path: /vms/k3s-1/etcd
+    mode: 755
+    owner: root
+    group: root
+  - name: pine
+    type: dir
+    path: /vms/pine
+    mode: 755
+    owner: root
+    group: root
+  - name: mail
+    type: dir
+    path: /vms/mail
+    mode: 755
+    owner: root
+    group: root
+  - name: mongodb
+    type: dir
+    path: /vms/mongodb
+    mode: 755
+    owner: root
+    group: root
+  - name: postgresql
+    type: dir
+    path: /vms/postgresql
+    mode: 755
+    owner: root
+    group: root
+  - name: redis
+    type: dir
+    path: /vms/redis
+    mode: 755
+    owner: root
+    group: root
+
+libvirt_vms:
+  - state: present
+    name: k3s-1
+    vcpus: 16
+    memory_mb: 98304
+    enable_spice: true
+    volumes:
+      - pool: k3s-1
+        name: os
+        capacity: 200G
+        discard: unmap
+      - pool: k3s-1
+        name: storage
+        capacity: 1024G
+        discard: unmap
+      - pool: k3s-1-etcd
+        name: etcd
+        capacity: 10G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: lan-svc-101
+        mac: 52:54:00:f5:5a:2a
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: mail
+    vcpus: 4
+    memory_mb: 8192
+    enable_spice: true
+    volumes:
+      - pool: mail
+        name: os
+        capacity: 20G
+        discard: unmap
+      - pool: mail
+        name: storage
+        capacity: 50G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: lan-mdw-102
+        mac: 52:54:00:69:13:91
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: mongodb
+    vcpus: 4
+    memory_mb: 4096
+    enable_spice: true
+    volumes:
+      - pool: mongodb
+        name: os
+        capacity: 20G
+        discard: unmap
+      - pool: mongodb
+        name: storage
+        capacity: 50G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: lan-mdw-102
+        mac: 52:54:00:bd:be:87
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: postgresql
+    vcpus: 8
+    memory_mb: 16384
+    enable_spice: true
+    volumes:
+      - pool: postgresql
+        name: os
+        capacity: 20G
+        discard: unmap
+      - pool: postgresql
+        name: storage
+        capacity: 500G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: lan-mdw-102
+        mac: 52:54:00:b0:ad:6d
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: redis
+    vcpus: 4
+    memory_mb: 4096
+    enable_spice: true
+    volumes:
+      - pool: redis
+        name: os
+        capacity: 10G
+        discard: unmap
+      - pool: redis
+        name: storage
+        capacity: 5G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: lan-mdw-102
+        mac: 52:54:00:01:f3:d1
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: pine
+    vcpus: 2
+    memory_mb: 8192
+    enable_spice: true
+    volumes:
+      - pool: pine
+        name: os
+        capacity: 20G
+        discard: unmap
+      - pool: pine
+        name: storage
+        capacity: 50G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: cl-vm-0
+        mac: 52:54:00:e0:d1:60
+    boot_firmware: efi
+    start: true
+    autostart: true

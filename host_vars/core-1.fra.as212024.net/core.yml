@@ -1,0 +1,66 @@
+---
+bird_router_id: 209.112.97.241
+
+bird_bgp_preferred_source:
+  v4: 209.112.97.241
+  v6: 2001:67c:17fc:ffff::1
+
+bird_static_routes:
+  v4:
+    - 209.112.97.241/32 via "id"
+    - 37.46.199.160/27 unreachable # Netrouting /27
+    - 209.112.97.25/32 unreachable # mail.lama-corp.space
+    - 209.112.97.232/32 unreachable # nat-svc
+    - 209.112.97.233/32 unreachable # nat-mdw
+    - 209.112.97.234/32 unreachable # nat-cust
+  v6:
+    - 2001:67c:17fc:ffff::1/128 via "id"
+    - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
+
+bird_bgp_sessions:
+  cores:
+    defaults:
+      med_metric: true
+    sessions:
+      - description: PVL
+        alias: pvl
+        asn: 212024
+        interface: core-pvl
+        local:
+          v4: 169.254.0.2
+          v6: fe80::0:2
+        remote:
+          v4: 169.254.0.3
+          v6: fe80::0:3
+      - description: FRA
+        alias: fra
+        asn: 212024
+        interface: core-fra
+        local:
+          v4: 169.254.0.4
+          v6: fe80::0:4
+        remote:
+          v4: 169.254.0.5
+          v6: fe80::0:5
+
+bird_ospf_sessions:
+  - alias: ospf
+    export_static_routes: true
+    areas:
+      0.0.0.0:
+        interfaces:
+          core-bar:
+            type: ptp
+            cost: 25
+          core-pvl:
+            type: ptp
+            cost: 25
+          core-fra:
+            type: ptp
+            cost: 25
+          lan-svc-101:
+            cost: 1
+          lan-mdw-102:
+            stub: true
+          cl-vm-0:
+            stub: true
