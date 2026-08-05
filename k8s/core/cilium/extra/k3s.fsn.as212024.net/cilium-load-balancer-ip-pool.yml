@@ -6,9 +6,7 @@ metadata:
 spec:
   allowFirstLastIPs: "Yes"
   blocks:
-    - cidr: 148.251.148.234/32
     - cidr: 148.251.148.235/32
-    - cidr: 148.251.148.236/32
 ---
 apiVersion: cilium.io/v2
 kind: CiliumLoadBalancerIPPool
