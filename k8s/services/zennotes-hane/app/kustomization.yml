@@ -21,4 +21,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/adibhanna/zennotes
-    newTag: 2.26.0@sha256:f4361eca63b6bf8fe21bd4908baba287ea3375ae6e676c3bbaa94e2eb128f0aa
+    newTag: 2.27.0@sha256:e23f6d5d405583e1dc7a5b69cf78d79301388cb000dc3cdc53a17b54c7f4467f
