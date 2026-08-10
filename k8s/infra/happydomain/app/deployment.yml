@@ -34,3 +34,11 @@ spec:
           persistentVolumeClaim:
             claimName: happydomain-data
       enableServiceLinks: false
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 2606:4700:4700::1111
+          - 2620:fe::fe
+          - 86.54.11.100
+        options:
+          - name: edns0
