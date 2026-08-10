@@ -16,6 +16,9 @@ spec:
   allowFirstLastIPs: "Yes"
   blocks:
     - cidr: 209.112.97.53/32
+    - cidr: 209.112.97.80/32
     - cidr: 209.112.97.160/28
-    - cidr: 2001:67c:17fc::/64
+    - cidr: 2001:67c:17fc::53/128
+    - cidr: 2001:67c:17fc::80/128
+    - cidr: 2001:67c:17fc::443/128
     - cidr: 2001:67c:17fc:130::/60
