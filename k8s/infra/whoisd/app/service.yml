@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: whois
   annotations:
-    io.cilium/lb-ipam-ips: 209.112.97.165,2001:67c:17fc:130::43
+    io.cilium/lb-ipam-ips: 209.112.97.42,2001:67c:17fc::43
     external-dns.alpha.kubernetes.io/hostname: whois.as212024.net
 spec:
   type: LoadBalancer

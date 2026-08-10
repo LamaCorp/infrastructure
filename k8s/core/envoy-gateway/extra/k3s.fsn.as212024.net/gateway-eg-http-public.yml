@@ -11,7 +11,7 @@ spec:
       kind: EnvoyProxy
       name: eg-http-public
     annotations:
-      io.cilium/lb-ipam-ips: 209.112.97.80,2001:67c:17fc::80
+      io.cilium/lb-ipam-ips: 209.112.97.43,2001:67c:17fc::443
       external-dns.alpha.kubernetes.io/hostname: gw-eg-http-public.k3s.fsn.as212024.net
   listeners:
     - name: http
