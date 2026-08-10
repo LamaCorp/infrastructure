@@ -21,6 +21,13 @@ spec:
     resources:
       requests:
         storage: 20Gi
+  nodeSelector:
+    k8s.as212024.net/role: storage
+  tolerations:
+    - key: k8s.as212024.net/role
+      operator: Equal
+      value: storage
+      effect: NoExecute
 ---
 apiVersion: v1
 kind: Service
