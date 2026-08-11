@@ -15,7 +15,7 @@ configMapGenerator:
     literals:
       - BIRDLG_NAVBAR_BRAND=AS212024
       - BIRDLG_PROXY_PORT=8990
-      - BIRDLG_SERVERS=edge-1.pvl.as212024.net,edge-2.fra.as212024.net,nucleus.fsn.as212024.net,gate-1.bar.as212024.net
+      - BIRDLG_SERVERS=edge-1.pvl.as212024.net,edge-2.fra.as212024.net,core-1.fra.as212024.net,gate-1.bar.as212024.net
       - BIRDLG_TITLE_BRAND=AS212024 Looking glass
       - BIRDLG_WHOIS=whois.as212024.net
       - BIRDLG_TRUST_PROXY_HEADERS=true

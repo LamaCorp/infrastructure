@@ -7,7 +7,7 @@ spec:
   jobName: node
   targetEndpoints:
     - targets:
-        - nucleus.fsn.as212024.net:9100
+        - core-1.fra.as212024.net:9100
         - gate-1.bar.as212024.net:9100
         - edge-1.pvl.as212024.net:9100
         - edge-2.fra.as212024.net:9100
@@ -43,7 +43,7 @@ spec:
   jobName: chrony
   targetEndpoints:
     - targets:
-        - nucleus.fsn.as212024.net:9123
+        - core-1.fra.as212024.net:9123
         - gate-1.bar.as212024.net:9123
         - edge-1.pvl.as212024.net:9123
         - edge-2.fra.as212024.net:9123
@@ -79,7 +79,7 @@ spec:
   jobName: nftables
   targetEndpoints:
     - targets:
-        - nucleus.fsn.as212024.net:9630
+        - core-1.fra.as212024.net:9630
         - gate-1.bar.as212024.net:9630
         - edge-1.pvl.as212024.net:9630
         - edge-2.fra.as212024.net:9630
@@ -115,10 +115,10 @@ spec:
   jobName: bird
   targetEndpoints:
     - targets:
+        - core-1.fra.as212024.net:9324
+        - gate-1.bar.as212024.net:9324
         - edge-1.pvl.as212024.net:9324
         - edge-2.fra.as212024.net:9324
-        - gate-1.bar.as212024.net:9324
-        - nucleus.fsn.as212024.net:9324
 ---
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMStaticScrape
