@@ -3,7 +3,7 @@ chrony_host_config:
   allow:
     - ""
   server:
-    - nucleus.fsn.as212024.net iburst xleave extfield F323 noselect
+    - core-1.fra.as212024.net iburst xleave extfield F323 noselect
     - gate-1.bar.as212024.net iburst xleave extfield F323 noselect
     - edge-1.pvl.as212024.net iburst xleave extfield F323 noselect
     - edge-2.fra.as212024.net iburst xleave extfield F323 noselect
