@@ -18,6 +18,27 @@ bird_static_routes:
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
 
 bird_bgp_sessions:
+  peers:
+    sessions:
+      - description: James Landrein 1
+        alias: james_landrein_1
+        asn: 201254
+        irr: AS201254
+        interface: ppl-as201254-1
+        local:
+          v6: fd68:2402:1fbb:e377::1:21:2024
+        remote:
+          v6: fd68:2402:1fbb:e377::1:20:1254
+      - description: James Landrein 2
+        alias: james_landrein_2
+        asn: 201254
+        irr: AS201254
+        interface: ppl-as201254-2
+        local:
+          v6: fd68:2402:1fbb:e377::2:21:2024
+        remote:
+          v6: fd68:2402:1fbb:e377::2:20:1254
+
   cores:
     defaults:
       med_metric: true

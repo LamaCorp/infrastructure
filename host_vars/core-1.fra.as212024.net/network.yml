@@ -72,6 +72,33 @@ systemd_networkd_netdev:
     NetDev:
       Name: cl-vm-0
       Kind: bridge
+  # private peerings
+  40-ppl-as201254-1:
+    NetDev:
+      Name: ppl-as201254-1
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/ppl-as201254/private
+      ListenPort: 51822
+      RouteTable: "off"
+    WireGuardPeer:
+      # James Landrein, AS201254
+      - PublicKey: "gNarVedO4h+QakoAG2b5pFXTk1nT5c9BBuC22+f+qB0="
+        AllowedIPs: fd68:2402:1fbb:e377::1:20:1254/128,2a06:9801:2d::/48
+        PersistentKeepalive: 60
+  40-ppl-as201254-2:
+    NetDev:
+      Name: ppl-as201254-2
+      Kind: wireguard
+    WireGuard:
+      PrivateKeyFile: /etc/wireguard/ppl-as201254/private
+      ListenPort: 51823
+      RouteTable: "off"
+    WireGuardPeer:
+      # James Landrein, AS201254
+      - PublicKey: "2yX1Qxy+4NnFtn4vMP6US9o8xCRZa6WzH1mI9oquRHg="
+        AllowedIPs: fd68:2402:1fbb:e377::2:20:1254/128,2a06:9801:2d::/48
+        PersistentKeepalive: 60
 
 systemd_networkd_network:
   10-id:
@@ -212,3 +239,24 @@ systemd_networkd_network:
       - Destination: 209.112.97.234/32 # nat-cust
         Gateway: 0.0.0.0
         Type: unreachable
+  # private peerings
+  40-ppl-as201254-1:
+    Match:
+      Name: ppl-as201254-1
+    Link:
+      RequiredForOnline: false
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address: fd68:2402:1fbb:e377::1:21:2024/64
+  40-ppl-as201254-2:
+    Match:
+      Name: ppl-as201254-2
+    Link:
+      RequiredForOnline: false
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      Address: fd68:2402:1fbb:e377::2:21:2024/64

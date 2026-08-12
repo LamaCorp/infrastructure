@@ -3,6 +3,9 @@ nft_define_host:
   bgp interfaces:
     name: bgp_interfaces
     value: "{core-bar, core-pvl, core-fra}"
+  bgp neighbors 6:
+    name: bgp_neighbors_6
+    value: "{fd68:2402:1fbb:e377::1:20:1254/128, fd68:2402:1fbb:e377::2:20:1254/128}"
   ospf interfaces:
     name: ospf_interfaces
     value: "{lan-svc-101, core-bar, core-pvl, core-fra}"
@@ -10,6 +13,9 @@ nft_define_host:
 nft_input_host_rules:
   500 k3s api:
     - tcp dport 6443 accept
+  550 ppl-as201254:
+    - udp dport 51822 accept
+    - udp dport 51823 accept
 
 nft__nat_host_postrouting_rules:
   100 external connectivity:
