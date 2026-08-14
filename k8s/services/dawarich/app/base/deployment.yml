@@ -31,6 +31,8 @@ spec:
               mountPath: /var/app/storage
             - name: public
               mountPath: /var/app/public
+            - name: watched
+              mountPath: /var/app/tmp/imports/watched
       volumes:
         - name: storage
           persistentVolumeClaim:
@@ -38,3 +40,5 @@ spec:
         - name: public
           persistentVolumeClaim:
             claimName: dawarich-public
+        - name: watched
+          emptyDir: {}
