@@ -32,7 +32,7 @@ blueprints:
 global:
   image:
     repository: ghcr.io/goauthentik/server
-    tag: 2026.8.0-rc4@sha256:aedcf2a4532408f6f0b393a7cd7cddee0aed49451b1f5ab82bad39496cf07cf9
+    tag: 2026.8.0-rc7@sha256:9d30c53c17a6889a2b2a7145066dc68cc3909a42596fe44844ba958020346cc4
   env:
     - name: AUTHENTIK_BOOTSTRAP_EMAIL
       value: root@lama-corp.space
