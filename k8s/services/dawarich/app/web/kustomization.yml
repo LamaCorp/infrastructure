@@ -1,0 +1,16 @@
+---
+kind: Kustomization
+
+resources:
+  - ../base
+
+  - httproute.yml
+  - service.yml
+
+patches:
+  - path: deployment.yml
+    target:
+      kind: Deployment
+      name: dawarich
+    options:
+      allowNameChange: true

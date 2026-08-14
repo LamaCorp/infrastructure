@@ -7,6 +7,7 @@ postgresql_users:
 
   atuin: {}
   authentik: {}
+  dawarich: {}
   gatus_devoups: {}
   gatus_phowork: {}
   gatus_prologin: {}
@@ -26,6 +27,7 @@ postgresql_users:
 postgresql_dbs:
   atuin: atuin
   authentik: authentik
+  dawarich: dawarich
   gatus_devoups: gatus_devoups
   gatus_phowork: gatus_phowork
   gatus_prologin: gatus_prologin

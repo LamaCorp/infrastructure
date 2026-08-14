@@ -5,6 +5,8 @@ redis_enable_vm_overcommit: true
 redis_instances:
   - name: authentik
     port: 6380
+  - name: dawarich
+    port: 6381
   - name: nextcloud
     port: 6382
   - name: paperless_risson

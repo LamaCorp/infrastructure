@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dawarich
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: dawarich
+          image: docker.io/freikin/dawarich
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: dawarich-config
+            - secretRef:
+                name: dawarich-secrets
+            - secretRef:
+                name: dawarich-postgres-credentials
+            - secretRef:
+                name: dawarich-oidc-credentials
+          ports:
+            - name: metrics
+              containerPort: 9394
+              protocol: TCP
+          volumeMounts:
+            - name: storage
+              mountPath: /var/app/storage
+            - name: public
+              mountPath: /var/app/public
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: dawarich-storage
+        - name: public
+          persistentVolumeClaim:
+            claimName: dawarich-public

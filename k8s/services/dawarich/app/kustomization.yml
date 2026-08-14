@@ -1,0 +1,47 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/name: dawarich
+
+resources:
+  - web
+  - sidekiq
+  - network-policy.yml
+  - pvc.yml
+  - secrets.yml
+
+configMapGenerator:
+  - name: dawarich-config
+    literals:
+      - DATABASE_HOST=postgresql.fsn.as212024.net
+      - DATABASE_PORT=6432
+      - DATABASE_NAME=dawarich
+
+      - REDIS_URL=redis://redis.fsn.as212024.net:6381
+
+      - DOMAIN=tracks.lama-corp.space
+      - APPLICATION_HOSTS=localhost,tracks.lama-corp.space
+
+      - OIDC_ISSUER=https://auth.lama-corp.space/application/o/dawarich/
+      - OIDC_REDIRECT_URI=https://track.lama-corp.space/users/auth/openid_connect/callback
+      - OIDC_PROVIDER_NAME=Lama Corp. Connect
+      - OIDC_AUTO_REGISTER=true
+      - OIDC_PKCE_ENABLED=true
+      - ALLOW_EMAIL_PASSWORD_REGISTRATION=false
+      - ALLOW_EMAIL_PASSWORD_LOGIN=false
+
+      - TIME_ZONE=Europe/Paris
+      - RAILS_ENV=production
+      - PROMETHEUS_EXPORTER_ENABLED=true
+      - SIDEKIQ_METRICS_URL=http://dawarich-sidekiq-metrics:9394/metrics
+      - RAILS_LOG_TO_STDOUT=true
+      - SELF_HOSTED=true
+      - STORE_GEODATA=true
+
+      - WEB_CONCURRENCY=1
+      - BACKGROUND_PROCESSING_CONCURRENCY=3
+
+images:
+  - name: docker.io/freikin/dawarich
+    newTag: 1.12.1@sha256:1b553dabfb7a689cc2b2fa15e22ac06a1ddaad104a82e693cbba6bb71ddb9d62

@@ -1,0 +1,18 @@
+---
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/component: sidekiq
+
+resources:
+  - ../base
+
+  - service.yml
+
+patches:
+  - path: deployment.yml
+    target:
+      kind: Deployment
+      name: dawarich
+    options:
+      allowNameChange: true

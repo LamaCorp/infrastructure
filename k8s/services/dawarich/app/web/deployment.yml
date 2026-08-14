@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dawarich-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: dawarich
+          command:
+            - web-entrypoint.sh
+          args:
+            - bin/rails
+            - server
+            - -p
+            - "3000"
+            - -b
+            - "::"
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /api/v1/health
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /api/v1/health
+          startupProbe:
+            httpGet:
+              port: http
+              path: /api/v1/health

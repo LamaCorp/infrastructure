@@ -167,6 +167,7 @@ spec:
           targetLabel: __address__
       targets:
         - authentik;redis://redis.fsn.as212024.net:6380
+        - dawarich;redis://redis.fsn.as212024.net:6381
         - nextcloud;redis://redis.fsn.as212024.net:6382
         - paperless_risson;redis://redis.fsn.as212024.net:6383
         - matrix_synapse;redis://redis.fsn.as212024.net:6384

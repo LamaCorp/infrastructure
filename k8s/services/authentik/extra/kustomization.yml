@@ -15,6 +15,7 @@ configMapGenerator:
       - ./blueprints/apps-actual-risson.yaml
       - ./blueprints/apps-archivebox.yaml
       - ./blueprints/apps-argocd.yaml
+      - ./blueprints/apps-dawarich.yaml
       - ./blueprints/apps-frigate.yaml
       - ./blueprints/apps-grafana.yaml
       - ./blueprints/apps-happydomain.yaml

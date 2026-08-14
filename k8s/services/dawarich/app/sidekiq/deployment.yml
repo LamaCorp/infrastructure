@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dawarich-sidekiq
+spec:
+  template:
+    spec:
+      containers:
+        - name: dawarich
+          command:
+            - sidekiq-entrypoint.sh
+          livenessProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "pgrep -f sidekiq"
+          readinessProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "pgrep -f sidekiq"
+          startupProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "pgrep -f sidekiq"

@@ -11,6 +11,9 @@ locals {
         "k3s.fsn.as212024.net_services-authentik" = {
           postgres_role = "authentik"
         }
+        "k3s.fsn.as212024.net_services-dawarich" = {
+          postgres_role = "dawarich"
+        }
         "k3s.fsn.as212024.net_services-gatus-devoups" = {
           postgres_role = "gatus_devoups"
         }
