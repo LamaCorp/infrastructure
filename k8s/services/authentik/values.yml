@@ -22,17 +22,17 @@ authentik:
   compliance:
     fips:
       enabled: true
-  outposts:
-    container_image_base: ghcr.io/goauthentik/%(type)s:2026.8.0-rc4
+  # outposts:
+  #   container_image_base: ghcr.io/goauthentik/%(type)s:2026.8.0-rc4
 
 blueprints:
   configMaps:
     - authentik-blueprints
 
 global:
-  image:
-    repository: ghcr.io/goauthentik/server
-    tag: 2026.8.0-rc7@sha256:9d30c53c17a6889a2b2a7145066dc68cc3909a42596fe44844ba958020346cc4
+  # image:
+  #   repository: ghcr.io/goauthentik/server
+  #   tag: 2026.8.0-rc7@sha256:9d30c53c17a6889a2b2a7145066dc68cc3909a42596fe44844ba958020346cc4
   env:
     - name: AUTHENTIK_BOOTSTRAP_EMAIL
       value: root@lama-corp.space
