@@ -8,16 +8,43 @@ bird_bgp_preferred_source:
 bird_static_routes:
   v4:
     - 209.112.97.241/32 via "id"
-    - 37.46.199.160/27 unreachable # Netrouting /27
+    # Local routes
+    - 37.46.199.160/27 unreachable # netrouting /27
     - 209.112.97.25/32 unreachable # mail.lama-corp.space
     - 209.112.97.232/32 unreachable # nat-svc
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
+    # Needed for sessions
+    - 169.254.6.206/32 via 37.46.199.110%'ul-netr-0' # needed because multihop to netrouting
   v6:
     - 2001:67c:17fc:ffff::1/128 via "id"
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
 
+bird_bgp_originations:
+  v4: []
+  v6: []
+
+bird_bgp_blacklist:
+  v4:
+    - 37.46.199.110/31- # Local prefix
+  v6:
+    - 2a00:dd0:aaaa:a::/64- # Local prefix
+
 bird_bgp_sessions:
+  upstreams:
+    sessions:
+      - description: Netrouting
+        alias: netrouting
+        asn: 6206
+        md5: "BGP@NR1n2026-212024"
+        multihop: 1
+        local:
+          v4: 37.46.199.111
+        remote:
+          v4: 169.254.6.206
+        med_metric: true
+        default_med: 100
+
   peers:
     sessions:
       - description: James Landrein 1

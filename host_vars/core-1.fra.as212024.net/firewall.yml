@@ -3,9 +3,12 @@ nft_define_host:
   bgp interfaces:
     name: bgp_interfaces
     value: "{core-bar, core-pvl, core-fra}"
+  bgp neighbors 4:
+    name: bgp_neighbors_4
+    value: "{169.254.6.206/32}"
   bgp neighbors 6:
     name: bgp_neighbors_6
-    value: "{fd68:2402:1fbb:e377::1:20:1254/128, fd68:2402:1fbb:e377::2:20:1254/128}"
+    value: "{fd00:6206:6206::1/128, fd68:2402:1fbb:e377::1:20:1254/128, fd68:2402:1fbb:e377::2:20:1254/128}"
   ospf interfaces:
     name: ospf_interfaces
     value: "{lan-svc-101, core-bar, core-pvl, core-fra}"
