@@ -107,21 +107,6 @@ config:
       group: internal
       url: https://gitlab.phowork.fr/
 
-    - name: Weathermap
-      <<: *https-endpoint
-      group: internal
-      url: https://weathermap.phowork.fr/
-
-    - name: Observium
-      <<: *https-endpoint
-      group: internal
-      url: https://observium.phowork.fr/
-
-    - name: Netbox
-      <<: *https-endpoint
-      group: internal
-      url: https://netbox.phowork.fr/
-
     ###
     # Servers
     ###
