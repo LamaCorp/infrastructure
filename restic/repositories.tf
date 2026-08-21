@@ -1,5 +1,9 @@
 locals {
   repositories = {
+    "core-1.fra.as212024.net" = [
+      "archives",
+      "user_root",
+    ]
     "nucleus.fsn.as212024.net" = [
       "archives",
       "user_root",

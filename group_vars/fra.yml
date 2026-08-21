@@ -1,0 +1,7 @@
+---
+network_nameservers:
+  - 2001:67c:17fc:ffff::1
+  - 209.112.97.241
+
+bird_bgp_region_id: 276 # Germany
+bird_bgp_site_id: 1

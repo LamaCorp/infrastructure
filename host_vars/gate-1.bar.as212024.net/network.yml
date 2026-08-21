@@ -48,12 +48,12 @@ systemd_networkd_netdev:
       ListenPort: 51801
       RouteTable: "off"
     WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/nucleus.fsn.as212024.net/etc/wireguard/core/public') }}"
+      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/core-1.fra.as212024.net/etc/wireguard/core/public') }}"
       AllowedIPs:
         - 0.0.0.0/0
         - "::/0"
       PersistentKeepalive: 60
-      Endpoint: "136.243.102.29:51802"
+      Endpoint: "37.46.199.111:51802"
   15-core-pvl:
     NetDev:
       Name: core-pvl

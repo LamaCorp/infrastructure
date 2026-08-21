@@ -26,7 +26,6 @@ repos:
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.30
     hooks:
-      - id: terraform-fmt
       - id: shellcheck
         exclude: config.sh
   - repo: https://github.com/pre-commit/pre-commit-hooks

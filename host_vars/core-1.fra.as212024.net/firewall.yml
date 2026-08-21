@@ -3,6 +3,12 @@ nft_define_host:
   bgp interfaces:
     name: bgp_interfaces
     value: "{core-bar, core-pvl, core-fra}"
+  bgp neighbors 4:
+    name: bgp_neighbors_4
+    value: "{169.254.6.206/32}"
+  bgp neighbors 6:
+    name: bgp_neighbors_6
+    value: "{fd00:6206:6206::1/128, fd68:2402:1fbb:e377::1:20:1254/128, fd68:2402:1fbb:e377::2:20:1254/128}"
   ospf interfaces:
     name: ospf_interfaces
     value: "{lan-svc-101, core-bar, core-pvl, core-fra}"
@@ -10,13 +16,13 @@ nft_define_host:
 nft_input_host_rules:
   500 k3s api:
     - tcp dport 6443 accept
+  550 ppl-as201254:
+    - udp dport 51822 accept
+    - udp dport 51823 accept
 
 nft__nat_host_postrouting_rules:
   100 external connectivity:
-    - meta oif ul-hetzner-0 ip saddr 172.28.0.0/16 ip saddr != {136.243.102.29, 148.251.148.232/29} counter snat to 148.251.148.239
-    - meta oif ul-hetzner-0 ip saddr != {136.243.102.29, 148.251.148.232/29} counter snat to 136.243.102.29
+    - meta oif ul-netr-0 ip saddr != {37.46.199.111/32, 37.46.199.160/27} counter snat to 37.46.199.111
     - meta iif lan-svc-101 oifname {core-bar, core-pvl, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.232
     - meta iif lan-mdw-102 oifname {core-bar, core-pvl, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.233
     - meta iif cl-vm-0 oifname {core-bar, core-pvl, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.234
-    # todo: drop these
-    - meta oifname {core-bar, core-pvl, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter masquerade

@@ -40,11 +40,11 @@ unbound_local_zones_core:
 unbound_local_zones: "{{ unbound_local_zones_core }}"
 
 unbound_local_datas_core:
-  - "'nucleus.fsn.as212024.net.   A       209.112.97.241'"
+  - "'core-1.fra.as212024.net.    A       209.112.97.241'"
   - "'gate-1.bar.as212024.net.    A       209.112.97.242'"
   - "'edge-1.pvl.as212024.net.    A       209.112.97.243'"
   - "'edge-2.fra.as212024.net.    A       209.112.97.244'"
-  - "'nucleus.fsn.as212024.net.   AAAA    2001:67c:17fc:ffff::1'"
+  - "'core-1.fra.as212024.net.    AAAA    2001:67c:17fc:ffff::1'"
   - "'gate-1.bar.as212024.net.    AAAA    2001:67c:17fc:ffff::2'"
   - "'edge-1.pvl.as212024.net.    AAAA    2001:67c:17fc:ffff::3'"
   - "'edge-2.fra.as212024.net.    AAAA    2001:67c:17fc:ffff::4'"
