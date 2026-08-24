@@ -118,16 +118,6 @@ bird_bgp_sessions:
         remote:
           v4: 80.81.192.172
           v6: 2001:7f8::1b1b:0:1
-      - description: Meta DE-CIX 1
-        alias: decix_meta_1
-        asn: 32934
-        irr: AS-FACEBOOK
-        local:
-          v4: 80.81.194.242
-          v6: 2001:7f8::3:3c3:0:1
-        remote:
-          v4: 80.81.194.40
-          v6: 2001:7f8::80a6:0:1
       - description: Meta DE-CIX 2
         alias: decix_meta_2
         asn: 32934
@@ -148,16 +138,6 @@ bird_bgp_sessions:
         remote:
           v4: 80.81.195.141
           v6: 2001:7f8::80a6:0:3
-      - description: Meta DE-CIX 4
-        alias: decix_meta_4
-        asn: 32934
-        irr: AS-FACEBOOK
-        local:
-          v4: 80.81.194.242
-          v6: 2001:7f8::3:3c3:0:1
-        remote:
-          v4: 80.81.195.176
-          v6: 2001:7f8::80a6:0:4
       - description: SIPARTECH DE-CIX
         alias: decix_sph
         asn: 8309
