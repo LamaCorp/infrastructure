@@ -248,16 +248,6 @@ bird_bgp_sessions:
         remote:
           v4: 169.254.0.8
           v6: fe80::0:8
-      - description: PVL
-        alias: pvl
-        asn: 212024
-        interface: core-pvl
-        local:
-          v4: 169.254.0.11
-          v6: fe80::0:11
-        remote:
-          v4: 169.254.0.10
-          v6: fe80::0:10
 
   looking_glasses:
     sessions:
@@ -281,8 +271,5 @@ bird_ospf_sessions:
             type: ptp
             cost: 25
           core-bar:
-            type: ptp
-            cost: 25
-          core-pvl:
             type: ptp
             cost: 25

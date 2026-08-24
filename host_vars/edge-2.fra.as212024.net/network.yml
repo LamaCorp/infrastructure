@@ -51,21 +51,6 @@ systemd_networkd_netdev:
         - 0.0.0.0/0
         - "::/0"
       PersistentKeepalive: 60
-  15-core-pvl:
-    NetDev:
-      Name: core-pvl
-      Kind: wireguard
-    WireGuard:
-      PrivateKeyFile: /etc/wireguard/core/private
-      ListenPort: 51803
-      RouteTable: "off"
-    WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/edge-1.pvl.as212024.net/etc/wireguard/core/public') }}"
-      AllowedIPs:
-        - 0.0.0.0/0
-        - "::/0"
-      PersistentKeepalive: 60
-      Endpoint: "[2a05:f480:1c00:9ee:5400:3ff:fe21:2eeb]:51804"
 
 systemd_networkd_network:
   10-id:
@@ -174,15 +159,3 @@ systemd_networkd_network:
       Address:
         - 169.254.0.9/31
         - fe80::0:9/127
-  15-core-pvl:
-    Match:
-      Name: core-pvl
-    Link:
-      RequiredForOnline: false
-    Network:
-      ConfigureWithoutCarrier: true
-      LinkLocalAddressing: false
-      IPv6AcceptRA: false
-      Address:
-        - 169.254.0.11/31
-        - fe80::0:11/127

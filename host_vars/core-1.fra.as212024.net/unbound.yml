@@ -3,3 +3,5 @@ unbound_interface_automatic: "no"
 unbound_interfaces:
   - "127.0.0.1"
   - "::1"
+  - "209.112.97.241"
+  - "2001:67c:17fc:ffff::1"

@@ -2,7 +2,7 @@
 nft_define_host:
   bgp interfaces:
     name: bgp_interfaces
-    value: "{core-fsn, core-bar, core-pvl}"
+    value: "{core-fsn, core-bar}"
   bgp neighbors 4:
     name: bgp_neighbors_4
     value: "{194.50.92.250, 5.196.188.0/25, 80.81.192.0/21, 216.218.233.13}"
@@ -11,7 +11,7 @@ nft_define_host:
     value: "{2a09:4c0:303:c232::5cfa, 2001:7f8:d0::/64, 2001:7f8:d9:3::/64, 2001:7f8::/64, 2600:7000:1000::9}"
   ospf interfaces:
     name: ospf_interfaces
-    value: "{core-fsn, core-bar, core-pvl}"
+    value: "{core-fsn, core-bar}"
 
 nft_input_host_rules:
   350 dns autoritative:

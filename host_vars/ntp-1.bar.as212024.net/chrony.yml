@@ -5,7 +5,6 @@ chrony_host_config:
   server:
     - core-1.fra.as212024.net iburst xleave extfield F323 noselect
     - gate-1.bar.as212024.net iburst xleave extfield F323 noselect
-    - edge-1.pvl.as212024.net iburst xleave extfield F323 noselect
     - edge-2.fra.as212024.net iburst xleave extfield F323 noselect
   refclock:
     - SHM 0 refid GNSS precision 1e-1 offset 0.188 delay 0.2 poll 0 filter 3 noselect

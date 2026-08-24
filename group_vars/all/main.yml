@@ -9,7 +9,6 @@ chrony_config:
   server:
     - core-1.fra.as212024.net iburst xleave extfield F323 {% if "fsn" in group_names %}prefer{% endif %}
     - gate-1.bar.as212024.net iburst xleave extfield F323 {% if "bar" in group_names %}prefer{% endif %}
-    - edge-1.pvl.as212024.net iburst xleave extfield F323 {% if "pvl" in group_names %}prefer{% endif %}
     - edge-2.fra.as212024.net iburst xleave extfield F323 {% if "fra" in group_names %}prefer{% endif %}
   initstepslew: 10 ntp1.as212024.net ntp2.as212024.net pool.ntp.org
   makestep: 0.1 3
