@@ -1,5 +1,5 @@
 ---
-- name: Ensure bird2 package is installed
+- name: Ensure bird3 package is installed
   ansible.builtin.apt:
     name: bird3
     default_release: trixie-backports

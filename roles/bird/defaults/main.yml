@@ -39,6 +39,9 @@
 #
 # Each of the configuration options are explained below:
 
+# Set the number of worker threads for bird
+# bird_threads: 2
+
 # The public Autonomous System Number of the border router that this
 # configuration is running on.
 # bird_asn: 65536
@@ -118,6 +121,7 @@ bird_bgp_blacklist:
 # bird_bgp_rpki:
 #   host: 'rpki.fqdn.example'
 #   port: 8282
+#   aspa: true
 
 bird_bgp_sessions: {}
 # # Upstreams are BGP sessions that give you a full table and you want to
