@@ -47,20 +47,20 @@ bird_bgp_sessions:
 
   peers:
     sessions:
-      - description: James Landrein 0
-        alias: james_landrein_0
-        asn: 201254
-        irr: AS201254
-        interface: ppl-as201254-0
-        local:
-          v6: fd68:2402:1fbb:e377::1:21:2024
-        remote:
-          v6: fd68:2402:1fbb:e377::1:20:1254
       - description: James Landrein 1
         alias: james_landrein_1
         asn: 201254
         irr: AS201254
         interface: ppl-as201254-1
+        local:
+          v6: fd68:2402:1fbb:e377::1:21:2024
+        remote:
+          v6: fd68:2402:1fbb:e377::1:20:1254
+      - description: James Landrein 2
+        alias: james_landrein_2
+        asn: 201254
+        irr: AS201254
+        interface: ppl-as201254-2
         local:
           v6: fd68:2402:1fbb:e377::2:21:2024
         remote:
