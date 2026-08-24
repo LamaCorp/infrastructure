@@ -1,4 +1,6 @@
 ---
+bird_threads: 8
+
 bird_router_id: 209.112.97.241
 
 bird_bgp_preferred_source:
@@ -11,14 +13,19 @@ bird_static_routes:
     # Local routes
     - 37.46.199.160/27 unreachable # netrouting /27
     - 209.112.97.25/32 unreachable # mail.lama-corp.space
+    - 209.112.97.54/32 via "svc-ns1" # ns1.as212024.net
     - 209.112.97.232/32 unreachable # nat-svc
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
+    - 209.112.97.243/32 via "legacy" # legacy ns1
     # Needed for sessions
     - 169.254.6.206/32 via 37.46.199.110%'ul-netr-0' # needed because multihop to netrouting
   v6:
     - 2001:67c:17fc:ffff::1/128 via "id"
+    # Local routes
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
+    - 2001:67c:17fc::54/128 via "svc-ns1" # ns1.as212024.net
+    - 2001:67c:17fc:ffff::3/128 via "legacy" # legacy ns1
 
 bird_bgp_originations:
   v4: []
@@ -37,7 +44,7 @@ bird_bgp_sessions:
         alias: netrouting
         asn: 6206
         md5: "BGP@NR1n2026-212024"
-        multihop: 1
+        multihop: 2
         local:
           v4: 37.46.199.111
         remote:
