@@ -21,6 +21,7 @@ spec:
             - "[::]:8323"
             - "--rtr"
             - "[::]:3323"
+            - "--enable-aspa"
           ports:
             - name: http
               containerPort: 8323
