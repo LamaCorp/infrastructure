@@ -29,10 +29,15 @@ spec:
         - matchLabels:
             app.kubernetes.io/name: happydomain
             k8s:io.kubernetes.pod.namespace: infra-happydomain
+      toPorts:
+        - ports:
+            - port: "5353"
+              protocol: ANY
     - fromCIDR:
         - 172.28.0.0/16
-        - 209.112.97.240/28
         - 2001:67c:17fc::/48
+        - 209.112.97.54/32
+        - 209.112.97.244/32
       toPorts:
         - ports:
             - port: "5353"
