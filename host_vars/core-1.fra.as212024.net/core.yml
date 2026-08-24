@@ -47,8 +47,10 @@ bird_bgp_sessions:
         multihop: 2
         local:
           v4: 37.46.199.111
+          v6: 2a00:dd0:aaaa:a::2
         remote:
           v4: 169.254.6.206
+          v6: fd00:6206:6206::1
         med_metric: true
         default_med: 100
 
