@@ -1,7 +1,8 @@
 ---
 - name: Ensure bird2 package is installed
   ansible.builtin.apt:
-    name: bird2
+    name: bird3
+    default_release: trixie-backports
 
 - name: Ensure bgpq4 package is installed
   ansible.builtin.apt:
