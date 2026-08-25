@@ -101,6 +101,19 @@ bird_bgp_sessions:
           v4: 169.254.0.5
           v6: fe80::0:5
 
+  looking_glasses:
+    sessions:
+      - description: Securebit Route Collector
+        alias: securebit_rc
+        asn: 44393
+        multihop: 32
+        local:
+          v4: 209.112.97.241
+          v6: 2001:67c:17fc:ffff::1
+        remote:
+          v4: 49.12.70.222
+          v6: 2a01:4f8:c17:ec87::310c:46de
+
 bird_ospf_sessions:
   - alias: ospf
     export_static_routes: true
