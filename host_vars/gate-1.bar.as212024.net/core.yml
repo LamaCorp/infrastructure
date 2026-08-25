@@ -1,4 +1,6 @@
 ---
+bird_threads: 2
+
 bird_router_id: 209.112.97.242
 
 bird_bgp_preferred_source:
@@ -22,6 +24,16 @@ bird_bgp_sessions:
     defaults:
       med_metric: true
     sessions:
+      - description: FSN
+        alias: fsn
+        asn: 212024
+        interface: core-fsn
+        local:
+          v4: 169.254.0.1
+          v6: fe80::1
+        remote:
+          v4: 169.254.0.0
+          v6: "fe80::"
       - description: FRA
         alias: fra
         asn: 212024
