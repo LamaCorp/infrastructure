@@ -18,12 +18,6 @@ libvirt_host_pools:
     mode: 755
     owner: root
     group: root
-  - name: pine
-    type: dir
-    path: /vms/pine
-    mode: 755
-    owner: root
-    group: root
   - name: mail
     type: dir
     path: /vms/mail
@@ -45,6 +39,18 @@ libvirt_host_pools:
   - name: redis
     type: dir
     path: /vms/redis
+    mode: 755
+    owner: root
+    group: root
+  - name: client-hane-1
+    type: dir
+    path: /vms/client/hane-1
+    mode: 755
+    owner: root
+    group: root
+  - name: pine
+    type: dir
+    path: /vms/pine
     mode: 755
     owner: root
     group: root
@@ -188,6 +194,29 @@ libvirt_vms:
         source:
           dev: cl-vm-0
         mac: 52:54:00:e0:d1:60
+    boot_firmware: efi
+    start: true
+    autostart: true
+
+  - state: present
+    name: client-hane-1
+    vcpus: 4
+    memory_mb: 8192
+    enable_spice: true
+    volumes:
+      - pool: client-hane-1
+        name: os
+        capacity: 20G
+        discard: unmap
+      - pool: client-hane-1
+        name: storage
+        capacity: 30G
+        discard: unmap
+    interfaces:
+      - type: bridge
+        source:
+          dev: cl-hane-1
+        mac: 52:54:00:ce:38:5c
     boot_firmware: efi
     start: true
     autostart: true

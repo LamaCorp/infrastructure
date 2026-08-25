@@ -26,6 +26,7 @@ bird_static_routes:
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
     - 2001:67c:17fc::54/128 via "svc-ns1" # ns1.as212024.net
     - 2001:67c:17fc:ffff::3/128 via "legacy" # legacy ns1
+    - 2a06:e881:7701:2::/64 via "cl-hane-1" # hane-1.client.fra.as212024.net
 
 bird_bgp_originations:
   v4: []
@@ -105,6 +106,4 @@ bird_ospf_sessions:
           lan-svc-101:
             cost: 1
           lan-mdw-102:
-            stub: true
-          cl-vm-0:
             stub: true

@@ -38,13 +38,13 @@ nft_input_group_rules:
     - ip6 saddr $subnet_internal_6 tcp dport {$prometheus_exporter_bird} accept
 
   350 dns resolver:
-    - ip saddr {$subnet_internal_4, $subnet_customer_4} udp dport 53 accept
-    - ip saddr {$subnet_internal_4, $subnet_customer_4} tcp dport 53 accept
+    - ip saddr {$subnet_internal_4, $subnet_customer_4, 37.46.199.160/27} udp dport 53 accept
+    - ip saddr {$subnet_internal_4, $subnet_customer_4, 37.46.199.160/27} tcp dport 53 accept
     - ip6 saddr {$subnet_internal_6, $subnet_customer_6} udp dport 53 accept
     - ip6 saddr {$subnet_internal_6, $subnet_customer_6} tcp dport 53 accept
 
   360 ntp:
-    - ip saddr {$subnet_internal_4, $subnet_customer_4} udp dport 123 accept
+    - ip saddr {$subnet_internal_4, $subnet_customer_4, 37.46.199.160/27} udp dport 123 accept
     - ip6 saddr {$subnet_internal_6, $subnet_customer_6} udp dport 123 accept
 
 

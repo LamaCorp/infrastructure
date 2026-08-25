@@ -27,6 +27,11 @@ nft_input_host_rules:
     - udp dport 51822 accept
     - udp dport 51823 accept
 
+nft_forward_host_rules:
+  399 cl-* drop:
+    - meta iifname cl-hane-1 ip saddr != 37.46.199.176/32 drop
+    - meta iifname cl-hane-1 ip6 saddr != 2a06:e881:7701:2::/64 drop
+
 nft__nat_host_postrouting_rules:
   100 external connectivity:
     - meta oif ul-netr-0 ip saddr != {37.46.199.111/32, 37.46.199.160/27} counter snat to 37.46.199.111
