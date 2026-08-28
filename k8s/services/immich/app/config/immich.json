@@ -27,7 +27,7 @@
     "issuerUrl": "https://auth.lama-corp.space/application/o/immich/",
     "mobileOverrideEnabled": false,
     "mobileRedirectUri": "",
-    "scope": "openid email profile",
+    "scope": "openid email profile immich_roles",
     "signingAlgorithm": "RS256",
     "storageLabelClaim": "preferred_username"
   },

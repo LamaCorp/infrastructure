@@ -5,6 +5,22 @@ version: 1
 metadata:
   name: Apps - Immich
 entries:
+  - id: scope-mapping-role
+    model: authentik_providers_oauth2.scopemapping
+    identifiers:
+      name: "OAuth mapping: OpenID 'immich_role'"
+    attrs:
+      scope_name: immich_roles
+      description: Immich roles
+      expression: |
+        return {
+          "immich_role": [
+            entitlement.name
+            for entitlement in
+            request.user.app_entitlements(provider.application)
+          ],
+        }
+
   - id: provider
     model: authentik_providers_oauth2.oauth2provider
     identifiers:
@@ -53,6 +69,7 @@ entries:
             authentik_core.propertymapping,
             [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
           ]
+        - !KeyOf scope-mapping-role
 
   - id: application
     model: authentik_core.application
@@ -66,14 +83,48 @@ entries:
       provider: !KeyOf provider
       policy_engine_mode: any
 
-  - id: group
+  - id: group-admin
     model: authentik_core.group
     identifiers:
-      name: app-immich
+      name: app-immich-admin
+  - id: group-user
+    model: authentik_core.group
+    identifiers:
+      name: app-immich-user
 
   - model: authentik_policies.policybinding
     identifiers:
       target: !KeyOf application
-      group: !KeyOf group
+      group: !KeyOf group-admin
     attrs:
       order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf application
+      group: !KeyOf group-user
+    attrs:
+      order: 20
+
+  - id: ent-admin
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: admin
+  - id: ent-user
+    model: authentik_core.applicationentitlement
+    identifiers:
+      app: !KeyOf application
+      name: user
+
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-admin
+      group: !KeyOf group-admin
+    attrs:
+      order: 10
+  - model: authentik_policies.policybinding
+    identifiers:
+      target: !KeyOf ent-user
+      group: !KeyOf group-user
+    attrs:
+      order: 20
