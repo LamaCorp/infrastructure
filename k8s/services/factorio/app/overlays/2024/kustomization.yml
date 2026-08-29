@@ -14,4 +14,4 @@ patches:
 
 images:
   - name: docker.io/factoriotools/factorio
-    newTag: 2.0.76@sha256:0bd437f2bcd63af04d07b7722943f3d362060db821f6d811c7bcae997a019eeb
+    newTag: 2.1.17@sha256:e9227748c507a52f97bbd42c88e5c73702297bbdf4322c2f3ca8a71676ec1222
