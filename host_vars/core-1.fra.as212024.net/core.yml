@@ -29,8 +29,11 @@ bird_static_routes:
     - 2a06:e881:7701:2::/64 via "cl-hane-1" # hane-1.client.fra.as212024.net
 
 bird_bgp_originations:
-  v4: []
-  v6: []
+  v4:
+    - 209.112.97.0/24
+  v6:
+    - 2001:67c:17fc::/48
+    - 2a06:e881:7700::/40
 
 bird_bgp_blacklist:
   v4:

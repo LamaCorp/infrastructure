@@ -70,6 +70,7 @@ bird_bgp_sessions:
           v6: 2001:7f8::1a27:5051:c09d
         communities:
           export:
+            - "0:6206"
             - "0:58057"
             - "0:34549"
       - description: DE-CIX RS2
@@ -85,6 +86,7 @@ bird_bgp_sessions:
           v6: 2001:7f8::1a27:5051:c19d
         communities:
           export:
+            - "0:6206"
             - "0:58057"
             - "0:34549"
 
