@@ -60,7 +60,7 @@ bird_bgp_sessions:
       - description: DE-CIX RS1
         alias: decix_rs1
         asn: 6695
-        irr: AS6695:AS-DECIX-FRA AS6695:AS-DECIX-FRA-V6
+        irr: RIPE::AS6695:AS-DECIX-FRA RIPE::AS6695:AS-DECIX-FRA-V6
         enforce_first_as: false
         local:
           v4: 80.81.194.242
@@ -76,7 +76,7 @@ bird_bgp_sessions:
       - description: DE-CIX RS2
         alias: decix_rs2
         asn: 6695
-        irr: AS6695:AS-DECIX-FRA AS6695:AS-DECIX-FRA-V6
+        irr: RIPE::AS6695:AS-DECIX-FRA RIPE::AS6695:AS-DECIX-FRA-V6
         enforce_first_as: false
         local:
           v4: 80.81.194.242
@@ -93,7 +93,7 @@ bird_bgp_sessions:
       - description: HE Cloudflare 1
         alias: decix_cloudflare_1
         asn: 13335
-        irr: AS13335:AS-CLOUDFLARE
+        irr: ARIN::AS13335:AS-CLOUDFLARE
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -103,7 +103,7 @@ bird_bgp_sessions:
       - description: HE Cloudflare 2
         alias: decix_cloudflare_2
         asn: 13335
-        irr: AS13335:AS-CLOUDFLARE
+        irr: ARIN::AS13335:AS-CLOUDFLARE
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -113,7 +113,7 @@ bird_bgp_sessions:
       - description: HE DE-CIX
         alias: decix_he
         asn: 6939
-        irr: AS-HURRICANE
+        irr: RADB::AS-HURRICANE RADB::AS-HURRICANEV6
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -123,7 +123,7 @@ bird_bgp_sessions:
       - description: Meta DE-CIX 2
         alias: decix_meta_2
         asn: 32934
-        irr: AS-FACEBOOK
+        irr: RADB::AS-FACEBOOK
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -133,7 +133,7 @@ bird_bgp_sessions:
       - description: Meta DE-CIX 3
         alias: decix_meta_3
         asn: 32934
-        irr: AS-FACEBOOK
+        irr: RADB::AS-FACEBOOK
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -143,7 +143,7 @@ bird_bgp_sessions:
       - description: SIPARTECH DE-CIX
         alias: decix_sph
         asn: 8309
-        irr: AS-SPH
+        irr: RIPE::AS-SPH
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -153,7 +153,7 @@ bird_bgp_sessions:
       - description: Google DE-CIX 1
         alias: decix_google_1
         asn: 15169
-        irr: AS-GOOGLE
+        irr: RADB::AS-GOOGLE
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -163,7 +163,7 @@ bird_bgp_sessions:
       - description: Google DE-CIX 2
         alias: decix_google_2
         asn: 15169
-        irr: AS-GOOGLE
+        irr: RADB::AS-GOOGLE
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
@@ -173,7 +173,7 @@ bird_bgp_sessions:
       - description: TKRZ DE-CIX
         alias: decix_tkrz
         asn: 42184
-        irr: AS-TKRZ
+        irr: RIPE::AS-TKRZ
         local:
           v4: 80.81.194.242
           v6: 2001:7f8::3:3c3:0:1
