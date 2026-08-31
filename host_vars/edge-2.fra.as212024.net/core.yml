@@ -60,7 +60,7 @@ bird_bgp_sessions:
       - description: DE-CIX RS1
         alias: decix_rs1
         asn: 6695
-        irr: AS-DECIX AS-DECIX-V6
+        irr: AS6695:AS-DECIX-FRA AS6695:AS-DECIX-FRA-V6
         enforce_first_as: false
         local:
           v4: 80.81.194.242
@@ -76,7 +76,7 @@ bird_bgp_sessions:
       - description: DE-CIX RS2
         alias: decix_rs2
         asn: 6695
-        irr: AS-DECIX AS-DECIX-V6
+        irr: AS6695:AS-DECIX-FRA AS6695:AS-DECIX-FRA-V6
         enforce_first_as: false
         local:
           v4: 80.81.194.242
