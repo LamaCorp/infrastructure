@@ -36,4 +36,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/hargata/lubelogger
-    newTag: v1.7.1@sha256:678a5c4af387e525f06ef954b454efe536745f517f2078dc646ccce9332adb9d
+    newTag: v1.7.2@sha256:8d662c13237dd83fac33def4071076fe906108589f85b1368f652c16f5f2dda7
