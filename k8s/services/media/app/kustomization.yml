@@ -32,11 +32,11 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/hotio/bazarr
-    newTag: release-1.6.0
+    newTag: release-1.6.0@sha256:0e3d4b5181753d13e781e3395dfda7c9420b1a5405c80a9611c94bec9424ee0c
   - name: ghcr.io/flaresolverr/flaresolverr
     newTag: v3.5.0@sha256:139dfee1c6f89249c8d665d1333a42e8ec74ec0a86bc6bb1c8461e10d3a66a47
   - name: ghcr.io/hotio/jackett
-    newTag: release-0.24.2541
+    newTag: release-0.24.2541@sha256:a28600d2293d1c79f6ebd60ed7d1b274a0a138fe07b9724278167af6895e1da2
   - name: ghcr.io/jellyfin/jellyfin
     newTag: 10.11.11@sha256:45f648c382a0c8b552582fcea40e95cb17c5d475473a891cba0eb7523fb92112
   - name: ghcr.io/hotio/jellyseerr
@@ -45,16 +45,16 @@ images:
   - name: ghcr.io/hotio/lidarr
     newTag: release-3.1.0.4875@sha256:7683243e41c84fb49b742fe7f54e8b848b8d4e03a546feb32d11163db0d12ab2
   - name: ghcr.io/hotio/prowlarr
-    newTag: release-2.5.2.5491
+    newTag: release-2.5.2.5491@sha256:e5ac7eaad6025374cc157b860870be48d378fb1d86260c6c6fe7c6dc063e8d9a
   - name: ghcr.io/hotio/qbittorrent
-    newTag: release-5.2.3
+    newTag: release-5.2.3@sha256:b1a787b996230b6a19ea5501215d3a3b6a73e00c062f2c8e19a69240e41d8407
   - name: ghcr.io/hotio/radarr
-    newTag: release-6.3.0.10514
+    newTag: release-6.3.0.10514@sha256:205807cb42323ababefad2872e56ce175d87c1ab5dfa7ba7eaedc19d67545ed6
   - name: ghcr.io/recyclarr/recyclarr
     newTag: 7.5.2@sha256:2550848d43a453f2c6adf3582f2198ac719f76670691d76de0819053103ef2fb
   - name: ghcr.io/hotio/sabnzbd
-    newTag: release-5.1.2
+    newTag: release-5.1.2@sha256:a6230c18f1ae176bc5020e8a93d572b7e60d475e4c358037c268e3d5fb75c921
   - name: ghcr.io/hotio/sonarr
-    newTag: release-4.0.19.2979
+    newTag: release-4.0.19.2979@sha256:b948300560bbb757c58c98d8f2d4eaebb481819980d9297b2355409280389438
   - name: ghcr.io/qdm12/gluetun
     newTag: v3.41.3@sha256:fa19cc76b2af13d57a8d3dc3066f2ada061b1c761b8aecf989b3877c0486e027
