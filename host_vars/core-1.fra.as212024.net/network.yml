@@ -114,6 +114,16 @@ systemd_networkd_network:
       Address:
         - 209.112.97.241/32
         - 2001:67c:17fc:ffff::1/128
+    Route:
+      - Destination: 209.112.97.0/24
+        Gateway: 0.0.0.0
+        Type: unreachable
+      - Destination: 2001:67c:17fc::/48
+        Gateway: "::"
+        Type: unreachable
+      - Destination: 2a06:e881:7700::/40
+        Gateway: "::"
+        Type: unreachable
   10-legacy:
     Match:
       Name: legacy
