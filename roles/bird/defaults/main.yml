@@ -74,6 +74,15 @@ bird_static_routes:
   # v6:
   #   - '2001:db8::/32 unreachable'
 
+# Other static routes that should not be propagated through other protocols, but
+# will be propagated to the kernel. Useful for routes needed to reach peers.
+bird_local_routes:
+  {}
+  # v4:
+  #   - '198.51.100.0/24 unreachable'
+  # v6:
+  #   - '2001:db8::/32 unreachable'
+
 # The ISO 3166-1 country code of where the border router is operating. This is
 # used for BGP community support.
 # bird_bgp_region_id: 840  # USA

@@ -10,23 +10,30 @@ bird_bgp_preferred_source:
 bird_static_routes:
   v4:
     - 209.112.97.241/32 via "id"
-    # Local routes
     - 37.46.199.160/27 unreachable # netrouting /27
     - 209.112.97.25/32 unreachable # mail.lama-corp.space
     - 209.112.97.54/32 via "svc-ns1" # ns1.as212024.net
+    - 209.112.97.124/32 via "svc-ns1" # ntp1.as212024.net
     - 209.112.97.232/32 unreachable # nat-svc
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
     - 209.112.97.243/32 via "legacy" # legacy ns1
-    # Needed for sessions
-    - 169.254.6.206/32 via 37.46.199.110%'ul-netr-0' # needed because multihop to netrouting
   v6:
     - 2001:67c:17fc:ffff::1/128 via "id"
-    # Local routes
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
     - 2001:67c:17fc::54/128 via "svc-ns1" # ns1.as212024.net
+    - 2001:67c:17fc::123/128 via "svc-ntp1" # ntp1.as212024.net
     - 2001:67c:17fc:ffff::3/128 via "legacy" # legacy ns1
     - 2a06:e881:7701:2::/64 via "cl-hane-1" # hane-1.client.fra.as212024.net
+
+bird_local_routes:
+  v4:
+    - 209.112.97.0/24 unreachable
+    - 169.254.6.206/32 via 37.46.199.110%'ul-netr-0' # needed because multihop to netrouting
+  v6:
+    - 2001:67c:17fc::/48 unreachable
+    - 2a06:e881:7700::/40 unreachable
+    - fd00:6206:6206::1/128 via 2a00:dd0:aaaa:a::1%'ul-netr-0'
 
 bird_bgp_originations:
   v4:
