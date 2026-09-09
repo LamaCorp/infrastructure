@@ -21,6 +21,10 @@ systemd_networkd_netdev:
     NetDev:
       Name: svc-ns1
       Kind: dummy
+  10-svc-ntp1:
+    NetDev:
+      Name: svc-ntp1
+      Kind: dummy
   # core VPN
   15-core-bar:
     NetDev:
@@ -146,6 +150,17 @@ systemd_networkd_network:
       Address:
         - 209.112.97.54/32
         - 2001:67c:17fc::54/128
+  10-svc-ntp1:
+    Match:
+      Name: svc-ntp1
+    Link:
+      RequiredForOnline: true
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: false
+      Address:
+        - 209.112.97.124/32
+        - 2001:67c:17fc::124/128
   10-ul-netr-0:
     Match:
       Name: ul-netr-0
