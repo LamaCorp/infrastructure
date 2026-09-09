@@ -15,10 +15,10 @@ nft_define_host:
 
 nft_input_host_rules:
   350 dns autoritative:
-    - ip daddr {209.112.97.54/32, 209.112.97.243/32} udp dport 53 accept
-    - ip6 daddr {2001:67c:17fc::54/128, 2001:67c:17fc:ffff::3/128} udp dport 53 accept
-    - ip daddr {209.112.97.54/32, 209.112.97.243/32} tcp dport 53 accept
-    - ip6 daddr {2001:67c:17fc::54/128, 2001:67c:17fc:ffff::3/128} tcp dport 53 accept
+    - ip daddr {209.112.97.54/32, 37.46.199.163/32} udp dport 53 accept
+    - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} udp dport 53 accept
+    - ip daddr {209.112.97.54/32, 37.46.199.163/32} tcp dport 53 accept
+    - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} tcp dport 53 accept
   360 ntp:
     - udp dport 123 accept
   500 k3s api:

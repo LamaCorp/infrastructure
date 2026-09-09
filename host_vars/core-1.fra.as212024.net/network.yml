@@ -172,6 +172,8 @@ systemd_networkd_network:
       Address:
         - 37.46.199.111/31
         - 2a00:dd0:aaaa:a::2/64
+        - 37.46.199.163/32 # ns2.as212024.net
+        - 2a00:dd0:aaaa:a::53/64 # ns2.as212024.net
     Route:
       # Netrouting default routes
       - Destination: 0.0.0.0/0
