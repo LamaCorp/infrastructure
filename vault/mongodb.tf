@@ -1,18 +1,36 @@
 locals {
   mongodb_clusters = {
     "mongodb.fsn.as212024.net" = {
-      dynamic_roles = {
+      static_roles = {
         "k3s.fsn.as212024.net_services-rocketchat-lama" = {
-          mongodb_user = "rocketchatLama"
           database     = "rocketchatLama"
+          mongodb_user = "rocketchat"
         }
         "k3s.fsn.as212024.net_services-rocketchat-sdlh" = {
-          mongodb_user = "rocketchatSdlh"
           database     = "rocketchatSdlh"
+          mongodb_user = "rocketchat"
         }
       }
     }
   }
+
+  mongodb_static_connections_computed = merge([
+    for cluster_name, cluster in local.mongodb_clusters : {
+      for role_name, role in try(cluster.static_roles, {}) : "${cluster_name}_${role.database}" => {
+        cluster_name = cluster_name
+        database      = role.database
+      }
+    }
+  ]...)
+
+  mongodb_static_roles_computed = merge([
+    for cluster_name, cluster in local.mongodb_clusters : {
+      for role_name, role in try(cluster.static_roles, {}) : "${cluster_name}_${role_name}" => merge(role, {
+        cluster_name = cluster_name
+        role_name    = role_name
+      })
+    }
+  ]...)
 
   mongodb_dynamic_roles_computed = merge([
     for cluster_name, cluster in local.mongodb_clusters : {
@@ -52,11 +70,32 @@ resource "vault_database_secrets_mount" "mongodb" {
   }
 }
 
+resource "vault_database_secret_backend_connection" "mongodb_static" {
+  for_each      = local.mongodb_static_connections_computed
+  backend       = vault_database_secrets_mount.mongodb.path
+  name          = each.key
+  allowed_roles = [for role_name, role in local.mongodb_static_roles_computed : role_name if "${role.cluster_name}_${role.database}" == each.key]
+  mongodb {
+    username       = "admin"
+    password       = random_password.mongodb[each.value.cluster_name].result
+    connection_url = "mongodb://{{username}}:{{password}}@${try(each.value.endpoint, each.value.cluster_name)}/${each.value.database}?authSource=admin"
+  }
+}
+
+resource "vault_database_secret_backend_static_role" "mongodb" {
+  for_each        = local.mongodb_static_roles_computed
+  backend         = vault_database_secrets_mount.mongodb.path
+  db_name         = "${each.value.cluster_name}_${each.value.database}"
+  name            = each.key
+  username        = each.value.mongodb_user
+  rotation_period = try(each.value.rotation_period, 24 * 60 * 60 * 30) # 30 days
+}
+
 resource "vault_database_secret_backend_connection" "mongodb" {
   for_each      = local.mongodb_clusters
   backend       = vault_database_secrets_mount.mongodb.path
   name          = each.key
-  allowed_roles = [for role in concat(keys(try(each.value.dynamic_roles, {})), keys(try(each.value.static_roles, {}))) : "${each.key}_${role}"]
+  allowed_roles = [for role in keys(try(each.value.dynamic_roles, {})) : "${each.key}_${role}"]
   mongodb {
     username       = "admin"
     password       = random_password.mongodb[each.key].result
