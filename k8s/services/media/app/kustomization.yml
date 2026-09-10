@@ -45,7 +45,7 @@ images:
   - name: ghcr.io/hotio/lidarr
     newTag: release-3.1.0.4875@sha256:1015830758e105297a24c92ecfc5ff643cd0948cabf78595f44761e2bf892f0a
   - name: ghcr.io/hotio/prowlarr
-    newTag: release-2.5.2.5491@sha256:d3d5592914edb8eb09b7f4edfc9b4b7a32a04ff1a47c4820fd0ddd5010abc13e
+    newTag: release-2.5.2.5491@sha256:9f5c86207dd6dcc0820ed2940151630ed40d664e6f27f481abf0678d5ab6b2e4
   - name: ghcr.io/hotio/qbittorrent
     newTag: release-5.2.3@sha256:fe9ab15717ea3db43f21bef5bb23e6a0ccc16035212f1ae9fdbb9a8d17078373
   - name: ghcr.io/hotio/radarr
