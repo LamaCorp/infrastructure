@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       ref: infrastructure
     - repoURL: https://helm.releases.hashicorp.com
-      targetRevision: 0.32.0
+      targetRevision: 0.34.1
       chart: vault
       helm:
         releaseName: vault
