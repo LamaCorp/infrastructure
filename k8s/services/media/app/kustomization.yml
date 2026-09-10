@@ -49,7 +49,7 @@ images:
   - name: ghcr.io/hotio/qbittorrent
     newTag: release-5.2.3@sha256:b1a787b996230b6a19ea5501215d3a3b6a73e00c062f2c8e19a69240e41d8407
   - name: ghcr.io/hotio/radarr
-    newTag: release-6.3.0.10514@sha256:205807cb42323ababefad2872e56ce175d87c1ab5dfa7ba7eaedc19d67545ed6
+    newTag: release-6.3.0.10514@sha256:ed211d7932752abcc82d1c2d0a34d4bc9a125a7aab216d929819b440834c7bf0
   - name: ghcr.io/recyclarr/recyclarr
     newTag: 7.5.2@sha256:2550848d43a453f2c6adf3582f2198ac719f76670691d76de0819053103ef2fb
   - name: ghcr.io/hotio/sabnzbd
