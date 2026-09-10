@@ -32,7 +32,7 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/hotio/bazarr
-    newTag: release-1.6.0@sha256:0e3d4b5181753d13e781e3395dfda7c9420b1a5405c80a9611c94bec9424ee0c
+    newTag: release-1.6.0@sha256:4454e014ec2d65a3b6cd87534edb0e7246f8cd5de9f474181df25c48ce4e6094
   - name: ghcr.io/flaresolverr/flaresolverr
     newTag: v3.5.0@sha256:139dfee1c6f89249c8d665d1333a42e8ec74ec0a86bc6bb1c8461e10d3a66a47
   - name: ghcr.io/hotio/jackett
