@@ -15,20 +15,7 @@ spec:
   destination:
     name: k3s.fsn.as212024.net
     namespace: services-your-spotify
-  sources:
-    - repoURL: https://github.com/LamaCorp/infrastructure.git
-      targetRevision: HEAD
-      path: k8s/services/your-spotify/app
-    - repoURL: registry-1.docker.io/bitnamicharts
-      targetRevision: 13.18.5
-      chart: mongodb
-      helm:
-        releaseName: mongodb
-        values: |
-          architecture: standalone
-          auth:
-            enabled: false
-          enableIPv6: true
-          persistence:
-            enabled: true
-            size: 2Gi
+  source:
+    repoURL: https://github.com/LamaCorp/infrastructure.git
+    targetRevision: HEAD
+    path: k8s/services/your-spotify/app
