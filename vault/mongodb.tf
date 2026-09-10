@@ -10,6 +10,10 @@ locals {
           database     = "rocketchatSdlh"
           mongodb_user = "rocketchat"
         }
+        "k3s.fsn.as212024.net_services-your-spotify" = {
+          database     = "yourSpotify"
+          mongodb_user = "yourSpotify"
+        }
       }
     }
   }

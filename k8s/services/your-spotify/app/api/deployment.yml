@@ -3,6 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: your-spotify-api
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
   template:
@@ -19,13 +21,13 @@ spec:
               value: https://ys-api.lama-corp.space
             - name: CLIENT_ENDPOINT
               value: https://ys.lama-corp.space
-            - name: MONGO_ENDPOINT
-              value: mongodb://mongodb:27017/your_spotify
             - name: LOG_LEVEL
               value: debug
           envFrom:
             - secretRef:
                 name: your-spotify-secrets
+            - secretRef:
+                name: your-spotify-mongodb-credentials
           ports:
             - name: http
               containerPort: 8080
