@@ -10,6 +10,7 @@ resources:
   - ../../base
 
 patches:
+  - path: deployment.yml
   - path: service.yml
 
 images:
