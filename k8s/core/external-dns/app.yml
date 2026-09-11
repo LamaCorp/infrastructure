@@ -26,7 +26,7 @@ spec:
         namespace: core-external-dns
       source:
         repoURL: https://kubernetes-sigs.github.io/external-dns
-        targetRevision: 1.21.1
+        targetRevision: 1.22.0
         chart: external-dns
         helm:
           releaseName: external-dns-gw
@@ -43,9 +43,8 @@ spec:
               - gateway-udproute
 
             policy: sync
-            registry: txt
-            txtOwnerId: {{ .name }}-gw
-            txtPrefix: external-dns-
+            registry: crd
+            txtOwnerId: gw
 
             provider: rfc2136
 
@@ -62,7 +61,7 @@ spec:
               - --rfc2136-tsig-keyname=k8s_{{ .name | replace "." "-" }}_core-external-dns
               - --rfc2136-tsig-secret=$(TSIG_SECRET)
               - --rfc2136-tsig-secret-alg=hmac-sha512
-              - --rfc2136-tsig-axfr
+              - --rfc2136-axfr
               - --rfc2136-min-ttl=300s
 
               - --rfc2136-zone=as212024.net
@@ -135,7 +134,7 @@ spec:
         namespace: core-external-dns
       source:
         repoURL: https://kubernetes-sigs.github.io/external-dns
-        targetRevision: 1.21.1
+        targetRevision: 1.22.0
         chart: external-dns
         helm:
           releaseName: external-dns-svc
@@ -147,9 +146,8 @@ spec:
               - service
 
             policy: sync
-            registry: txt
-            txtOwnerId: {{ .name }}-svc
-            txtPrefix: external-dns-
+            registry: crd
+            txtOwnerId: svc
 
             provider: rfc2136
 
@@ -166,7 +164,7 @@ spec:
               - --rfc2136-tsig-keyname=k8s_{{ .name | replace "." "-" }}_core-external-dns
               - --rfc2136-tsig-secret=$(TSIG_SECRET)
               - --rfc2136-tsig-secret-alg=hmac-sha512
-              - --rfc2136-tsig-axfr
+              - --rfc2136-axfr
               - --rfc2136-min-ttl=300s
 
               - --rfc2136-zone=as212024.net
