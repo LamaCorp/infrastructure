@@ -69,7 +69,6 @@ spec:
               - --rfc2136-zone=devou.ps
               - --rfc2136-zone=doyouhavegoodbackups.com
               - --rfc2136-zone=lama-corp.space
-              - --rfc2136-zone=lama.tel
               - --rfc2136-zone=manuwack.eu
               - --rfc2136-zone=marcerisson.space
               - --rfc2136-zone=phemma.fr
@@ -87,7 +86,6 @@ spec:
               - --domain-filter=devou.ps
               - --domain-filter=doyouhavegoodbackups.com
               - --domain-filter=lama-corp.space
-              - --domain-filter=lama.tel
               - --domain-filter=manuwack.eu
               - --domain-filter=marcerisson.space
               - --domain-filter=phemma.fr
@@ -172,7 +170,7 @@ spec:
               - --rfc2136-zone=devou.ps
               - --rfc2136-zone=doyouhavegoodbackups.com
               - --rfc2136-zone=lama-corp.space
-              - --rfc2136-zone=lama.tel
+              - --rfc2136-zone=manuwack.eu
               - --rfc2136-zone=marcerisson.space
               - --rfc2136-zone=phemma.fr
               - --rfc2136-zone=risson.eu
@@ -189,7 +187,7 @@ spec:
               - --domain-filter=devou.ps
               - --domain-filter=doyouhavegoodbackups.com
               - --domain-filter=lama-corp.space
-              - --domain-filter=lama.tel
+              - --domain-filter=manuwack.eu
               - --domain-filter=marcerisson.space
               - --domain-filter=phemma.fr
               - --domain-filter=risson.eu

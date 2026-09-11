@@ -43,8 +43,6 @@ spec:
           - name: doyouhavegoodbackups-com-rsa-tls
           - name: lama-corp-space-ecdsa-tls
           - name: lama-corp-space-rsa-tls
-          - name: lama-tel-ecdsa-tls
-          - name: lama-tel-rsa-tls
           - name: marcerisson-space-ecdsa-tls
           - name: marcerisson-space-rsa-tls
           - name: risson-me-ecdsa-tls
