@@ -17,7 +17,7 @@ metadata:
   name: routinator-rpki
   annotations:
     io.cilium/lb-ipam-ips: 209.112.97.164,2001:67c:17fc:130::323
-    external-dns.alpha.kubernetes.io/hostname: rpki.as212024.net
+    external-dns.kubernetes.io/hostname: rpki.as212024.net
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local

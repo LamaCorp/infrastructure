@@ -16,7 +16,7 @@ gateway:
   route:
     enabled: true
     annotations:
-      external-dns.alpha.kubernetes.io/controller: ignored
+      external-dns.kubernetes.io/controller: ignored
     parentRefs:
       - name: eg-http-public
         namespace: core-eg

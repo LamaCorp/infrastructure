@@ -5,7 +5,7 @@ metadata:
   name: kdc
   annotations:
     io.cilium/lb-ipam-ips: 209.112.97.163,2001:67c:17fc:130::88
-    external-dns.alpha.kubernetes.io/hostname: kerberos.lama-corp.space
+    external-dns.kubernetes.io/hostname: kerberos.lama-corp.space
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local

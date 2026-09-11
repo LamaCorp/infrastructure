@@ -5,4 +5,4 @@ metadata:
   name: factorio
   annotations:
     io.cilium/lb-ipam-ips: 209.112.97.170,2001:67c:17fc:130::2:7014
-    external-dns.alpha.kubernetes.io/hostname: 2022.factorio.games.lama-corp.space
+    external-dns.kubernetes.io/hostname: 2022.factorio.games.lama-corp.space

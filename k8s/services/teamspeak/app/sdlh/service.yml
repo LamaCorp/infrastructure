@@ -5,4 +5,4 @@ metadata:
   name: teamspeak
   annotations:
     io.cilium/lb-ipam-ips: 209.112.97.168,2001:67c:17fc:130::9987
-    external-dns.alpha.kubernetes.io/hostname: ts.sdlh.eu
+    external-dns.kubernetes.io/hostname: ts.sdlh.eu

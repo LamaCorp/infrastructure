@@ -12,7 +12,7 @@ spec:
       name: eg-http-bar
     annotations:
       io.cilium/lb-ipam-ips: 209.112.97.162
-      external-dns.alpha.kubernetes.io/hostname: gw-eg-http-bar.k3s.fsn.as212024.net
+      external-dns.kubernetes.io/hostname: gw-eg-http-bar.k3s.fsn.as212024.net
   listeners:
     - name: http
       protocol: HTTP
