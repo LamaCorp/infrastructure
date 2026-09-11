@@ -2,23 +2,6 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-prod-http01
-spec:
-  acme:
-    email: caa@lama-corp.space
-    server: https://acme-v02.api.letsencrypt.org/directory
-    profile: tlsserver
-    disableAccountKeyGeneration: true
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    solvers:
-      - http01:
-          ingress:
-            ingressClassName: nginx-public
----
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
   name: letsencrypt-prod-http01-eg
 spec:
   acme:
