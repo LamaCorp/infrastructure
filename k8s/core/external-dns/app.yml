@@ -137,10 +137,15 @@ spec:
         helm:
           releaseName: external-dns-svc
           values: |
+            image:
+              repository: ghcr.io/lamacorp/external-dns
+              tag: 48b6ba4d97872413f88b0b5574aa67ccca0cb6cdd3d03c9fb5987ce6879cd4cb
+
             interval: 1m
             triggerLoopOnEvent: true
 
             sources:
+              - crd
               - service
 
             policy: sync
@@ -204,6 +209,7 @@ spec:
               - --managed-record-types=AAAA
               - --managed-record-types=CNAME
               - --managed-record-types=PTR
+              - --managed-record-types=TLSA
               - --create-ptr
 
               - --rfc2136-zone=97.112.209.in-addr.arpa
