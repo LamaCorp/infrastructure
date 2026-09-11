@@ -101,8 +101,6 @@ spec:
               - --domain-filter=sdlh.eu
               - --domain-filter=thefractal.space
 
-              - --crd-registry-namespace=core-external-dns
-
             deploymentAnnotations:
               secret.reloader.stakater.com/reload: tsig-key
 
@@ -216,8 +214,6 @@ spec:
               - --domain-filter=97.112.209.in-addr.arpa
               - --domain-filter=c.f.7.1.c.7.6.0.1.0.0.2.ip6.arpa
               - --domain-filter=7.7.1.8.8.e.6.0.a.2.ip6.arpa
-
-              - --crd-registry-namespace=core-external-dns
 
             deploymentAnnotations:
               secret.reloader.stakater.com/reload: tsig-key
