@@ -34,7 +34,7 @@ images:
   - name: ghcr.io/hotio/bazarr
     newTag: release-1.6.0@sha256:ba5deadb451ee2a7a3786f8c9e81123f0548ffa67317c2314d98000beae036d9
   - name: ghcr.io/flaresolverr/flaresolverr
-    newTag: v3.5.0@sha256:139dfee1c6f89249c8d665d1333a42e8ec74ec0a86bc6bb1c8461e10d3a66a47
+    newTag: v3.5.2@sha256:c80ae007ce2ccdcd217a12426e4f039ef763ff90738c808d38810c3e59323767
   - name: ghcr.io/hotio/jackett
     newTag: release-0.24.2541@sha256:a28600d2293d1c79f6ebd60ed7d1b274a0a138fe07b9724278167af6895e1da2
   - name: ghcr.io/jellyfin/jellyfin
