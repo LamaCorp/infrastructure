@@ -19,9 +19,9 @@ spec:
     - repoURL: https://github.com/LamaCorp/infrastructure.git
       targetRevision: HEAD
       ref: infrastructure
-    - repoURL: https://helm.releases.hashicorp.com
-      targetRevision: 0.32.0
-      chart: vault
+    - repoURL: oci://ghcr.io/openbao/charts/openbao
+      targetRevision: 0.29.4
+      chart: openbao
       helm:
         releaseName: vault
         valueFiles:

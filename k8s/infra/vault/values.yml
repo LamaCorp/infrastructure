@@ -8,13 +8,13 @@ server:
   enabled: true
 
   image:
-    repository: docker.io/hashicorp/vault
-    tag: 1.21.4@sha256:4e33b126a59c0c333b76fb4e894722462659a6bec7c48c9ee8cea56fccfd2569
+    registry: ""
+    repository: quay.io/openbao/openbao-ubi
+    tag: 2.6.2
 
   standalone:
     enabled: true
     config: |
-      disable_mlock = true
       ui = true
 
       listener "tcp" {
@@ -26,7 +26,7 @@ server:
         }
       }
       storage "file" {
-        path = "/vault/data"
+        path = "/openbao/data"
       }
 
       telemetry {
@@ -34,13 +34,23 @@ server:
         disable_hostname = true
       }
 
-  readinessProbe:
-    enabled: true
-    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
-  livenessProble:
-    enabled: true
-    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
-    initialDelaySeconds: 60
+      plugin_auto_download = true
+      plugin_auto_register = true
+
+      plugin "database" "mongodb" {
+        image = "ghcr.io/openbao/openbao-plugin-database-mongodb"
+        version = "v0.0.1"
+        binary_name = "openbao-plugin-database-mongodb"
+        sha256sum = "4768e4e573c261e44a004adc9a3564c43824aa0be4cb98c871fd46a7bea25d0c"
+      }
+
+  # readinessProbe:
+  #   enabled: true
+  #   path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+  # livenessProble:
+  #   enabled: true
+  #   path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+  #   initialDelaySeconds: 60
 
   dataStorage:
     enabled: true
@@ -74,6 +84,5 @@ serverTelemetry:
         for: 5m
         labels:
           severity: critical
-
-injector:
-  enabled: false
+  grafanaDashboard:
+    enabled: true
