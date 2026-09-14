@@ -19,7 +19,9 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: argocd-https
+          - group: ""
+            kind: Secret
+            name: argocd-https
     - name: argocd-applicationset-controller
       hostname: argocd-appset.as212024.net
       port: 443
