@@ -7,7 +7,7 @@ spec:
   acme:
     email: caa@lama-corp.space
     server: https://acme-v02.api.letsencrypt.org/directory
-    profile: tlsserver
+    profile: shortlived
     disableAccountKeyGeneration: true
     privateKeySecretRef:
       name: letsencrypt-prod
