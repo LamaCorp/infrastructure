@@ -27,7 +27,7 @@ metadata:
   name: bird-lg-go
 spec:
   parentRefs:
-    - group: gateway.networking.k8s.io/v1
+    - group: gateway.networking.k8s.io
       kind: ListenerSet
       name: bird-lg-go
   hostnames:
