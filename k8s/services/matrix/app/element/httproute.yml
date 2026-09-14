@@ -5,9 +5,9 @@ metadata:
   name: element
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: matrix
   hostnames:
     - element.lama-corp.space
   rules:

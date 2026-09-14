@@ -102,9 +102,9 @@ spec:
           gateway:
             enabled: true
             parentRefs:
-              - name: eg-http-public
-                namespace: core-eg
-                sectionName: https
+              - group: gateway.networking.k8s.io
+                kind: ListenerSet
+                name: matrix
     - repoURL: https://ananace.gitlab.io/charts
       targetRevision: 1.4.43
       chart: element-web

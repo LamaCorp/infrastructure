@@ -5,6 +5,7 @@ commonLabels:
   app.kubernetes.io/name: matrix
 
 resources:
+  - listenerset.yml
   - network-policy.yml
   - secrets.yml
 
