@@ -6,4 +6,13 @@ resources:
   - secrets.yml
 
 patches:
+  - target:
+      group: gateway.networking.k8s.io
+      version: v1
+      kind: ListenerSet
+      name: rocketchat
+    patch: |-
+      - op: replace
+        path: /spec/listeners/0/hostname
+        value: chat.sdlh.eu
   - path: httproute.yml
