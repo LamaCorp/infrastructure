@@ -13,7 +13,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: zen-hane.lama-corp.space
+      hostname: zen-hane.sdlh.eu
       port: 443
       protocol: HTTPS
       tls:
