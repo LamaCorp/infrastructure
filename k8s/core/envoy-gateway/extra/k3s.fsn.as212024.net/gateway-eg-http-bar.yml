@@ -25,16 +25,3 @@ spec:
           - kind: HTTPRoute
         namespaces:
           from: All
-    - name: https
-      protocol: HTTPS
-      port: 443
-      allowedRoutes:
-        kinds:
-          - kind: HTTPRoute
-        namespaces:
-          from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: lama-corp-space-ecdsa-tls
-          - name: lama-corp-space-rsa-tls

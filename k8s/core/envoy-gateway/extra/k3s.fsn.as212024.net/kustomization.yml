@@ -16,5 +16,3 @@ resources:
   - envoyproxy-eg-http-public.yml
   - envoyproxy-eg-http-bar.yml
   - envoyproxy-eg-http-media.yml
-
-  - certificates.yml
