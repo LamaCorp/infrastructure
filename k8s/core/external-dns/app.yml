@@ -41,6 +41,7 @@ spec:
               - gateway-tlsroute
               - gateway-tcproute
               - gateway-udproute
+            enableGatewayListenerSets: true
 
             policy: sync
             registry: crd
