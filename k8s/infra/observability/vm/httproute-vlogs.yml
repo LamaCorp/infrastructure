@@ -1,13 +1,35 @@
 ---
 apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: vlogs
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/private-key-algorithm: ECDSA
+    acme.cert-manager.io/http01-parentreffallback: "true"
+spec:
+  parentRef:
+    namespace: core-eg
+    name: eg-http-public
+  listeners:
+    - name: https
+      hostname: logs.as212024.net
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: vlogs-https
+---
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: vlogs
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: vlogs
   hostnames:
     - logs.as212024.net
   rules:
@@ -37,6 +59,3 @@ spec:
             - 172.28.0.0/16
             - 209.112.97.240/28
             - 2001:67c:17fc::/48
-            # bar-cc
-            - 172.29.1.0/26
-            - 2a06:e881:7701:1::/64
