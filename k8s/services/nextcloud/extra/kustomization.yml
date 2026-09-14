@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - cronjob.yml
+  - listenerset.yml
   - network-policy.yml
   - pvc.yml
   - secrets.yml
