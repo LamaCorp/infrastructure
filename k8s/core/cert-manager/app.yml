@@ -41,8 +41,8 @@ spec:
                 gatewayAPI:
                   enabled: true
                   enableListenerSet: true
-              featureGates:
-                ListenerSets: true
+                featureGates:
+                  ListenerSets: true
 
               dns01RecursiveNameserversOnly: true
               dns01RecursiveNameservers: "[2606:4700:4700::1111]:53,[2606:4700:4700::1001]:53,1.1.1.1:53,1.0.0.1:53"
