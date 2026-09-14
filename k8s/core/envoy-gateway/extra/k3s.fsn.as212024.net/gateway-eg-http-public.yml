@@ -58,7 +58,5 @@ spec:
           - name: sdlh-eu-rsa-tls
           - name: cats-acdc-epita-fr-ecdsa-tls
           - name: cats-acdc-epita-fr-rsa-tls
-          - name: oup-si-ecdsa-tls
-          - name: oup-si-rsa-tls
           - name: status-prologin-org-ecdsa-tls
           - name: status-prologin-org-rsa-tls

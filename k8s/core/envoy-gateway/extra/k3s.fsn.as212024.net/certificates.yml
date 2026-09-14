@@ -403,36 +403,6 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: oup-si-rsa
-spec:
-  secretName: oup-si-rsa-tls
-  privateKey:
-    algorithm: RSA
-  issuerRef:
-    group: cert-manager.io
-    kind: ClusterIssuer
-    name: letsencrypt-prod-http01-eg
-  dnsNames:
-    - "oup.si"
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: oup-si-ecdsa
-spec:
-  secretName: oup-si-ecdsa-tls
-  privateKey:
-    algorithm: ECDSA
-  issuerRef:
-    group: cert-manager.io
-    kind: ClusterIssuer
-    name: letsencrypt-prod-http01-eg
-  dnsNames:
-    - "oup.si"
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
   name: status-prologin-org-rsa
 spec:
   secretName: status-prologin-org-rsa-tls
