@@ -18,8 +18,9 @@ gateway:
     annotations:
       external-dns.kubernetes.io/controller: ignored
     parentRefs:
-      - name: eg-http-public
-        namespace: core-eg
+      - group: gateway.networking.k8s.io
+        kind: ListenerSet
+        name: gatus
         sectionName: https
     hosts:
       - status.prologin.org

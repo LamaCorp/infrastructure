@@ -18,11 +18,13 @@ gateway:
     annotations:
       external-dns.kubernetes.io/controller: ignored
     parentRefs:
-      - name: eg-http-public
-        namespace: core-eg
+      - group: gateway.networking.k8s.io
+        kind: ListenerSet
+        name: gatus
         sectionName: https
     hosts:
-      - oup.si
+      # - oup.si
+      - phowork.devou.ps
 
 config:
   web:

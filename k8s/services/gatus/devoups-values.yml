@@ -16,8 +16,9 @@ gateway:
   route:
     enabled: true
     parentRefs:
-      - name: eg-http-public
-        namespace: core-eg
+      - group: gateway.networking.k8s.io
+        kind: ListenerSet
+        name: gatus
         sectionName: https
     hosts:
       - devou.ps
