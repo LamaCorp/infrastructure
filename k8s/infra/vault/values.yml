@@ -10,7 +10,7 @@ server:
   image:
     registry: ""
     repository: quay.io/openbao/openbao-ubi
-    tag: 2.6.2
+    tag: 2.6.2@sha256:ae0c482ab57c26325c0ecfbc2e09bc2394e4b88bc8ff4c7fcbf39d6adc5d18fc
 
   standalone:
     enabled: true
