@@ -1,13 +1,43 @@
 ---
 apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: mastodon
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/private-key-algorithm: ECDSA
+    acme.cert-manager.io/http01-parentreffallback: "true"
+spec:
+  parentRef:
+    namespace: core-eg
+    name: eg-http-public
+  listeners:
+    - name: https
+      hostname: social.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: mastodon-https
+    - name: webfinger
+      hostname: lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: mastodon-webfinger-https
+---
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: mastodon
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: mastodon
   hostnames:
     - social.lama-corp.space
   rules:
@@ -30,9 +60,9 @@ metadata:
   name: mastodon-webfinger
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: mastodon
   hostnames:
     - lama-corp.space
   rules:
