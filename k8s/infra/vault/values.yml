@@ -86,6 +86,3 @@ serverTelemetry:
           severity: critical
   grafanaDashboard:
     enabled: true
-
-injector:
-  enabled: false
