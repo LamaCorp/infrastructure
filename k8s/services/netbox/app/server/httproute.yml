@@ -5,9 +5,9 @@ metadata:
   name: netbox
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: netbox
   hostnames:
     - netbox.as212024.net
   rules:
