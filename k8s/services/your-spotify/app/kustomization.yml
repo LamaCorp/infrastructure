@@ -7,6 +7,7 @@ commonLabels:
 resources:
   - web
   - api
+  - listenerset.yml
   - network-policy.yml
   - secrets.yml
 

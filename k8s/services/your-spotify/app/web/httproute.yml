@@ -5,9 +5,9 @@ metadata:
   name: your-spotify-web
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: your-spotify
   hostnames:
     - ys.lama-corp.space
   rules:
