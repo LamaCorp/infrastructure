@@ -2,5 +2,6 @@
 kind: Kustomization
 
 resources:
+  - cluster-issuer.yml
   - network-policy.yml
   - secrets.yml
