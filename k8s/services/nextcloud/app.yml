@@ -185,8 +185,8 @@ spec:
           httpRoute:
             enabled: true
             parentRefs:
-              - name: eg-http-bar
-                namespace: core-eg
-                sectionName: https
+              - group: gateway.networking.k8s.io
+                kind: ListenerSet
+                name: nextcloud
             hostnames:
               - cloud.lama-corp.space

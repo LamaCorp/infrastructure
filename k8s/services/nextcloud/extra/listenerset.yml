@@ -1,0 +1,30 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: nextcloud
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/private-key-algorithm: ECDSA
+    acme.cert-manager.io/http01-parentreffallback: "true"
+spec:
+  parentRef:
+    namespace: core-eg
+    name: eg-http-bar
+  listeners:
+    - name: cloud
+      hostname: cloud.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: nextcloud-https
+    - name: office
+      hostname: office.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: nextcloud-https
