@@ -35,6 +35,3 @@ spec:
           from: All
       tls:
         mode: Terminate
-        certificateRefs:
-          - name: lama-corp-space-ecdsa-tls
-          - name: lama-corp-space-rsa-tls

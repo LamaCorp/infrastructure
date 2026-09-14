@@ -36,13 +36,5 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: as212024-net-ecdsa-tls
-          - name: as212024-net-rsa-tls
           - name: lama-corp-space-ecdsa-tls
           - name: lama-corp-space-rsa-tls
-          - name: marcerisson-space-ecdsa-tls
-          - name: marcerisson-space-rsa-tls
-          - name: risson-me-ecdsa-tls
-          - name: risson-me-rsa-tls
-          - name: risson-space-ecdsa-tls
-          - name: risson-space-rsa-tls

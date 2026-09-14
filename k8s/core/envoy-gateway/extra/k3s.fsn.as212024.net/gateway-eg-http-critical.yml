@@ -35,8 +35,3 @@ spec:
           from: All
       tls:
         mode: Terminate
-        certificateRefs:
-          - name: as212024-net-ecdsa-tls
-          - name: as212024-net-rsa-tls
-          - name: lama-corp-space-ecdsa-tls
-          - name: lama-corp-space-rsa-tls
