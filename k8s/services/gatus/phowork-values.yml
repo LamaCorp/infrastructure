@@ -15,8 +15,8 @@ serviceMonitor:
 gateway:
   route:
     enabled: true
-    annotations:
-      external-dns.kubernetes.io/controller: ignored
+    # annotations:
+    #   external-dns.kubernetes.io/controller: ignored
     parentRefs:
       - group: gateway.networking.k8s.io
         kind: ListenerSet
