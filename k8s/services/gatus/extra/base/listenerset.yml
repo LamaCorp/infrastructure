@@ -4,7 +4,7 @@ kind: ListenerSet
 metadata:
   name: gatus
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg-http-public
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
     cert-manager.io/private-key-algorithm: ECDSA
     acme.cert-manager.io/http01-parentreffallback: "true"
 spec:
@@ -12,10 +12,10 @@ spec:
     namespace: core-eg
     name: eg-http-public
   listeners:
-    - name: gatus
+    - name: https
       port: 443
       protocol: HTTPS
       tls:
         mode: Terminate
         certificateRefs:
-          - name: gatus-tls
+          - name: gatus-https

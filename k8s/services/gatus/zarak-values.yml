@@ -19,7 +19,7 @@ gateway:
       - group: gateway.networking.k8s.io
         kind: ListenerSet
         name: gatus
-        sectionName: gatus
+        sectionName: https
     hosts:
       - zarak.devou.ps
 
