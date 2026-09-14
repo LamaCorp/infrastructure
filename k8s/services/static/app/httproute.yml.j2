@@ -1,14 +1,46 @@
 {% for domain in domains %}
 ---
 apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: "static-{{ domain.slug }}"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/private-key-algorithm: ECDSA
+    acme.cert-manager.io/http01-parentreffallback: "true"
+spec:
+  parentRef:
+    namespace: core-eg
+    name: eg-http-public
+  listeners:
+    - name: https
+      hostname: "{{ domain.slug }}"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: "static-{{ domain.slug }}-https"
+    {% for extra_name in domain.extra_names %}
+    - name: https-{{ loop.index }}
+      hostname: "{{ extra_name }}"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: "static-{{ domain.slug }}-https"
+    {% endfor %}
+---
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: "static-{{ domain.slug }}"
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: "static-{{ domain.slug }}"
   hostnames:
     - "{{ domain.name }}"
     {% for extra_name in domain.extra_names %}
