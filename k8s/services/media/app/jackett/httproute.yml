@@ -5,9 +5,9 @@ metadata:
   name: jackett
 spec:
   parentRefs:
-    - name: eg-http-media
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: media
   hostnames:
     - jackett.lama-corp.space
   rules:

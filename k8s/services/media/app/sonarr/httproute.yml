@@ -5,9 +5,9 @@ metadata:
   name: sonarr
 spec:
   parentRefs:
-    - name: eg-http-media
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: media
   hostnames:
     - sonarr.lama-corp.space
   rules:

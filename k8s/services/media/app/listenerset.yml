@@ -1,0 +1,94 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: media
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/private-key-algorithm: ECDSA
+    acme.cert-manager.io/http01-parentreffallback: "true"
+spec:
+  parentRef:
+    namespace: core-eg
+    name: eg-http-media
+  listeners:
+    - name: bazarr
+      hostname: bazarr.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: jackett
+      hostname: jackett.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: jellyfin
+      hostname: jellyfin.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: jellyseerr
+      hostname: jellyseerr.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: lidarr
+      hostname: lidarr.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: prowlarr
+      hostname: prowlarr.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: qbittorrent
+      hostname: qbittorrent.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: radarr
+      hostname: radarr.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: sabnzbd
+      hostname: sabnzbd.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https
+    - name: sonarr
+      hostname: sonarr.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: media-https

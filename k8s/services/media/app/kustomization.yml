@@ -5,6 +5,7 @@ commonLabels:
   app.kubernetes.io/name: media
 
 resources:
+  - listenerset.yml
   - network-policy.yml
   - pvc.yml
   - secrets.yml
