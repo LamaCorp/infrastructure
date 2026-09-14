@@ -39,3 +39,5 @@ spec:
       backendRefs:
         - name: thefractalspace
           port: 80
+      timeouts:
+        request: 600s
