@@ -22,8 +22,8 @@ authentik:
   compliance:
     fips:
       enabled: true
-  # outposts:
-  #   container_image_base: ghcr.io/goauthentik/%(type)s:2026.8.0-rc4
+  outposts:
+    disable_embedded_outpost: true
 
 blueprints:
   configMaps:
