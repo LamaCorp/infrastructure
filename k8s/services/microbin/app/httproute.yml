@@ -1,13 +1,59 @@
 ---
 apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: microbin
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/private-key-algorithm: ECDSA
+    acme.cert-manager.io/http01-parentreffallback: "true"
+spec:
+  parentRef:
+    namespace: core-eg
+    name: eg-http-public
+  listeners:
+    - name: lama
+      hostname: bin.lama-corp.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: microbin-https
+    - name: risson-space
+      hostname: bin.risson.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: microbin-https
+    - name: marcerisson-space
+      hostname: bin.marcerisson.space
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: microbin-https
+    - name: risson-me
+      hostname: bin.risson.me
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: microbin-https
+---
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: microbin
 spec:
   parentRefs:
-    - name: eg-http-public
-      namespace: core-eg
-      sectionName: https
+    - group: gateway.networking.k8s.io
+      kind: ListenerSet
+      name: microbin
   hostnames:
     - bin.lama-corp.space
     - bin.risson.space
