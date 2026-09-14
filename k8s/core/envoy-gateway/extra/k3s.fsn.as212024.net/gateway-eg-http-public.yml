@@ -46,7 +46,3 @@ spec:
           - name: risson-me-rsa-tls
           - name: risson-space-ecdsa-tls
           - name: risson-space-rsa-tls
-          - name: rplace-space-ecdsa-tls
-          - name: rplace-space-rsa-tls
-          - name: sdlh-eu-ecdsa-tls
-          - name: sdlh-eu-rsa-tls

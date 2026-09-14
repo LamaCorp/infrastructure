@@ -40,5 +40,3 @@ spec:
           - name: as212024-net-rsa-tls
           - name: lama-corp-space-ecdsa-tls
           - name: lama-corp-space-rsa-tls
-          - name: sdlh-eu-ecdsa-tls
-          - name: sdlh-eu-rsa-tls
