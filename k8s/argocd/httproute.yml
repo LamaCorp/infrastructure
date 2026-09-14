@@ -50,7 +50,6 @@ spec:
           kind: Service
           name: argocd-server
           port: 80
-          weight: 1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -73,4 +72,3 @@ spec:
           kind: Service
           name: argocd-applicationset-controller
           port: 7000
-          weigth: 1
