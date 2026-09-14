@@ -16,9 +16,10 @@ gateway:
   route:
     enabled: true
     parentRefs:
-      - name: eg-http-public
-        namespace: core-eg
-        sectionName: https
+      - group: gateway.networking.k8s.io
+        kind: ListenerSet
+        name: gatus
+        sectionName: gatus
     hosts:
       - zarak.devou.ps
 

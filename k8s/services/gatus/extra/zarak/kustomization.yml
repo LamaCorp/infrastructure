@@ -4,3 +4,14 @@ kind: Kustomization
 resources:
   - ../base
   - secrets.yml
+
+patches:
+  - target:
+      group: gateway.networking.k8s.io
+      version: v1
+      kind: ListenerSet
+      name: gatus
+    patch: |-
+      - op: replace
+        path: /spec/listeners/0/hostname
+        value: zarak.devou.ps
