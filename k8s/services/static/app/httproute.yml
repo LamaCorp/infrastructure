@@ -13,7 +13,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "lama-corp-space"
+      hostname: "lama-corp.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -68,7 +68,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "rplace-space"
+      hostname: "rplace.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -112,7 +112,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "doyouhavegoodbackups-com"
+      hostname: "doyouhavegoodbackups.com"
       port: 443
       protocol: HTTPS
       tls:
@@ -156,7 +156,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "as212024-net"
+      hostname: "as212024.net"
       port: 443
       protocol: HTTPS
       tls:
@@ -200,7 +200,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "acdc-risson-space"
+      hostname: "acdc.risson.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -266,7 +266,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "cats-acdc-risson-space"
+      hostname: "cats.acdc.risson.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -343,7 +343,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "jdmi-risson-space"
+      hostname: "jdmi.risson.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -409,7 +409,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "risson-space"
+      hostname: "risson.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -508,7 +508,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "scoreboard-seedbox-cri-risson-space"
+      hostname: "scoreboard-seedbox-cri.risson.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -574,7 +574,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "workshop-risson-space"
+      hostname: "workshop.risson.space"
       port: 443
       protocol: HTTPS
       tls:
@@ -640,7 +640,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: "sdlh-eu"
+      hostname: "sdlh.eu"
       port: 443
       protocol: HTTPS
       tls:
