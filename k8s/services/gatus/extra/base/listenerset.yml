@@ -4,7 +4,7 @@ kind: ListenerSet
 metadata:
   name: gatus
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg-http-public
     cert-manager.io/private-key-algorithm: ECDSA
 spec:
   parentRef:
