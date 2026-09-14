@@ -21,7 +21,6 @@ gateway:
       - group: gateway.networking.k8s.io
         kind: ListenerSet
         name: gatus
-        sectionName: https
     hosts:
       # - oup.si
       - phowork.devou.ps

@@ -19,7 +19,6 @@ gateway:
       - group: gateway.networking.k8s.io
         kind: ListenerSet
         name: gatus
-        sectionName: https
     hosts:
       - devou.ps
 
