@@ -25,6 +25,13 @@ systemd_networkd_netdev:
     NetDev:
       Name: svc-ntp1
       Kind: dummy
+  # Local peering LAN
+  10-ix-decix-0:
+    NetDev:
+      Name: ix-decix-0
+      Kind: vlan
+    VLAN:
+      Id: 503
   # core VPN
   15-core-bar:
     NetDev:
@@ -174,6 +181,8 @@ systemd_networkd_network:
         - 2a00:dd0:aaaa:a::2/64
         - 37.46.199.163/32 # ns2.as212024.net
         - 2a00:dd0:aaaa:a::53/64 # ns2.as212024.net
+      VLAN:
+        - ix-decix-0
     Route:
       # Netrouting default routes
       - Destination: 0.0.0.0/0
@@ -204,6 +213,17 @@ systemd_networkd_network:
         Table: 101
       - To: 194.50.92.165/32
         Table: 101
+  # Local peering LAN
+  10-ix-decix-0:
+    Match:
+      Name: ix-decix-0
+    Link:
+      RequiredForOnline: false
+    Network:
+      ConfigureWithoutCarrier: true
+      LinkLocalAddressing: ipv6
+      IPv6AcceptRA: false
+      DHCP: false
   # core VPN
   15-core-bar:
     Match:
