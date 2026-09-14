@@ -33,7 +33,7 @@ spec:
               mountPath: /cache
           resources:
             limits:
-              cpu: "6"
+              cpu: "2"
       volumes:
         - name: cache
           persistentVolumeClaim:
