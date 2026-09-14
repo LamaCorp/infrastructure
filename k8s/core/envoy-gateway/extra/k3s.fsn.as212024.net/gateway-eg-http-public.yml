@@ -38,12 +38,6 @@ spec:
         certificateRefs:
           - name: as212024-net-ecdsa-tls
           - name: as212024-net-rsa-tls
-          - name: authentik-rs-ecdsa-tls
-          - name: authentik-rs-rsa-tls
-          - name: devou-ps-ecdsa-tls
-          - name: devou-ps-rsa-tls
-          - name: doyouhavegoodbackups-com-ecdsa-tls
-          - name: doyouhavegoodbackups-com-rsa-tls
           - name: lama-corp-space-ecdsa-tls
           - name: lama-corp-space-rsa-tls
           - name: marcerisson-space-ecdsa-tls
@@ -56,7 +50,3 @@ spec:
           - name: rplace-space-rsa-tls
           - name: sdlh-eu-ecdsa-tls
           - name: sdlh-eu-rsa-tls
-          - name: cats-acdc-epita-fr-ecdsa-tls
-          - name: cats-acdc-epita-fr-rsa-tls
-          - name: status-prologin-org-ecdsa-tls
-          - name: status-prologin-org-rsa-tls
