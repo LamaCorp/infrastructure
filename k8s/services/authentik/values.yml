@@ -77,9 +77,9 @@ server:
     main:
       enabled: true
       parentRefs:
-        - name: eg-http-critical
-          namespace: core-eg
-          sectionName: https
+        - group: gateway.networking.k8s.io
+          kind: ListenerSet
+          name: authentik
       hostnames:
         - auth.lama-corp.space
         - auth.as212024.net

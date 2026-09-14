@@ -2,6 +2,7 @@
 kind: Kustomization
 
 resources:
+  - listenerset.yml
   - network-policy.yml
   - secrets.yml
   - kdc
