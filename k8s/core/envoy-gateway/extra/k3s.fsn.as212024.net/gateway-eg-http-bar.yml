@@ -13,6 +13,9 @@ spec:
     annotations:
       io.cilium/lb-ipam-ips: 209.112.97.162
       external-dns.kubernetes.io/hostname: gw-eg-http-bar.k3s.fsn.as212024.net
+  allowedListeners:
+    namespaces:
+      from: All
   listeners:
     - name: http
       protocol: HTTP
