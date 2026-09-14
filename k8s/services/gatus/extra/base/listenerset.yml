@@ -6,7 +6,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod-http01-eg
     cert-manager.io/private-key-algorithm: ECDSA
-    acme.cert-manager.io/http01-parentreffallback: "true"
 spec:
   parentRef:
     namespace: core-eg
