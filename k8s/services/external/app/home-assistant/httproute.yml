@@ -10,7 +10,7 @@ metadata:
 spec:
   parentRef:
     namespace: core-eg
-    name: eg-http-public
+    name: eg-http-bar
   listeners:
     - name: https
       hostname: home.phemma.fr
