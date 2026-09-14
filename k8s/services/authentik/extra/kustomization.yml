@@ -36,7 +36,6 @@ configMapGenerator:
       - ./blueprints/apps-rocketchat-sdlh.yaml
       - ./blueprints/apps-dmarc-report-viewer.yaml
       - ./blueprints/apps-stirling-pdf.yaml
-      - ./blueprints/apps-v-core-3.yaml
       - ./blueprints/apps-vault.yaml
       - ./blueprints/apps-zennotes-hane.yaml
       - ./blueprints/apps-zigbee2mqtt.yaml
@@ -45,4 +44,3 @@ configMapGenerator:
       - ./blueprints/flows-default-provider-authorization-one-time-consent.yaml
       - ./blueprints/notifications.yaml
       - ./blueprints/oauth-scopes.yaml
-      - ./blueprints/outposts.yaml
