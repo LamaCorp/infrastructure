@@ -13,7 +13,7 @@ spec:
     name: eg-http-public
   listeners:
     - name: https
-      hostname: as212024.net
+      hostname: authentik.rs
       port: 443
       protocol: HTTPS
       tls:
