@@ -2,3 +2,4 @@
 nft_input_host_rules:
   360 ntp:
     - udp dport 123 accept
+    - tcp dport 4460 accept

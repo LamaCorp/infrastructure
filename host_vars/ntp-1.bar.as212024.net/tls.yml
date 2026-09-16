@@ -1,0 +1,26 @@
+---
+lego_config:
+  accounts:
+    ntp:
+      email: caa@as212024.net
+      acceptsTermsOfService: true
+
+  certificates:
+    ntp:
+      challenge: http-01
+      account: ntp
+      profile: shortlived
+      domains:
+        - 209.112.97.123
+        - 2001:67c:17fc::123
+        - ntp0.as212024.net
+
+lego_hook_deploy: |
+  #!/usr/bin/env bash
+
+  set -euo pipefail
+
+  install -u root -g _chrony -m 0644 "$LEGO_HOOK_CERT_PATH" "/etc/chrony/chrony.crt"
+  install -u root -g _chrony -m 0640 "$LEGO_HOOK_CERT_KEY_PATH" "/etc/chrony/chrony.key"
+
+  systemctl restart chrony.service
