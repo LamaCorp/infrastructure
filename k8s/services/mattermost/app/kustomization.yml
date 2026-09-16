@@ -34,4 +34,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/mattermost/mattermost-team-edition
-    newTag: 10.12.4@sha256:7f05eb3b66214037d150b76550c4b81acde902006092b791fb7c3fb3e1d549bd
+    newTag: 11.11.0@sha256:d5af347bedb54e85754076a131a6a204f4b2efb34369014a50966aa1347245b1
