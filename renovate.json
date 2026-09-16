@@ -31,6 +31,17 @@
     {
       "customType": "regex",
       "datasourceTemplate": "github-releases",
+      "depNameTemplate": "go-acme/lego",
+      "managerFilePatterns": [
+        "/^roles/lego/defaults/main\\.yml$/"
+      ],
+      "matchStrings": [
+        "lego_version: (?<currentValue>.*?)\\n"
+      ]
+    },
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-releases",
       "depNameTemplate": "badaix/snapcast",
       "managerFilePatterns": [
         "/^roles/snapcast/defaults/main\\.yml$/"

@@ -1,0 +1,111 @@
+---
+
+- name: Download lego from GitHub releases
+  ansible.builtin.unarchive:
+    src: "{{ lego_archive_url }}"
+    dest: /usr/local/bin
+    remote_src: true
+    owner: root
+    group: root
+    mode: 0755
+    include:
+      - lego
+
+- name: Ensure lego storage exists
+  ansible.builtin.file:
+    path: "{{ lego_config_computed.storage }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Ensure systemd service is up-to-date
+  ansible.builtin.copy:
+    content: |
+      [Unit]
+      Description=lego, an ACME client
+
+      [Service]
+      Type=oneshot
+      Environment=LEGO_CONFIG=/etc/lego.yml
+      ExecStart=/usr/local/bin/lego
+      User=root
+      Group=root
+      Restart=no
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/lego.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
+- name: Ensure systemd timer is up-to-date
+  ansible.builtin.copy:
+    content: |
+      [Unit]
+      Description=lego, an ACME client
+
+      [Timer]
+      OnCalendar=hourly
+      Persistent=true
+      RandomizedDelaySec=1h
+
+      [Install]
+      WantedBy=timers.target
+    dest: /etc/systemd/system/lego.timer
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
+- name: Ensure lego configuration is up-to-date
+  ansible.builtin.copy:
+    content: "{{ lego_config_computed | to_nice_yaml(indent=2) }}"
+    dest: /etc/lego.yml
+    owner: root
+    group: root
+    mode: 0600
+  register: lego_config_copy
+
+- name: Ensure lego pre hook is up-to-date
+  ansible.builtin.copy:
+    content: "{{ lego_hook_pre }}"
+    dest: /usr/local/bin/lego-hook-pre
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Ensure lego deploy hook is up-to-date
+  ansible.builtin.copy:
+    content: "{{ lego_hook_deploy }}"
+    dest: /usr/local/bin/lego-hook-deploy
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Ensure lego post hook is up-to-date
+  ansible.builtin.copy:
+    content: "{{ lego_hook_post }}"
+    dest: /usr/local/bin/lego-hook-post
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Ensure systemd timer is enabled and started
+  ansible.builtin.service:
+    name: lego.timer
+    enabled: true
+    state: started
+
+- name: Start lego service
+  ansible.builtin.service:
+    name: lego
+    state: started
+  when: lego_config_copy.changed

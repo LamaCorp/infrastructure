@@ -1,0 +1,36 @@
+---
+lego_version: v5.4.1
+
+lego_host_arch_map:
+  aarch64: "arm64"
+  armv6l: "armv6"
+  armv7l: "armv7"
+  x86_64: "amd64"
+
+lego_host_arch: "{{ lego_host_arch_map[ansible_architecture] | default(ansible_architecture) }}"
+
+lego_archive_url: "https://github.com/go-acme/lego/releases/download/{{ lego_version }}/lego_{{ lego_version }}_linux_{{ lego_host_arch }}.tar.gz"
+
+lego_config_default:
+  storage: /var/lib/lego
+
+  log:
+    format: json
+
+  hooks:
+    pre:
+      command: /usr/local/bin/lego-hook-pre
+    deploy:
+      command: /usr/local/bin/lego-hook-deploy
+    post:
+      command: /usr/local/bin/lego-hook-post
+
+lego_config: {}
+lego_config_computed: "{{ lego_config_default | combine(lego_config) }}"
+
+lego_hook_pre: |
+  #!/usr/bin/env bash
+lego_hook_deploy: |
+  #!/usr/bin/env bash
+lego_hook_post: |
+  #!/usr/bin/env bash
