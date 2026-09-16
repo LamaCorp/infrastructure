@@ -3,9 +3,10 @@
 - name: Base
   import_playbook: base.yml
 
-- name: Common
+- name: Chrony
   hosts: all
   roles:
-    - common
+    - chrony
   tags:
-    - common
+    - chrony
+    - ntp

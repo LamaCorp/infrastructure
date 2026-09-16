@@ -1,0 +1,4 @@
+---
+nft_input_group_rules:
+  150 acme http-01:
+    - tcp dport 80 accept

@@ -3,9 +3,9 @@
 - name: Base
   import_playbook: base.yml
 
-- name: Common
-  hosts: all
+- name: TLS
+  hosts: tls
   roles:
-    - common
+    - lego
   tags:
-    - common
+    - lego

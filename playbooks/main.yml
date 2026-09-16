@@ -9,6 +9,12 @@
 - name: Network
   import_playbook: network.yml
 
+- name: TLS
+  import_playbook: tls.yml
+
+- name: Chrony
+  import_playbook: chrony.yml
+
 - name: DNS
   import_playbook: dns.yml
 

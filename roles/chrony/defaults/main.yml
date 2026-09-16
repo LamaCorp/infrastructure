@@ -11,6 +11,7 @@ chrony_default_config:
   dumponexit: true
 
   driftfile: /var/lib/chrony/chrony.drift
+  leapseclist: /usr/share/zoneinfo/leap-seconds.list
 
   logdir: /var/log/chrony
   log: measurements statistics selection tracking
