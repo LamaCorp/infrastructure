@@ -6,7 +6,7 @@ lego_config:
       acceptsTermsOfService: true
 
   certificates:
-    ns1:
+    ns:
       challenge: http-01
       account: main
       profile: shortlived
@@ -14,11 +14,6 @@ lego_config:
         - 209.112.97.54
         - 2001:67c:17fc::54
         - ns1.as212024.net
-    ns2:
-      challenge: http-01
-      account: main
-      profile: shortlived
-      domains:
         - 37.46.199.163
         - 2a00:dd0:aaaa:a::53
         - ns2.as212024.net
@@ -43,7 +38,11 @@ lego_hook_deploy: |
 
       systemctl restart chrony.service
     ;;
-    "ns1" | "ns2")
+    "ns")
+      install -o root -g knot -m 0644 "$LEGO_HOOK_CERT_PATH" "/etc/knot/knot.crt"
+      install -o root -g knot -m 0640 "$LEGO_HOOK_CERT_KEY_PATH" "/etc/knot/knot.key"
+
+      systemctl reload knot.service
     ;;
     *)
       echo "Unknown cert name: $LEGO_HOOK_CERT_NAME"

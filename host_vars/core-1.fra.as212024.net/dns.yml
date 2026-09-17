@@ -7,6 +7,20 @@ knot_server_listen:
   - 37.46.199.163@53
   - 2a00:dd0:aaaa:a::53@53
 
+knot_server_listen_tls:
+  - 209.112.97.54@853
+  - 2001:67c:17fc::54@853
+  - 37.46.199.163@853
+  - 2a00:dd0:aaaa:a::53@853
+knot_server_listen_quic:
+  - 209.112.97.54@853
+  - 2001:67c:17fc::54@853
+  - 37.46.199.163@853
+  - 2a00:dd0:aaaa:a::53@853
+
+knot_server_cert_file: /etc/knot/knot.crt
+knot_server_key_file: /etc/knot/knot.key
+
 knot_remote_via:
   - 209.112.97.54
   - 2001:67c:17fc::54
