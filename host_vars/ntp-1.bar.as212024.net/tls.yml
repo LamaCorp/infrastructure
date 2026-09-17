@@ -20,7 +20,7 @@ lego_hook_deploy: |
 
   set -euo pipefail
 
-  install -u root -g _chrony -m 0644 "$LEGO_HOOK_CERT_PATH" "/etc/chrony/chrony.crt"
-  install -u root -g _chrony -m 0640 "$LEGO_HOOK_CERT_KEY_PATH" "/etc/chrony/chrony.key"
+  install -o root -g _chrony -m 0644 "$LEGO_HOOK_CERT_PATH" "/etc/chrony/chrony.crt"
+  install -o root -g _chrony -m 0640 "$LEGO_HOOK_CERT_KEY_PATH" "/etc/chrony/chrony.key"
 
   systemctl restart chrony.service
