@@ -21,6 +21,7 @@ nft_input_host_rules:
     - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} tcp dport 53 accept
   360 ntp:
     - udp dport 123 accept
+    - tcp dport 4460 accept
   500 k3s api:
     - tcp dport 6443 accept
   550 ppl-as201254:
