@@ -1,0 +1,51 @@
+---
+lego_config:
+  accounts:
+    main:
+      email: caa@as212024.net
+      acceptsTermsOfService: true
+
+  certificates:
+    ns1:
+      challenge: http-01
+      account: main
+      profile: shortlived
+      domains:
+        - 209.112.97.54
+        - 2001:67c:17fc::54
+        - ns1.as212024.net
+    ns2:
+      challenge: http-01
+      account: main
+      profile: shortlived
+      domains:
+        - 37.46.199.163
+        - 2a00:dd0:aaaa:a::53
+        - ns2.as212024.net
+    ntp1:
+      challenge: http-01
+      account: main
+      profile: shortlived
+      domains:
+        - 209.112.97.124
+        - 2001:67c:17fc::124
+        - ntp1.as212024.net
+
+lego_hook_deploy: |
+  #!/usr/bin/env bash
+
+  set -euo pipefail
+
+  case "$LEGO_HOOK_CERT_NAME" in
+    "ntp1")
+      install -o root -g _chrony -m 0644 "$LEGO_HOOK_CERT_PATH" "/etc/chrony/chrony.crt"
+      install -o root -g _chrony -m 0640 "$LEGO_HOOK_CERT_KEY_PATH" "/etc/chrony/chrony.key"
+
+      systemctl restart chrony.service
+    ;;
+    "ns1" | "ns2")
+    ;;
+    *)
+      echo "Unknown cert name: $LEGO_HOOK_CERT_NAME"
+    ;;
+  esac

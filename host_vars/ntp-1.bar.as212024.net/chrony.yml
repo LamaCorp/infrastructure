@@ -4,10 +4,12 @@ chrony_host_config:
     - ""
   server:
     - core-1.fra.as212024.net iburst xleave extfield F323 noselect
-    - pool.ntp.org iburst xleave extfield F323 noselect
+    - pool.ntp.org iburst noselect
   refclock:
     - SHM 0 refid GNSS precision 1e-1 offset 0.188 delay 0.2 poll 0 filter 3 noselect
     - PPS /dev/pps0 refid PPS lock GNSS poll 3 trust
+  clientloglimit: 100000000
+  leapsectz: right/UTC
   ntsservercert: /etc/chrony/chrony.crt
   ntsserverkey: /etc/chrony/chrony.key
   ntsport: 4460

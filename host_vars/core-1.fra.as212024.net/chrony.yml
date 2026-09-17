@@ -5,15 +5,25 @@ chrony_host_config:
     - ""
   server:
     - ntp0.as212024.net iburst xleave extfield F323
-    - ntp2.as212024.net iburst xleave extfield F323 noselect
-    # https://support.ntp.org/Servers/PublicTimeServer000222
-    # - ntp-p1.obspm.fr iburst
-    # https://support.ntp.org/Servers/PublicTimeServer001841
-    - chronos.ntp.k3s.fr iburst
-    # https://support.ntp.org/Servers/PublicTimeServer001703
-    - ntp.kuro-home.net iburst
-    # https://support.ntp.org/Servers/PublicTimeServer001899
-    - time1.freewebworld.fr iburst
-    - time2.freewebworld.fr iburst
+    # https://support.ntp.org/Servers/PublicTimeServer000209
+    - ntp0.fau.de iburst
+    - ntp1.fau.de iburst
+    - ntp2.fau.de iburst
+    - ntp3.fau.de iburst
+    # https://support.ntp.org/Servers/PublicTimeServer001724
+    - ntp01.sixtopia.net iburst
+    # https://support.ntp.org/Servers/PublicTimeServer000217
+    - time1.uni-stuttgart.de iburst
+    - time2.uni-stuttgart.de iburst
+    - time3.uni-stuttgart.de iburst
+    # https://support.ntp.org/Servers/PublicTimeServer001639
+    - ntp.uit.one iburst
+    # https://support.ntp.org/Servers/PublicTimeServer001646
+    - ntp-by.dynu.net iburst
+  initstepslew: 10 ntp0.as212024.net pool.ntp.org
   clientloglimit: 100000000
   leapsectz: right/UTC
+  ntsservercert: /etc/chrony/chrony.crt
+  ntsserverkey: /etc/chrony/chrony.key
+  ntsport: 4460
+  ntsprocesses: 1
