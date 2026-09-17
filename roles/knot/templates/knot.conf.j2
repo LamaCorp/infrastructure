@@ -11,6 +11,18 @@ server:
 {% for addr in knot_server_listen %}
   listen: "{{ addr }}"
 {% endfor %}
+{% for addr in knot_server_listen_tls %}
+  listen-tls: "{{ addr }}"
+{% endfor %}
+{% for addr in knot_server_listen_quic %}
+  listen-quic: "{{ addr }}"
+{% endfor %}
+{% if knot_server_cert_file is defined %}
+  cert-file: "{{ knot_server_cert_file }}"
+{% endif %}
+{% if knot_server_key_file is defined %}
+  key-file: "{{ knot_server_key_file }}"
+{% endif %}
 
 database:
   storage: "{{ knot_database_directory }}"

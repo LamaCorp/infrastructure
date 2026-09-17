@@ -14,6 +14,12 @@ knot_server_listen:
   - "::@53"
   - 0.0.0.0@53
 
+knot_server_listen_tls: []
+knot_server_listen_quic: []
+
+knot_server_cert_file: ~
+knot_server_key_file: ~
+
 knot_database_directory: /var/lib/knot
 
 knot_log_targets:
