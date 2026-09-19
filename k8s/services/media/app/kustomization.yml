@@ -44,7 +44,7 @@ images:
     newName: docker.io/fallenbagel/jellyseerr
     newTag: preview-OIDC@sha256:5c54ef90fe9a46afb68caddcb142cffeeba693967efca377d87f0c482b3b23d8
   - name: ghcr.io/hotio/lidarr
-    newTag: release-3.1.0.4875@sha256:078a839fcd21c529fb96bff132888a0c1c0299ad9611d7e42204f58c04a69a72
+    newTag: release-3.1.0.4875@sha256:24a0446261764eb383f7078b31f68b3df86fc042df85e815832f6757d687445b
   - name: ghcr.io/hotio/prowlarr
     newTag: release-2.5.2.5491@sha256:e41492b7d9c2044a27501a7fa5d0264cb7632f88dcabe28761920c990ef22df7
   - name: ghcr.io/hotio/qbittorrent
