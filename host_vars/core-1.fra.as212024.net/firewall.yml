@@ -15,10 +15,10 @@ nft_define_host:
 
 nft_input_host_rules:
   350 dns autoritative:
-    - ip daddr {209.112.97.54/32, 37.46.199.163/32} udp dport 53 accept
-    - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} udp dport 53 accept
-    - ip daddr {209.112.97.54/32, 37.46.199.163/32} tcp dport 53 accept
-    - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} tcp dport 53 accept
+    - ip daddr {209.112.97.54/32, 37.46.199.163/32} udp dport {53,853} accept
+    - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} udp dport {53,853} accept
+    - ip daddr {209.112.97.54/32, 37.46.199.163/32} tcp dport {53,853} accept
+    - ip6 daddr {2001:67c:17fc::54/128, 2a00:dd0:aaaa:a::53/128} tcp dport {53,853} accept
   360 ntp:
     - udp dport 123 accept
     - tcp dport 4460 accept
@@ -29,13 +29,16 @@ nft_input_host_rules:
     - udp dport 51823 accept
 
 nft_forward_host_rules:
+  310 AS201254:
+    - meta iifname {ppl-as201254-1,ppl-as201254-2} ip6 saddr != {2a06:9801:2d::/48,2a06:9801:1530::/44} drop
+
   399 cl-* drop:
     - meta iifname cl-hane-1 ip saddr != 37.46.199.176/32 drop
     - meta iifname cl-hane-1 ip6 saddr != 2a06:e881:7701:2::/64 drop
 
 nft__nat_host_postrouting_rules:
   100 external connectivity:
-    - meta oif ul-netr-0 ip saddr != {37.46.199.111/32, 37.46.199.160/27} counter snat to 37.46.199.111
-    - meta iif lan-svc-101 oifname {core-bar, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.232
-    - meta iif lan-mdw-102 oifname {core-bar, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.233
-    - meta iif cl-vm-0 oifname {core-bar, core-fra} ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.234
+    - meta iif lan-svc-101 ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.232
+    - meta iif lan-mdw-102 ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.233
+    - meta iif cl-vm-0 ip saddr != 209.112.97.0/24 ip daddr != {209.112.97.0/24, 172.28.0.0/16, 172.29.0.0/16} counter snat to 209.112.97.234
+    - meta oif ul-netr-0 ip saddr != {37.46.199.111/32, 37.46.199.160/27, 209.112.97.0/24} counter snat to 37.46.199.111
