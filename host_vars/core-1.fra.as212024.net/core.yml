@@ -76,6 +76,9 @@ bird_bgp_sessions:
           v6: fd68:2402:1fbb:e377::1:21:2024
         remote:
           v6: fd68:2402:1fbb:e377::1:20:1254
+        import_limit:
+          v6:
+            count: 2
       - description: James Landrein 2
         alias: james_landrein_2
         asn: 201254
@@ -85,6 +88,9 @@ bird_bgp_sessions:
           v6: fd68:2402:1fbb:e377::2:21:2024
         remote:
           v6: fd68:2402:1fbb:e377::2:20:1254
+        import_limit:
+          v6:
+            count: 2
 
   cores:
     defaults:
