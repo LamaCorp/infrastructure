@@ -22,7 +22,7 @@ bird_static_routes:
     - 2001:67c:17fc:ffff::1/128 via "id"
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
     - 2001:67c:17fc::54/128 via "svc-ns1" # ns1.as212024.net
-    - 2001:67c:17fc::123/128 via "svc-ntp1" # ntp1.as212024.net
+    - 2001:67c:17fc::124/128 via "svc-ntp1" # ntp1.as212024.net
     - 2001:67c:17fc:ffff::3/128 via "legacy" # legacy ns1
     - 2a06:e881:7701:2::/64 via "cl-hane-1" # hane-1.client.fra.as212024.net
 

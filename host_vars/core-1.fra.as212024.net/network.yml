@@ -223,7 +223,9 @@ systemd_networkd_network:
       ConfigureWithoutCarrier: true
       LinkLocalAddressing: ipv6
       IPv6AcceptRA: false
-      DHCP: false
+      Address:
+        - 80.81.197.18/21
+        - 2001:7f8::3:3c38:0:1/64
   # core VPN
   15-core-bar:
     Match:
