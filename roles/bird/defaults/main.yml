@@ -249,6 +249,10 @@ bird_bgp_sessions: {}
 #           increase: 50  # Or add to the existing bgp_local_pref
 #         v6:
 #           decrease: 50  # Or decrease the existing bgp_local_pref
+#       import_limit:  # set prefix import limits
+#         v4:
+#           count: 10
+#           action: block  # disable by default
 
 bird_ospf_sessions: []
 # - alias: internal
