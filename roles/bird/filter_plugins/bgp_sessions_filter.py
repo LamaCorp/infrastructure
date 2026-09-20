@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-
 from copy import deepcopy
+from typing import ClassVar
 
 
 class FilterModule:
-    session_types = {
+    session_types: ClassVar = {
         "peers": "peer",
         "upstreams": "upstream",
         "customers": "customer",
@@ -20,7 +19,7 @@ class FilterModule:
 
     def make_bgp_sessions_list(self, bgp_sessions):
         sessions = []
-        for type_ in self.session_types.keys():
+        for type_ in self.session_types:
             if type_ not in bgp_sessions:
                 continue
 
@@ -31,12 +30,21 @@ class FilterModule:
                 data = deepcopy(defaults)
                 data.update(session)
                 data["type"] = self.session_types[type_]
+                data["peer_type_formatted"] = "PEER_TYPE_PEER"
 
                 if "irr" in data:
                     data["irr_formatted"] = data["irr"]
                     chars_to_replace = (":", "-", " ")
                     for char in chars_to_replace:
                         data["irr_formatted"] = data["irr_formatted"].replace(char, "_")
+
+                match data.get("peer_type", "peer"):
+                    case "peer":
+                        data["peer_type_formatted"] = "PEER_TYPE_PEER"
+                    case "private":
+                        data["peer_type_formatted"] = "PEER_TYPE_PRIVATE_PEER"
+                    case "ixp":
+                        data["peer_type_formatted"] = "PEER_TYPE_IXP"
 
                 if "v4" in data.get("remote", {}):
                     data["protocol_number"] = 4
