@@ -50,6 +50,12 @@ bird_bgp_blacklist:
 
 bird_bgp_sessions:
   upstreams:
+    defaults:
+      local_pref:
+        v4:
+          set: 100
+        v6:
+          set: 100
     sessions:
       - description: Netrouting
         alias: netrouting
@@ -65,7 +71,21 @@ bird_bgp_sessions:
         med_metric: true
         default_med: 100
 
+  peers:
+    defaults:
+      local_pref:
+        v4:
+          set: 200
+        v6:
+          set: 200
+
   customers:
+    defaults:
+      local_pref:
+        v4:
+          set: 250
+        v6:
+          set: 250
     sessions:
       - description: James Landrein 1
         alias: james_landrein_1
