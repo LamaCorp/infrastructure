@@ -97,7 +97,7 @@ systemd_networkd_netdev:
     WireGuardPeer:
       # James Landrein, AS201254
       - PublicKey: "gNarVedO4h+QakoAG2b5pFXTk1nT5c9BBuC22+f+qB0="
-        AllowedIPs: fd68:2402:1fbb:e377::1:20:1254/128,2a06:9801:2d::/48
+        AllowedIPs: fd68:2402:1fbb:e377::1:20:1254/128,2a06:9801:2d::/48,2a06:9801:1530::/44
         PersistentKeepalive: 60
   40-ppl-as201254-2:
     NetDev:
@@ -110,7 +110,7 @@ systemd_networkd_netdev:
     WireGuardPeer:
       # James Landrein, AS201254
       - PublicKey: "2yX1Qxy+4NnFtn4vMP6US9o8xCRZa6WzH1mI9oquRHg="
-        AllowedIPs: fd68:2402:1fbb:e377::2:20:1254/128,2a06:9801:2d::/48
+        AllowedIPs: fd68:2402:1fbb:e377::2:20:1254/128,2a06:9801:2d::/48,2a06:9801:1530::/44
         PersistentKeepalive: 60
 
 systemd_networkd_network:

@@ -65,7 +65,7 @@ bird_bgp_sessions:
         med_metric: true
         default_med: 100
 
-  peers:
+  customers:
     sessions:
       - description: James Landrein 1
         alias: james_landrein_1
