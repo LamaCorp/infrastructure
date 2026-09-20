@@ -1,0 +1,25 @@
+---
+lego_config:
+  accounts:
+    main:
+      email: caa@as212024.net
+      acceptsTermsOfService: true
+
+  certificates:
+    postgresql:
+      challenge: http-01
+      account: main
+      profile: shortlived
+      domains:
+        - postgresql.fsn.as212024.net
+        - postgresql.fra.as212024.net
+
+lego_hook_deploy: |
+  #!/usr/bin/env bash
+
+  set -euo pipefail
+
+  install -o root -g postgres -m 0644 "$LEGO_HOOK_CERT_PATH" "/etc/postgresql/postgresql.crt"
+  install -o root -g postgres -m 0640 "$LEGO_HOOK_CERT_KEY_PATH" "/etc/postgresql/postgresql.key"
+
+  systemctl reload postgresql@17-main.service
