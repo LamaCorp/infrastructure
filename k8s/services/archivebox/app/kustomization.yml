@@ -15,13 +15,13 @@ resources:
 configMapGenerator:
   - name: archivebox-config
     literals:
+      - BASE_URL=https://archive.lama-corp.space
       - PUBLIC_INDEX=True
-      - PUBLIC_SNAPSHOTS=True
       - PUBLIC_ADD_VIEW=False
+      - PERMISSIONS=public
       - REVERSE_PROXY_USER_HEADER=X-Remote-User
       - REVERSE_PROXY_WHITELIST=172.28.128.0/22
       - LOGOUT_REDIRECT_URL=https://archive.lama-corp.space/logout
-      - BASE_URL=https://archive.lama-corp.space
 
 images:
   - name: ghcr.io/archivebox/archivebox
