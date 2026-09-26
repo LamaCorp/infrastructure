@@ -10,9 +10,18 @@ spec:
   template:
     spec:
       initContainers:
-        - name: init-archivebox
+        - name: init
           image: ghcr.io/archivebox/archivebox
           args: ["init"]
+          envFrom:
+            - configMapRef:
+                name: archivebox-config
+          volumeMounts:
+            - name: data
+              mountPath: /data
+        - name: update
+          image: ghcr.io/archivebox/archivebox
+          args: ["update", "--migrate-only"]
           envFrom:
             - configMapRef:
                 name: archivebox-config
@@ -22,7 +31,7 @@ spec:
       containers:
         - name: archivebox
           image: ghcr.io/archivebox/archivebox
-          args: ["server", "--quick-init", "[::]:8000"]
+          args: ["server", "--init", "[::]:8000"]
           envFrom:
             - configMapRef:
                 name: archivebox-config
