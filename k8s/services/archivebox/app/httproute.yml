@@ -57,6 +57,7 @@ spec:
       name: archivebox-oidc-credentials
     scopes:
       - offline_access
+      - profile
     refreshToken: true
     forwardAccessToken: true
     passThroughAuthHeader: true
