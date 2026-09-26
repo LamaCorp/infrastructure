@@ -19,6 +19,15 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+        - name: update
+          image: ghcr.io/archivebox/archivebox
+          args: ["update", "--migrate-only"]
+          envFrom:
+            - configMapRef:
+                name: archivebox-config
+          volumeMounts:
+            - name: data
+              mountPath: /data
       containers:
         - name: archivebox
           image: ghcr.io/archivebox/archivebox
