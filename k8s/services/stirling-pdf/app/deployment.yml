@@ -16,6 +16,17 @@ spec:
           envFrom:
             - configMapRef:
                 name: stirling-pdf-config-env
+          env:
+            - name: SECURITY_OAUTH2_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: stirling-pdf-oidc-credentials
+                  key: client_id
+            - name: SECURITY_OAUTH2_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: stirling-pdf-oidc-credentials
+                  key: client_secret
           ports:
             - name: http
               containerPort: 8080

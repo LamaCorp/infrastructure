@@ -24,7 +24,16 @@ configMapGenerator:
 
       - METRICS_ENABLED=true
 
-      - SECURITY_ENABLELOGIN=false
+      - SECURITY_ENABLELOGIN=true
+      - SECURITY_LOGINMETHOD=oauth2
+      - SECURITY_SSOAUTOLOGIN=true
+      - SECURITY_OAUTH2_ENABLED=true
+      - SECURITY_OAUTH2_ISSUER=https://auth.lama-corp.space/application/o/stirling-pdf/
+      - SECURITY_OAUTH2_SCOPES="openid, profile, email"
+      - SECURITY_OAUTH2_USEASUSERNAME=preferred_username
+      - SECURITY_OAUTH2_PROVIDER=authentik
+      - SECURITY_OAUTH2_AUTOCREATEUSER=true
+      - SECURITY_OAUTH2_BLOCKREGISTRATION=false
 
 images:
   - name: docker.io/stirlingtools/stirling-pdf

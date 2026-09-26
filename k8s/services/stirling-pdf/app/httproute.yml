@@ -41,22 +41,3 @@ spec:
           port: 80
       timeouts:
         request: 600s
----
-apiVersion: gateway.envoyproxy.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: stirling-pdf
-spec:
-  targetRefs:
-    - group: gateway.networking.k8s.io
-      kind: HTTPRoute
-      name: stirling-pdf
-  oidc:
-    provider:
-      issuer: https://auth.lama-corp.space/application/o/stirling-pdf/
-    clientID: stirling-pdf
-    clientSecret:
-      name: stirling-pdf-oidc-credentials
-    scopes:
-      - offline_access
-    refreshToken: true
