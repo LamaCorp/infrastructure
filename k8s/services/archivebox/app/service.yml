@@ -4,6 +4,9 @@ kind: Service
 metadata:
   name: archivebox
 spec:
+  ipFamilyPolicy: SingleStack
+  ipFamilies:
+    - IPv4
   ports:
     - name: http
       port: 80
