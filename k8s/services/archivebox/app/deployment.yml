@@ -7,7 +7,8 @@ metadata:
     reloader.stakater.com/auto: "true"
 spec:
   replicas: 1
-  strategy: Replace
+  strategy:
+    type: Replace
   template:
     spec:
       initContainers:
