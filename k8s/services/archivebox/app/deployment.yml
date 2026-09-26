@@ -31,6 +31,7 @@ spec:
       containers:
         - name: archivebox
           image: ghcr.io/archivebox/archivebox
+          args: ["server", "--init"]
           env:
             - name: BIND_ADDR
               value: "[::]:5797"
