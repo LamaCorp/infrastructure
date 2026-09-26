@@ -20,16 +20,16 @@ entries:
           authentik_crypto.certificatekeypair,
           [name, "authentik Self-signed Certificate"],
         ]
-      invalidation_flow:
-        !Find [
-          authentik_flows.flow,
-          [slug, "default-provider-invalidation-flow"],
-        ]
+      invalidation_flow: !Find [authentik_flows.flow, [slug, "default-provider-invalidation-flow"]]
+
+      grant_types:
+        - authorization_code
 
       client_type: confidential
       client_id: stirling-pdf
       redirect_uris:
-        - url: https://pdf.lama-corp.space/oauth2/callback
+        - url: https://pdf.lama-corp.space/login/oauth2/code/authentik
+          redirect_uri_type: authorization
           matching_mode: strict
 
       access_code_validity: minutes=1
@@ -44,7 +44,11 @@ entries:
           ]
         - !Find [
             authentik_core.propertymapping,
-            [name, "authentik default OAuth Mapping: OpenID 'offline_access'"],
+            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "OAuth mapping: OpenID 'email' with mailPrimaryAddress"],
           ]
 
   - id: application
