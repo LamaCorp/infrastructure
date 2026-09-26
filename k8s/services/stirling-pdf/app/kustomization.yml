@@ -23,6 +23,16 @@ configMapGenerator:
       - UI_HOMEDESCRIPTION=Manipuler vos PDFs avec aisance
       - UI_APPNAMENAVBAR=PDF
 
+      - ENDPOINTS_GROUPSTOREMOVE=DeveloperTools,DeveloperDocs
+
+      - AIENGINE_ENABLED=false
+      - AIENGINE_FEATURES_CHAT=false
+      - AIENGINE_FEATURES_DOCUMENTQUESTIONS=false
+      - AIENGINE_FEATURES_CREATEPDF=false
+      - AIENGINE_FEATURES_CLASSIFY=false
+      - AIENGINE_FEATURES_MATHAUDITOR=false
+      - AIENGINE_FEATURES_PDFCOMMENT=false
+
       - METRICS_ENABLED=true
 
       - SECURITY_ENABLELOGIN=true
