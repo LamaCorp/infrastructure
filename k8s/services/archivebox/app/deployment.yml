@@ -31,13 +31,13 @@ spec:
       containers:
         - name: archivebox
           image: ghcr.io/archivebox/archivebox
-          args: ["server", "--init", "[::]:8000"]
+          args: ["server", "--init", "[::]:5797"]
           envFrom:
             - configMapRef:
                 name: archivebox-config
           ports:
             - name: http
-              containerPort: 8000
+              containerPort: 5797
               protocol: TCP
           volumeMounts:
             - name: data
