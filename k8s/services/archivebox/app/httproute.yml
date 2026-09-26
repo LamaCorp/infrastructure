@@ -58,6 +58,8 @@ spec:
     scopes:
       - offline_access
     refreshToken: true
+    forwardAccessToken: true
+    passThroughAuthHeader: true
   jwt:
     providers:
       - name: authentik
