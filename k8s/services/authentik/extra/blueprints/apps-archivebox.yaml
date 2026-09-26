@@ -20,11 +20,7 @@ entries:
           authentik_crypto.certificatekeypair,
           [name, "authentik Self-signed Certificate"],
         ]
-      invalidation_flow:
-        !Find [
-          authentik_flows.flow,
-          [slug, "default-provider-invalidation-flow"],
-        ]
+      invalidation_flow: !Find [authentik_flows.flow, [slug, "default-provider-invalidation-flow"]]
 
       client_type: confidential
       client_id: archivebox
@@ -41,6 +37,10 @@ entries:
         - !Find [
             authentik_core.propertymapping,
             [name, "authentik default OAuth Mapping: OpenID 'openid'"],
+          ]
+        - !Find [
+            authentik_core.propertymapping,
+            [name, "authentik default OAuth Mapping: OpenID 'profile'"],
           ]
         - !Find [
             authentik_core.propertymapping,
