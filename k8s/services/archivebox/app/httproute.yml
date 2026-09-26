@@ -58,3 +58,12 @@ spec:
     scopes:
       - offline_access
     refreshToken: true
+  jwt:
+    providers:
+      - name: authentik
+        issuer: https://auth.lama-corp.space/application/o/archivebox/
+        remoteJWKS:
+          uri: https://auth.lama-corp.space/application/o/archivebox/jwks/
+        claimToHeaders:
+          - header: "X-Remote-User"
+            claim: preferred_username
