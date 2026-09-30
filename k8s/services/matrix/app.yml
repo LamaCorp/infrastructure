@@ -106,7 +106,7 @@ spec:
                 kind: ListenerSet
                 name: matrix
     - repoURL: https://ananace.gitlab.io/charts
-      targetRevision: 1.4.43
+      targetRevision: 1.4.44
       chart: element-web
       helm:
         releaseName: element
