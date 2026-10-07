@@ -9,7 +9,7 @@ server:
 
   image:
     repository: docker.io/hashicorp/vault
-    tag: 1.21.4@sha256:4e33b126a59c0c333b76fb4e894722462659a6bec7c48c9ee8cea56fccfd2569
+    tag: 2.1.2@sha256:c2f666266f383d2cf424d86b8bb8ce7d065562173ffec2b476d762943608bb55
 
   standalone:
     enabled: true
