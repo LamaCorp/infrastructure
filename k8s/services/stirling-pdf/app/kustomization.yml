@@ -48,4 +48,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/stirlingtools/stirling-pdf
-    newTag: 3.0.2-fat@sha256:de0a8984b54159211fb070fcb9cfe4ec8d00bef69f217f78ebde10e57eb471cb
+    newTag: 3.2.0-fat@sha256:b77d4fd0bb067bc03f0ca133ae551febaada9f1d0a1db915970dc0e35558dff3
