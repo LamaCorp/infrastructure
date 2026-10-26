@@ -13,4 +13,4 @@ resources:
 
 images:
   - name: docker.io/nlnetlabs/routinator
-    newTag: v0.15.2@sha256:bc57d6e973c3f34fec03ef6fec09e17e405f56f084bf2252a8d54bd2ff3ca597
+    newTag: v0.15.3@sha256:57806515bc49a52fb84a52cfb6e7dc1e56069e49bb21fc68158585e9604c9f21
