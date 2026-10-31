@@ -21,4 +21,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/cry-inc/dmarc-report-viewer
-    newTag: 2.6.2@sha256:2e34b1a6e530bd953c29458d1fa00840830ecc7f727aa0ec191757077f11b829
+    newTag: 2.7.0@sha256:912cab38b27eca1bdd7813386187b73bac12602086107b88f4a8546af7b6bebc
