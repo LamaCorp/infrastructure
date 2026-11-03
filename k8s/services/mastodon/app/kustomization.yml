@@ -68,4 +68,4 @@ images:
   - name: ghcr.io/mastodon/mastodon
     newTag: v4.7.4@sha256:8cbc9c9ffa595c4ced3854b63b8f173251be710f9bbf2d369926023c19666311
   - name: ghcr.io/mastodon/mastodon-streaming
-    newTag: v4.7.4@sha256:b896be8bc93db513695c3ebac8442c09453065ab1be06dfc49fe3c16a91c825c
+    newTag: v4.7.5@sha256:3859d071e61a0ed2610a00e8048d89310235afb86e6923c0243bb4f9f4a31093
