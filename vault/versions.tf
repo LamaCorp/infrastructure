@@ -9,7 +9,7 @@ terraform {
 
     htpasswd = {
       source  = "loafoe/htpasswd"
-      version = "2.2.0"
+      version = "2.3.0"
     }
     random = {
       source  = "hashicorp/random"
