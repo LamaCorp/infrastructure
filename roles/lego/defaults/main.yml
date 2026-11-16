@@ -1,5 +1,5 @@
 ---
-lego_version: v5.5.2
+lego_version: v5.6.0
 
 lego_host_arch_map:
   aarch64: "arm64"
