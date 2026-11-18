@@ -20,7 +20,7 @@ spec:
       targetRevision: HEAD
       path: k8s/infra/observability/grafana
     - repoURL: https://grafana-community.github.io/helm-charts
-      targetRevision: 14.4.1
+      targetRevision: 14.5.0
       chart: grafana
       helm:
         releaseName: grafana
