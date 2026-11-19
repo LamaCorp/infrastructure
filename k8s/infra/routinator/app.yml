@@ -2,11 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: services-routinator
+  name: infra-routinator
   labels:
-    app: services-routinator
+    app: infra-routinator
 spec:
-  project: services
+  project: infra
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
@@ -14,8 +14,8 @@ spec:
       prune: true
   destination:
     name: k3s.fsn.as212024.net
-    namespace: services-routinator
+    namespace: infra-routinator
   source:
     repoURL: https://github.com/LamaCorp/infrastructure.git
     targetRevision: HEAD
-    path: k8s/services/routinator/app
+    path: k8s/infra/routinator/app
