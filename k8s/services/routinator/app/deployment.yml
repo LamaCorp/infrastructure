@@ -16,7 +16,6 @@ spec:
           image: docker.io/nlnetlabs/routinator
           imagePullPolicy: IfNotPresent
           args:
-            - "--enable-aspa"
             - server
             - "--http"
             - "[::]:8323"
