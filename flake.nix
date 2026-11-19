@@ -33,7 +33,7 @@
           jq
           openssl
           opentofu
-          python314
+          python315
           rustc
           shellcheck
           uv
