@@ -45,18 +45,6 @@ spec:
               mountPath: /var/app/public
             - name: watched
               mountPath: /var/app/tmp/imports/watched
-          livenessProbe:
-            httpGet:
-              port: http
-              path: /api/v1/health
-          readinessProbe:
-            httpGet:
-              port: http
-              path: /api/v1/health
-          startupProbe:
-            httpGet:
-              port: http
-              path: /api/v1/health
       volumes:
         - name: storage
           persistentVolumeClaim:
