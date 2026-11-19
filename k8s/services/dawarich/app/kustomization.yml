@@ -44,4 +44,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/freikin/dawarich
-    newTag: 1.16.0@sha256:b533e6eac4464d55479d030229cf9487f338972cdb88924e8060ca759d0e28b8
+    newTag: 1.23.0@sha256:c9c6a9c04fa2ad11c438fc0b0ea3b7d95fc7e6d8c7a3cfa98bf1fc5aef2dbfd4
