@@ -5,11 +5,12 @@ commonLabels:
   app.kubernetes.io/name: dawarich
 
 resources:
-  - web
-  - sidekiq
+  - deployment.yml
+  - httproute.yml
   - network-policy.yml
   - pvc.yml
   - secrets.yml
+  - service.yml
 
 configMapGenerator:
   - name: dawarich-config
@@ -39,8 +40,9 @@ configMapGenerator:
       - SELF_HOSTED=true
       - STORE_GEODATA=true
 
-      - WEB_CONCURRENCY=1
-      - BACKGROUND_PROCESSING_CONCURRENCY=3
+      - SIDEKIQ_EMBEDDED=true
+      - WEB_CONCURRENCY=0
+      - BACKGROUND_PROCESSING_CONCURRENCY=2
 
 images:
   - name: docker.io/freikin/dawarich
