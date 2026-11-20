@@ -45,8 +45,10 @@ bird_bgp_originations:
 bird_bgp_blacklist:
   v4:
     - 37.46.199.110/31- # Local prefix
+    - 80.81.192.0/21- # DE-CIX
   v6:
     - 2a00:dd0:aaaa:a::/64- # Local prefix
+    - 2001:7f8::/64- # DE-CIX
 
 bird_bgp_sessions:
   upstreams:
@@ -78,6 +80,90 @@ bird_bgp_sessions:
           set: 200
         v6:
           set: 200
+    sessions:
+      - description: DE-CIX RS1
+        alias: decix_rs1
+        asn: 6695
+        irr: RIPE::AS6695:AS-DECIX-FRA RIPE::AS6695:AS-DECIX-FRA-V6
+        enforce_first_as: false
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.157
+          v6: 2001:7f8::1a27:5051:c09d
+        local_pref:
+          v4:
+            set: 150
+          v6:
+            set: 150
+        communities:
+          export:
+            - "0:6206"
+            - "0:58057"
+            - "0:34549"
+        import_limit:
+          v4:
+            count: 400000
+          v6:
+            count: 130000
+      - description: DE-CIX RS2
+        alias: decix_rs2
+        asn: 6695
+        irr: RIPE::AS6695:AS-DECIX-FRA RIPE::AS6695:AS-DECIX-FRA-V6
+        enforce_first_as: false
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.193.157
+          v6: 2001:7f8::1a27:5051:c19d
+        local_pref:
+          v4:
+            set: 150
+          v6:
+            set: 150
+        communities:
+          export:
+            - "0:6206"
+            - "0:58057"
+            - "0:34549"
+        import_limit:
+          v4:
+            count: 400000
+          v6:
+            count: 130000
+
+      - description: HE Cloudflare 1
+        alias: decix_cloudflare_1
+        asn: 13335
+        irr: ARIN::AS13335:AS-CLOUDFLARE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.194.180
+          v6: 2001:7f8::3417:0:1
+        import_limit:
+          v4:
+            count: 80000
+          v6:
+            count: 30000
+      - description: HE Cloudflare 2
+        alias: decix_cloudflare_2
+        asn: 13335
+        irr: ARIN::AS13335:AS-CLOUDFLARE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.193.129
+          v6: 2001:7f8::3417:0:2
+        import_limit:
+          v4:
+            count: 80000
+          v6:
+            count: 30000
 
   customers:
     defaults:

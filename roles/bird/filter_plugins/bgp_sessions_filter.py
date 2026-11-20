@@ -37,6 +37,7 @@ class FilterModule:
                     chars_to_replace = (":", "-", " ")
                     for char in chars_to_replace:
                         data["irr_formatted"] = data["irr_formatted"].replace(char, "_")
+                    data["irr_formatted"] = data["irr_formatted"][:50]
 
                 match data.get("peer_type", "peer"):
                     case "peer":
