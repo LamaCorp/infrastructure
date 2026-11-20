@@ -174,6 +174,11 @@ bird_bgp_sessions:
         remote:
           v4: 80.81.192.172
           v6: 2001:7f8::1b1b:0:1
+        import_limit:
+          v4:
+            count: 210000
+          v6:
+            count: 180000
       - description: SIPARTECH DE-CIX
         alias: decix_sph
         asn: 8309
@@ -184,6 +189,11 @@ bird_bgp_sessions:
         remote:
           v4: 80.81.195.6
           v6: 2001:7f8::2075:0:1
+        import_limit:
+          v4:
+            count: 10000
+          v6:
+            count: 5000
       - description: TKRZ DE-CIX
         alias: decix_tkrz
         asn: 42184
@@ -194,6 +204,11 @@ bird_bgp_sessions:
         remote:
           v4: 80.81.192.178
           v6: 2001:7f8::a4c8:0:1
+        import_limit:
+          v4:
+            count: 100
+          v6:
+            count: 50
 
   customers:
     defaults:
