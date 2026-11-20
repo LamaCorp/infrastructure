@@ -164,6 +164,36 @@ bird_bgp_sessions:
             count: 80000
           v6:
             count: 30000
+      - description: HE DE-CIX
+        alias: decix_he
+        asn: 6939
+        irr: RADB::AS-HURRICANE RADB::AS-HURRICANEV6
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.172
+          v6: 2001:7f8::1b1b:0:1
+      - description: SIPARTECH DE-CIX
+        alias: decix_sph
+        asn: 8309
+        irr: RIPE::AS-SPH
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.195.6
+          v6: 2001:7f8::2075:0:1
+      - description: TKRZ DE-CIX
+        alias: decix_tkrz
+        asn: 42184
+        irr: RIPE::AS-TKRZ
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.178
+          v6: 2001:7f8::a4c8:0:1
 
   customers:
     defaults:
