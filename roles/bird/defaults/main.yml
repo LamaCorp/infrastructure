@@ -252,7 +252,7 @@ bird_bgp_sessions: {}
 #       import_limit:  # set prefix import limits
 #         v4:
 #           count: 10
-#           action: block  # disable by default
+#           action: block  # restart by default
 
 bird_ospf_sessions: []
 # - alias: internal
