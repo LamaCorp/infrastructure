@@ -12,3 +12,9 @@ bird_kernel:
 bird_bgp_rpki:
   host: rpki.as212024.net
   port: 323
+
+bird_bgp_export_limit:
+  v4:
+    count: 10
+  v6:
+    count: 20
