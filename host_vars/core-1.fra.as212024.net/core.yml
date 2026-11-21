@@ -134,37 +134,7 @@ bird_bgp_sessions:
           v6:
             count: 130000
 
-      - description: HE Cloudflare 1
-        alias: decix_cloudflare_1
-        asn: 13335
-        irr: ARIN::AS13335:AS-CLOUDFLARE
-        local:
-          v4: 80.81.197.18
-          v6: 2001:7f8::3:3c38:0:1
-        remote:
-          v4: 80.81.194.180
-          v6: 2001:7f8::3417:0:1
-        import_limit:
-          v4:
-            count: 80000
-          v6:
-            count: 30000
-      - description: HE Cloudflare 2
-        alias: decix_cloudflare_2
-        asn: 13335
-        irr: ARIN::AS13335:AS-CLOUDFLARE
-        local:
-          v4: 80.81.197.18
-          v6: 2001:7f8::3:3c38:0:1
-        remote:
-          v4: 80.81.193.129
-          v6: 2001:7f8::3417:0:2
-        import_limit:
-          v4:
-            count: 80000
-          v6:
-            count: 30000
-      - description: HE DE-CIX
+      - description: DE-CIX HE
         alias: decix_he
         asn: 6939
         irr: RADB::AS-HURRICANE RADB::AS-HURRICANEV6
@@ -179,7 +149,7 @@ bird_bgp_sessions:
             count: 210000
           v6:
             count: 180000
-      - description: SIPARTECH DE-CIX
+      - description: DE-CIX SIPARTECH
         alias: decix_sph
         asn: 8309
         irr: RIPE::AS-SPH
@@ -194,7 +164,97 @@ bird_bgp_sessions:
             count: 10000
           v6:
             count: 5000
-      - description: TKRZ DE-CIX
+      - description: DE-CIX Cloudflare 1
+        alias: decix_cloudflare_1
+        asn: 13335
+        irr: ARIN::AS13335:AS-CLOUDFLARE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.194.180
+          v6: 2001:7f8::3417:0:1
+        import_limit:
+          v4:
+            count: 80000
+          v6:
+            count: 30000
+      - description: DE-CIX Cloudflare 2
+        alias: decix_cloudflare_2
+        asn: 13335
+        irr: ARIN::AS13335:AS-CLOUDFLARE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.193.129
+          v6: 2001:7f8::3417:0:2
+        import_limit:
+          v4:
+            count: 80000
+          v6:
+            count: 30000
+      - description: DE-CIX Google 1
+        alias: decix_google_1
+        asn: 15169
+        irr: RADB::AS-GOOGLE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.193.108
+          v6: 2001:7f8::3b41:0:1
+        import_limit:
+          v4:
+            count: 15000
+          v6:
+            count: 10000
+      - description: DE-CIX Google 2
+        alias: decix_google_2
+        asn: 15169
+        irr: RADB::AS-GOOGLE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.108
+          v6: 2001:7f8::3b41:0:2
+        import_limit:
+          v4:
+            count: 15000
+          v6:
+            count: 10000
+      - description: DE-CIX Meta 2
+        alias: decix_meta_2
+        asn: 32934
+        irr: RADB::AS-FACEBOOK
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.195.40
+          v6: 2001:7f8::80a6:0:2
+        import_limit:
+          v4:
+            count: 100
+          v6:
+            count: 100
+      - description: DE-CIX Meta 3
+        alias: decix_meta_3
+        asn: 32934
+        irr: RADB::AS-FACEBOOK
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.195.141
+          v6: 2001:7f8::80a6:0:3
+        import_limit:
+          v4:
+            count: 100
+          v6:
+            count: 100
+      - description: DE-CIX TKRZ
         alias: decix_tkrz
         asn: 42184
         irr: RIPE::AS-TKRZ
