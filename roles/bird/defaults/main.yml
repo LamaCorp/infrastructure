@@ -132,6 +132,15 @@ bird_bgp_blacklist:
 #   port: 8282
 #   aspa: true
 
+bird_bgp_export_limit:
+  {}
+  # v4:
+  #   count: 10  # defaults to off
+  #   # action: warn  # defaults to disable
+  # v6:
+  #   count: 10  # defaults to off
+  #   # action: warn  # defaults to disable
+
 bird_bgp_sessions: {}
 # # Upstreams are BGP sessions that give you a full table and you want to
 # # announce your own originations and customer prefixes to.
@@ -251,8 +260,12 @@ bird_bgp_sessions: {}
 #           decrease: 50  # Or decrease the existing bgp_local_pref
 #       import_limit:  # set prefix import limits
 #         v4:
-#           count: 10
-#           action: block  # disable by default
+#           count: 10  # off by default
+#           action: block  # restart by default
+#       export_limit:  # set prefix export limits. Defaults to global settings. See `bird_bgp_export_limit`
+#         v4:
+#           count: 10  # off by default
+#           action: warn  # disable by default
 
 bird_ospf_sessions: []
 # - alias: internal

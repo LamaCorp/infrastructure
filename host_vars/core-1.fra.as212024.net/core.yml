@@ -18,12 +18,14 @@ bird_static_routes:
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
     - 209.112.97.243/32 via "legacy" # legacy ns1
+    - 209.112.97.244/32 via "legacy" # legacy ns2
   v6:
     - 2001:67c:17fc:ffff::1/128 via "id"
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
     - 2001:67c:17fc::54/128 via "svc-ns1" # ns1.as212024.net
     - 2001:67c:17fc::124/128 via "svc-ntp1" # ntp1.as212024.net
     - 2001:67c:17fc:ffff::3/128 via "legacy" # legacy ns1
+    - 2001:67c:17fc:ffff::4/128 via "legacy" # legacy ns2
     - 2a06:e881:7701:2::/64 via "cl-hane-1" # hane-1.client.fra.as212024.net
 
 bird_local_routes:
@@ -45,8 +47,10 @@ bird_bgp_originations:
 bird_bgp_blacklist:
   v4:
     - 37.46.199.110/31- # Local prefix
+    - 80.81.192.0/21- # DE-CIX
   v6:
     - 2a00:dd0:aaaa:a::/64- # Local prefix
+    - 2001:7f8::/64- # DE-CIX
 
 bird_bgp_sessions:
   upstreams:
@@ -78,6 +82,165 @@ bird_bgp_sessions:
           set: 200
         v6:
           set: 200
+    sessions:
+      - description: DE-CIX RS1
+        alias: decix_rs1
+        asn: 6695
+        irr: RIPE::AS6695:AS-DECIX-FRA RIPE::AS6695:AS-DECIX-FRA-V6
+        enforce_first_as: false
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.157
+          v6: 2001:7f8::1a27:5051:c09d
+        local_pref:
+          v4:
+            set: 150
+          v6:
+            set: 150
+        communities:
+          export:
+            - "0:6206"
+            - "0:58057"
+            - "0:34549"
+        import_limit:
+          v4:
+            count: 400000
+          v6:
+            count: 130000
+      - description: DE-CIX RS2
+        alias: decix_rs2
+        asn: 6695
+        irr: RIPE::AS6695:AS-DECIX-FRA RIPE::AS6695:AS-DECIX-FRA-V6
+        enforce_first_as: false
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.193.157
+          v6: 2001:7f8::1a27:5051:c19d
+        local_pref:
+          v4:
+            set: 150
+          v6:
+            set: 150
+        communities:
+          export:
+            - "0:6206"
+            - "0:58057"
+            - "0:34549"
+        import_limit:
+          v4:
+            count: 400000
+          v6:
+            count: 130000
+
+      - description: DE-CIX HE
+        alias: decix_he
+        asn: 6939
+        irr: RADB::AS-HURRICANE RADB::AS-HURRICANEV6
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.172
+          v6: 2001:7f8::1b1b:0:1
+        import_limit:
+          v4:
+            count: 210000
+          v6:
+            count: 180000
+      - description: DE-CIX SIPARTECH
+        alias: decix_sph
+        asn: 8309
+        irr: RIPE::AS-SPH
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.195.6
+          v6: 2001:7f8::2075:0:1
+        import_limit:
+          v4:
+            count: 10000
+          v6:
+            count: 5000
+      - description: DE-CIX Cloudflare 1
+        alias: decix_cloudflare_1
+        asn: 13335
+        irr: ARIN::AS13335:AS-CLOUDFLARE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.194.180
+          v6: 2001:7f8::3417:0:1
+        import_limit:
+          v4:
+            count: 80000
+          v6:
+            count: 30000
+      - description: DE-CIX Cloudflare 2
+        alias: decix_cloudflare_2
+        asn: 13335
+        irr: ARIN::AS13335:AS-CLOUDFLARE
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.193.129
+          v6: 2001:7f8::3417:0:2
+        import_limit:
+          v4:
+            count: 80000
+          v6:
+            count: 30000
+      - description: DE-CIX Meta 2
+        alias: decix_meta_2
+        asn: 32934
+        irr: RADB::AS-FACEBOOK
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.195.40
+          v6: 2001:7f8::80a6:0:2
+        import_limit:
+          v4:
+            count: 100
+          v6:
+            count: 100
+      - description: DE-CIX Meta 3
+        alias: decix_meta_3
+        asn: 32934
+        irr: RADB::AS-FACEBOOK
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.195.141
+          v6: 2001:7f8::80a6:0:3
+        import_limit:
+          v4:
+            count: 100
+          v6:
+            count: 100
+      - description: DE-CIX TKRZ
+        alias: decix_tkrz
+        asn: 42184
+        irr: RIPE::AS-TKRZ
+        local:
+          v4: 80.81.197.18
+          v6: 2001:7f8::3:3c38:0:1
+        remote:
+          v4: 80.81.192.178
+          v6: 2001:7f8::a4c8:0:1
+        import_limit:
+          v4:
+            count: 100
+          v6:
+            count: 50
 
   customers:
     defaults:
@@ -126,16 +289,6 @@ bird_bgp_sessions:
         remote:
           v4: 169.254.0.1
           v6: fe80::1
-      - description: FRA
-        alias: fra
-        asn: 212024
-        interface: core-fra
-        local:
-          v4: 169.254.0.4
-          v6: fe80::0:4
-        remote:
-          v4: 169.254.0.5
-          v6: fe80::0:5
 
   looking_glasses:
     sessions:
@@ -157,9 +310,6 @@ bird_ospf_sessions:
       0.0.0.0:
         interfaces:
           core-bar:
-            type: ptp
-            cost: 25
-          core-fra:
             type: ptp
             cost: 25
           lan-svc-101:
