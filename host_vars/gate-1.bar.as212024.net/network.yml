@@ -54,21 +54,6 @@ systemd_networkd_netdev:
         - "::/0"
       PersistentKeepalive: 60
       Endpoint: "37.46.199.111:51802"
-  15-core-fra:
-    NetDev:
-      Name: core-fra
-      Kind: wireguard
-    WireGuard:
-      PrivateKeyFile: /etc/wireguard/core/private
-      ListenPort: 51804
-      RouteTable: "off"
-    WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file', '~/.ansible/tmp/wireguard/edge-2.fra.as212024.net/etc/wireguard/core/public') }}"
-      AllowedIPs:
-        - 0.0.0.0/0
-        - "::/0"
-      PersistentKeepalive: 60
-      Endpoint: "194.50.92.165:51802"
   # servers, like k8s
   20-lan-srv-2:
     NetDev:
@@ -243,18 +228,6 @@ systemd_networkd_network:
       Address:
         - 169.254.0.1/31
         - fe80::0:1/127
-  15-core-fra:
-    Match:
-      Name: core-fra
-    Link:
-      RequiredForOnline: false
-    Network:
-      ConfigureWithoutCarrier: true
-      LinkLocalAddressing: false
-      IPv6AcceptRA: false
-      Address:
-        - 169.254.0.8/31
-        - fe80::0:8/127
   # servers, like k8s
   20-lan-srv-2:
     Match:

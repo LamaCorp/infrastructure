@@ -49,23 +49,6 @@ systemd_networkd_netdev:
         - 0.0.0.0/0
         - "::/0"
       PersistentKeepalive: 60
-  15-core-fra:
-    NetDev:
-      Name: core-fra
-      Kind: wireguard
-    WireGuard:
-      PrivateKeyFile: /etc/wireguard/core/private
-      ListenPort: 51804
-      RouteTable: "off"
-    WireGuardPeer:
-      PublicKey: "{{ lookup('ansible.builtin.file',
-        '~/.ansible/tmp/wireguard/edge-2.fra.as212024.net/etc/wireguard/core/pu\
-        blic') }}"
-      AllowedIPs:
-        - 0.0.0.0/0
-        - "::/0"
-      PersistentKeepalive: 60
-      Endpoint: "194.50.92.165:51801"
   # service VMs like k8s
   20-lan-svc-101:
     NetDev:
@@ -146,6 +129,8 @@ systemd_networkd_network:
       Address:
         - 209.112.97.243/32
         - 2001:67c:17fc:ffff::3/128
+        - 209.112.97.244/32
+        - 2001:67c:17fc:ffff::4/128
   10-svc-ns1:
     Match:
       Name: svc-ns1
@@ -239,18 +224,6 @@ systemd_networkd_network:
       Address:
         - 169.254.0.0/31
         - fe80::0:0/127
-  15-core-fra:
-    Match:
-      Name: core-fra
-    Link:
-      RequiredForOnline: false
-    Network:
-      ConfigureWithoutCarrier: true
-      LinkLocalAddressing: false
-      IPv6AcceptRA: false
-      Address:
-        - 169.254.0.4/31
-        - fe80::0:4/127
   # service VMs like k8s
   20-lan-svc-101:
     Match:
@@ -286,6 +259,8 @@ systemd_networkd_network:
         Gateway: 172.28.1.90 # mail.fsn.as212024.net
       - Destination: 2001:67c:17fc::25/128 # mail.lama-corp.space
         Gateway: 2001:67c:17fc:102::90 # mail.fsn.as212024.net
+      - Destination: 37.46.199.161/32 # mail.lama-corp.space
+        Gateway: 172.28.1.90 # mail.fsn.as212024.net
       - Destination: 209.112.97.233/32 # nat-mdw
         Gateway: 0.0.0.0
         Type: unreachable

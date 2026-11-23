@@ -18,12 +18,14 @@ bird_static_routes:
     - 209.112.97.233/32 unreachable # nat-mdw
     - 209.112.97.234/32 unreachable # nat-cust
     - 209.112.97.243/32 via "legacy" # legacy ns1
+    - 209.112.97.244/32 via "legacy" # legacy ns2
   v6:
     - 2001:67c:17fc:ffff::1/128 via "id"
     - 2001:67c:17fc::25/128 unreachable # mail.as212024.net
     - 2001:67c:17fc::54/128 via "svc-ns1" # ns1.as212024.net
     - 2001:67c:17fc::124/128 via "svc-ntp1" # ntp1.as212024.net
     - 2001:67c:17fc:ffff::3/128 via "legacy" # legacy ns1
+    - 2001:67c:17fc:ffff::4/128 via "legacy" # legacy ns2
     - 2a06:e881:7701:2::/64 via "cl-hane-1" # hane-1.client.fra.as212024.net
 
 bird_local_routes:
@@ -287,16 +289,6 @@ bird_bgp_sessions:
         remote:
           v4: 169.254.0.1
           v6: fe80::1
-      - description: FRA
-        alias: fra
-        asn: 212024
-        interface: core-fra
-        local:
-          v4: 169.254.0.4
-          v6: fe80::0:4
-        remote:
-          v4: 169.254.0.5
-          v6: fe80::0:5
 
   looking_glasses:
     sessions:
@@ -318,9 +310,6 @@ bird_ospf_sessions:
       0.0.0.0:
         interfaces:
           core-bar:
-            type: ptp
-            cost: 25
-          core-fra:
             type: ptp
             cost: 25
           lan-svc-101:

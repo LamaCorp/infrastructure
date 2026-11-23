@@ -9,7 +9,6 @@ spec:
     - targets:
         - core-1.fra.as212024.net:9100
         - gate-1.bar.as212024.net:9100
-        - edge-2.fra.as212024.net:9100
 
         - mongodb.fsn.as212024.net:9100
         - postgresql.fsn.as212024.net:9100
@@ -44,7 +43,6 @@ spec:
     - targets:
         - core-1.fra.as212024.net:9123
         - gate-1.bar.as212024.net:9123
-        - edge-2.fra.as212024.net:9123
 
         - mongodb.fsn.as212024.net:9123
         - postgresql.fsn.as212024.net:9123
@@ -79,7 +77,6 @@ spec:
     - targets:
         - core-1.fra.as212024.net:9630
         - gate-1.bar.as212024.net:9630
-        - edge-2.fra.as212024.net:9630
 
         - mongodb.fsn.as212024.net:9630
         - postgresql.fsn.as212024.net:9630
@@ -114,7 +111,6 @@ spec:
     - targets:
         - core-1.fra.as212024.net:9324
         - gate-1.bar.as212024.net:9324
-        - edge-2.fra.as212024.net:9324
 ---
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMStaticScrape
