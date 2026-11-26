@@ -67,6 +67,6 @@ images:
   - name: ghcr.io/paperless-ngx/paperless-ngx
     newTag: 3.5.1@sha256:8508853b8a0f8394074260957d0be186c8c64f346973b24a7583de4580f306b9
   - name: docker.io/gotenberg/gotenberg
-    newTag: 9.10.1@sha256:7d04e465cc8f700871092c2871c04f1e70d86eb399c9887cbd86a4a809e873ce
+    newTag: 9.10.2@sha256:daede2c52129da3b9eef655fdad5de0c0a978f1119bb1c459ee88388982b1b70
   - name: docker.io/apache/tika
     newTag: 3.4.0.0-full@sha256:33d96e4c936b4bc716e9ca310a2e8d93f609be55571e9f777ae247e85462306f
